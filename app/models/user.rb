@@ -3,15 +3,15 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :omniauthable, omniauth_providers: %i[line]
+         :omniauthable, omniauth_providers: %i[line google_oauth2]
 
   def self.from_omniauth(omniauth:)
     self.find_or_create_by(provider: omniauth.provider, uid: omniauth.uid) do |user|
       user.password = SecureRandom.base64
-      if omniauth.email.blank?
+      if omniauth.info.email.blank?
         user.email = "#{omniauth.provider}-#{omniauth.uid}@example.com"
       else
-        user.email = omniauth.email
+        user.email = omniauth.info.email
       end
       user.name = omniauth.info.name
       user.is_valid = true

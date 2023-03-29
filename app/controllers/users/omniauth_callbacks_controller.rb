@@ -2,10 +2,21 @@
 
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def line 
+    callback_for
+  end
+
+  def google_oauth2
+    callback_for
+  end
+
+  def callback_for
     user = User.from_omniauth(omniauth: request.env["omniauth.auth"])
     if user.persisted?
       flash[:notice] = 'ログインしました'
       sign_in_and_redirect user
+    else
+      flash[:notice] = 'ログインできません'
+      redirect_to new_user_session_path
     end
   end
   # You should configure your model like this:

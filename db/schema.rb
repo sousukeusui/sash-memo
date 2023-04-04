@@ -21,10 +21,14 @@ ActiveRecord::Schema.define(version: 2023_03_26_133207) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
     t.string "name", limit: 15, null: false
     t.string "uid"
     t.string "provider"
-    t.boolean "is_valid", default: false, null: false
+    t.boolean "is_valid", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true

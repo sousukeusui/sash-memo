@@ -310,4 +310,5 @@ Devise.setup do |config|
   # config.sign_in_after_change_password = true
   config.omniauth :line, ENV['LINE_KEY'], ENV['LINE_SECRET']
   config.omniauth :google_oauth2, ENV['GOOGLE_ID'], ENV['GOOGLE_SECRET']
+  config.mailer_sender = ENV['SMTP_USER_NAME']
 end

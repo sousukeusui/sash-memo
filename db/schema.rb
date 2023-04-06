@@ -10,10 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_03_26_133207) do
+ActiveRecord::Schema.define(version: 2023_04_06_125837) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "one_time_authentications", force: :cascade do |t|
+    t.integer "function_name", null: false
+    t.string "user_key", null: false
+    t.string "client_token"
+    t.integer "password_length", null: false
+    t.string "password_digest", null: false
+    t.integer "expires_seconds", null: false
+    t.integer "failed_count", default: 0, null: false
+    t.integer "max_authenticate_password_count", default: 3, null: false
+    t.datetime "authenticated_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_key"], name: "index_one_time_authentications_on_user_key"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false

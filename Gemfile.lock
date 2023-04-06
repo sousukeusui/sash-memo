@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    action_args (2.7.2)
     actioncable (6.1.7.3)
       actionpack (= 6.1.7.3)
       activesupport (= 6.1.7.3)
@@ -276,6 +277,7 @@ PLATFORMS
   x86_64-darwin-21
 
 DEPENDENCIES
+  action_args
   bootsnap (>= 1.4.4)
   byebug
   capybara (>= 3.26)

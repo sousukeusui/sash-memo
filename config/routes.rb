@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'sites/index', to: 'sites#index'
   devise_for :users, controllers: { 
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
@@ -10,5 +9,6 @@ Rails.application.routes.draw do
       get 'done'
     end
   end
+  get 'sites/index', to: 'sites#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -12,7 +12,7 @@ module OneTimePassword
   # end
   # ```
   FUNCTION_NAMES = {
-    sign_up: 0, sign_in: 1, change_email: 2
+    sign_up: 0
   }
 
   # {
@@ -27,20 +27,20 @@ module OneTimePassword
   CONTEXTS = [
     {
       function_name: :sign_up,
-      expires_in: 30.minutes,
-      max_authenticate_password_count: 5,
+      expires_in: 10.minutes,
+      max_authenticate_password_count: 3,
       password_length: 6,
       password_failed_limit: 10,
       password_failed_period: 1.hour
     },
-    {
-      function_name: :sign_in,
-      expires_in: 30.minutes,
-      max_authenticate_password_count: 5,
-      password_length: 10,
-      password_failed_limit: 10,
-      password_failed_period: 1.hour
-    },
+    # {
+    #   function_name: :sign_in,
+    #   expires_in: 30.minutes,
+    #   max_authenticate_password_count: 5,
+    #   password_length: 10,
+    #   password_failed_limit: 10,
+    #   password_failed_period: 1.hour
+    # },
     # {
     #   function_name: :change_email,
     #   expires_in: 30.minutes,

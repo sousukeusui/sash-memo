@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[line google_oauth2]
 
+  validates :name, presence: true, length:{ maximum: 15}
+
   def self.from_omniauth(omniauth:)
     self.find_or_create_by(provider: omniauth.provider, uid: omniauth.uid) do |user|
       user.password = SecureRandom.base64

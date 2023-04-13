@@ -4,16 +4,20 @@ class SignUpController < ApplicationController
   end
   
   def step2(name:, email:, password:, password_confirmation:)
-    render :step1 if password != password_confirmation #バリデーション考える
-    session[:name] = name
-    session[:email] = email
-    session[:password] = password
-    #認証コードをメールアドレスに送信
-    create_and_send_confirmation_code(email: email, name: name)
+    message = user_validation(name: name, email: email, password: password, password_confirmation: password_confirmation)
+    if message.present?
+      redirect_to step1_sign_up_index_path, alert: message
+    else
+      session[:name] = name
+      session[:email] = email
+      session[:password] = password
+      #認証コードをメールアドレスに送信
+      create_and_send_confirmation_code(email: email, name: name)
+    end
   end
 
   def create(confirmation_code:)
-    if check_confirmation_code(confirmation_code: confirmation_code)
+    if check_confirmation_code?(confirmation_code: confirmation_code)
       user = User.new(
         name: session[:name],
         email: session[:email],
@@ -29,7 +33,20 @@ class SignUpController < ApplicationController
   end
 
   def done
-    p current_user
+    
+  end
+
+
+  private
+
+  def user_validation(name:, email:, password:, password_confirmation:)
+    return 'パスワードとパスワード(確認用)が一致していません' if password != password_confirmation
+    user = User.new(
+      name: name,
+      email: email,
+      password: password
+    )
+    return user.errors.full_messages unless user.valid?
   end
 
   def create_and_send_confirmation_code(email:, name:)
@@ -42,7 +59,7 @@ class SignUpController < ApplicationController
     session[:client_token] = one_time_authentication.client_token
   end
 
-  def check_confirmation_code(confirmation_code:)
+  def check_confirmation_code?(confirmation_code:)
     context = OneTimeAuthentication.find_context(:sign_up)
     one_time_authentication = OneTimeAuthentication.find_one_time_authentication(
       context,

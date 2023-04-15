@@ -62,3 +62,5 @@ gem 'omniauth-line'
 gem 'omniauth-rails_csrf_protection'
 gem 'action_args'
 gem "one_time_password"
+gem 'devise-i18n'
+gem 'rails-i18n'

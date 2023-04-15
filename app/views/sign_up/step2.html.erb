@@ -1,4 +1,4 @@
-<%= form_with url: sign_up_index_path, local: true do |f| %>
+<%= form_with url: sign_up_create_path, local: :true do |f| %>
   <div class="form-group">
     <%= f.label :confirmation_code, '認証コード' %><br />
     <%= f.number_field :confirmation_code %>

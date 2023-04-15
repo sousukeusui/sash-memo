@@ -4,8 +4,8 @@ class SignUpController < ApplicationController
   end
   
   def step2(name:, email:, password:, password_confirmation:)
-    message = user_validation(name: name, email: email, password: password, password_confirmation: password_confirmation)
-    if message.present?
+    error_message = user_validation(name: name, email: email, password: password, password_confirmation: password_confirmation)
+    if error_message.present?
       redirect_to step1_sign_up_index_path, alert: message
     else
       session[:name] = name

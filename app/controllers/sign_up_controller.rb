@@ -4,7 +4,7 @@ class SignUpController < ApplicationController
   end
   
   def step1
-
+    
   end
   
   def step2(name:, email:, password:, password_confirmation:)

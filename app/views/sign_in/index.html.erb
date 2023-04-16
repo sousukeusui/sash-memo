@@ -1,0 +1,6 @@
+<h2>ログイン</h2>
+<%= link_to 'メールアドレスでログイン', new_user_session_path %>
+<%= link_to 'LINEでログイン' , user_line_omniauth_authorize_path , method: :post %>
+<%= link_to 'googleでログイン', user_google_oauth2_omniauth_authorize_path, method: :post %>
+<p>アカウントをお持ちでない方</p>
+<%= link_to '新規登録' , sign_up_index_path%>

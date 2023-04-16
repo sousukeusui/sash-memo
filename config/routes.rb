@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   post 'sign_up/create'
   get 'sites/index'
   get 'sites/new'
+  post 'sites/create'
   devise_for :users, controllers: {
     omniauth_callbacks: 'users/omniauth_callbacks'
   }

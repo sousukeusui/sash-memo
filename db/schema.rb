@@ -33,8 +33,10 @@ ActiveRecord::Schema.define(version: 2023_04_16_070732) do
   create_table "sites", force: :cascade do |t|
     t.string "name", limit: 30, null: false
     t.string "address", limit: 50, null: false
-    t.datetime "research_date"
-    t.datetime "construction_date"
+    t.date "research_date"
+    t.time "research_start_time"
+    t.date "construction_date"
+    t.time "construction_start_time"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

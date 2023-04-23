@@ -3,10 +3,18 @@ class SitesController < ApplicationController
   end
 
   def new
+    @contractors = current_user.contractors
+  end
 
+  def search_contractor(contractor:)
+    contractors = current_user.contractors.where("name LIKE?", "%#{contractor}%")
+    respond_to do |format|
+      format.json { render json: contractors }
+    end
   end
 
   def create(contractor_name:, name:, address:, research_date:, research_start_time:, construction_date:, construction_start_time:)
+    #find_or_createにする予定
     contractor = Contractor.create!(name: contractor_name, user_id: current_user.id)
     site = Site.new(name: name,
                     address: address,

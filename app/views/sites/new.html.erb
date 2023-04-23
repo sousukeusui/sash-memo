@@ -3,8 +3,10 @@
 <%= form_with url: sites_create_path, local: true do |f| %>
   <div class="form-group">
     <%= f.label :contractor_name, '元請'%>
-    <!-- 後ほど動的に変える -->
-    <%= f.text_field :contractor_name, required: true%>
+    <%= f.text_field :contractor_name, required: true%><br />
+    <!-- リストにする-->
+    <ul id="search-result">
+    </ul>
   </div>
   <div class="form-group">
     <%= f.label :name, '現場名' %>

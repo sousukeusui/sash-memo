@@ -64,3 +64,4 @@ gem 'action_args'
 gem "one_time_password"
 gem 'devise-i18n'
 gem 'rails-i18n'
+gem "jquery-rails"

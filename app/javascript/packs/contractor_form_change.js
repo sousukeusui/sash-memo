@@ -1,8 +1,14 @@
 window.onload = function(){
   let contractorName = document.getElementById('contractor_name')
   let searchResult = document.getElementById('search-result')
-  contractorName.addEventListener('keyup', searchContractor, false)
-  searchResult.addEventListener('click', inputContractor, false)
+  
+  if(contractorName){
+    contractorName.addEventListener('keyup', searchContractor, false)
+  }
+
+  if(searchResult){
+    searchResult.addEventListener('click', inputContractor, false)
+  }
 
   function searchContractor(){
     $('#search-result li').remove()

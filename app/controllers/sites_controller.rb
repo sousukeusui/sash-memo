@@ -15,7 +15,9 @@ class SitesController < ApplicationController
 
   def create(contractor_name:, name:, address:, research_date:, research_start_time:, construction_date:, construction_start_time:)
     #find_or_createにする予定
-    contractor = Contractor.create!(name: contractor_name, user_id: current_user.id)
+    contractor = Contractor.find_or_create_by(name: contractor_name) do |contractor|
+      contractor.user_id = current_user.id
+    end
     site = Site.new(name: name,
                     address: address,
                     research_date: research_date,

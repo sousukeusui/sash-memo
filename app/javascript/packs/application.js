@@ -10,7 +10,6 @@ import "channels"
 import ('jquery')
 
 import './contractor_form_change'
-
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()

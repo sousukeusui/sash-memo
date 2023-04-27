@@ -37,6 +37,5 @@ $(document).on('turbolinks:load', function(){
       contractorName.value = e.target.innerText
       $('#search-result li').remove()
     }
-    console.log('読み込まれたよ')
   })
 })

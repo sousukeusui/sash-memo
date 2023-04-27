@@ -1,5 +1,6 @@
 class SitesController < ApplicationController
   def index
+    @sites = current_user.sites
   end
 
   def new

@@ -1,0 +1,49 @@
+<p>現場情報記入</p>
+<!--開発都合で設置したリンク-->
+<%= link_to 'ホームに戻る', sites_index_path %>
+
+<%= form_with url: sites_create_path, local: true do |f| %>
+  <div class="form-group">
+    <%= f.label :contractor_name, '元請'%>
+    <%= f.text_field :contractor_name, required: true%><br />
+    <!-- リストにする-->
+    <ul id="search-result">
+    </ul>
+  </div>
+  <div class="form-group">
+    <%= f.label :name, '現場名' %>
+    <%= f.text_field :name, required: true %>
+  </div>
+  <div class="form-group">
+    <!--郵便番号から住所検索できるAPI追加する予定-->
+    <%= f.label :address, '住所' %>
+    <%= f.text_field :address, required: true%>
+  </div>
+  <div class="form-group">
+    <%= f.check_box :setting_research %>
+    <%= f.label :setting_research, '現調日時を設定する' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :research_date, '現調日' %>
+    <%= f.date_field :research_date %>
+  </div>
+  <div class="form-group">
+    <%= f.label :research_start_time, '現調開始時間' %>
+    <%= f.time_field :research_start_time %>
+  </div>
+  <div class="form-group">
+    <%= f.check_box :setting_research %>
+    <%= f.label :setting_research, '工事日時を設定する' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :construction_date, '工事日' %>
+    <%= f.date_field :construction_date %>
+  </div>
+  <div class="form-group">
+    <%= f.label :construction_start_time, '工事開始時間' %>
+    <%= f.time_field :construction_start_time %>
+  </div>
+  <div class="form-group">
+    <%= f.submit '現場作成' %>
+  </div>
+<% end %>

@@ -7,6 +7,9 @@ class User < ApplicationRecord
 
   validates :name, presence: true, length:{ maximum: 15}
 
+  has_many :sites
+  has_many :contractors
+
   def self.from_omniauth(omniauth:)
     self.find_or_create_by(provider: omniauth.provider, uid: omniauth.uid) do |user|
       user.password = SecureRandom.base64

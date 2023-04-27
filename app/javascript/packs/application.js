@@ -9,7 +9,8 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import ('jquery')
 
-import './contractor_form_change'
+import './suggest_contractor'
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()

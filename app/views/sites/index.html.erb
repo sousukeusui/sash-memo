@@ -11,8 +11,8 @@
       <tr>
         <td><%= site.contractor.name %></td>
         <td><%= site.name %></td>
-        <td><%= site.research_date %></td>
-        <td><%= site.construction_date %></td>
+        <td><%= check_schedule(site.research_date) %></td>
+        <td><%= check_schedule(site.construction_date) %></td>
       </tr>
     <% end %>
   </table>

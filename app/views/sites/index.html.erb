@@ -1,6 +1,23 @@
-<h1>Sites#index</h1>
-<p>Find me in app/views/sites/index.html.erb</p>
 <%= link_to '現場追加', sites_new_path %>
+
+  <table>
+    <tr>
+      <th>元請</th>
+      <th>現場名</th>
+      <th>現調日</th>
+      <th>工事日</th>
+    </tr>
+    <% @sites.each do |site| %>
+      <tr>
+        <td><%= site.contractor.name %></td>
+        <td><%= site.name %></td>
+        <td><%= check_schedule(site.research_date) %></td>
+        <td><%= check_schedule(site.construction_date) %></td>
+      </tr>
+    <% end %>
+  </table>
+
+<!-- 開発都合のリンク -->
 <% if user_signed_in? %>
   <p>ログイン中</p>
   <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>

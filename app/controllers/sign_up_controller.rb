@@ -1,4 +1,6 @@
 class SignUpController < ApplicationController
+  before_action :validates_step1, only: :step2
+
   def index
     
   end
@@ -7,50 +9,47 @@ class SignUpController < ApplicationController
     
   end
   
-  def step2(name:, email:, password:, password_confirmation:)
-    error_message = user_validation(name: name, email: email, password: password, password_confirmation: password_confirmation)
-    if error_message.present?
-      redirect_to step1_sign_up_index_path, alert: message
-    else
-      session[:name] = name
-      session[:email] = email
-      session[:password] = password
-      #認証コードをメールアドレスに送信
-      create_and_send_confirmation_code(email: email, name: name)
-    end
+  def step2(email:, name:)
+    #認証コードをメールアドレスに送信
+    create_and_send_confirmation_code(email: email, name: name)
   end
 
   def create(confirmation_code:)
-    if check_confirmation_code?(confirmation_code: confirmation_code)
-      user = User.new(
-        name: session[:name],
-        email: session[:email],
-        password: session[:password]
-      )
-      if user.save!
-        sign_in(:user, user)
-        redirect_to done_sign_up_index_path, notice: 'アカウントの作成が完了しました'
-      end
+    user = User.new(
+      name: session[:name],
+      email: session[:email],
+      password: session[:password],
+      password_confirmation: session[:password_confirmation]
+    )
+    if check_confirmation_code?(confirmation_code: confirmation_code) && user.save!
+      sign_in(:user, user)
+      redirect_to sign_up_done_path, notice: 'アカウントの作成が完了しました'
     else
-      redirect_to step2_sign_up_index_path, alert: '認証コードが間違っています'
+      redirect_to sign_up_step2_path, alert: '認証コードが間違っています'
     end
   end
 
   def done
-    
+
   end
 
 
   private
 
-  def user_validation(name:, email:, password:, password_confirmation:)
-    return 'パスワードとパスワード(確認用)が一致していません' if password != password_confirmation
+  def validates_step1(name:, email: ,password:, password_confirmation:)
+    session[:name] = name
+    session[:email] = email
+    session[:password] = password
+    session[:password_confirmation] = password_confirmation
+
     user = User.new(
-      name: name,
-      email: email,
-      password: password
+      name: session[:name],
+      email: session[:email],
+      password: session[:password],
+      password_confirmation: session[:password_confirmation]
     )
-    return user.errors.full_messages unless user.valid?
+    
+    redirect_to sign_up_step1_path, notice: user.errors.full_messages unless user.valid?
   end
 
   def create_and_send_confirmation_code(email:, name:)

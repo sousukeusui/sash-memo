@@ -13,6 +13,8 @@
         <td><%= site.name %></td>
         <td><%= check_schedule(site.research_date) %></td>
         <td><%= check_schedule(site.construction_date) %></td>
+        <!--仮のリンク-->
+        <td><%= link_to 'メモへ', site_memos_index_path(site.id) %></td>
       </tr>
     <% end %>
   </table>

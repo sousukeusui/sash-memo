@@ -7,3 +7,6 @@
     <%= f.submit '認証' %>
   </div>
 <% end %>
+<p>メールが届かない場合</p>
+<!-- 2分に一回押せるようにする -->
+<%= link_to '再送する', sign_up_resend_confirmation_code_path%>

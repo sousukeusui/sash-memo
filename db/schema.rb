@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_30_132214) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_30_133124) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -41,6 +41,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_30_132214) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_key"], name: "index_one_time_authentications_on_user_key"
+  end
+
+  create_table "site_memos", force: :cascade do |t|
+    t.string "room", limit: 15, null: false
+    t.bigint "construction_kind_id", null: false
+    t.bigint "site_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["construction_kind_id"], name: "index_site_memos_on_construction_kind_id"
+    t.index ["site_id"], name: "index_site_memos_on_site_id"
   end
 
   create_table "sites", force: :cascade do |t|
@@ -75,6 +85,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_30_132214) do
   end
 
   add_foreign_key "contractors", "users"
+  add_foreign_key "site_memos", "construction_kinds"
+  add_foreign_key "site_memos", "sites"
   add_foreign_key "sites", "contractors"
   add_foreign_key "sites", "users"
 end

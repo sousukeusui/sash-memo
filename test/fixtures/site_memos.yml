@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  room: MyString
+  construction_kind_id: one
+  site_id: one
+
+two:
+  room: MyString
+  construction_kind_id: two
+  site_id: two

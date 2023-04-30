@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'sign_up/step1'
   get 'sign_up/step2'
   get 'sign_up/done'
+  get 'sign_up/resend_confirmation_code'
   post 'sign_up/create'
   get 'sites/index'
   get 'sites/new'

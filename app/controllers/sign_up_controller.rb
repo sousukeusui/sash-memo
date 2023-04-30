@@ -33,6 +33,11 @@ class SignUpController < ApplicationController
 
   end
 
+  def resend_confirmation_code
+    create_and_send_confirmation_code(email: session[:email], name: session[:name])
+    render :step2, notice: '確認コードを再送しました'
+  end
+
 
   private
 

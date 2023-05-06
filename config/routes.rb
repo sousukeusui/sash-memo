@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get 'site_memos/index/:site_id', to: 'site_memos#index', as: :site_memos_index
   get 'site_memos/new_step1/:site_id', to: 'site_memos#new_step1', as: :site_memos_new_step1
   get 'site_memos/new_step2_inner_sash'
+  get 'site_memos/new_step3_inner_sash'
   post 'site_memos/divide_form_by'
   root 'homes#top'
   get 'sign_in/index'

@@ -21,6 +21,10 @@ class SiteMemosController < ApplicationController
     
   end
 
+  def new_step3_inner_sash
+    
+  end
+
 
   private 
 

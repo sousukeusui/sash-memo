@@ -2,7 +2,7 @@
 <%= form_with url: site_memos_divide_form_by_path, local: true  do |f|%>
   <div class="form-group">
     <%= f.label :kind_number, '施工内容' %>
-    <%= f.select :kind_number, ConstructionKind.kind_numbers.keys.map {|k| [I18n.t("enums.construction_kind.kind_number.#{k}"), k]}, { prompt: '選択してください' } %>
+    <%= f.select :kind_number, ConstructionKind.kind_numbers.keys.map {|k| [I18n.t("enums.construction_kind.kind_number.#{k}"), k]}, { prompt: '選択してください' }, required: true %>
   </div>
   <div class="form-group">
     <%= f.submit '次へ' %>

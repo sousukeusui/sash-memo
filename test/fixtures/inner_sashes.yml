@@ -1,0 +1,31 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  color: 1
+  number_of_shoji: 1
+  width_up_size: 1
+  width_down_size: 1
+  width_middle_size: 1
+  height_left_size: 1
+  height_right_size: 1
+  height_middle_size: 1
+  width_frame_depth: 1
+  height_frame_depth: 1
+  flat_bar_size: 1
+  remark: MyString
+  site_memo: one
+
+two:
+  color: 1
+  number_of_shoji: 1
+  width_up_size: 1
+  width_down_size: 1
+  width_middle_size: 1
+  height_left_size: 1
+  height_right_size: 1
+  height_middle_size: 1
+  width_frame_depth: 1
+  height_frame_depth: 1
+  flat_bar_size: 1
+  remark: MyString
+  site_memo: two

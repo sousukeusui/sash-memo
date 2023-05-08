@@ -66,3 +66,4 @@ gem 'devise-i18n'
 gem 'rails-i18n'
 gem "jquery-rails"
 gem 'enum_help'
+gem 'redis-rails'

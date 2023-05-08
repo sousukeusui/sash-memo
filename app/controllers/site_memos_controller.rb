@@ -34,6 +34,28 @@ class SiteMemosController < ApplicationController
                             height_left_size:, height_middle_size:, height_right_size:,
                             height_frame_depth:, width_frame_depth:)
     @@site_memo.room = room
+    
+    binding.pry
+    
+    @@inner_sash = InnerSash.new(
+      width_up_size: width_up_size,
+      width_middle_size: width_middle_size,
+      width_down_size: width_down_size,
+      height_left_size: height_left_size,
+      height_middle_size: height_middle_size,
+      height_right_size: height_right_size,
+      height_frame_depth: height_frame_depth,
+      width_frame_depth: width_frame_depth,
+      color: 1,
+      number_of_shoji: 2,
+      site_memo_id: 1
+    )
+
+    if @@inner_sash.valid? && @@site_memo.valid?
+      redirect_to site_memos_new_step3_inner_sash_path
+    else
+      redirect_to site_memos_new_step2_inner_sash_path, notice: @@inner_sash.errors.full_messages
+    end
   end
 
 end

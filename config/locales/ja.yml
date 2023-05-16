@@ -1,7 +1,7 @@
 ja:
   enums:
-    construction_kind:
-      kind_number:
+    site_memo:
+      kind:
         inner_sash: '内窓'
   activerecord:
     errors:

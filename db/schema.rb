@@ -10,15 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_07_140714) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_16_134706) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "construction_kinds", force: :cascade do |t|
-    t.integer "kind_number", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "contractors", force: :cascade do |t|
     t.string "name", limit: 30, null: false
@@ -64,11 +58,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_07_140714) do
 
   create_table "site_memos", force: :cascade do |t|
     t.string "room", limit: 15, null: false
-    t.bigint "construction_kind_id", null: false
     t.bigint "site_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["construction_kind_id"], name: "index_site_memos_on_construction_kind_id"
+    t.integer "kind", null: false
     t.index ["site_id"], name: "index_site_memos_on_site_id"
   end
 
@@ -105,7 +98,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_07_140714) do
 
   add_foreign_key "contractors", "users"
   add_foreign_key "inner_sashes", "site_memos"
-  add_foreign_key "site_memos", "construction_kinds"
   add_foreign_key "site_memos", "sites"
   add_foreign_key "sites", "contractors"
   add_foreign_key "sites", "users"

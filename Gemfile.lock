@@ -383,6 +383,7 @@ DEPENDENCIES
   rack-mini-profiler
   rails (= 7.0.4.3)
   rails-i18n
+  redis
   redis-rails
   sass-rails
   selenium-webdriver

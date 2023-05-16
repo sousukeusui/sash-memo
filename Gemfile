@@ -68,3 +68,4 @@ gem "jquery-rails"
 gem 'enum_help'
 gem 'redis-rails'
 gem 'config'
+gem 'redis'

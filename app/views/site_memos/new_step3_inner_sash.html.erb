@@ -1,1 +1,23 @@
 <p>ステップ３</p>
+<%= form_with url: site_memos_new_step4_inner_sash_path, method: :get, local: true do |f| %>
+  <table>
+    <tr>
+      <th>部屋</th>
+      <th>タイプ</th>
+      <th>色</th>
+      <th>障子枚数</th>
+      <th>吊元（開きのみ）</th>
+    </tr>
+    <tr>
+      <td>
+        <%= @site_memo.room %>
+      </td>
+      <td>
+        <%= f.select :type, ['引き違い', '開き'], {prompt: '選択してください'} %>
+      </td>
+      <td><%= f.select :color, ['色１', '色2'], {prompt: '選択してください'} %></td><!-- enum使う -->
+      <td><%= f.select :number_of_shoji, [1, 2, 3, 4], {prompt: '選択してください'} %></td>
+      <td>開きを選択したときにチェックボックス</td>
+    </tr>
+  </table>
+<% end %>

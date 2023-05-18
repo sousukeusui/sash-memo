@@ -30,7 +30,7 @@ class SiteMemosController < ApplicationController
   end
 
   def new_step2_inner_sash
-    
+    @site_memo = SiteMemo.new
   end
 
   def new_step3_inner_sash(room:, width_up_size:, width_middle_size:, width_down_size:,
@@ -61,7 +61,7 @@ class SiteMemosController < ApplicationController
   end
 
   def new_step4_inner_sash
-    
+
   end
 
 end

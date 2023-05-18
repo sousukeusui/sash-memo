@@ -1,6 +1,6 @@
 <p>内窓用フォーム</p>
 
-<%= form_with url: site_memos_new_step3_inner_sash_path, method: :get, local: true do |f| %>
+<%= form_with model: @site_memo, url: site_memos_new_step3_inner_sash_path, method: :get, local: true do |f| %>
   <table>
     <tr>
       <th>部屋</th>
@@ -14,46 +14,17 @@
           <%= f.text_field :room %>
         </div>
       </td>
-      <td>
-        <div class="form-group">
-          <%= f.label :width_up_size, '上:' %>
-          <%= f.number_field :width_up_size %>
-        </div>
-        <div class="form-group">
-          <%= f.label :width_middle_size, '中:' %>
-          <%= f.number_field :width_middle_size %>
-        </div>
-        <div class="form-group">
-          <%= f.label :width_down_size, '下:' %>
-          <%= f.number_field :width_down_size %>
-        </div>
-      </td>
-      <td>
-        <div class="form-group">
-          <%= f.label :height_left_size, '左:' %>
-          <%= f.number_field :height_left_size %>
-        </div>
-        <div class="form-group">
-          <%= f.label :height_middle_size, '中:' %>
-          <%= f.number_field :height_middle_size %>
-        </div>
-        <div class="form-group">
-          <%= f.label :height_right_size, '右:' %>
-          <%= f.number_field :height_right_size %>
-        </div>
-      </td>
-      <td>
-        <div class="form-group">
-          <%= f.label :height_frame_depth, '縦:' %>
-          <%= f.number_field :height_frame_depth %>
-        </div>
-        <div class="form-group">
-          <%= f.label :width_frame_depth, '横:' %>
-          <%= f.number_field :width_frame_depth %>
-        </div>
-      </td>
+      <%= f.fields_for :inner_sashs do |t| %>
+        <%= render 'inner_sash_fields', f: t %>
+      <% end %>
     </tr>
+    <div id="detail-association-insertion-point"></div>
   </table>
+  <%= link_to_add_association '場所追加', f, :inner_sashs,
+  data: {
+    association_insertion_node: '#detail-association-insertion-point',
+    association_insertion_method: 'after'
+  }%>
   <div class="form_group">
     <%= f.submit '次へ' %>
   </div>

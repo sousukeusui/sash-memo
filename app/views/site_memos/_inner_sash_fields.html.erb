@@ -1,4 +1,9 @@
-<div class="nested_fields">
+<tr class="nested-fields">
+  <td>
+    <div class="form-group">
+      <%= f.text_field :room %>
+    </div>
+  </td>
   <td>
     <div class="form-group">
       <%= f.label :width_up_size, '上:' %>
@@ -37,4 +42,7 @@
       <%= f.number_field :width_frame_depth %>
     </div>
   </td>
-</div>
+  <td>
+    <%= link_to_remove_association "削除", f %>
+  </td>
+</tr>

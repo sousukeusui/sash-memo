@@ -12,4 +12,5 @@ class InnerSash < ApplicationRecord
   validates :color, presence: true
   validates :number_of_shoji, presence: true
   validates :site_memo_id, presence: true, on: :save_site_memo_id
+  validates :room, presence: true, length: { maximum: 15 }
 end

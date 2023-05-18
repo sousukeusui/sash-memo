@@ -8,22 +8,15 @@
       <th>H寸法</th>
       <th>窓枠見込み</th>
     </tr>
-    <tr>
-      <td>
-        <div class="form-group">
-          <%= f.text_field :room %>
-        </div>
-      </td>
-      <%= f.fields_for :inner_sashs do |t| %>
-        <%= render 'inner_sash_fields', f: t %>
-      <% end %>
-    </tr>
-    <div id="detail-association-insertion-point"></div>
+    <%= f.fields_for :inner_sashs do |t| %>
+      <%= render 'inner_sash_fields', f: t %>
+    <% end %>
+    <tr id="detail-association-insertion-point"></div> 
   </table>
   <%= link_to_add_association '場所追加', f, :inner_sashs,
   data: {
     association_insertion_node: '#detail-association-insertion-point',
-    association_insertion_method: 'after'
+    association_insertion_method: 'before'
   }%>
   <div class="form_group">
     <%= f.submit '次へ' %>

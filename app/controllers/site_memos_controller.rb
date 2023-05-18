@@ -15,7 +15,6 @@ class SiteMemosController < ApplicationController
     
     site_memo = SiteMemo.new(
       kind: kind,
-      room: '1Fリビング',
       site_id: site_id 
     )
     
@@ -31,15 +30,15 @@ class SiteMemosController < ApplicationController
 
   def new_step2_inner_sash
     @site_memo = SiteMemo.new
+    @inner_sashs = @site_memo.inner_sashs.build
   end
 
   def new_step3_inner_sash(room:, width_up_size:, width_middle_size:, width_down_size:,
                             height_left_size:, height_middle_size:, height_right_size:,
                             height_frame_depth:, width_frame_depth:)
-    @site_memo = Rails.cache.read('site_memo')
-    @site_memo.room = room
 
     inner_sash = @site_memo.build_inner_sash(
+      room: room,
       width_up_size: width_up_size,
       width_middle_size: width_middle_size,
       width_down_size: width_down_size,
@@ -53,7 +52,7 @@ class SiteMemosController < ApplicationController
     )
 
 
-    if @site_memo.valid? && inner_sash.valid?
+    if inner_sash.valid?
       Rails.cache.write('inner_sash', inner_sash)
     else
       redirect_to site_memos_new_step2_inner_sash_path notice: inner_sash.errors.full_messages

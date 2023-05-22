@@ -9,8 +9,8 @@ class InnerSash < ApplicationRecord
   validates :height_right_size, presence: true
   validates :height_frame_depth, presence: true
   validates :width_frame_depth, presence: true
-  validates :color, presence: true
-  validates :number_of_shoji, presence: true
+  validates :color, presence: true, on: :step4
+  validates :number_of_shoji, presence: true, on: :step4
   validates :site_memo_id, presence: true, on: :save_site_memo_id
   validates :room, presence: true, length: { maximum: 15 }
 end

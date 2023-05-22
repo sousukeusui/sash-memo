@@ -1,4 +1,8 @@
 class SiteMemosController < ApplicationController
+  permits :kind,
+      inner_sashs_attributes: [:room, :width_up_size, :width_middle_size, :width_down_size,
+                                :height_left_size, :height_middle_size, :height_right_size,
+                                :height_frame_depth, :width_frame_depth, :color, :_destroy]
 
   def index(site_id:)
     @site = Site.find(site_id)
@@ -12,7 +16,6 @@ class SiteMemosController < ApplicationController
   def divide_form_by(kind:)
     #site_idをよみこむ
     site_id = Rails.cache.read('site_id')
-    
     site_memo = SiteMemo.new(
       kind: kind,
       site_id: site_id 
@@ -33,29 +36,15 @@ class SiteMemosController < ApplicationController
     @inner_sashs = @site_memo.inner_sashs.build
   end
 
-  def new_step3_inner_sash(room:, width_up_size:, width_middle_size:, width_down_size:,
-                            height_left_size:, height_middle_size:, height_right_size:,
-                            height_frame_depth:, width_frame_depth:)
-
-    inner_sash = @site_memo.build_inner_sash(
-      room: room,
-      width_up_size: width_up_size,
-      width_middle_size: width_middle_size,
-      width_down_size: width_down_size,
-      height_left_size: height_left_size,
-      height_middle_size: height_middle_size,
-      height_right_size: height_right_size,
-      height_frame_depth: height_frame_depth,
-      width_frame_depth: width_frame_depth,
-      color: 1,
-      number_of_shoji: 2
-    )
-
-
-    if inner_sash.valid?
-      Rails.cache.write('inner_sash', inner_sash)
+  def new_step3_inner_sash(site_memo)
+    cache_site_memo = Rails.cache.read('site_memo')
+    new_site_memo = SiteMemo.new(site_memo)
+    cache_site_memo.inner_sashs = new_site_memo.inner_sashs
+    #colorとnumber_of_shoji、flat_bar_sizeは除いている
+    if cache_site_memo.valid?
+      Rails.cache.write('site_memo', cache_site_memo)
     else
-      redirect_to site_memos_new_step2_inner_sash_path notice: inner_sash.errors.full_messages
+      flash[:notice] = cache_site_memo.errors.full_messages
     end
   end
 

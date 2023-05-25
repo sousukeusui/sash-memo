@@ -1,5 +1,6 @@
 class SiteMemosController < ApplicationController
-  def index
-    
+  def index(site_id:)
+    @site = Site.find(site_id)
+    @construction_materials = @site.construction_materials
   end
 end

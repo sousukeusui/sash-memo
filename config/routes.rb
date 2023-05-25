@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'site_memos/index'
   root 'homes#top'
   get 'sign_in/index'
   get 'sign_up/index'

@@ -1,0 +1,20 @@
+<p>元請:<%= @site.contractor.name %></p>
+<p>現場名:<%= @site.name %></p>
+<p>住所:<%= @site.address %></p>
+
+<% if @construction_materials.present? %>
+  <% @construction_materials.each do |construction_material| %>
+    <table>
+      <tr>
+        <th>設置場所</th>
+        <th>内容</th>
+      </tr>
+      <tr>
+        <td><%= construction_material.room %></td>
+        <td><%= construction_material.kind %></td> 
+      </tr>
+    </table>
+  <% end %>
+<% else %>
+  <p>メモはありません</p>
+<% end %>

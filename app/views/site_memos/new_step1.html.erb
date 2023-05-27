@@ -1,0 +1,9 @@
+<%= form_with url: site_memos_form_switcher_path, method: :get, local: true do |f| %>
+  <div class="form-group">
+    <%= f.label :kind, '施工内容' %>
+    <%= f.select :kind, ConstructionMaterial.kinds.keys.map{ |k| [I18n.t("enums.construction_material.kind.#{k}"),k]}, {prompt: '選択してください'} %>
+  </div>
+  <div class="forn-group">
+    <%= f.submit '次へ' %>
+  </div>
+<% end %>

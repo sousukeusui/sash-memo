@@ -3,7 +3,10 @@
     <%= f.label :kind, '施工内容' %>
     <%= f.select :kind, ConstructionMaterial.kinds.keys.map{ |k| [I18n.t("enums.construction_material.kind.#{k}"),k]}, {prompt: '選択してください'} %>
   </div>
-  <div class="forn-group">
+  <div class="form-group">
+    <%= f.hidden_field :site_id, value: @site.id %>
+  </div>
+  <div class="form-group">
     <%= f.submit '次へ' %>
   </div>
 <% end %>

@@ -5,7 +5,7 @@ class SiteMemosController < ApplicationController
   end
 
   def new_step1(site_id:)
-
+    @site = Site.find(site_id)
   end
 
   def form_switcher

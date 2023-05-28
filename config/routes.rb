@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'site_memos/index/:site_id', to: 'site_memos#index', as: :site_memos_index
   get 'site_memos/new_step1/:site_id', to: 'site_memos#new_step1', as: :site_memos_new_step1
+  get 'site_memos/inner_sash_new_step2'
   get 'site_memos/form_switcher'
   root 'homes#top'
   get 'sign_in/index'

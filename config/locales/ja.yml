@@ -1,4 +1,8 @@
 ja:
+  enums:
+    construction_material:
+      kind:
+        inner_sash: '内窓'
   activerecord:
     errors:
       messages:

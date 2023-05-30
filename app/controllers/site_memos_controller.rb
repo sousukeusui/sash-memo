@@ -5,7 +5,7 @@ class SiteMemosController < ApplicationController
   end
 
   def new_step1(site_id:)
-    @site = Site.find(site_id)
+    session[:site_id] = site_id #セッションに保存させるようにする
   end
 
   def form_switcher(kind:)

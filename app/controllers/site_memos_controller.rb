@@ -1,7 +1,7 @@
 class SiteMemosController < ApplicationController
   def index(site_id:)
     @site = Site.find(site_id)
-    @construction_materials = @site.construction_materials
+    @site_memos = @site.site_memos
   end
 
   def new_step1(site_id:)

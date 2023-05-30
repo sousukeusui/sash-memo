@@ -2,16 +2,14 @@
 <p>現場名:<%= @site.name %></p>
 <p>住所:<%= @site.address %></p>
 
-<% if @construction_materials.present? %>
-  <% @construction_materials.each do |construction_material| %>
+<% if @site_memos.present? %>
+  <% @site_memos.each do |site_memo| %>
     <table>
       <tr>
-        <th>設置場所</th>
         <th>内容</th>
       </tr>
       <tr>
-        <td><%= construction_material.room %></td>
-        <td><%= construction_material.kind %></td> 
+        <td><%= site_memo.kind %></td> 
       </tr>
     </table>
   <% end %>

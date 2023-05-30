@@ -1,6 +1,6 @@
 ja:
   enums:
-    construction_material:
+    site_memo:
       kind:
         inner_sash: '内窓'
   activerecord:

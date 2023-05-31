@@ -18,4 +18,8 @@ class SiteMemosController < ApplicationController
   def inner_sash_new_step2
     
   end
+
+  def inner_sash_new_step3
+    
+  end
 end

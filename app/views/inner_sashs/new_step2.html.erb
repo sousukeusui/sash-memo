@@ -1,0 +1,11 @@
+<%= form_with model: @site_memo, url: inner_sashs_new_step3_path, method: :get, local: true do |f| %>
+  <%= turbo_frame_tag  'step2_from' do %>
+    <%= render partial: 'step2_form' , locals:{ f:f }%>
+  <% end %>
+  <%= turbo_frame_tag 'form_append' do %>
+    <%= render 'form_append' %>
+  <% end %>
+  <div class="form-group">
+    <%= f.submit '次へ' %>
+  </div>
+<% end %>

@@ -11,15 +11,7 @@ class SiteMemosController < ApplicationController
   def form_switcher(kind:)
     case kind
     when 'inner_sash'
-      redirect_to site_memos_inner_sash_new_step2_path
+      redirect_to inner_sashs_new_step2_path
     end
-  end
-
-  def inner_sash_new_step2
-    
-  end
-
-  def inner_sash_new_step3
-    
   end
 end

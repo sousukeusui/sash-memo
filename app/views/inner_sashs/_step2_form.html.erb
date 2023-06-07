@@ -11,6 +11,8 @@
         <%= f.text_field :room %>
       </div>
     </td>
-    <%= render partial: 'step2_form2' %>
+    <%= f.fields_for :inner_sashs do |inner_sash| %>
+      <%= render 'step2_form2', f: inner_sash %>
+    <% end %>
   </tr>
 </table>

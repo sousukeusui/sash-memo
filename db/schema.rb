@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_30_130808) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_08_135558) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -28,6 +28,25 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_30_130808) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_contractors_on_user_id"
+  end
+
+  create_table "inner_sashes", force: :cascade do |t|
+    t.integer "color", null: false
+    t.integer "number_of_shoji", null: false
+    t.integer "width_up_size", null: false
+    t.integer "width_down_size", null: false
+    t.integer "width_middle_size", null: false
+    t.integer "height_left_size", null: false
+    t.integer "height_right_size", null: false
+    t.integer "height_middle_size", null: false
+    t.integer "width_frame_depth", null: false
+    t.integer "height_frame_depth", null: false
+    t.integer "flat_bar_size"
+    t.string "remark", limit: 100
+    t.bigint "construction_material_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["construction_material_id"], name: "index_inner_sashes_on_construction_material_id"
   end
 
   create_table "one_time_authentications", force: :cascade do |t|
@@ -86,6 +105,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_30_130808) do
 
   add_foreign_key "construction_materials", "site_memos"
   add_foreign_key "contractors", "users"
+  add_foreign_key "inner_sashes", "construction_materials"
   add_foreign_key "site_memos", "sites"
   add_foreign_key "sites", "contractors"
   add_foreign_key "sites", "users"

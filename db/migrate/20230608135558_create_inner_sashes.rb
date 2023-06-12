@@ -13,7 +13,8 @@ class CreateInnerSashes < ActiveRecord::Migration[7.0]
       t.integer :height_frame_depth, null: false
       t.integer :flat_bar_size
       t.string :remark, limit: 100
-      t.references :construction_material, null: false, foreign_key: true
+      t.string :room, null: false, limit: 15
+      t.references :site_memo, null: false, foreign_key: true
 
       t.timestamps
     end

@@ -14,14 +14,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_08_135558) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "construction_materials", force: :cascade do |t|
-    t.string "room", limit: 15, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "site_memo_id"
-    t.index ["site_memo_id"], name: "index_construction_materials_on_site_memo_id"
-  end
-
   create_table "contractors", force: :cascade do |t|
     t.string "name", limit: 30, null: false
     t.bigint "user_id", null: false
@@ -43,10 +35,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_08_135558) do
     t.integer "height_frame_depth", null: false
     t.integer "flat_bar_size"
     t.string "remark", limit: 100
-    t.bigint "construction_material_id", null: false
+    t.string "room", limit: 15, null: false
+    t.bigint "site_memo_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["construction_material_id"], name: "index_inner_sashes_on_construction_material_id"
+    t.index ["site_memo_id"], name: "index_inner_sashes_on_site_memo_id"
   end
 
   create_table "one_time_authentications", force: :cascade do |t|
@@ -103,9 +96,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_08_135558) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "construction_materials", "site_memos"
   add_foreign_key "contractors", "users"
-  add_foreign_key "inner_sashes", "construction_materials"
+  add_foreign_key "inner_sashes", "site_memos"
   add_foreign_key "site_memos", "sites"
   add_foreign_key "sites", "contractors"
   add_foreign_key "sites", "users"

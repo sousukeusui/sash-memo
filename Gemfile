@@ -67,3 +67,4 @@ gem 'rails-i18n'
 gem "jquery-rails"
 gem 'enum_help'
 gem 'hotwire-rails'
+gem 'pry-rails'

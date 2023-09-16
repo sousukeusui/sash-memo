@@ -1,6 +1,7 @@
 class InnerSashsController < ApplicationController
   def new_step2
     @inner_sashes = session[:inner_sashes]
+    p @inner_sashes
   end
 
   def new_step3

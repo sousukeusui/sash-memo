@@ -1,10 +1,6 @@
-<% if @inner_sashes.present? %>
-  <% @inner_sashes.each do |inner_sash| %>
-    <p><%= inner_sash["room"] %></p>
-  <% end %>
-<% end %>
+<%= render partial: 'add_size', collection: @inner_sashes, as: 'inner_sash' %>
 <%= link_to '一括削除', inner_sashs_session_delete_path %>
-<%= form_with url: inner_sashs_site_append_path, local: true do |f|%>
+<%= form_with url: inner_sashs_site_append_path do |f|%>
   <table>
     <tr>
       <th>部屋</th>

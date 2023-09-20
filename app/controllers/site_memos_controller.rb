@@ -5,13 +5,13 @@ class SiteMemosController < ApplicationController
   end
 
   def new_step1(site_id:)
-    session[:site_id] = site_id #セッションに保存させるようにする
+    @site_id = site_id
   end
 
-  def form_switcher(kind:)
+  def form_switcher(kind:, site_id:)
     case kind
     when 'inner_sash'
-      redirect_to inner_sashs_new_step2_path
+      redirect_to inner_sashs_new_step2_path(site_id)
     end
   end
 end

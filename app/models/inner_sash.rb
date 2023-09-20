@@ -1,6 +1,8 @@
 class InnerSash < ApplicationRecord
   belongs_to :site_memo
 
+  enum color: { undecided: 0}
+
   # validates :color , presence: true 
   # validates :number_of_shoji ,presence: true
   # validates :remark, length: { maximum:100 }
@@ -14,5 +16,6 @@ class InnerSash < ApplicationRecord
     validates :width_frame_depth, presence: true
     validates :height_frame_depth, presence: true
     validates :room, presence: true, length: { maximum:15 }
+    validates :color, presence: true
     #site_memo_idを排除するかコントローラーで入れるか
 end

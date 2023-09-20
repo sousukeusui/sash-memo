@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_08_135558) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_20_130514) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -23,8 +23,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_08_135558) do
   end
 
   create_table "inner_sashes", force: :cascade do |t|
-    t.integer "color", null: false
-    t.integer "number_of_shoji", null: false
+    t.integer "color", default: 0, null: false
+    t.integer "number_of_shoji", default: 0, null: false
     t.integer "width_up_size", null: false
     t.integer "width_down_size", null: false
     t.integer "width_middle_size", null: false
@@ -62,6 +62,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_08_135558) do
     t.bigint "site_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status", default: 0, null: false
     t.index ["site_id"], name: "index_site_memos_on_site_id"
   end
 

@@ -19,9 +19,4 @@ class InnerSashsController < ApplicationController
     return redirect_to inner_sashs_new_step2_path, notice: inner_sash.errors.full_messages unless inner_sash.save!
     @inner_sash = inner_sash.attributes
   end
-
-  def session_delete
-    session[:inner_sashes].clear
-    redirect_to inner_sashs_new_step2_path
-  end
 end

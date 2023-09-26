@@ -3,6 +3,12 @@ ja:
     site_memo:
       kind:
         inner_sash: '内窓'
+      status:
+        draft: '下書き'
+        published: '本作成'
+    inner_sash:
+      color:
+        undecided: '未定'
   activerecord:
     errors:
       messages:

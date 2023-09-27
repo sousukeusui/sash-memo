@@ -1,4 +1,4 @@
-class InnerSashsController < ApplicationController
+class InnerSashesController < ApplicationController
   def new_step2(site_id:)
     #下書きがあれば下書きからデータを取ってくる処理を追加
     @site_id = site_id

@@ -1,7 +1,7 @@
 <ul class='size-info'>
   <%= render partial: 'add_size', collection: @inner_sashes, as: 'inner_sash' %>
 </ul>
-<%= form_with url: inner_sashs_room_append_path, local: false, id: 'size-form' do |f|%>
+<%= form_with url: inner_sashes_room_append_path, local: false, id: 'size-form' do |f|%>
   <table>
     <tr>
       <th>部屋</th>
@@ -58,4 +58,4 @@
   <%= f.hidden_field :site_id, value: @site_id %>
   <%= f.submit '追加' %>
 <% end %>
-<%= link_to '次へ', inner_sashs_new_step3_path(@site_id) %>
+<%= link_to '次へ', inner_sashes_new_step3_path(@site_id) %>

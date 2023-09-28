@@ -9,6 +9,7 @@ ja:
     inner_sash:
       color:
         undecided: '未定'
+        white: 'ホワイト'
   activerecord:
     errors:
       messages:

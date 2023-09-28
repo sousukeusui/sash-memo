@@ -1,1 +1,21 @@
 <p>new_step3</p>
+<%= form_with url: inner_sashes_basic_append_path, local: true do |f| %>
+  <table>
+    <tr>
+      <th>部屋</th>
+      <th>タイプ</th>
+      <th>色</th>
+      <th>障子枚数</th>
+      <th>吊元（開きのみ）</th>
+    </tr>
+    <% @inner_sashes.each do |inner_sash| %>
+      <tr>
+        <td><%= inner_sash.room %></td>
+        <td></td>
+        <td><%= f.select :color, InnerSash.colors.keys.map{ |k| [I18n.t("enums.inner_sash.color.#{k}"),k] }, {prompt: '選択してください'}, required: true %></td>
+        <td></td>
+        <td></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

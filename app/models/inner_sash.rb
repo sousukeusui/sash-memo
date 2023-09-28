@@ -1,7 +1,7 @@
 class InnerSash < ApplicationRecord
   belongs_to :site_memo
 
-  enum color: { undecided: 0}
+  enum color: { undecided: 0, white: 1}
 
   # validates :color , presence: true 
   # validates :number_of_shoji ,presence: true

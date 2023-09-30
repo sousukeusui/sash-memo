@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  middle_frame_size: 1
+  key_size: 1
+  is_adjust: false
+  inner_sash: one
+
+two:
+  middle_frame_size: 1
+  key_size: 1
+  is_adjust: false
+  inner_sash: two

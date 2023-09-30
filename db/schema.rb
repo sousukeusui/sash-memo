@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_20_130514) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_30_134200) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,6 +20,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_20_130514) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_contractors_on_user_id"
+  end
+
+  create_table "inner_double_slidings", force: :cascade do |t|
+    t.integer "middle_frame_size", null: false
+    t.integer "key_size", null: false
+    t.boolean "is_adjust", default: false, null: false
+    t.bigint "inner_sash_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["inner_sash_id"], name: "index_inner_double_slidings_on_inner_sash_id"
   end
 
   create_table "inner_sashes", force: :cascade do |t|
@@ -98,6 +108,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_20_130514) do
   end
 
   add_foreign_key "contractors", "users"
+  add_foreign_key "inner_double_slidings", "inner_sashes"
   add_foreign_key "inner_sashes", "site_memos"
   add_foreign_key "site_memos", "sites"
   add_foreign_key "sites", "contractors"

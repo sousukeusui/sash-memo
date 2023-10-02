@@ -11,10 +11,10 @@
     <% @inner_sashes.each do |inner_sash| %>
       <tr>
         <td><%= inner_sash.room %></td>
-        <td></td>
+        <td><%= f.select :type, [["引き違い",1],["開き",2]]%></td>
         <td><%= f.select :color, InnerSash.colors.keys.map{ |k| [I18n.t("enums.inner_sash.color.#{k}"),k] }, {prompt: '選択してください'}, required: true %></td>
-        <td></td>
-        <td></td>
+        <td><%= f.select :number_of_shoji, (1..4).each { |i| ["#{i}",i]} %></td>
+        <td><%= f.check_box :hanbing_origin, {},"right", nil %>右 <%= f.check_box :hanbing_origin, {},"left", nil %>左</td>
       </tr>
     <% end %>
   </table>

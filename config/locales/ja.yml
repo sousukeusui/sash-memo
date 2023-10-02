@@ -10,6 +10,10 @@ ja:
       color:
         undecided: '未定'
         white: 'ホワイト'
+    inner_casement:
+      hanging_origin:
+        right: '右'
+        left: '左'
   activerecord:
     errors:
       messages:

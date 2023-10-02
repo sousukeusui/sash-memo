@@ -1,5 +1,7 @@
 class InnerSash < ApplicationRecord
   belongs_to :site_memo
+  has_many :inner_double_slidings
+  has_many :inner_casements
 
   enum color: { undecided: 0, white: 1}
 

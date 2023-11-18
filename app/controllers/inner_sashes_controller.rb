@@ -21,7 +21,7 @@ class InnerSashesController < ApplicationController
     @inner_sash = inner_sash.attributes
   end
 
-  def basic_append
+  def basic_append(type:, color:, number_of_shoji:, hanging_origin: nil)
     
   end
 end

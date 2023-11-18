@@ -3,7 +3,8 @@ class InnerSash < ApplicationRecord
   has_many :inner_double_slidings
   has_many :inner_casements
 
-  enum color: { undecided: 0, white: 1}
+  enum color: { c_undecided: 0, white: 1}
+  enum sash_type: { t_undecided: 0, sliding: 1, opening: 2}
 
   # validates :color , presence: true 
   # validates :number_of_shoji ,presence: true
@@ -20,4 +21,5 @@ class InnerSash < ApplicationRecord
     validates :room, presence: true, length: { maximum:15 }
     validates :color, presence: true
     #site_memo_idを排除するかコントローラーで入れるか
+    #colorなど他のバリデーションも追加
 end

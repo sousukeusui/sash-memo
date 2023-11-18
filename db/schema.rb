@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_30_135435) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_06_133231) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,24 +20,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_30_135435) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_contractors_on_user_id"
-  end
-
-  create_table "inner_casements", force: :cascade do |t|
-    t.integer "hanging_origin", null: false
-    t.bigint "inner_sash_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["inner_sash_id"], name: "index_inner_casements_on_inner_sash_id"
-  end
-
-  create_table "inner_double_slidings", force: :cascade do |t|
-    t.integer "middle_frame_size", null: false
-    t.integer "key_size", null: false
-    t.boolean "is_adjust", default: false, null: false
-    t.bigint "inner_sash_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["inner_sash_id"], name: "index_inner_double_slidings_on_inner_sash_id"
   end
 
   create_table "inner_sashes", force: :cascade do |t|
@@ -51,12 +33,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_30_135435) do
     t.integer "height_middle_size", null: false
     t.integer "width_frame_depth", null: false
     t.integer "height_frame_depth", null: false
-    t.integer "flat_bar_size"
     t.string "remark", limit: 100
     t.string "room", limit: 15, null: false
     t.bigint "site_memo_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_flat_bar", default: false, null: false
+    t.integer "key_size", default: 0, null: false
+    t.integer "sash_type", default: 0, null: false
+    t.integer "middle_frame_size", default: 0, null: false
+    t.boolean "is_adjust", default: false, null: false
+    t.integer "hanging_origin", default: 0, null: false
     t.index ["site_memo_id"], name: "index_inner_sashes_on_site_memo_id"
   end
 
@@ -116,8 +103,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_30_135435) do
   end
 
   add_foreign_key "contractors", "users"
-  add_foreign_key "inner_casements", "inner_sashes"
-  add_foreign_key "inner_double_slidings", "inner_sashes"
   add_foreign_key "inner_sashes", "site_memos"
   add_foreign_key "site_memos", "sites"
   add_foreign_key "sites", "contractors"

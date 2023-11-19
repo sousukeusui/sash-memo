@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'inner_sashes/new_step2/:site_id', to: 'inner_sashes#new_step2', as: :inner_sashes_new_step2
   get 'inner_sashes/new_step3/:site_id', to: 'inner_sashes#new_step3', as: :inner_sashes_new_step3
   post 'inner_sashes/room_append'
-  post 'inner_sashes/basic_append'
+  patch 'inner_sashes/basic_append'
   get 'site_memos/form_switcher'
   root 'homes#top'
   get 'sign_in/index'

@@ -1,5 +1,5 @@
 <p>new_step3</p>
-<%= form_with url: inner_sashes_basic_append_path, local: true do |f| %>
+<%= form_with model: @site_memo, url: inner_sashes_basic_append_path, local: true do |f| %>
   <table>
     <tr>
       <th>部屋</th>
@@ -8,13 +8,13 @@
       <th>障子枚数</th>
       <th>吊元（開きのみ）</th>
     </tr>
-    <% @inner_sashes.each do |inner_sash| %>
+    <%= f.fields_for :inner_sashes, @site_memo.inner_sashes do |inner_sash| %>
       <tr>
-        <td><%= inner_sash.room %></td>
-        <td><%= f.select :type, [["引き違い",1],["開き",2]]%></td>
-        <td><%= f.select :color, InnerSash.colors.keys.map{ |k| [I18n.t("enums.inner_sash.color.#{k}"),k] }, {prompt: '選択してください'}, required: true %></td>
-        <td><%= f.select :number_of_shoji, (1..4).each { |i| ["#{i}",i]} %></td>
-        <td><%= f.check_box :hanbing_origin, {},"right", nil %>右 <%= f.check_box :hanbing_origin, {},"left", nil %>左</td>
+        <td><%= inner_sash.object.room %></td>
+        <td><%= inner_sash.select :sash_type, [["引き違い",1],["開き",2]]%></td>
+        <td><%= inner_sash.select :color, InnerSash.colors.keys.map{ |k| [I18n.t("enums.inner_sash.color.#{k}"),k] }, {prompt: '選択してください'}, required: true %></td>
+        <td><%= inner_sash.select :number_of_shoji, (1..2).each { |i| ["#{i}",i]} %></td>
+        <td><%= inner_sash.check_box :hanging_origin, {},"right", nil %>右 <%= f.check_box :hanging_origin, {},"left", nil %>左</td>
       </tr>
     <% end %>
   </table>

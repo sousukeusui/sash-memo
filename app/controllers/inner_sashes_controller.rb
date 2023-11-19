@@ -5,8 +5,7 @@ class InnerSashesController < ApplicationController
   end
 
   def new_step3(site_id:)
-    site_memo = SiteMemo.find_by(site_id: site_id)
-    @inner_sashes = site_memo.inner_sashes
+    @site_memo = SiteMemo.find_by(site_id: site_id)
   end
 
   def room_append(room:, width_up_size:, width_middle_size:, width_down_size:,

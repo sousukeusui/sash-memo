@@ -39,9 +39,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_06_133231) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "is_flat_bar", default: false, null: false
-    t.integer "key_size", default: 0, null: false
+    t.integer "key_height", default: 0, null: false
     t.integer "sash_type", default: 0, null: false
-    t.integer "middle_frame_size", default: 0, null: false
+    t.integer "middle_frame_height", default: 0, null: false
     t.boolean "is_adjust", default: false, null: false
     t.integer "hanging_origin", default: 0, null: false
     t.index ["site_memo_id"], name: "index_inner_sashes_on_site_memo_id"

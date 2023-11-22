@@ -1,4 +1,5 @@
 class SiteMemosController < ApplicationController
+  permit 
   def index(site_id:)
     @site = Site.find(site_id)
     @site_memos = @site.site_memos

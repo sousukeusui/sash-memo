@@ -1,1 +1,24 @@
 <p>new_step3</p>
+<%= form_with model: @site_memo, url: inner_sashes_basic_append_path, local: true do |f| %>
+  <%= f.hidden_field :id, value:@site_memo.id %>
+  <table>
+    <tr>
+      <th>部屋</th>
+      <th>タイプ</th>
+      <th>色</th>
+      <th>障子枚数</th>
+      <th>吊元（開きのみ）</th>
+    </tr>
+    <%= f.fields_for :inner_sashes, @site_memo.inner_sashes do |inner_sash| %>
+      <tr>
+        <td><%= inner_sash.object.room %></td>
+        <td><%= inner_sash.select :sash_type, [["引き違い",:sliding],["開き",:opening]]%></td>
+        <td><%= inner_sash.select :color, InnerSash.colors.keys.map{ |k| [I18n.t("enums.inner_sash.color.#{k}"),k] }, {prompt: '選択してください'}, required: true %></td>
+        <td><%= inner_sash.select :number_of_shoji, (1..2).each { |i| ["#{i}",i]} %></td>
+        <td><%= inner_sash.check_box :hanging_origin, {},:right, nil %>右 <%= inner_sash.check_box :hanging_origin, {},:left, nil %>左</td>
+        <%= inner_sash.hidden_field :id, value: inner_sash.object.id %>
+      </tr>
+    <% end %>
+  </table>
+<%= f.submit '次へ' %>
+<% end %>

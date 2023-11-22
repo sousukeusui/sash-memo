@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_20_130514) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_06_133231) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -33,12 +33,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_20_130514) do
     t.integer "height_middle_size", null: false
     t.integer "width_frame_depth", null: false
     t.integer "height_frame_depth", null: false
-    t.integer "flat_bar_size"
     t.string "remark", limit: 100
     t.string "room", limit: 15, null: false
     t.bigint "site_memo_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_flat_bar", default: false, null: false
+    t.integer "key_height", default: 0, null: false
+    t.integer "sash_type", default: 0, null: false
+    t.integer "middle_frame_height", default: 0, null: false
+    t.boolean "is_adjust", default: false, null: false
+    t.integer "hanging_origin", default: 0, null: false
     t.index ["site_memo_id"], name: "index_inner_sashes_on_site_memo_id"
   end
 

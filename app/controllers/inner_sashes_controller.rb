@@ -12,6 +12,10 @@ class InnerSashesController < ApplicationController
     @site_memo = SiteMemo.find(site_memo_id)
   end
 
+  def new_step5(site_memo_id:)
+    
+  end
+
   def room_append(room:, width_up_size:, width_middle_size:, width_down_size:,
                   height_left_size:, height_right_size:, height_middle_size:,
                   height_frame_depth:, width_frame_depth:, site_id:)
@@ -32,7 +36,9 @@ class InnerSashesController < ApplicationController
   end
 
   def accessory_append
-
+    site_memo = SiteMemo.find(params[:site_memo][:id])
+    return redirect_to inner_sashes_new_step5_path(params[:site_memo][:id]) if site_memo.update(accesory_info_params)
+    return redirect_to inner_sashes_new_step4_path(params[:site_memo][:id]), notice: site_memo.erros.full_messages
   end
   
   private

@@ -8,8 +8,8 @@ class InnerSashesController < ApplicationController
     @site_memo = SiteMemo.find_by(site_id: site_id)
   end
 
-  def new_step4(site_id:)
-    
+  def new_step4(site_memo_id:)
+    @site_memo = SiteMemo.find(site_memo_id)
   end
 
   def room_append(room:, width_up_size:, width_middle_size:, width_down_size:,
@@ -31,9 +31,18 @@ class InnerSashesController < ApplicationController
     return redirect_to inner_sashes_new_step3_path(params[:site_memo][:id]), notice: site_memo.errors.full_messages
   end
 
+  def accessory_append
+
+  end
+  
   private
   def basic_info_params
     params.require(:site_memo).permit(:id,
                                       inner_sashes_attributes: [:sash_type, :color, :number_of_shoji, :hanging_origin, :id])
+  end
+
+  def accesory_info_params
+    params.require(:site_memo).permit(:id,
+                                      inner_sashes_attributes: [:key_height, :middle_frame_height, :is_flat_bar, :is_adjust, :id])
   end
 end

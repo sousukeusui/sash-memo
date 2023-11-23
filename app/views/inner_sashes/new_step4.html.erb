@@ -1,1 +1,24 @@
 <p>new_step4<p>
+
+<%= form_with model: @site_memo, url: inner_sashes_accesory_append_path, local: true do |f| %>
+  <table>
+    <tr>
+      <th>部屋</th>
+      <th>クレセント</th>
+      <th>中桟</th>
+      <th>平板</th>
+      <th>アジャスト上枠</th>
+    </tr>
+    <%= f.fields_for :inner_sashes, @site_memo.inner_sashes do |inner_sash| %>
+      <tr>
+        <td><%= inner_sash.object.room %></td>
+        <td><%= inner_sash.number_field :key_height, value: '', placeholder: '窓台〜芯' %></td>
+        <td><%= inner_sash.number_field :middle_frame_height, value: '', placeholder: '窓台〜芯' %></td>
+        <td><%= inner_sash.check_box :is_flat_bar %>あり</td>
+        <td><%= inner_sash.check_box :is_adjust %>あり</td>
+        <%= inner_sash.hidden_field :id, value: inner_sash.object.id %>
+      </tr>
+    <% end %>
+  </table>
+  <%= f.submit '次へ' %>
+<% end %>

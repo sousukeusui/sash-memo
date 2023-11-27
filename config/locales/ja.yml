@@ -8,12 +8,29 @@ ja:
         published: '本作成'
     inner_sash:
       color:
-        undecided: '未定'
+        c_undecided: '未定'
         white: 'ホワイト'
-    inner_casement:
+      sash_type:
+        t_undecided: '未定'
+        sliding: '引き違い'
+        opening: '開き'
       hanging_origin:
+        h_undecided: '未定'
         right: '右'
         left: '左'
+      glass_color:
+        gc_undecided: '未定'
+        green: 'グリーン'
+        clear: 'クリア'
+      glass_thickness:
+        gt_undecided: '未定'
+        single: '単板'
+        double: '複層'
+      glass_kind:
+        gk_undecided: '未定'
+        transparent: '透明ガラス'
+        hazy: '型ガラス'
+      
   activerecord:
     errors:
       messages:

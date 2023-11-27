@@ -6,6 +6,9 @@ class InnerSash < ApplicationRecord
   enum color: { c_undecided: 0, white: 1}
   enum sash_type: { t_undecided: 0, sliding: 1, opening: 2}
   enum hanging_origin: { h_undecided: 0, right: 1, left: 2}
+  enum glass_color: { gc_undecided: 0, green: 1, clear: 2}
+  enum glass_thickness: { gt_undecided: 0, single: 1, double: 2}
+  enum glass_kind: { gk_undecided:0, transparent:1, hazy:2}
 
   # validates :color , presence: true 
   # validates :number_of_shoji ,presence: true

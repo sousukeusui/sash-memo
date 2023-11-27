@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   post 'inner_sashes/room_append'
   patch 'inner_sashes/basic_append'
   patch 'inner_sashes/accessory_append'
+  patch 'inner_sashes/glass_append'
   get 'site_memos/form_switcher'
   root 'homes#top'
   get 'sign_in/index'

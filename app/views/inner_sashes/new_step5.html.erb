@@ -1,1 +1,23 @@
 <p>new_step5</p>
+<%= form_with model: @site_memo, url: inner_sashes_glass_append_path, local: true do |f| %>
+  <table>
+    <tr>
+      <th>部屋</th>
+      <th>厚み（単板or複層）</th>
+      <th>種類（透明or型）</th>
+      <th>色</th>
+      <th>Low-E</th>
+    </tr>
+    <%= f.fields_for :inner_sashes, @site_memo.inner_sashes do |inner_sash| %>
+      <tr>
+        <td><%= inner_sash.object.room %></td>
+        <td><%= inner_sash.select :glass_thickness, InnerSash.glass_thicknesses.keys.map{ |k| [I18n.t("enums.inner_sash.glass_thickness.#{k}"),k] } %></td>
+        <td><%= inner_sash.select :glass_kind, InnerSash.glass_kinds.keys.map{ |k| [I18n.t("enums.inner_sash.glass_kind.#{k}"),k] } %></td>
+        <td><%= inner_sash.select :glass_color, InnerSash.glass_colors.keys.map{ |k| [I18n.t("enums.inner_sash.glass_color.#{k}"),k] } %></td>
+        <td><%= inner_sash.check_box :is_low_e %>有</td>
+        <%= inner_sash.hidden_field :id, value: inner_sash.id %>
+      </tr>
+    <% end %>
+  </table>
+  <%= f.submit '次へ' %>
+<% end %>

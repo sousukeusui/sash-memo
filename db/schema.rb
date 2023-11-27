@@ -45,7 +45,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_25_052635) do
     t.boolean "is_adjust", default: false, null: false
     t.integer "hanging_origin", default: 0, null: false
     t.integer "glass_color", default: 0, null: false
-    t.integer "glass_tickness", default: 0, null: false
+    t.integer "glass_thickness", default: 0, null: false
     t.integer "glass_kind", default: 0, null: false
     t.boolean "is_low_e", default: false, null: false
     t.index ["site_memo_id"], name: "index_inner_sashes_on_site_memo_id"

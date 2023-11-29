@@ -1,7 +1,6 @@
 class InnerSash < ApplicationRecord
   belongs_to :site_memo
-  has_many :inner_double_slidings
-  has_many :inner_casements
+  has_many :inner_sash_photos
 
   enum color: { c_undecided: 0, white: 1}
   enum sash_type: { t_undecided: 0, sliding: 1, opening: 2}

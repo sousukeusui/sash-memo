@@ -1,1 +1,18 @@
 <p>new_step6</p>
+<%= form_with model: @site_memo, url: inner_sashes_photo_append_path, local: true do |f| %>
+  <table>
+    <tr>
+      <th>部屋</th>
+      <th>写真</th>
+      <th>備考</th>
+    </tr>
+    <%= f.fields_for :inner_sashes, @site_memo.inner_sashes do |inner_sash| %>
+      <tr>
+        <td><%= inner_sash.object.room %></td>
+        <td><%= inner_sash.file_field :file_name %></td>
+        <td><%= inner_sash.text_area :remark %></td>
+        <%= inner_sash.hidden_field :id, value: inner_sash.object.id %>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

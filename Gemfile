@@ -68,3 +68,4 @@ gem "jquery-rails"
 gem 'enum_help'
 gem 'hotwire-rails'
 gem 'pry-rails'
+gem 'carrierwave'

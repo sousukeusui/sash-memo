@@ -51,8 +51,11 @@ class InnerSashesController < ApplicationController
     return redirect_to inner_sashes_new_step5_path(params[:site_memo][:id]), notice: site_memo.errors.full_messages
   end
 
+  #引数はsite_memo.idで良い気がする
   def photo_append
-
+    site_memo = SiteMemo.find(params[:site_memo][:id])
+    return redirect_to inner_sashes_new_comfirmation_path(params[:site_memo][:id]) if site_memo.update!(photo_info_params)
+    return redirect_to inner_sashes_new_step6_path(params[:site_memo][:id]), notice: site_memo.errors.full_messages
   end
   
   private
@@ -69,5 +72,10 @@ class InnerSashesController < ApplicationController
   def glass_info_params
     params.require(:site_memo).permit(:id,
                                       inner_sashes_attributes: [:glass_thickness, :glass_kind, :glass_color, :is_low_e, :id])
+  end
+
+  def photo_info_params
+    params.require(:site_memo).permit(:id,
+                                      inner_sashes_attributes: [:id, :remark, inner_sash_photos_attributes:[ :file_name ]])
   end
 end

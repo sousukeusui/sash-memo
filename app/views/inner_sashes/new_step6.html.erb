@@ -1,5 +1,6 @@
 <p>new_step6</p>
 <%= form_with model: @site_memo, url: inner_sashes_photo_append_path, local: true do |f| %>
+  <%= f.hidden_field :id, value: @site_memo.id %>
   <table>
     <tr>
       <th>部屋</th>
@@ -9,10 +10,13 @@
     <%= f.fields_for :inner_sashes, @site_memo.inner_sashes do |inner_sash| %>
       <tr>
         <td><%= inner_sash.object.room %></td>
-        <td><%= inner_sash.file_field :file_name %></td>
+        <%= inner_sash.fields_for :inner_sash_photos, inner_sash.object.inner_sash_photos.build do |photo| %>
+          <td><%= photo.file_field :file_name %></td>
+        <% end %>
         <td><%= inner_sash.text_area :remark %></td>
         <%= inner_sash.hidden_field :id, value: inner_sash.object.id %>
       </tr>
     <% end %>
   </table>
+  <%= f.submit '次へ' %>
 <% end %>

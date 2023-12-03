@@ -10,6 +10,7 @@
     <%= f.fields_for :inner_sashes, @site_memo.inner_sashes do |inner_sash| %>
       <tr>
         <td><%= inner_sash.object.room %></td>
+        <!-- ヘルパーメソッドを使って写真が既にある場合とない場合で分ける　-->
         <%= inner_sash.fields_for :inner_sash_photos, inner_sash.object.inner_sash_photos.build do |photo| %>
           <td><%= photo.file_field :file_name %></td>
         <% end %>

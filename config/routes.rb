@@ -6,10 +6,12 @@ Rails.application.routes.draw do
   get 'inner_sashes/new_step4/:site_memo_id', to: 'inner_sashes#new_step4', as: :inner_sashes_new_step4
   get 'inner_sashes/new_step5/:site_memo_id', to: 'inner_sashes#new_step5', as: :inner_sashes_new_step5
   get 'inner_sashes/new_step6/:site_memo_id', to: 'inner_sashes#new_step6', as: :inner_sashes_new_step6
+  get 'inner_sashes/new_comfirmation/:site_memo_id', to: 'inner_sashes#new_comfirmation', as: :inner_sashes_new_comfirmation
   post 'inner_sashes/room_append'
   patch 'inner_sashes/basic_append'
   patch 'inner_sashes/accessory_append'
   patch 'inner_sashes/glass_append'
+  patch 'inner_sashes/photo_append'
   get 'site_memos/form_switcher'
   root 'homes#top'
   get 'sign_in/index'

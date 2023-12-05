@@ -4,7 +4,7 @@
     <tr>
       <th>W寸法（最小値）</th>
       <td><%= min_size(inner_sash.width_up_size, inner_sash.width_middle_size, inner_sash.width_down_size) %></td>
-      <th>H寸法（最小値</th>
+      <th>H寸法（最小値）</th>
       <td><%= min_size(inner_sash.height_left_size, inner_sash.height_middle_size, inner_sash.height_right_size) %></td>
     </tr>
     <tr>
@@ -15,19 +15,19 @@
     </tr>
     <tr>
       <th>タイプ</th>
-      <td><%= inner_sash.sash_type %></td>
+      <td><%= inner_sash.sash_type_i18n %></td>
       <th>色</th>
-      <td><%= inner_sash.color %></td>
+      <td><%= inner_sash.color_i18n %></td>
     </tr>
     <tr>
       <th>障子枚数</th>
-      <td><%= inner_sash.number_of_shoji %></td>
+      <td><%= inner_sash.number_of_shoji %>枚</td>
       <th>吊り元</th>
-      <td><%= inner_sash.hanging_origin %></td>
+      <td><%= inner_sash.hanging_origin_i18n %></td>
     </tr>
     <tr>
       <th>平板</th>
-      <td></td>
+      <td><%= inner_sash.is_flat_bar ? "有" : "無" %></td>
       <th>クレセント</th>
       <td><%= inner_sash.key_height %></td>
     </tr>
@@ -35,22 +35,23 @@
       <th>中桟</th>
       <td><%= inner_sash.middle_frame_height %></td>
       <th>アジャスト</th>
-      <td><%= inner_sash.is_adjust %></td>
+      <td><%= inner_sash.is_adjust ? "有" : "無" %></td>
     </tr>
     <tr>
       <th>ガラス厚み</th>
-      <td><%= inner_sash.glass_thickness %></td>
+      <td><%= inner_sash.glass_thickness_i18n %></td>
       <th>ガラス色</th>
-      <td><%= inner_sash.glass_color %></td>
+      <td><%= inner_sash.glass_color_i18n %></td>
     </tr>
     <tr>
       <th>ガラス種類</th>
-      <td><%= inner_sash.glass_kind %></td>
+      <td><%= inner_sash.glass_kind_i18n %></td>
       <th>Low_E</th>
-      <td><%= inner_sash.is_low_e %></td>
+      <td><%= inner_sash.is_low_e ? "有" : "無" %></td>
     </tr>
     <tr>
       <th>写真</th>
+      <td><%= inner_sash.inner_sash_photos.size %>枚</td>
       <th></th>
     </tr>
     <tr>
@@ -59,4 +60,4 @@
     </tr>
   </table>
 <% end %>
-<%= link_to '確定', inner_sashes_new_completion_path %>
+<%= link_to 'この内容で確定', site_memos_index_path(@site_memo.site_id) %>

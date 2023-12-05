@@ -28,8 +28,8 @@ ja:
         double: '複層'
       glass_kind:
         gk_undecided: '未定'
-        transparent: '透明ガラス'
-        hazy: '型ガラス'
+        transparent: '透明'
+        hazy: '型'
       
   activerecord:
     errors:

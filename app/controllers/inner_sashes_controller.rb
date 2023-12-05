@@ -24,10 +24,6 @@ class InnerSashesController < ApplicationController
     @site_memo = SiteMemo.find(site_memo_id)
   end
 
-  def new_completion
-    
-  end
-
   def room_append(room:, width_up_size:, width_middle_size:, width_down_size:,
                   height_left_size:, height_right_size:, height_middle_size:,
                   height_frame_depth:, width_frame_depth:, site_id:)

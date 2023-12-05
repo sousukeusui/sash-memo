@@ -1,1 +1,62 @@
 <p>comfirmation</p>
+<% @site_memo.inner_sashes.each do |inner_sash| %>
+  <table>
+    <tr>
+      <th>横幅</th>
+      <td></td>
+      <th>高さ</th>
+      <td></td>
+    </tr>
+    <tr>
+      <th>窓枠縦</th>
+      <td><%= inner_sash.width_frame_depth %></td>
+      <th>窓枠横</th>
+      <td><%= inner_sash.height_frame_depth %></td>
+    </tr>
+    <tr>
+      <th>タイプ</th>
+      <td><%= inner_sash.sash_type %></td>
+      <th>色</th>
+      <td><%= inner_sash.color %></td>
+    </tr>
+    <tr>
+      <th>障子枚数</th>
+      <td><%= inner_sash.number_of_shoji %></td>
+      <th>吊り元</th>
+      <td><%= inner_sash.hanging_origin %></td>
+    </tr>
+    <tr>
+      <th>平板</th>
+      <td></td>
+      <th>クレセント</th>
+      <td><%= inner_sash.key_height %></td>
+    </tr>
+    <tr>
+      <th>中桟</th>
+      <td><%= inner_sash.middle_frame_height %></td>
+      <th>アジャスト</th>
+      <td><%= inner_sash.is_adjust %></td>
+    </tr>
+    <tr>
+      <th>ガラス厚み</th>
+      <td><%= inner_sash.glass_thickness %></td>
+      <th>ガラス色</th>
+      <td><%= inner_sash.glass_color %></td>
+    </tr>
+    <tr>
+      <th>ガラス種類</th>
+      <td><%= inner_sash.glass_kind %></td>
+      <th>Low_E</th>
+      <td><%= inner_sash.is_low_e %></td>
+    </tr>
+    <tr>
+      <th>写真</th>
+      <th></th>
+    </tr>
+    <tr>
+      <th>備考</th>
+      <td><%= inner_sash.remark %></td>
+    </tr>
+  </table>
+<% end %>
+<%= link_to '確定', inner_sashes_new_completion_path %>

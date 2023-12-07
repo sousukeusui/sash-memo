@@ -4,14 +4,27 @@
 
 <% if @site_memos.present? %>
   <% @site_memos.each do |site_memo| %>
-    <table>
-      <tr>
-        <th>内容</th>
-      </tr>
-      <tr>
-        <td><%= site_memo.kind %></td> 
-      </tr>
-    </table>
+    <% site_memo_children(site_memo).each do |child| %>
+      <table>
+        <tr>
+          <th>設置場所</th>
+          <th>内容</th>
+          <th>タイプ</th>
+          <th></th>
+        </tr>
+        <tr>
+          <td><%= child.room %></td>
+          <td><%= site_memo.kind_i18n %></td>
+          <!-- sashと書かれているところは内容の項目によって動的に変える予定。door, screenなど-->
+          <td><%= child.sash_type_i18n %></td>
+          <td></td> 
+        </tr>
+        <!-- 以下のリンクはテーブルの行に広げる予定 -->
+        <tr>
+          <td><%= link_to '詳細', site_memos_show_path(child.id) %></td>
+        </tr>
+      </table>
+    <% end %>
   <% end %>
 <% else %>
   <p>メモはありません</p>

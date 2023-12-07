@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'site_memos/index/:site_id', to: 'site_memos#index', as: :site_memos_index
+  get 'site_memos/show/:id', to: 'site_memos#show', as: :site_memos_show
   get 'site_memos/new_step1/:site_id', to: 'site_memos#new_step1', as: :site_memos_new_step1
   get 'inner_sashes/new_step2/:site_id', to: 'inner_sashes#new_step2', as: :inner_sashes_new_step2
   get 'inner_sashes/new_step3/:site_id', to: 'inner_sashes#new_step3', as: :inner_sashes_new_step3

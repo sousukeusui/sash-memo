@@ -8,6 +8,9 @@ class SiteMemosController < ApplicationController
     @site_id = site_id
   end
 
+  def show(id:)
+  end
+
   def form_switcher(kind:, site_id:)
     case kind
     when 'inner_sash'

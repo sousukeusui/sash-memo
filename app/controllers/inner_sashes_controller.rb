@@ -63,7 +63,7 @@ class InnerSashesController < ApplicationController
   end
   
   def show(id:)
-
+    @inner_sash = InnerSash.find(id)
   end
   private
   def basic_info_params

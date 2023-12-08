@@ -21,7 +21,7 @@
         </tr>
         <!-- 以下のリンクはテーブルの行に広げる予定 -->
         <tr>
-          <td><%= link_to '詳細', site_memos_show_path(child.id) %></td>
+          <td><%= link_to '詳細', site_memos_show_switcher_path(kind: site_memo.kind, id: child.id) %></td>
         </tr>
       </table>
     <% end %>

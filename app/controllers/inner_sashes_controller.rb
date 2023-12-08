@@ -62,6 +62,9 @@ class InnerSashesController < ApplicationController
     return redirect_to inner_sashes_new_step6_path(params[:site_memo][:id]), notice: site_memo.errors.full_messages
   end
   
+  def show(id:)
+    @inner_sash = InnerSash.find(id)
+  end
   private
   def basic_info_params
     params.require(:site_memo).permit(:id,

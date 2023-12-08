@@ -8,7 +8,9 @@ class SiteMemosController < ApplicationController
     @site_id = site_id
   end
 
-  def show(id:)
+  def show_switcher(kind:, id:)
+    redirect_to inner_sashes_show_path(id) if kind == 'inner_sash' 
+    #他のモデルが追加されたら分岐を追加
   end
 
   def form_switcher(kind:, site_id:)

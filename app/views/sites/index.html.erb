@@ -13,7 +13,9 @@
         <td><%= site.name %></td>
         <td><%= check_schedule(site.research_date)%></td>
         <td><%= check_schedule(site.construction_date)%></td>
-        <td><%= link_to 'メモへ', site_memos_index_path(site.id) %></td>
+        <td><%= site.site_memos.present? ? "メモ" : ""  %></td>
       </tr>
+      <%# テーブルの各行にリンク広げる予定 %>
+      <td><%= link_to 'メモへ', site_memos_index_path(site.id) %></td>
     <% end %>
   </table>

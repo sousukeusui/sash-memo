@@ -1,9 +1,6 @@
 module SitesHelper
   def check_schedule(date)
-    if date == nil
-      return '未定'
-    else 
-      return l date, format: :short
-    end
+    return '未定' if date == nil
+    return l date, format: :short
   end
 end

@@ -3,7 +3,7 @@ module SitesHelper
     if date == nil
       return '未定'
     else 
-      return date
+      return l date, format: :short
     end
   end
 end

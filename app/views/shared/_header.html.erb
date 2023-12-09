@@ -1,0 +1,5 @@
+<%= link_to "SashMemo+", root_path %>
+<!-- 開発都合のリンク -->
+<% if user_signed_in? %>
+  <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+<% end %>

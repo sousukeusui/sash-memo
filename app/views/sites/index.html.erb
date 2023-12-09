@@ -17,9 +17,3 @@
       </tr>
     <% end %>
   </table>
-
-<!-- 開発都合のリンク -->
-<% if user_signed_in? %>
-  <p>ログイン中</p>
-  <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
-<% end %>

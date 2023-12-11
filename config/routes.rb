@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   get 'sign_up/resend_confirmation_code'
   post 'sign_up/create'
   get 'sites/index'
+  get 'sites/more'
   get 'sites/new'
   get 'sites/search_contractor'
   post 'sites/create'

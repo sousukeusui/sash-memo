@@ -3,6 +3,10 @@ class SitesController < ApplicationController
     @sites = current_user.sites.eager_load(:contractor, :site_memos)
   end
 
+  def more
+    
+  end
+
   def new
     @contractors = current_user.contractors
   end

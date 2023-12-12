@@ -6,7 +6,7 @@ ruby '3.1.2'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '7.0.4.3'
 # Use postgresql as the database for Active Record
-gem 'pg'
+gem 'pg', '1.5.3'
 # Use Puma as the app server
 gem 'puma'
 # Use SCSS for stylesheets
@@ -32,6 +32,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry-byebug'
+  gem 'faker'
 end
 
 group :development do
@@ -66,7 +67,6 @@ gem 'devise-i18n'
 gem 'rails-i18n'
 gem "jquery-rails"
 gem 'enum_help'
-gem 'hotwire-rails'
 gem 'pry-rails'
 gem 'carrierwave'
 gem 'fog-aws'

@@ -1,10 +1,6 @@
 class SitesController < ApplicationController
   def index
-    @sites = current_user.sites.eager_load(:contractor, :site_memos)
-  end
-
-  def more
-    
+    @sites = current_user.sites.eager_load(:contractor, :site_memos).page(params[:page]).per(5)
   end
 
   def new

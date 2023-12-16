@@ -6,6 +6,9 @@ ja:
       status:
         draft: '下書き'
         published: '本作成'
+      judge_order:
+        unordered: '未発注'
+        ordered: '発注済'
     inner_sash:
       color:
         c_undecided: '未定'
@@ -30,6 +33,9 @@ ja:
         gk_undecided: '未定'
         transparent: '透明'
         hazy: '型'
+      order:
+        unordered: "未発注"
+        ordered: "発注済み"
       
   activerecord:
     errors:
@@ -72,7 +78,7 @@ ja:
     formats:
       default: "%Y/%m/%d"
       long: "%Y年%m月%d日(%a)"
-      short: "%m/%d"
+      short: "%-m/%-d"
     month_names:
     - 
     - 1月

@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   post 'sign_up/create'
   get 'sites/index'
   get 'sites/new'
+  delete 'sites/destroy/id', to: 'sites#destroy', as: :sites_destroy
   get 'sites/search_contractor'
   post 'sites/create'
   devise_for :users, controllers: {

@@ -7,6 +7,10 @@ class SitesController < ApplicationController
     @contractors = current_user.contractors
   end
 
+  def destroy
+
+  end
+
   def search_contractor(contractor:)
     contractors = current_user.contractors.where("name LIKE?", "%#{contractor}%")
     respond_to do |format|

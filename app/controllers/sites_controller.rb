@@ -7,8 +7,9 @@ class SitesController < ApplicationController
     @contractors = current_user.contractors
   end
 
-  def destroy
-
+  def destroy(id:)
+    site = Site.find(id)
+    redirect_to sites_index_path, notice: '現場を削除しました' if site.destroy
   end
 
   def search_contractor(contractor:)

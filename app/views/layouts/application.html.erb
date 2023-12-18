@@ -12,7 +12,9 @@
 
   <body>
     <%= render 'shared/header' %>
-    <%= notice %>
+    <div id="flash">
+      <%= notice %>
+    </div>
     <%= alert %>
     <%= yield %>
   </body>

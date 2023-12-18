@@ -8,8 +8,8 @@ class SitesController < ApplicationController
   end
 
   def destroy(id:)
-    site = Site.find(id)
-    redirect_to sites_index_path, notice: '現場を削除しました' if site.destroy
+    @site = Site.find(id)
+    flash.now.notice = '現場を削除しました' if @site.destroy
   end
 
   def search_contractor(contractor:)

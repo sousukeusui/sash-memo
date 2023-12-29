@@ -1,6 +1,6 @@
 class InnerSash < ApplicationRecord
   belongs_to :site_memo
-  has_many :inner_sash_photos
+  has_many :inner_sash_photos, dependent: :destroy
   accepts_nested_attributes_for :inner_sash_photos
 
   enum color: { c_undecided: 0, white: 1}

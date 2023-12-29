@@ -7,6 +7,12 @@ class SitesController < ApplicationController
     @contractors = current_user.contractors
   end
 
+  def destroy(id:)
+    @site = Site.find(id)
+    @site.destroy
+    # flash.now.notice = '現場を削除しました'
+  end
+
   def search_contractor(contractor:)
     contractors = current_user.contractors.where("name LIKE?", "%#{contractor}%")
     respond_to do |format|

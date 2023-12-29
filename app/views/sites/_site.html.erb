@@ -1,0 +1,13 @@
+<%= turbo_frame_tag site do %>
+  <div>
+    <%= site.contractor.name %>
+    <%= site.name %>
+    <%= check_schedule(site.research_date)%>
+    <%= check_schedule(site.construction_date)%>
+    <%= site.site_memos.present? ? "メモ" : ""  %>
+    <%= check_order(site.site_memos) %>
+    <%= link_to '削除', sites_destroy_path(site), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } %>
+    <%# テーブルの各行にリンク広げる予定 %>
+    <%= link_to 'メモへ', site_memos_index_path(site) %>
+  </div>
+<% end %>

@@ -1,27 +1,13 @@
 <%= link_to '現場追加', sites_new_path %>
-
-<%= turbo_frame_tag 'sites-list' do %>
-  <table>
-    <tr>
-      <th>元請</th>
-      <th>現場名</th>
-      <th>現調日</th>
-      <th>工事日</th>
-      <th></th>
-    </tr>
-    <% @sites.each do |site| %>
-      <tr>
-        <td><%= site.contractor.name %></td>
-        <td><%= site.name %></td>
-        <td><%= check_schedule(site.research_date)%></td>
-        <td><%= check_schedule(site.construction_date)%></td>
-        <td><%= site.site_memos.present? ? "メモ" : ""  %></td>
-        <td><%= check_order(site.site_memos) %></td>
-        <td><%= link_to '削除', sites_destroy_path(site.id), method: :delete, data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } %></td>
-      </tr>
-      <%# テーブルの各行にリンク広げる予定 %>
-      <td><%= link_to 'メモへ', site_memos_index_path(site.id) %></td>
-    <% end %>
-  </table>
-  <%= paginate @sites %>
-<% end %>
+<div>
+  <div class="headding">
+    <p>元請</p>
+    <p>現場名</p>
+    <p>現調日</p>
+    <p>工事日</p>
+  </div>
+  <%= turbo_frame_tag 'sites-list' do %>
+    <%= render @sites %>
+    <%= paginate @sites %>
+  <% end %>
+</div>

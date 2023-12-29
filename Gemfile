@@ -71,3 +71,5 @@ gem 'carrierwave'
 gem 'fog-aws'
 gem 'kaminari'
 gem 'turbo-rails'
+gem "importmap-rails"
+gem "stimulus-rails"

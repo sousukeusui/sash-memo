@@ -4,6 +4,10 @@ class SiteMemosController < ApplicationController
     @site_memos = @site.site_memos
   end
 
+  def bulk_order(site_id:)
+    
+  end
+
   def new_step1(site_id:)
     @site_id = site_id
   end

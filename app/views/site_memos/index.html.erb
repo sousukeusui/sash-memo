@@ -3,29 +3,28 @@
 <p>住所:<%= @site.address %></p>
 
 <% if @site_memos.present? %>
-  <% @site_memos.each do |site_memo| %>
-    <% site_memo_children(site_memo).each do |child| %>
-      <table>
-        <tr>
-          <th>設置場所</th>
-          <th>内容</th>
-          <th>タイプ</th>
-          <th></th>
-        </tr>
-        <tr>
-          <td><%= child.room %></td>
-          <td><%= site_memo.kind_i18n %></td>
+  <div>
+    <div class='heading'>
+      <p>設置場所</p>
+      <p>内容</p>
+      <p>タイプ</p>
+    </div>
+    <% @site_memos.each do |site_memo| %>
+      <% site_memo_children(site_memo).each do |child| %>
+        <div>
+          <%= child.room %>
+          <%= site_memo.kind_i18n %>
           <!-- sashと書かれているところは内容の項目によって動的に変える予定。door, screenなど-->
-          <td><%= child.sash_type_i18n %></td>
-          <td></td> 
-        </tr>
+          <%= child.sash_type_i18n %>
+        </div>
+        <div>
+          <%= child.order_i18n %>
+        </div>
         <!-- 以下のリンクはテーブルの行に広げる予定 -->
-        <tr>
-          <td><%= link_to '詳細', site_memos_show_switcher_path(kind: site_memo.kind, id: child.id) %></td>
-        </tr>
-      </table>
+        <%= link_to '詳細', site_memos_show_switcher_path(kind: site_memo.kind, id: child.id) %>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 <% else %>
   <p>メモはありません</p>
 <% end %>

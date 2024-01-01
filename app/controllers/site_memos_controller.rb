@@ -5,7 +5,15 @@ class SiteMemosController < ApplicationController
   end
 
   def bulk_order(site_id:)
-    
+    site = Site.find(site_id)
+    site.site_memos.each do |site_memo|
+      case site_memo.kind
+      when 'inner_sash'
+        site_memo.inner_sashes.update_all(order: InnerSash.orders[:ordered])
+      end
+      site_memo.update!(judge_order: :ordered)
+    end
+    redirect_to site_memos_index_path(site_id), notice: '全て発注済みにしました'
   end
 
   def new_step1(site_id:)

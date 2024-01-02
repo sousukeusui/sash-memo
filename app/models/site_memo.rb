@@ -9,4 +9,11 @@ class SiteMemo < ApplicationRecord
 
   validates :kind, presence: true
   validates :status ,presence: true
+
+  def update_order
+    case self.kind
+    when 'inner_sash'
+      self.update!(judge_order: :ordered) if self.inner_sashes.update_all(order: InnerSash.orders[:ordered])
+    end
+  end
 end

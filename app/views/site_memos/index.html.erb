@@ -25,8 +25,8 @@
       <% end %>
     <% end %>
   </div>
+  <%= link_to "一括#{@order_text}", site_memos_update_bulk_order_path(@site.id, params: { order: @order_params }), data: {turbo_method: "post", turbo_confirm: "全て#{@order_text}にしますか？"} %>
 <% else %>
   <p>メモはありません</p>
 <% end %>
 <%= link_to 'メモ追加', site_memos_new_step1_path(@site.id) %>
-<%= link_to '一括発注済み', site_memos_bulk_order_path(@site.id), data: {turbo_method: "get", turbo_confirm: "全て発注済みにしますか？"} %>

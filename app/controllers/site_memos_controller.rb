@@ -2,9 +2,10 @@ class SiteMemosController < ApplicationController
   def index(site_id:)
     @site = Site.find(site_id)
     @site_memos = @site.site_memos
+    @order_text, @order_params = get_order_info(site_memos: @site_memos)
   end
 
-  def bulk_order(site_id:)
+  def update_bulk_order(site_id:)
     site = Site.find(site_id)
     #一括で発注済みにするメソッド
     site.site_memos.each { |site_memo| site_memo.update_order }
@@ -25,5 +26,10 @@ class SiteMemosController < ApplicationController
     when 'inner_sash'
       redirect_to inner_sashes_new_step2_path(site_id)
     end
+  end
+
+  def get_order_info(site_memos:)
+    return '発注済み','order' if site_memos.any? { |site_memo| site_memo.include_unordered? == true }
+    return '未発注', 'unorder'
   end
 end

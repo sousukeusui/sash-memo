@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get 'site_memos/index/:site_id', to: 'site_memos#index', as: :site_memos_index
-  get 'site_memos/bulk_order/:site_id', to: 'site_memos#bulk_order', as: :site_memos_bulk_order
+  get 'site_memos/update_bulk_order/:site_id', to: 'site_memos#update_bulk_order', as: :site_memos_update_bulk_order
   get 'site_memos/show_switcher/:kind/:id', to: 'site_memos#show_switcher', as: :site_memos_show_switcher
   get 'site_memos/new_step1/:site_id', to: 'site_memos#new_step1', as: :site_memos_new_step1
   get 'site_memos/form_switcher'

@@ -25,7 +25,9 @@
       <% end %>
     <% end %>
   </div>
-  <%= link_to "一括#{@order_text}", site_memos_update_bulk_order_path(@site.id, params: { order: @order_params }), data: {turbo_method: "post", turbo_confirm: "全て#{@order_text}にしますか？"} %>
+  <%= link_to "一括#{ InnerSash.orders_i18n[@order_key.to_sym] }",
+                      site_memos_update_bulk_order_path(@site.id, params: { order: @order_key }),
+                      data: {turbo_method: "post", turbo_confirm: "全て#{ InnerSash.orders_i18n[@order_key.to_sym] }にしますか？"} %>
 <% else %>
   <p>メモはありません</p>
 <% end %>

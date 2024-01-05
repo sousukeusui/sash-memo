@@ -2,14 +2,14 @@
 <p>現場名:<%= @site.name %></p>
 <p>住所:<%= @site.address %></p>
 
-<% if @site_memos.present? %>
+<% if @site.site_memos.present? %>
   <div>
     <div class='heading'>
       <p>設置場所</p>
       <p>内容</p>
       <p>タイプ</p>
     </div>
-    <% @site_memos.each do |site_memo| %>
+    <% @site.site_memos.each do |site_memo| %>
       <% site_memo_children(site_memo).each do |child| %>
         <div>
           <%= child.room %>
@@ -25,9 +25,9 @@
       <% end %>
     <% end %>
   </div>
-  <%= link_to "一括#{ InnerSash.orders_i18n[@order_key.to_sym] }",
-                      site_memos_update_bulk_order_path(@site.id, params: { order: @order_key }),
-                      data: {turbo_method: "post", turbo_confirm: "全て#{ InnerSash.orders_i18n[@order_key.to_sym] }にしますか？"} %>
+  <%= link_to "一括#{InnerSash.orders_i18n[@order_key.to_sym]}",
+              site_memos_update_bulk_order_path(@site.id, params: { order: @order_key }),
+              data: {turbo_method: "post", turbo_confirm: "全て#{InnerSash.orders_i18n[@order_key.to_sym]}にしますか？"} %>
 <% else %>
   <p>メモはありません</p>
 <% end %>

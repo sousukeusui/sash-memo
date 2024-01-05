@@ -2,14 +2,14 @@
 <p>現場名:<%= @site.name %></p>
 <p>住所:<%= @site.address %></p>
 
-<% if @site.site_memos.present? %>
+<% if @site_memos.present? %>
   <div>
     <div class='heading'>
       <p>設置場所</p>
       <p>内容</p>
       <p>タイプ</p>
     </div>
-    <% @site.site_memos.each do |site_memo| %>
+    <% @site_memos.each do |site_memo| %>
       <% site_memo_children(site_memo).each do |child| %>
         <div>
           <%= child.room %>
@@ -31,4 +31,5 @@
 <% else %>
   <p>メモはありません</p>
 <% end %>
+<%= paginate @site_memos %>
 <%= link_to 'メモ追加', site_memos_new_step1_path(@site.id) %>

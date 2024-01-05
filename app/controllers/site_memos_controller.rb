@@ -1,7 +1,9 @@
 class SiteMemosController < ApplicationController
   def index(site_id:)
-    @site = Site.preload(site_memos: :inner_sashes).find(site_id)
-    @order_key = get_reverse_order_info(site_memos: @site.site_memos)
+    # @site = Site.preload(site_memos: :inner_sashes).find(site_id).page(params[:page]).per(10)
+    @site = Site.find(site_id)
+    @site_memos = SiteMemo.preload(:inner_sashes).where(site_id: site_id).page(params[:page]).per(10)
+    @order_key = get_reverse_order_info(site_memos: @site_memos)
   end
 
   def update_bulk_order(site_id:,order:)

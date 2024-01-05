@@ -11,8 +11,24 @@
   address = Faker::Address.city
   user_id = 22
   contractor_id = rand(1..5)
-  Site.create!(name:  name,
+  Site.create!(name: name,
                   address: address,
                   user_id: user_id,
                   contractor_id: contractor_id)
+end
+
+20.times do |n|
+  size = rand(1..99)
+  room = Faker::House.room
+  site_memo_id = 16
+  InnerSash.create!(width_up_size: size,
+                    width_middle_size: size,
+                    width_down_size: size,
+                    height_left_size: size,
+                    height_middle_size: size,
+                    height_right_size: size,
+                    width_frame_depth: size,
+                    height_frame_depth: size,
+                    room: room,
+                    site_memo_id: site_memo_id)
 end

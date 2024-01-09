@@ -1,9 +1,17 @@
 class SiteMemosController < ApplicationController
   def index(site_id:)
-    # @site = Site.preload(site_memos: :inner_sashes).find(site_id).page(params[:page]).per(10)
     @site = Site.find(site_id)
-    @site_memos = SiteMemo.preload(:inner_sashes).where(site_id: site_id).page(params[:page]).per(10)
-    @order_key = get_reverse_order_info(site_memos: @site_memos)
+    #site_memoの全ての子モデル結合して取得
+    @site_memos = SiteMemo.eager_load(:inner_sashes).where(site_id: site_id)
+    @site_memos.each do |site_memo|
+      @site_memos = site_memo.inner_sashes.page(params[:page]).per(5) if site_memo.kind == 'inner_sash'
+    end
+    
+    binding.pry
+    
+    # @site_memos = SiteMemo.preload(:inner_sashes).where(site_id: site_id)
+    # @inner_sashes = InnerSash.eager_load(site_memo: :site).where(site: {id: site_id}).page(params[:page]).per(5)
+    @order_key = get_reverse_order_info(site_memos: @site.site_memos)
   end
 
   def update_bulk_order(site_id:,order:)

@@ -22,7 +22,7 @@
   room = Faker::House.room
   site_id = 11
   kind = 'inner_sash'
-  site_memo = SiteMemo.create!(site_id: 11, kind: kind, room: room)
+  site_memo = SiteMemo.create!(site_id: 20, kind: kind, room: room)
   InnerSash.create!(width_up_size: size,
                     width_middle_size: size,
                     width_down_size: size,

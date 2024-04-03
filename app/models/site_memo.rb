@@ -4,8 +4,8 @@ class SiteMemo < ApplicationRecord
   enum order: { unordered: 0 , ordered: 1 }
 
   belongs_to :site
-  has_one :inner_sashes, dependent: :destroy
-  accepts_nested_attributes_for :inner_sashes
+  has_one :inner_sash, dependent: :destroy
+  accepts_nested_attributes_for :inner_sash
 
   validates :kind, presence: true
   validates :status ,presence: true

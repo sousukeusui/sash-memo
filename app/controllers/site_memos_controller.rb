@@ -31,6 +31,10 @@ class SiteMemosController < ApplicationController
     end
   end
 
+  def destroy(id:)
+
+  end
+
   private
 
   def get_order_info(site_memos:)

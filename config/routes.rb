@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'site_memos/show_switcher/:kind/:id', to: 'site_memos#show_switcher', as: :site_memos_show_switcher
   get 'site_memos/new_step1/:site_id', to: 'site_memos#new_step1', as: :site_memos_new_step1
   get 'site_memos/form_switcher'
+  delete 'site_memos/destroy/:id', to: 'site_memos#destroy', as: :site_memos_destroy
   get 'inner_sashes/new_step2/:site_id', to: 'inner_sashes#new_step2', as: :inner_sashes_new_step2
   get 'inner_sashes/new_step3/:site_id', to: 'inner_sashes#new_step3', as: :inner_sashes_new_step3
   get 'inner_sashes/new_step4/:site_memo_id', to: 'inner_sashes#new_step4', as: :inner_sashes_new_step4

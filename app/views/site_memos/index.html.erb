@@ -21,6 +21,7 @@
       </div>
       <!-- 以下のリンクはテーブルの行に広げる予定 -->
       <%= link_to '詳細', site_memos_show_switcher_path(kind: site_memo.kind, id: site_memo.inner_sash.id) %>
+      <%= link_to '削除', site_memos_destroy_path(id: site_memo.id),method: :delete %>
     </div>
   <% else %>
     <p>メモはありません</p>

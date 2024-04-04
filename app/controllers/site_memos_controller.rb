@@ -3,7 +3,7 @@ class SiteMemosController < ApplicationController
     @site = Site.find(site_id)
     #site_memoの全ての子モデル結合して取得
     @site = Site.preload(site_memos: :inner_sash).find(site_id)
-    @site_memos = @site.site_memos
+    @site_memos = @site.site_memos.page(params[:page]).per(5)
     # @site_memos = SiteMemo.preload(:inner_sashes).where(site_id: site_id)
     # @inner_sashes = InnerSash.eager_load(site_memo: :site).where(site: {id: site_id}).page(params[:page]).per(5)
     # @order_key = get_reverse_order_info(site_memos: @site_memos)

@@ -22,12 +22,12 @@
       <!-- 以下のリンクはテーブルの行に広げる予定 -->
       <%= link_to '詳細', site_memos_show_switcher_path(kind: site_memo.kind, id: site_memo.inner_sash.id) %>
     </div>
-    <%= link_to "一括#{SiteMemo.orders_i18n[@order_key.to_sym]}",
-        site_memos_update_bulk_order_path(@site.id, params: { order: @order_key }),
-        data: {turbo_method: "post", turbo_confirm: "全て#{SiteMemo.orders_i18n[@order_key.to_sym]}にしますか？(表示されていないものも含みます)"} %> 
   <% else %>
     <p>メモはありません</p>
   <% end %>
 <% end %>
+<%= link_to "一括#{SiteMemo.orders_i18n[@order_key.to_sym]}",
+        site_memos_update_bulk_order_path(@site.id, params: { order: @order_key }),
+        data: {turbo_method: "post", turbo_confirm: "全て#{SiteMemo.orders_i18n[@order_key.to_sym]}にしますか？(表示されていないものも含みます)"} %> 
 <%= link_to 'メモ追加', site_memos_new_step1_path(@site.id) %>
 <%= paginate @site_memos %>

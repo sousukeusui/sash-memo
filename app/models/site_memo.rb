@@ -11,15 +11,4 @@ class SiteMemo < ApplicationRecord
   validates :status ,presence: true
   validates :room, presence: true, length: { maximum:15 }
   validates :remark, length: { maximum:100 }
-
-  def update_order(order:)
-    case order
-    when 'ordered'
-      #内窓の場合
-      self.inner_sashes.update_all(order: InnerSash.orders[:ordered]) if self.kind == 'inner_sash'
-      #以下にドアや網戸の場合も追加していく
-    when 'unordered'
-      self.inner_sashes.update_all(order: InnerSash.orders[:unordered]) if self.kind == 'inner_sash'
-    end
-  end
 end

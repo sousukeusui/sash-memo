@@ -22,10 +22,4 @@ class SiteMemo < ApplicationRecord
       self.inner_sashes.update_all(order: InnerSash.orders[:unordered]) if self.kind == 'inner_sash'
     end
   end
-
-  def include_unordered?
-    #内窓の場合
-    return self.inner_sashes.pluck(:order).include?('unordered') if self.kind == 'inner_sash'
-    #以下にドアや網戸の場合も追加していく
-  end
 end

@@ -4,9 +4,7 @@ class SiteMemosController < ApplicationController
     #site_memoの全ての子モデル結合して取得
     @site = Site.preload(site_memos: :inner_sash).find(site_id)
     @site_memos = @site.site_memos.page(params[:page]).per(5)
-    # @site_memos = SiteMemo.preload(:inner_sashes).where(site_id: site_id)
-    # @inner_sashes = InnerSash.eager_load(site_memo: :site).where(site: {id: site_id}).page(params[:page]).per(5)
-    # @order_key = get_reverse_order_info(site_memos: @site_memos)
+    @order_key = get_order_info(site_memos: @site.site_memos)
   end
 
   def update_bulk_order(site_id:,order:)
@@ -35,9 +33,9 @@ class SiteMemosController < ApplicationController
 
   private
 
-  def get_reverse_order_info(site_memos:)
-    #未発注が含まれていれば「発注済み（ordered)」を返し、発注済みが含まれていれば「未発注（unordered)」を返す
-    return 'ordered' if site_memos.any? { |site_memo| site_memo.include_unordered? == true }
-    return 'unordered'
+  def get_order_info(site_memos:)
+    orders = site_memos.pluck(:order)
+    return "unorder" if orders.all?{ |order| order == "ordered" }
+    return "ordered"
   end
 end

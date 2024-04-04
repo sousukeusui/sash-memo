@@ -21,10 +21,10 @@
       </div>
       <!-- 以下のリンクはテーブルの行に広げる予定 -->
       <%= link_to '詳細', site_memos_show_switcher_path(kind: site_memo.kind, id: site_memo.inner_sash.id) %>
-      <%= link_to '削除', site_memos_destroy_path(id: site_memo.id),method: :delete %>
+      <%= link_to '削除', site_memos_destroy_path(id: site_memo.id), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' } %>
     </div>
   <% else %>
-    <p>メモはありません</p>
+    <p>メモはありません<  /p>
   <% end %>
 <% end %>
 <%= link_to "一括#{SiteMemo.orders_i18n[@order_key.to_sym]}",

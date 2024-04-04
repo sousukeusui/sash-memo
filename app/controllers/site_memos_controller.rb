@@ -32,7 +32,9 @@ class SiteMemosController < ApplicationController
   end
 
   def destroy(id:)
-
+    site_memo = SiteMemo.find(id)
+    site_memo.destroy
+    redirect_to site_memos_index_path(site_memo.site_id), notice: 'メモを削除しました'
   end
 
   private

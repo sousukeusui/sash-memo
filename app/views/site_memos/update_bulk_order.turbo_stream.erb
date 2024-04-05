@@ -1,13 +1,8 @@
-<p>元請:<%= @site.contractor.name %></p>
-<p>現場名:<%= @site.name %></p>
-<p>住所:<%= @site.address %></p>
-
-<%= turbo_frame_tag "site-memos-list" do %>
+<%= turbo_stream.update "site-memos-list" do %>
   <%= link_to "一括#{SiteMemo.orders_i18n[@order_key.to_sym]}",
         site_memos_update_bulk_order_path(@site.id, params: { order: @order_key }),
         data: {turbo_method: :post, turbo_confirm: "全て#{SiteMemo.orders_i18n[@order_key.to_sym]}にしますか？(表示されていないものも含みます)"} %> 
   <%= link_to 'メモ追加', site_memos_new_step1_path(@site.id) %>
   <%= render @site_memos %>
-  <p><%= "メモはありません" if @site_memos.blank? %></p>
   <%= paginate @site_memos %>
 <% end %>

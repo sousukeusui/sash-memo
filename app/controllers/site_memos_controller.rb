@@ -5,7 +5,7 @@ class SiteMemosController < ApplicationController
     #site_memosに新しい子モデルができたらそれに応じて取得するものを動的に変える    
     @site = Site.preload(site_memos: :inner_sash).find(site_id)
     @site_memos = @site.site_memos.page(params[:page]).per(5)
-    @order_key = get_order_info(site_memos: @site.site_memos)
+    @order_key = get_order_key(site_memos: @site.site_memos)
   end
 
   def update_bulk_order(site_id:,order:)
@@ -32,14 +32,14 @@ class SiteMemosController < ApplicationController
   end
 
   def destroy(id:)
-    site_memo = SiteMemo.find(id)
-    site_memo.destroy
-    redirect_to site_memos_index_path(site_memo.site_id), notice: 'メモを削除しました'
+    @site_memo = SiteMemo.find(id)
+    @site_memo.destroy
+    # flash.now.notice = 'メモを削除しました'
   end
 
   private
 
-  def get_order_info(site_memos:)
+  def get_order_key(site_memos:)
     orders = site_memos.pluck(:order)
     return "unordered" if orders.all?{ |order| order == "ordered" }
     return "ordered"

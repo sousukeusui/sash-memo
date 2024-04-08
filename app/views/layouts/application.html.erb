@@ -13,8 +13,8 @@
 
   <body>
     <%= render 'shared/header' %>
-    <div id="flash">
-      <%= notice %>
+    <div id='flash-msg'>
+      <%= render 'layouts/flash' %>
     </div>
     <%= alert %>
     <%= yield %>

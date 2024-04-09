@@ -1,6 +1,10 @@
 <p>内窓詳細</p>
-<%= @inner_sash.room %>
+<%= link_to "#{SiteMemo.orders_i18n[@order_key.to_sym]}にする",
+        inner_sashes_update_order_path(@inner_sash.id, params: { order: @order_key }),
+        data: {turbo_method: :post, turbo_confirm: "#{SiteMemo.orders_i18n[@order_key.to_sym]}にしますか？"} %>
+<%= @inner_sash.site_memo.room %>
 <%= @inner_sash.site_memo.kind_i18n %>
+<%= @inner_sash.site_memo.order %>
 
 <!-- W寸法 -->
 <%= @inner_sash.width_up_size %>

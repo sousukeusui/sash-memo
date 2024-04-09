@@ -64,7 +64,13 @@ class InnerSashesController < ApplicationController
   
   def show(id:)
     @inner_sash = InnerSash.find(id)
+    @order_key = get_opposite_order_key(inner_sash: @inner_sash)
   end
+
+  def update_order(id:, order:)
+
+  end
+
   private
   def basic_info_params
     params.require(:site_memo).permit(:id,

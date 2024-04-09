@@ -1,4 +1,3 @@
-<%= turbo_stream_flash %>
 <%= turbo_stream.update "site-memos-list" do %>
   <%= link_to "一括#{SiteMemo.orders_i18n[@order_key.to_sym]}",
         site_memos_update_bulk_order_path(@site.id, params: { order: @order_key }),
@@ -7,3 +6,4 @@
   <%= render @site_memos %>
   <%= paginate @site_memos %>
 <% end %>
+<%= turbo_stream_flash %>

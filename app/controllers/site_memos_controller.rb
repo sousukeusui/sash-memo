@@ -10,9 +10,8 @@ class SiteMemosController < ApplicationController
 
   def update_bulk_order(site_id:,order:)
     @site = Site.find(site_id)
-    @site_memos = @site.site_memos
-    @site_memos.update_all(order: order)
-    @site_memos = @site_memos.page(params[:page]).per(5)
+    @site.site_memos.update_all(order: order)
+    @site_memos = @site.site_memos.page(params[:page]).per(5)
     @order_key = get_order_key(site_memos: @site.site_memos)
     flash.now.notice = "全て#{ SiteMemo.orders_i18n[order.to_sym]}にしました"
   end
@@ -36,7 +35,7 @@ class SiteMemosController < ApplicationController
   def destroy(id:)
     @site_memo = SiteMemo.find(id)
     @site_memo.destroy
-    # flash.now.notice = 'メモを削除しました'
+    flash.now.notice = 'メモを削除しました'
   end
 
   private

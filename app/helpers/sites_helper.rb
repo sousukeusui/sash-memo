@@ -7,7 +7,7 @@ module SitesHelper
   def check_order(site_memos)
     return "未発注" if site_memos.blank?
     site_memos.each do |site_memo|
-      return site_memo.judge_order_i18n
+      return site_memo.order_i18n
     end
   end
 end

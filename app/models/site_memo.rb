@@ -1,12 +1,14 @@
 class SiteMemo < ApplicationRecord
   enum kind: { inner_sash: 0 } 
   enum status: { draft: 0, published: 1}
-  enum judge_order: { unordered: 0, ordered: 1}
+  enum order: { unordered: 0 , ordered: 1 }
 
   belongs_to :site
-  has_many :inner_sashes, dependent: :destroy
-  accepts_nested_attributes_for :inner_sashes
+  has_one :inner_sash, dependent: :destroy
+  accepts_nested_attributes_for :inner_sash
 
   validates :kind, presence: true
   validates :status ,presence: true
+  validates :room, presence: true, length: { maximum:15 }
+  validates :remark, length: { maximum:100 }
 end

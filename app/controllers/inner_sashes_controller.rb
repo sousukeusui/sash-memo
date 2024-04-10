@@ -63,12 +63,15 @@ class InnerSashesController < ApplicationController
   end
   
   def show(id:)
-    @inner_sash = InnerSash.find(id)
+    @inner_sash = InnerSash.preload(site_memo: :site).find(id)
     @order_key = get_opposite_order_key(inner_sash: @inner_sash)
   end
 
   def update_order(id:, order:)
-
+    @inner_sash = InnerSash.find(id)
+    @inner_sash.site_memo.update!(order: order)
+    @order_key = get_opposite_order_key(inner_sash: @inner_sash)
+    flash.now.notice = "#{SiteMemo.orders_i18n[order.to_sym]}にしました"
   end
 
   private

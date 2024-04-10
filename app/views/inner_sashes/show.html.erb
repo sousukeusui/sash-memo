@@ -4,9 +4,7 @@
 <p>現場名</p><%= @inner_sash.site_memo.site.name %>
 <p>住所</p><%= @inner_sash.site_memo.site.address %><br/>
 <%= turbo_frame_tag 'order-link' do %>
-  <%= link_to "#{SiteMemo.orders_i18n[@order_key.to_sym]}にする",
-          inner_sashes_update_order_path(@inner_sash.id, params: { order: @order_key }),
-          data: {turbo_method: :post, turbo_confirm: "#{SiteMemo.orders_i18n[@order_key.to_sym]}にしますか？"} %>
+  <%= render partial: 'layouts/order_link', locals: {order_key: @order_key, inner_sash: @inner_sash} %>
 <% end %>
 <%= @inner_sash.site_memo.room %>
 <%= @inner_sash.site_memo.kind_i18n %>

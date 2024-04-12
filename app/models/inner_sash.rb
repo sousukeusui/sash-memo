@@ -1,5 +1,5 @@
 class InnerSash < ApplicationRecord
-  belongs_to :site_memo
+  belongs_to :site_memo, dependent: :destroy
   has_many :inner_sash_photos, dependent: :destroy
   accepts_nested_attributes_for :inner_sash_photos
 

@@ -74,6 +74,13 @@ class InnerSashesController < ApplicationController
     flash.now.notice = "#{SiteMemo.orders_i18n[order.to_sym]}にしました"
   end
 
+  def destroy(id:)
+    inner_sash = InnerSash.find(id)
+    site_id = inner_sash.site_memo.site.id
+    inner_sash.destroy
+    redirect_to site_memos_index_path(site_id: site_id), notice: "メモを削除しました"
+  end
+
   private
   def basic_info_params
     params.require(:site_memo).permit(:id,

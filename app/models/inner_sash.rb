@@ -33,6 +33,14 @@ class InnerSash < ApplicationRecord
   validates :glass_thickness, presence: true
   validates :is_low_e, inclusion: {in: [true, false]}
 
+  def previous
+    InnerSash.where("id<?", self.id).order(id: :desc).first
+  end
+
+  def next
+    InnerSash.where("id>?", self.id).order(id: :asc).first
+  end
+
 
     #site_memo_idを排除するかコントローラーで入れるか
     #colorなど他のバリデーションも追加

@@ -81,6 +81,11 @@ class InnerSashesController < ApplicationController
     redirect_to site_memos_index_path(site_id: site_id), notice: "メモを削除しました"
   end
 
+  def navigate_page(id:)
+    
+    redirect_to inner_sashes_show_path(id: id.to_i)
+  end
+
   private
   def basic_info_params
     params.require(:site_memo).permit(:id,

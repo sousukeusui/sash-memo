@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get 'inner_sashes/new_comfirmation/:site_memo_id', to: 'inner_sashes#new_comfirmation', as: :inner_sashes_new_comfirmation
   get 'inner_sashes/show/:id', to: 'inner_sashes#show', as: :inner_sashes_show
   delete 'inner_sashes/destroy/:id', to: 'inner_sashes#destroy', as: :inner_sashes_destroy
+  get 'inner_sashes/navigate_page/:id', to:'inner_sashes#navigate_page', as: :inner_sashes_navigate_page
   post 'inner_sashes/update_order/:id', to: 'inner_sashes#update_order', as: :inner_sashes_update_order
   post 'inner_sashes/room_append'
   patch 'inner_sashes/basic_append'

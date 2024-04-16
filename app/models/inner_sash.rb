@@ -34,11 +34,12 @@ class InnerSash < ApplicationRecord
   validates :is_low_e, inclusion: {in: [true, false]}
 
   def previous
-    InnerSash.where("id<?", self.id).order(id: :desc).first
+    InnerSash.eager_load(site_memo: :site).where(site: {id: self.site_memo.site_id}).where("inner_sashes.id<?", self.id).order(id: :desc).first
+    # InnerSash.where("id<?", self.id).order(id: :desc).first
   end
 
   def next
-    InnerSash.where("id>?", self.id).order(id: :asc).first
+    InnerSash.eager_load(site_memo: :site).where(site: {id: self.site_memo.site_id}).where("inner_sashes.id>?", self.id).order(id: :asc).first
   end
 
 

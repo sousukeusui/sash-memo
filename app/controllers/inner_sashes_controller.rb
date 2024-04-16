@@ -82,7 +82,6 @@ class InnerSashesController < ApplicationController
   end
 
   def navigate_page(id:)
-    
     redirect_to inner_sashes_show_path(id: id.to_i)
   end
 

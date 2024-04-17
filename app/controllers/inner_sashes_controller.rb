@@ -87,6 +87,18 @@ class InnerSashesController < ApplicationController
     # redirect_to inner_sashes_show_path(id: id.to_i)
   end
 
+  def basic_info
+
+  end
+
+  def shoji_and_glass
+
+  end
+
+  def photo_and_others
+
+  end
+
   private
   def basic_info_params
     params.require(:site_memo).permit(:id,

@@ -1,0 +1,10 @@
+<%= turbo_frame_tag 'shoji-and-glass' do %>
+  中桟<%= @inner_sash.middle_frame_height %>
+  クレセント<%= @inner_sash.key_height %>
+
+  <p>ガラス</p>
+  種類<%= @inner_sash.glass_kind_i18n %>
+  色<%= @inner_sash.glass_color_i18n %>
+  単板・複層<%= @inner_sash.glass_thickness_i18n %>
+  Low-E<%= @inner_sash.is_low_e ? "有" : "無" %>
+<% end %>

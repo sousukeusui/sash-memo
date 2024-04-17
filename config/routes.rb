@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   delete 'inner_sashes/destroy/:id', to: 'inner_sashes#destroy', as: :inner_sashes_destroy
   post 'inner_sashes/navigate_page/:id', to:'inner_sashes#navigate_page', as: :inner_sashes_navigate_page
   post 'inner_sashes/update_order/:id', to: 'inner_sashes#update_order', as: :inner_sashes_update_order
+  get 'inner_sashes/basic_info/:id', to: 'inner_sashes#basic_info', as: :inner_sashes_basic_info
+  get 'inner_sashes/shoji_and_glass/:id', to: 'inner_sashes#shoji_and_glass', as: :inner_sashes_shoji_and_glass
+  get 'inner_sashes/photo_and_others/:id', to: 'inner_sashes#photo_and_others' ,as: :inner_sashes_photo_and_others
   post 'inner_sashes/room_append'
   patch 'inner_sashes/basic_append'
   patch 'inner_sashes/accessory_append'

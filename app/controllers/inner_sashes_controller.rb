@@ -82,7 +82,9 @@ class InnerSashesController < ApplicationController
   end
 
   def navigate_page(id:)
-    redirect_to inner_sashes_show_path(id: id.to_i)
+    @inner_sash = InnerSash.preload(site_memo: :site).find(id.to_i)
+    @order_key = get_opposite_order_key(inner_sash: @inner_sash)
+    # redirect_to inner_sashes_show_path(id: id.to_i)
   end
 
   private

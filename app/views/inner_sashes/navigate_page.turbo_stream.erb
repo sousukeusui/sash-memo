@@ -2,8 +2,10 @@
 <%= turbo_stream.update'order-link' do %>
   <%= render partial: 'layouts/order_link', locals: {order_key: @order_key, inner_sash: @inner_sash} %>
 <% end %>
+<%= turbo_stream.update 'inner-sash-delete' do %>
+  <%= link_to '削除', inner_sashes_destroy_path(id: @inner_sash.id), data: {turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }%>
+<% end %>
 <%= turbo_stream.update 'inner-sash-data' do %>
-  <%= link_to '削除', inner_sashes_destroy_path(id: @inner_sash.id), data: {turbo_method: :delete, turbo_confirm: "本当に削除しますか？"} %>
   <%= render @inner_sash %>
   <%= link_to '次', inner_sashes_navigate_page_path(id: @inner_sash.next), data: {turbo_method: :post} if @inner_sash.next.present? %>
   <%= link_to '前', inner_sashes_navigate_page_path(id: @inner_sash.previous), data: {turbo_method: :post} if @inner_sash.previous.present? %>

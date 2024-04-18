@@ -65,6 +65,7 @@ class InnerSashesController < ApplicationController
   def show(id:)
     @inner_sash = InnerSash.preload(site_memo: :site).find(id)
     @order_key = get_opposite_order_key(inner_sash: @inner_sash)
+    @basic_active = 'is-active'
   end
 
   def update_order(id:, order:)
@@ -84,19 +85,22 @@ class InnerSashesController < ApplicationController
   def navigate_page(id:)
     @inner_sash = InnerSash.preload(site_memo: :site).find(id.to_i)
     @order_key = get_opposite_order_key(inner_sash: @inner_sash)
-    # redirect_to inner_sashes_show_path(id: id.to_i)
+    @basic_active = 'is-active'
   end
 
-  def basic_info
-
+  def basic_info(id:)
+    @inner_sash = InnerSash.find(id)
+    @basic_active = 'is-active'
   end
 
-  def shoji_and_glass
-
+  def shoji_and_glass(id:)
+    @inner_sash = InnerSash.find(id)
+    @shoji_active = 'is-active'
   end
 
-  def photo_and_others
-
+  def photo_and_others(id:)
+    @inner_sash = InnerSash.find(id)
+    @photo_active = 'is-active'
   end
 
   private

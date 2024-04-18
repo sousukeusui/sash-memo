@@ -9,12 +9,10 @@
 <div id="inner-sash-delete">
   <%= link_to '削除', inner_sashes_destroy_path(id: @inner_sash.id), data: {turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }%>
 </div>
-<%= turbo_frame_tag 'inner-sash-data' do %>
-  <%= link_to '基本情報・枠', inner_sashes_basic_info_path(id: @inner_sash.id) %>
-  <%= link_to '障子・ガラス', inner_sashes_shoji_and_glass_path(id: @inner_sash.id ) %>
-  <%= link_to '写真・その他', inner_sashes_photo_and_others_path(id: @inner_sash.id) %>
-  <div>
-    <%= render partial: 'basic_info' , locals: {inner_sash: @inner_sash}%>
+<%= turbo_frame_tag 'inner-sash-data-wrap' do %>
+  <div id="inner-sash-data">
+    <%= render 'tabs' %>
+    <%= render 'basic_info' %>
   </div>
   <%= link_to '次', inner_sashes_navigate_page_path(id: @inner_sash.next), data: {turbo_method: :post} if @inner_sash.next.present? %>
   <%= link_to '前', inner_sashes_navigate_page_path(id: @inner_sash.previous), data: {turbo_method: :post} if @inner_sash.previous.present? %>

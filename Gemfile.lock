@@ -383,6 +383,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   listen
+  mini_magick
   omniauth-google-oauth2
   omniauth-line
   omniauth-rails_csrf_protection

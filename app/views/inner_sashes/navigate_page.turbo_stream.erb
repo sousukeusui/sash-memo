@@ -5,6 +5,7 @@
   <%= link_to '削除', inner_sashes_destroy_path(id: @inner_sash.id), data: {turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }%>
 <% end %>
 <%= turbo_stream.update 'inner-sash-data-wrap' do %>
+  <%= render 'drawing' %>
   <div id="inner-sash-data">
     <%= render 'tabs' %>
     <%= render 'basic_info' %>

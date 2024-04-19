@@ -18,3 +18,6 @@
   <%= link_to '次', inner_sashes_navigate_page_path(id: @inner_sash.next), data: {turbo_method: :post} if @inner_sash.next.present? %>
   <%= link_to '前', inner_sashes_navigate_page_path(id: @inner_sash.previous), data: {turbo_method: :post} if @inner_sash.previous.present? %>
 <% end %>
+<% content_for :js do %>
+  <%= javascript_import_module_tag "draw_opening" %>
+<% end %>

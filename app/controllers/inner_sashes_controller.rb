@@ -63,8 +63,46 @@ class InnerSashesController < ApplicationController
   end
   
   def show(id:)
-    @inner_sash = InnerSash.find(id)
+    @inner_sash = InnerSash.preload(site_memo: :site).find(id)
+    @order_key = get_opposite_order_key(inner_sash: @inner_sash)
+    @basic_active = 'is-active'
   end
+
+  def update_order(id:, order:)
+    @inner_sash = InnerSash.find(id)
+    @inner_sash.site_memo.update!(order: order)
+    @order_key = get_opposite_order_key(inner_sash: @inner_sash)
+    flash.now.notice = "#{SiteMemo.orders_i18n[order.to_sym]}にしました"
+  end
+
+  def destroy(id:)
+    inner_sash = InnerSash.find(id)
+    @site_id = inner_sash.site_memo.site.id
+    inner_sash.destroy
+    redirect_to site_memos_index_path(site_id: @site_id), notice: "メモを削除しました"
+  end
+
+  def navigate_page(id:)
+    @inner_sash = InnerSash.preload(site_memo: :site).find(id.to_i)
+    @order_key = get_opposite_order_key(inner_sash: @inner_sash)
+    @basic_active = 'is-active'
+  end
+
+  def basic_info(id:)
+    @inner_sash = InnerSash.find(id)
+    @basic_active = 'is-active'
+  end
+
+  def shoji_and_glass(id:)
+    @inner_sash = InnerSash.find(id)
+    @shoji_active = 'is-active'
+  end
+
+  def photo_and_others(id:)
+    @inner_sash = InnerSash.find(id)
+    @photo_active = 'is-active'
+  end
+
   private
   def basic_info_params
     params.require(:site_memo).permit(:id,

@@ -1,15 +1,10 @@
-<p>内窓詳細</p>
-
-<p>元請</p><%= @inner_sash.site_memo.site.contractor.name %>
-<p>現場名</p><%= @inner_sash.site_memo.site.name %>
-<p>住所</p><%= @inner_sash.site_memo.site.address %><br/>
-<%= turbo_frame_tag 'order-link' do %>
+<%= turbo_stream.update'order-link' do %>
   <%= render partial: 'layouts/order_link', locals: {order_key: @order_key, inner_sash: @inner_sash} %>
 <% end %>
-<div id="inner-sash-delete">
+<%= turbo_stream.update 'inner-sash-delete' do %>
   <%= link_to '削除', inner_sashes_destroy_path(id: @inner_sash.id), data: {turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }%>
-</div>
-<%= turbo_frame_tag 'inner-sash-data-wrap' do %>
+<% end %>
+<%= turbo_stream.update 'inner-sash-data-wrap' do %>
   <%= render 'drawing' %>
   <div id="inner-sash-data">
     <%= render 'tabs' %>
@@ -17,7 +12,4 @@
   </div>
   <%= link_to '次', inner_sashes_navigate_page_path(id: @inner_sash.next), data: {turbo_method: :post} if @inner_sash.next.present? %>
   <%= link_to '前', inner_sashes_navigate_page_path(id: @inner_sash.previous), data: {turbo_method: :post} if @inner_sash.previous.present? %>
-<% end %>
-<% content_for :js do %>
-  <%= javascript_import_module_tag "draw_opening" %>
 <% end %>

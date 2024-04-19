@@ -1,5 +1,5 @@
 class InnerSash < ApplicationRecord
-  belongs_to :site_memo
+  belongs_to :site_memo, dependent: :destroy
   has_many :inner_sash_photos, dependent: :destroy
   accepts_nested_attributes_for :inner_sash_photos
 
@@ -32,6 +32,15 @@ class InnerSash < ApplicationRecord
   validates :glass_kind, presence: true
   validates :glass_thickness, presence: true
   validates :is_low_e, inclusion: {in: [true, false]}
+
+  def previous
+    InnerSash.eager_load(site_memo: :site).where(site: {id: self.site_memo.site_id}).where("inner_sashes.id<?", self.id).order(id: :desc).first
+    # InnerSash.where("id<?", self.id).order(id: :desc).first
+  end
+
+  def next
+    InnerSash.eager_load(site_memo: :site).where(site: {id: self.site_memo.site_id}).where("inner_sashes.id>?", self.id).order(id: :asc).first
+  end
 
 
     #site_memo_idを排除するかコントローラーで入れるか

@@ -3,6 +3,8 @@
 <p>元請</p><%= @inner_sash.site_memo.site.contractor.name %>
 <p>現場名</p><%= @inner_sash.site_memo.site.name %>
 <p>住所</p><%= @inner_sash.site_memo.site.address %><br/>
+<!--編集はturbo stream化する予定-->
+<%= link_to '編集', site_memos_edit_path(id: @inner_sash.site_memo.id) %>
 <%= turbo_frame_tag 'order-link' do %>
   <%= render partial: 'layouts/order_link', locals: {order_key: @order_key, inner_sash: @inner_sash} %>
 <% end %>

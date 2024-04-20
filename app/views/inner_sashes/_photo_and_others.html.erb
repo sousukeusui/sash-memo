@@ -1,3 +1,4 @@
 <%= turbo_frame_tag 'photo-and-others' do %>
   平板<%= @inner_sash.is_flat_bar ? "有" : "無" %>
+  <%= link_to '編集', inner_sashes_edit_phtoto_and_others_path(id: @inner_sash.id) %>
 <% end %>

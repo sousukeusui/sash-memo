@@ -32,6 +32,10 @@ class SiteMemosController < ApplicationController
     end
   end
 
+  def edit(id:)
+    
+  end
+
   def destroy(id:)
     @site_memo = SiteMemo.find(id)
     @site_memo.destroy

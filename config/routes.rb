@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'site_memos/new_step1/:site_id', to: 'site_memos#new_step1', as: :site_memos_new_step1
   get 'site_memos/form_switcher'
   delete 'site_memos/destroy/:id', to: 'site_memos#destroy', as: :site_memos_destroy
+  get 'site_memos/edit/:id', to: 'site_memos#edit', as: :site_memos_edit
   get 'inner_sashes/new_step2/:site_id', to: 'inner_sashes#new_step2', as: :inner_sashes_new_step2
   get 'inner_sashes/new_step3/:site_id', to: 'inner_sashes#new_step3', as: :inner_sashes_new_step3
   get 'inner_sashes/new_step4/:site_memo_id', to: 'inner_sashes#new_step4', as: :inner_sashes_new_step4
@@ -18,6 +19,9 @@ Rails.application.routes.draw do
   get 'inner_sashes/basic_info/:id', to: 'inner_sashes#basic_info', as: :inner_sashes_basic_info
   get 'inner_sashes/shoji_and_glass/:id', to: 'inner_sashes#shoji_and_glass', as: :inner_sashes_shoji_and_glass
   get 'inner_sashes/photo_and_others/:id', to: 'inner_sashes#photo_and_others' ,as: :inner_sashes_photo_and_others
+  get 'inner_sashes/edit_basic_info/:id', to: 'inner_sashes#edit_basic_info', as: :inner_sashes_edit_basic_info
+  get 'inner_sashes/edit_photo_and_others/:id', to: 'inner_sashes#edit_photo_and_others', as: :inner_sashes_edit_photo_and_others
+  get 'inner_sashes/edit_shoji_and_glass/:id', to: 'inner_sashes#edit_shoji_and_glass', as: :inner_sashes_edit_shoji_and_glass
   post 'inner_sashes/room_append'
   patch 'inner_sashes/basic_append'
   patch 'inner_sashes/accessory_append'

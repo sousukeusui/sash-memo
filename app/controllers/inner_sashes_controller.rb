@@ -103,6 +103,18 @@ class InnerSashesController < ApplicationController
     @photo_active = 'is-active'
   end
 
+  def edit_basic_info
+
+  end
+
+  def edit_shoji_and_glass
+
+  end
+
+  def edit_photo_and_others
+    
+  end
+
   private
   def basic_info_params
     params.require(:site_memo).permit(:id,

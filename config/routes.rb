@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get 'inner_sashes/edit_basic_info/:id', to: 'inner_sashes#edit_basic_info', as: :inner_sashes_edit_basic_info
   get 'inner_sashes/edit_photo_and_others/:id', to: 'inner_sashes#edit_photo_and_others', as: :inner_sashes_edit_photo_and_others
   get 'inner_sashes/edit_shoji_and_glass/:id', to: 'inner_sashes#edit_shoji_and_glass', as: :inner_sashes_edit_shoji_and_glass
+  patch 'inner_sashes/update'
   post 'inner_sashes/room_append'
   patch 'inner_sashes/basic_append'
   patch 'inner_sashes/accessory_append'

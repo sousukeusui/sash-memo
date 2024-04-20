@@ -7,5 +7,5 @@
   色<%= @inner_sash.glass_color_i18n %>
   単板・複層<%= @inner_sash.glass_thickness_i18n %>
   Low-E<%= @inner_sash.is_low_e ? "有" : "無" %>
-  <%= link_to '編集', inner_sashes_edit_shoji_and_glass_path(id: @inner_sash.id) %>
+  <%= link_to '編集', inner_sashes_edit_shoji_and_glass_path(id: @inner_sash.id), data: {turbo_stream: true} %>
 <% end %>

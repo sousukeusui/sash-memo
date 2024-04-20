@@ -15,6 +15,5 @@
                       @inner_sash.height_middle_size,
                       @inner_sash.height_right_size )%>
 
-  アジャスト上枠<%= @inner_sash.is_adjust ? "有" : "無" %>
-  <%= link_to '編集', inner_sashes_edit_basic_info_path(id: @inner_sash.id) %>
+  <%= link_to '編集', inner_sashes_edit_basic_info_path(id: @inner_sash.id), data: {turbo_stream: true} %>
 <% end %>

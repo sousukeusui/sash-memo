@@ -103,15 +103,19 @@ class InnerSashesController < ApplicationController
     @photo_active = 'is-active'
   end
 
-  def edit_basic_info
-
+  def edit_basic_info(id:)
+    @inner_sash = InnerSash.find(id)
   end
 
-  def edit_shoji_and_glass
-
+  def edit_shoji_and_glass(id:)
+    @inner_sash = InnerSash.find(id)
   end
 
-  def edit_photo_and_others
+  def edit_photo_and_others(id:)
+    @inner_sash = InnerSash.find(id)
+  end
+
+  def update
     
   end
 

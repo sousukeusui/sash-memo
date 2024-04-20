@@ -1,0 +1,9 @@
+<%= turbo_stream.replace 'basic-info' do %>
+  <%= turbo_frame_tag 'basic-info' do %>
+    <%= form_with model: @inner_sash, url: inner_sashes_update_path do |f| %>
+      <%= render partial: 'form_basic_info', locals: {inner_sash: f} %>
+      <%= render partial: 'form_size', locals: {f:f} %>
+    <% end %>
+  <% end %>
+  <%= link_to 'キャンセル', inner_sashes_basic_info_path(@inner_sash.id), data: {turbo_stream: true} %>
+<% end %>

@@ -1,3 +1,8 @@
 <%= turbo_stream.replace 'shoji-and-glass' do %>
-  <p>ううう</p>
+  <%= turbo_frame_tag 'shoji-and-glass' do %>
+    <%= form_with model: @inner_sash, url: inner_sashes_update_path do |f| %>
+      <%= render partial: 'form_shoji_and_glass', locals: { inner_sash:  f } %>
+    <% end %>
+  <% end %>
+  <%= link_to 'キャンセル', inner_sashes_shoji_and_glass_path(@inner_sash.id), data: {turbo_stream: true} %>
 <% end %>

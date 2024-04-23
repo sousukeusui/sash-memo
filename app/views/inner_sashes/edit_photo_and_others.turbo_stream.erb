@@ -1,3 +1,4 @@
 <%= turbo_stream.replace 'photo-and-others' do %>
-  <p>いいい</p>
+  <%= form_with model: @inner_sash, url: inner_sashes_update_path do |f| %>
+  <%= link_to 'キャンセル', inner_sashes_basic_info_path(@inner_sash.id), data: {turbo_stream: true} %>
 <% end %>

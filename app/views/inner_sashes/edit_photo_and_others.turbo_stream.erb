@@ -1,4 +1,9 @@
 <%= turbo_stream.replace 'photo-and-others' do %>
-  <%= form_with model: @inner_sash, url: inner_sashes_update_path do |f| %>
-  <%= link_to 'キャンセル', inner_sashes_basic_info_path(@inner_sash.id), data: {turbo_stream: true} %>
+  <%= turbo_frame_tag 'photo-and-others'  do %>
+    <%= form_with model: @inner_sash, url: inner_sashes_update_path do |f| %>
+      <%= render partial: 'form_frame_depth', locals: { inner_sash: f } %>
+      <%= render partial: 'form_photo_and_others', locals: { inner_sash: f} %>
+    <% end %>
+  <% end %>
+  <%= link_to 'キャンセル', inner_sashes_photo_and_others_path(@inner_sash.id), data: {turbo_stream: true} %>
 <% end %>

@@ -1,0 +1,21 @@
+<div class="form-group">
+  <%= inner_sash.select :is_flat_bar ,[['有',1],['無',0]] %>
+</div>
+<div class="form-group">
+  <%= inner_sash.select :is_adjust ,[['有',1],['無',0]] %>
+</div>
+<div class="form-group">
+  <% if inner_sash.object.inner_sash_photos.blank? %>
+    <%= inner_sash.fields_for :inner_sash_photos, inner_sash.object.inner_sash_photos.build do |photo| %>
+      <%= photo.file_field :file_name %>
+    <% end %>
+  <% else %>
+    <%= inner_sash.fields_for :inner_sash_photos, inner_sash.object.inner_sash_photos do |photo| %>
+      <%= image_tag photo.object.file_name.url %>
+      <td><%= photo.file_field :file_name %></td>
+    <% end %>
+  <% end %>
+</div>
+<div class="form-group">
+  <%= inner_sash.text_area :remark %>
+</div>

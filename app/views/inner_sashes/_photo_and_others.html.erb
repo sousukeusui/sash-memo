@@ -1,4 +1,9 @@
 <%= turbo_frame_tag 'photo-and-others' do %>
+  <!-- 見込み寸法 -->
+  <!-- 平板 -->
+  <!-- アジャスト -->
+  <!-- しゃしん -->
+  <!-- 備考 -->
   平板<%= @inner_sash.is_flat_bar ? "有" : "無" %>
   アジャスト上枠<%= @inner_sash.is_adjust ? "有" : "無" %>
   <%= link_to '編集', inner_sashes_edit_photo_and_others_path(id: @inner_sash.id), data: {turbo_stream: true} %>

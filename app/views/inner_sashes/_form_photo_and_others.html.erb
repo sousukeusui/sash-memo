@@ -17,5 +17,7 @@
   <% end %>
 </div>
 <div class="form-group">
-  <%= inner_sash.text_area :remark %>
+  <%= inner_sash.fields_for :site_memo_attributes, @inner_sash.site_memo do |site_memo| %>
+    <%= site_memo.text_area :remark %>
+  <% end %>
 </div>

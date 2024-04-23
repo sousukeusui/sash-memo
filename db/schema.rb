@@ -80,7 +80,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_09_134734) do
     t.integer "status", default: 0, null: false
     t.string "room", limit: 15, null: false
     t.integer "order", default: 0, null: false
-    t.string "remark", limit: 100
+    t.string "remark"
     t.index ["site_id"], name: "index_site_memos_on_site_id"
   end
 

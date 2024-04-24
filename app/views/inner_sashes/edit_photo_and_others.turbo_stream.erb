@@ -1,8 +1,9 @@
 <%= turbo_stream.replace 'photo-and-others' do %>
   <%= turbo_frame_tag 'photo-and-others'  do %>
     <%= form_with model: @inner_sash, url: inner_sashes_update_path do |f| %>
-      <%= render partial: 'form_frame_depth', locals: { inner_sash: f } %>
       <%= render partial: 'form_photo_and_others', locals: { inner_sash: f} %>
+      <%= f.hidden_field :id, value: @inner_sash.id %>
+      <%= f.hidden_field :action, value: controller.action_name  %>
       <%= f.submit '保存' %>
     <% end %>
   <% end %>

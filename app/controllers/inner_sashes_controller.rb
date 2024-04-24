@@ -1,4 +1,8 @@
 class InnerSashesController < ApplicationController
+  permits :id, :number_of_shoji, :width_up_size, :width_down_size, :width_middle_size, 
+          :height_left_size, :height_middle_size, :height_right_size, :width_frame_depth, :height_frame_depth,
+          :color, :is_flat_bar, :hanging_origin, :key_height, :sash_type, :middle_frame_height, :is_adjust,
+          :glass_color, :glass_thickness, :glass_kind, :is_low_e, :action
   def new_step2(site_id:)
     #下書きがあれば下書きからデータを取ってくる処理を追加
     @site_id = site_id
@@ -115,8 +119,12 @@ class InnerSashesController < ApplicationController
     @inner_sash = InnerSash.find(id)
   end
 
-  def update
-    
+  def update(inner_sash)
+    @inner_sash = InnerSash.find(inner_sash[:id])
+    @inner_sash.update(inner_sash)
+    redirect_to inner_sashes_basic_info_path(@inner_sash.id), notice: '基本情報を更新しました' if inner_sash[:action] == 'edit_basic_info'
+    redirect_to inner_sashes_shoji_and_glass_path(@inner_sash.id), notice: '障子・ガラスを更新しました' if inner_sash[:action] == 'edit_shoji_and_glass'
+    redirect_to inner_sashes_photo_and_others_path(@inner_sash.id), notice: '写真・その他を更新しました' if inner_sash[:action] == 'edit_photo_and_others'
   end
 
   private

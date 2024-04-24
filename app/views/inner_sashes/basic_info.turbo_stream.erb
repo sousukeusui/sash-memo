@@ -1,4 +1,7 @@
-<%= turbo_stream.update 'inner-sash-data' do %>
-  <%= render 'tabs' %>
-  <%= render 'basic_info' %>
+<%= turbo_stream.update 'inner-sash-data-wrap' do %>
+  <%= render 'drawing' %>
+  <div id="inner-sash-data">
+    <%= render 'tabs' %>
+    <%= render 'basic_info' %>
+  </div>
 <% end %>

@@ -2,6 +2,8 @@
   <%= turbo_frame_tag 'shoji-and-glass' do %>
     <%= form_with model: @inner_sash, url: inner_sashes_update_path do |f| %>
       <%= render partial: 'form_shoji_and_glass', locals: { inner_sash:  f } %>
+      <%= f.hidden_field :id, value: @inner_sash.id %>
+      <%= f.hidden_field :action, value: controller.action_name  %>
       <%= f.submit '保存' %>
     <% end %>
   <% end %>

@@ -2,8 +2,9 @@ class InnerSashesController < ApplicationController
   permits :id, :number_of_shoji, :width_up_size, :width_down_size, :width_middle_size, 
           :height_left_size, :height_middle_size, :height_right_size, :width_frame_depth, :height_frame_depth,
           :color, :is_flat_bar, :hanging_origin, :key_height, :sash_type, :middle_frame_height, :is_adjust,
-          :glass_color, :glass_thickness, :glass_kind, :is_low_e, :action, site_memo_attributes: [:id, :remark]
-          
+          :glass_color, :glass_thickness, :glass_kind, :is_low_e, :action, site_memo_attributes: [:id, :remark],
+          inner_sash_photos_attributes: [:id, :file_name, :_destroy]
+
   def new_step2(site_id:)
     #下書きがあれば下書きからデータを取ってくる処理を追加
     @site_id = site_id

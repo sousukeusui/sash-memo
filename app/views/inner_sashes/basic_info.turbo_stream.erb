@@ -4,4 +4,6 @@
     <%= render 'tabs' %>
     <%= render 'basic_info' %>
   </div>
+  <%= link_to '次', inner_sashes_navigate_page_path(id: @inner_sash.next), data: {turbo_method: :post} if @inner_sash.next.present? %>
+  <%= link_to '前', inner_sashes_navigate_page_path(id: @inner_sash.previous), data: {turbo_method: :post} if @inner_sash.previous.present? %>
 <% end %>

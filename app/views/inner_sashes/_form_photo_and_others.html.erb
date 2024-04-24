@@ -19,5 +19,6 @@
 <div class="form-group">
   <%= inner_sash.fields_for :site_memo_attributes, @inner_sash.site_memo do |site_memo| %>
     <%= site_memo.text_area :remark %>
+    <%= site_memo.hidden_field :id, value: @inner_sash.site_memo.id %>
   <% end %>
 </div>

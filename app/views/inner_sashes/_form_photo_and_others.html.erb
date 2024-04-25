@@ -7,8 +7,9 @@
 <div class="form-group">
   <% if inner_sash.object.inner_sash_photos.blank? %>
     <%= inner_sash.fields_for :inner_sash_photos, inner_sash.object.inner_sash_photos.build do |photo| %>
-      <%= photo.file_field :file_name %>
+      <%= render partial: 'form_new_photo', locals:{ photo: photo } %>
     <% end %>
+    <%= turbo_frame_tag 'new_photos' %>
   <% else %>
     <%= inner_sash.fields_for :inner_sash_photos, inner_sash.object.inner_sash_photos do |photo| %>
       <%= image_tag photo.object.file_name_url(:thumb) %>
@@ -16,6 +17,7 @@
       <%= photo.hidden_field :id, value: photo.object.id %>
     <% end %>
   <% end %>
+  <%= link_to '追加', inner_sashes_append_photo_form_path(@inner_sash.id), data: { turbo_stream: true} %>
 </div>
 <div class="form-group">
   <%= inner_sash.fields_for :site_memo_attributes, @inner_sash.site_memo do |site_memo| %>

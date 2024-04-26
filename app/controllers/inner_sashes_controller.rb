@@ -130,11 +130,6 @@ class InnerSashesController < ApplicationController
     redirect_to inner_sashes_photo_and_others_path(@inner_sash.id), notice: '写真・その他を更新しました' if inner_sash[:action] == 'edit_photo_and_others'
   end
 
-  def append_photo_form(id:)
-    @inner_sash = InnerSash.find(id)
-    @form_index = Time.now.to_i
-  end
-
   private
   def basic_info_params
     params.require(:site_memo).permit(:id,

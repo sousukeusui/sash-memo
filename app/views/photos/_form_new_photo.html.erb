@@ -2,4 +2,5 @@
 <%= form_index %> 
 <%= turbo_frame_tag dom_id(photo.object, form_index) do %>
   <%= photo.file_field :file_name %>
+  <%= link_to '削除', photos_destroy_new_photo_form_path(form_index), data:{ turbo_stream: true, turbo_method: :delete } %>
 <% end %>

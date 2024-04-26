@@ -22,13 +22,15 @@ Rails.application.routes.draw do
   get 'inner_sashes/edit_basic_info/:id', to: 'inner_sashes#edit_basic_info', as: :inner_sashes_edit_basic_info
   get 'inner_sashes/edit_photo_and_others/:id', to: 'inner_sashes#edit_photo_and_others', as: :inner_sashes_edit_photo_and_others
   get 'inner_sashes/edit_shoji_and_glass/:id', to: 'inner_sashes#edit_shoji_and_glass', as: :inner_sashes_edit_shoji_and_glass
-  get 'inner_sashes/append_photo_form/:id', to: 'inner_sashes#append_photo_form', as: :inner_sashes_append_photo_form
   patch 'inner_sashes/update'
   post 'inner_sashes/room_append'
   patch 'inner_sashes/basic_append'
   patch 'inner_sashes/accessory_append'
   patch 'inner_sashes/glass_append'
   patch 'inner_sashes/photo_append'
+  delete 'photos/destroy_photo_form/:id', to: 'photos#destroy_photo_form', as: :photos_destroy_photo_form
+  delete 'photos/destroy_new_photo_form/:index', to: 'photos#destroy_new_photo_form', as: :photos_destroy_new_photo_form
+  get 'photos/append_photo_form/:id', to: 'photos#append_photo_form', as: :photos_append_photo_form
   root 'homes#top'
   get 'sign_in/index'
   get 'sign_up/index'

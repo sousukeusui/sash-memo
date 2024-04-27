@@ -4,8 +4,10 @@ class PhotosController < ApplicationController
     @form_index = Time.now.to_i
   end
 
-  def destroy_photo_form(id:)
+  def destroy_photo_form(inner_sash_id:, id:)
+    @inner_sash = InnerSash.find(inner_sash_id)
     @photo = Photo.find(id)
+    @form_index = Time.now.to_i
   end
 
   def destroy_new_photo_form(index:)

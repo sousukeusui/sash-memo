@@ -1,0 +1,10 @@
+<%= form_with model: @inner_sash, url: inner_sashes_update_path, id:"gomi" do |inner_sash| %>
+  <%= turbo_stream.update dom_id(@photo) do %>
+    <%= inner_sash.fields_for :photos, inner_sash.object.photos.build, child_index: @form_index do |photo| %>
+      <%= photo.hidden_field :_destroy, value: 1 %>
+      <%= photo.hidden_field :id, value: @photo.id %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<%= turbo_stream.remove "gomi" %>

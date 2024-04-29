@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_09_134734) do
+ActiveRecord::Schema[7.0].define(version: 2024_04_25_140514) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,14 +20,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_09_134734) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_contractors_on_user_id"
-  end
-
-  create_table "inner_sash_photos", force: :cascade do |t|
-    t.string "file_name", null: false
-    t.bigint "inner_sash_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["inner_sash_id"], name: "index_inner_sash_photos_on_inner_sash_id"
   end
 
   create_table "inner_sashes", force: :cascade do |t|
@@ -72,6 +64,14 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_09_134734) do
     t.index ["user_key"], name: "index_one_time_authentications_on_user_key"
   end
 
+  create_table "photos", force: :cascade do |t|
+    t.string "file_name", null: false
+    t.bigint "inner_sash_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["inner_sash_id"], name: "index_photos_on_inner_sash_id"
+  end
+
   create_table "site_memos", force: :cascade do |t|
     t.integer "kind", null: false
     t.bigint "site_id", null: false
@@ -80,7 +80,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_09_134734) do
     t.integer "status", default: 0, null: false
     t.string "room", limit: 15, null: false
     t.integer "order", default: 0, null: false
-    t.string "remark", limit: 100
+    t.string "remark"
     t.index ["site_id"], name: "index_site_memos_on_site_id"
   end
 
@@ -116,8 +116,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_09_134734) do
   end
 
   add_foreign_key "contractors", "users"
-  add_foreign_key "inner_sash_photos", "inner_sashes"
   add_foreign_key "inner_sashes", "site_memos"
+  add_foreign_key "photos", "inner_sashes"
   add_foreign_key "site_memos", "sites"
   add_foreign_key "sites", "contractors"
   add_foreign_key "sites", "users"

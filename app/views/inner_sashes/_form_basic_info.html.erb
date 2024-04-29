@@ -1,0 +1,16 @@
+<div class="form-group">
+  <p>タイプ</p>
+  <%= inner_sash.select :sash_type, InnerSash.sash_types.keys.map{ |k| [I18n.t("enums.inner_sash.sash_type.#{k}"),k] }, {prompt: '選択してください'}, required: true %>
+</div>
+<div class="form-group">
+  <p>色</p>
+  <%= inner_sash.select :color, InnerSash.colors.keys.map{ |k| [I18n.t("enums.inner_sash.color.#{k}"),k] }, {prompt: '選択してください'}, required: true %>
+</div>
+<div class="form-group">
+  <p>障子枚数</p>
+  <%= inner_sash.select :number_of_shoji, (1..2).each { |i| ["#{i}",i]} %>
+</div>
+<div class="form-group">
+  <p>吊り元</p>
+  <%= inner_sash.select :hanging_origin, InnerSash.hanging_origins.keys.map{ |k| [I18n.t("enums.inner_sash.hanging_origin.#{k}"),k] }, {prompt: '選択してください'}, required: true %>
+</div>

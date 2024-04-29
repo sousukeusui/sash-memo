@@ -1,0 +1,9 @@
+<%= form_with model: @inner_sash, url: inner_sashes_update_path, id:"gomi" do |inner_sash| %>
+  <%= turbo_stream.append 'new_photos' do %>
+    <%= inner_sash.fields_for :photos, inner_sash.object.photos.build, child_index: @form_index do |photo| %>
+      <%= render partial: 'form_new_photo', locals:{ photo: photo, form_index: @form_index } %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<%= turbo_stream.remove "gomi" %>

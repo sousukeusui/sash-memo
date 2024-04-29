@@ -1,0 +1,24 @@
+<div class="form-group">
+  <p>厚み</p>
+  <%= inner_sash.select :glass_thickness, InnerSash.glass_thicknesses.keys.map{ |k| [I18n.t("enums.inner_sash.glass_thickness.#{k}"),k] } %>
+</div>
+<div class="form-group">
+  <p>種類</p>
+  <%= inner_sash.select :glass_kind, InnerSash.glass_kinds.keys.map{ |k| [I18n.t("enums.inner_sash.glass_kind.#{k}"),k] } %>
+</div>
+<div class="form-group">
+  <p>色</p>
+  <%= inner_sash.select :glass_color, InnerSash.glass_colors.keys.map{ |k| [I18n.t("enums.inner_sash.glass_color.#{k}"),k] } %>
+</div>
+<div class="form-group">
+  <p>Low-E</p>
+  <%= inner_sash.select :is_low_e ,[['有',1],['無',0]] %>
+</div>
+<div class="form-group">
+  <p>クレセント</p>
+  <%= inner_sash.number_field :key_height, required: true %>
+</div>
+<div class="form-group">
+  <p>中桟</p>
+  <%= inner_sash.number_field :middle_frame_height, required: true %>
+</div>

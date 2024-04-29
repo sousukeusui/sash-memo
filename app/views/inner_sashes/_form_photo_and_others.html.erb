@@ -14,7 +14,7 @@
       <%= turbo_frame_tag dom_id(photo.object) do %>
         <%= image_tag photo.object.file_name_url(:thumb) %>
         <%= photo.file_field :file_name %>
-        <%= link_to '削除', photos_destroy_photo_form_path(inner_sash_id: @inner_sash.id, id: photo.object.id), data:{ turbo_stream: true, turbo_method: :delete } %>
+        <%= link_to '削除', photos_destroy_existing_photo_form_path(inner_sash_id: @inner_sash.id, id: photo.object.id), data:{ turbo_stream: true, turbo_method: :delete } %>
         <%= photo.hidden_field :id, value: photo.object.id %>
       <% end %>
     <% end %>

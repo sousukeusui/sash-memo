@@ -47,3 +47,7 @@
     <%= f.submit '現場作成' %>
   </div>
 <% end %>
+
+<% content_for :js do %>
+  <%= javascript_import_module_tag "suggest_contractor" %>
+<% end %>

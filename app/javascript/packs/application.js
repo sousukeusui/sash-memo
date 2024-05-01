@@ -8,9 +8,6 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import '@hotwired/turbo-rails'
 import "channels"
-import ('jquery')
-
-import './suggest_contractor'
 
 Rails.start()
 Turbolinks.start()

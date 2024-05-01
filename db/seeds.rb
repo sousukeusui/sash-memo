@@ -17,19 +17,19 @@
 #                   contractor_id: contractor_id)
 # end
 
-20.times do |n|
-  size = rand(1..99)
-  room = Faker::House.room
-  site_id = 11
-  kind = 'inner_sash'
-  site_memo = SiteMemo.create!(site_id: 20, kind: kind, room: room)
-  InnerSash.create!(width_up_size: size,
-                    width_middle_size: size,
-                    width_down_size: size,
-                    height_left_size: size,
-                    height_middle_size: size,
-                    height_right_size: size,
-                    width_frame_depth: size,
-                    height_frame_depth: size,
-                    site_memo_id: site_memo.id)
-end
+# 20.times do |n|
+#   size = rand(1..99)
+#   room = Faker::House.room
+#   site_id = 11
+#   kind = 'inner_sash'
+#   site_memo = SiteMemo.create!(site_id: 20, kind: kind, room: room)
+#   InnerSash.create!(width_up_size: size,
+#                     width_middle_size: size,
+#                     width_down_size: size,
+#                     height_left_size: size,
+#                     height_middle_size: size,
+#                     height_right_size: size,
+#                     width_frame_depth: size,
+#                     height_frame_depth: size,
+#                     site_memo_id: site_memo.id)
+# end

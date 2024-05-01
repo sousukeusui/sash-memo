@@ -1,16 +1,16 @@
-$(document).on('turbolinks:load', function(){
+document.addEventListener("turbo:load", function() {
   $(function(){
     let contractorName = document.getElementById('contractor_name')
     let searchResult = document.getElementById('search-result')
-
+    
     if(contractorName){
       contractorName.addEventListener('keyup', searchContractor, false)
     }
-
+    
     if(searchResult){
       searchResult.addEventListener('click', inputContractor, false)
     }
-
+    
     function searchContractor(){
       $('#search-result li').remove()
       //フォーム中のテキストが空じゃないときは処理を実行
@@ -32,10 +32,10 @@ $(document).on('turbolinks:load', function(){
         })
       }
     }
-
+    
     function inputContractor(e){
       contractorName.value = e.target.innerText
       $('#search-result li').remove()
     }
   })
-})
+});

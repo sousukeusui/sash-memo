@@ -14,7 +14,8 @@ class SitesController < ApplicationController
   end
 
   def search_contractor(contractor:)
-    contractors = current_user.contractors.where("name LIKE?", "%#{contractor}%")
+    # contractorをひらがな、カタカナ、ローマ字に変換するメソッドを用意する
+    contractors = current_user.contractors.suggest_name(name: contractor)
     respond_to do |format|
       format.json { render json: contractors }
     end

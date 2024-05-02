@@ -1,10 +1,14 @@
 class SitesController < ApplicationController
+  permits :id, :name, :address, :research_date, :research_start_time, :construction_date,
+          :construction_start_time, contractor_attributes: [:name]
+
   def index
     @sites = current_user.sites.eager_load(:contractor, :site_memos).page(params[:page]).per(5)
   end
 
   def new
-    @contractors = current_user.contractors
+    @site = Site.new
+    @contractor = @site.build_contractor
   end
 
   def destroy(id:)
@@ -20,24 +24,9 @@ class SitesController < ApplicationController
     end
   end
 
-  def create(contractor_name:, name:, address:, research_date:, research_start_time:, construction_date:, construction_start_time:)
-    #find_or_createにする予定
-    contractor = Contractor.find_or_create_by(name: contractor_name) do |contractor|
-      contractor.user_id = current_user.id
-    end
-    site = Site.new(name: name,
-                    address: address,
-                    research_date: research_date,
-                    research_start_time: research_start_time,
-                    construction_date: construction_date,
-                    construction_start_time: construction_start_time,
-                    user_id: current_user.id,
-                    contractor_id: contractor.id
-                    )
-    if site.save!
-      redirect_to sites_index_path, notice: '現場を作成しました'
-    else
-      redirect_to sites_new_path, alert: site.errors.full_messages
-    end
+  def create(site)
+    Site.create_with_contractor_or_find(site: site.merge(user_id: current_user.id))
+    return redirect_to sites_index_path, notice: '現場を作成しました'
+    return redirect_to sites_new_path, alert: @site.errors.full_messages
   end
 end

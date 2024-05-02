@@ -2,14 +2,15 @@
 <!--開発都合で設置したリンク-->
 <%= link_to 'ホームに戻る', sites_index_path %>
 
-<%= form_with url: sites_create_path, local: true do |f| %>
-  <div class="form-group">
-    <%= f.label :contractor_name, '元請'%>
-    <%= f.text_field :contractor_name, required: true%><br />
-    <!-- リストにする-->
-    <ul id="search-result">
-    </ul>
-  </div>
+<%= form_with model: @site,  url: sites_create_path, method: :post, local: true do |f| %>
+  <%= f.fields_for :contractor do |contractor| %>
+    <div class="form-group">
+      <%= contractor.label :name, '元請'%>
+      <%= contractor.text_field :name, id: 'contractor_name', required: true%><br />
+    </div>
+  <% end %>
+  <ul id="search-result">
+  </ul>
   <div class="form-group">
     <%= f.label :name, '現場名' %>
     <%= f.text_field :name, required: true %>
@@ -20,8 +21,8 @@
     <%= f.text_field :address, required: true%>
   </div>
   <div class="form-group">
-    <%= f.check_box :setting_research %>
-    <%= f.label :setting_research, '現調日時を設定する' %>
+    <p>チェックボックスにして、チェックついたらフォーム出す</p>
+    <p>現場日時を設定する</p>
   </div>
   <div class="form-group">
     <%= f.label :research_date, '現調日' %>
@@ -32,8 +33,8 @@
     <%= f.time_field :research_start_time %>
   </div>
   <div class="form-group">
-    <%= f.check_box :setting_research %>
-    <%= f.label :setting_research, '工事日時を設定する' %>
+    <p>チェックボックスにして、チェックついたらフォーム出す</p>
+    <p>工事日時を設定する</p>
   </div>
   <div class="form-group">
     <%= f.label :construction_date, '工事日' %>

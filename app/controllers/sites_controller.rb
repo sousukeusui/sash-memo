@@ -26,7 +26,8 @@ class SitesController < ApplicationController
 
   def create(site)
     Site.create_with_contractor_or_find(site: site.merge(user_id: current_user.id))
-    return redirect_to sites_index_path, notice: '現場を作成しました'
-    return redirect_to sites_new_path, alert: @site.errors.full_messages
+    redirect_to sites_index_path, notice: '現場を作成しました'
+  rescue => e
+    redirect_to sites_new_path, alert: e
   end
 end

@@ -26,6 +26,7 @@ class SiteMemosController < ApplicationController
   end
 
   def form_switcher(kind:, site_id:)
+    # site_memoのstatusの条件でどこのページに飛ばすかを追加する予定
     case kind
     when 'inner_sash'
       redirect_to inner_sashes_new_step2_path(site_id)

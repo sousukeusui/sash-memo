@@ -1,61 +1,16 @@
-<ul class='size-info'>
-  <%= render partial: 'add_size', collection: @inner_sashes, as: 'inner_sash' %>
-</ul>
-<%= form_with url: inner_sashes_room_append_path, local: false, id: 'size-form' do |f|%>
-  <table>
-    <tr>
-      <th>部屋</th>
-      <th>W寸法</th>
-      <th>H寸法</th>
-      <th>窓枠見込み</th>
-    </tr>
-    <tr>
-      <td>
-        <div class="form-group">
-          <%= f.text_field :room %>
-        </div>
-      </td>
-      <td>
-        <div class="form-group">
-          <%= f.label :width_up_size, '上：' %>
-          <%= f.number_field :width_up_size %>
-        </div>
-        <div class="form-group">
-          <%= f.label :width_middle_size, '中：' %>
-          <%= f.number_field :width_middle_size %>
-        </div>
-        <div class="form-group">
-          <%= f.label :width_down_size, '下：' %>
-          <%= f.number_field :width_down_size %>
-        </div>
-      </td>
-      <td>
-        <div class="form-group">
-          <%= f.label :height_left_size, '左：' %>
-          <%= f.number_field :height_left_size %>
-        </div>
-        <div class="form-group">
-          <%= f.label :height_middle_size, '中：' %>
-          <%= f.number_field :height_middle_size %>
-        </div>
-        <div class="form-group">
-          <%= f.label :height_right_size, '右：' %>
-          <%= f.number_field :height_right_size %>
-        </div>
-      </td>
-      <td>
-        <div class="form-group">
-          <%= f.label :height_frame_depth, '縦：' %>
-          <%= f.number_field :height_frame_depth %>
-        </div>
-        <div class="form-group">
-          <%= f.label :width_frame_depth, '横：' %>
-          <%= f.text_field :width_frame_depth %>
-        </div>
-      </td>
-    </tr>
-  </table>
-  <%= f.hidden_field :site_id, value: @site_id %>
-  <%= f.submit '追加' %>
+<div id="room-list">
+</div>
+<%= turbo_frame_tag 'inner-sash-size-form' do%>
+  <%= form_with model: @inner_sash, url: inner_sashes_new_append_room_path, data: { turbo_stream: true } do |f|%>
+    <%= f.fields_for :site_memo do |site_memo| %>
+      <div class="form-group">
+        <%= site_memo.label :room, '部屋' %>
+        <%= site_memo.text_field :room %>
+      </div>
+      <%= site_memo.hidden_field :site_id, value: @site_id %>
+    <% end %>
+    <%= render partial: 'form_size', locals: { inner_sash: f } %>
+    <%= f.submit '追加' %>
+  <% end %>
 <% end %>
 <%= link_to '次へ', inner_sashes_new_step3_path(@site_id) %>

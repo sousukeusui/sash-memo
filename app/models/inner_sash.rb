@@ -13,8 +13,6 @@ class InnerSash < ApplicationRecord
   enum glass_thickness: { gt_undecided: 0, single: 1, double: 2}
   enum glass_kind: { gk_undecided: 0, transparent: 1, hazy: 2}
 
- 
-
   validates :width_up_size, presence: true
   validates :width_down_size, presence: true
   validates :width_middle_size, presence: true
@@ -44,8 +42,4 @@ class InnerSash < ApplicationRecord
   def next
     InnerSash.eager_load(site_memo: :site).where(site: {id: self.site_memo.site_id}).where("inner_sashes.id>?", self.id).order(id: :asc).first
   end
-
-
-    #site_memo_idを排除するかコントローラーで入れるか
-    #colorなど他のバリデーションも追加
 end

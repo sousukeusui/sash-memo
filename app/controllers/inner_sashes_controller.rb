@@ -2,12 +2,14 @@ class InnerSashesController < ApplicationController
   permits :id, :number_of_shoji, :width_up_size, :width_down_size, :width_middle_size, 
           :height_left_size, :height_middle_size, :height_right_size, :width_frame_depth, :height_frame_depth,
           :color, :is_flat_bar, :hanging_origin, :key_height, :sash_type, :middle_frame_height, :is_adjust,
-          :glass_color, :glass_thickness, :glass_kind, :is_low_e, :action, site_memo_attributes: [:id, :remark],
+          :glass_color, :glass_thickness, :glass_kind, :is_low_e, :action, site_memo_attributes: [:id, :site_id, :room, :remark],
           photos_attributes: [:id, :file_name, :_destroy]
 
   def new_step2(site_id:)
     #下書きがあれば下書きからデータを取ってくる処理を追加
     @site_id = site_id
+    @inner_sash = InnerSash.new
+    @site_memo = @inner_sash.build_site_memo
   end
 
   def new_step3(site_id:)
@@ -30,16 +32,10 @@ class InnerSashesController < ApplicationController
     @site_memo = SiteMemo.find(site_memo_id)
   end
 
-  def room_append(room:, width_up_size:, width_middle_size:, width_down_size:,
-                  height_left_size:, height_right_size:, height_middle_size:,
-                  height_frame_depth:, width_frame_depth:, site_id:)
-    site_memo = SiteMemo.new(kind: :inner_sash, site_id: site_id)
-    site_memo = SiteMemo.find_by(site_id: site_id) if SiteMemo.exists?(site_id: site_id)
-    inner_sash = site_memo.inner_sashes.build(room: room, width_up_size: width_up_size, width_middle_size: width_middle_size, width_down_size: width_down_size,
-                                              height_left_size: height_left_size, height_middle_size: height_middle_size, height_right_size: height_right_size,
-                                              height_frame_depth: height_frame_depth, width_frame_depth: width_frame_depth)
-    return redirect_to inner_sashes_new_step2_path, notice: inner_sash.errors.full_messages unless inner_sash.save!
-    @inner_sash = inner_sash.attributes
+  def new_append_room(inner_sash)
+    inner_sash[:site_memo_attributes][:kind] = 'inner_sash'
+    inner_sash[:site_memo_attributes][:status] = 'step1'
+    @inner_sash = InnerSash.create!(inner_sash)
   end
 
   def basic_append
@@ -128,26 +124,5 @@ class InnerSashesController < ApplicationController
     redirect_to inner_sashes_basic_info_path(@inner_sash.id), notice: '基本情報を更新しました' if inner_sash[:action] == 'edit_basic_info'
     redirect_to inner_sashes_shoji_and_glass_path(@inner_sash.id), notice: '障子・ガラスを更新しました' if inner_sash[:action] == 'edit_shoji_and_glass'
     redirect_to inner_sashes_photo_and_others_path(@inner_sash.id), notice: '写真・その他を更新しました' if inner_sash[:action] == 'edit_photo_and_others'
-  end
-
-  private
-  def basic_info_params
-    params.require(:site_memo).permit(:id,
-                                      inner_sashes_attributes: [:sash_type, :color, :number_of_shoji, :hanging_origin, :id])
-  end
-
-  def accesory_info_params
-    params.require(:site_memo).permit(:id,
-                                      inner_sashes_attributes: [:key_height, :middle_frame_height, :is_flat_bar, :is_adjust, :id])
-  end
-
-  def glass_info_params
-    params.require(:site_memo).permit(:id,
-                                      inner_sashes_attributes: [:glass_thickness, :glass_kind, :glass_color, :is_low_e, :id])
-  end
-
-  def photo_info_params
-    params.require(:site_memo).permit(:id,
-                                      inner_sashes_attributes: [:id, :remark, inner_sash_photos_attributes:[ :file_name ]])
   end
 end

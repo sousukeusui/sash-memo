@@ -1,3 +1,22 @@
-<%= turbo_stream.append 'room-list' do %>
-  <%= @inner_sash.site_memo.room %>
+<%= turbo_stream_flash %>
+<%= turbo_stream_error_msg(model: @model) %>
+
+<%= turbo_stream.update 'room-list' do %>
+  <% @inner_sashes.each do |inner_sash| %>
+    <%= inner_sash.site_memo.room %>
+  <% end %>
+<% end %>
+
+<%= turbo_stream.update 'inner-sash-size-form' do %>
+  <%= form_with model: @inner_sash, url: inner_sashes_new_append_room_path, data: { turbo_stream: true } do |f|%>
+    <%= f.fields_for :site_memo do |site_memo| %>
+      <div class="form-group">
+        <%= site_memo.label :room, '部屋' %>
+        <%= site_memo.text_field :room %>
+      </div>
+      <%= site_memo.hidden_field :site_id, value: @site_id %>
+    <% end %>
+    <%= render partial: 'form_size', locals: { inner_sash: f } %>
+    <%= f.submit '追加' %>
+  <% end %>
 <% end %>

@@ -10,6 +10,7 @@ class InnerSashesController < ApplicationController
     @site_id = site_id
     @inner_sash = InnerSash.new
     @site_memo = @inner_sash.build_site_memo
+    @inner_sashes = join_with_parents(site_id: site_id)
   end
 
   def new_step3(site_id:)
@@ -33,9 +34,11 @@ class InnerSashesController < ApplicationController
   end
 
   def new_append_room(inner_sash)
-    inner_sash[:site_memo_attributes][:kind] = 'inner_sash'
-    inner_sash[:site_memo_attributes][:status] = 'step1'
-    @inner_sash = InnerSash.create!(inner_sash)
+    @model = InnerSash.create_with_site_memo(inner_sash: inner_sash)
+    @site_id = inner_sash[:site_memo_attributes][:site_id]
+    @inner_sashes = join_with_parents(site_id: @site_id)
+    @inner_sash = InnerSash.new
+    @site_memo = @inner_sash.build_site_memo
   end
 
   def basic_append
@@ -124,5 +127,11 @@ class InnerSashesController < ApplicationController
     redirect_to inner_sashes_basic_info_path(@inner_sash.id), notice: '基本情報を更新しました' if inner_sash[:action] == 'edit_basic_info'
     redirect_to inner_sashes_shoji_and_glass_path(@inner_sash.id), notice: '障子・ガラスを更新しました' if inner_sash[:action] == 'edit_shoji_and_glass'
     redirect_to inner_sashes_photo_and_others_path(@inner_sash.id), notice: '写真・その他を更新しました' if inner_sash[:action] == 'edit_photo_and_others'
+  end
+
+  private
+
+  def join_with_parents(site_id:)
+    InnerSash.eager_load(site_memo: :site).where(site: {id: site_id})
   end
 end

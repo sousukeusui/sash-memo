@@ -43,8 +43,17 @@ ja:
           has_many: "%{record}が存在しているので削除できません"
     attributes:
       site:
+        name: '元請け'
+        address: '住所'
         research_date: '現調日'
+        research_start_time: '現調開始時間'
         construction_date: '工事日'
+        construction_start_time: '工事開始時間'
+      inner_sash:
+        color: '色'
+        number_of_shoji: '障子枚数'
+
+
   date:
     abbr_day_names:
     - 日

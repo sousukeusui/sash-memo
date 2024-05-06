@@ -31,6 +31,7 @@ class SiteMemosController < ApplicationController
 
     exist_sm = SiteMemo.eager_load(:site).find_by(site_id: site_id, kind: kind)
 
+    return redirect_to "/#{kind.pluralize}/new_step2" if exist_sm.blank?
     return redirect_to "/#{exist_sm.kind.to_s.pluralize}/new_#{exist_sm.status}" if exist_sm && exist_sm.status !='published'
     return redirect_to "/#{exist_sm.kind.to_s.pluralize}/new_step2"
   end

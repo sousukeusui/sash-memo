@@ -1,5 +1,5 @@
 class SiteMemosController < ApplicationController
-  permits :id, :kind, :site_id
+  permits :kind
 
   def index(site_id:)
     @site = Site.find(site_id)

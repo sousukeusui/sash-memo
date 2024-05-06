@@ -5,7 +5,7 @@ class InnerSashesController < ApplicationController
           :glass_color, :glass_thickness, :glass_kind, :is_low_e, :action, site_memo_attributes: [:id, :site_id, :room, :remark],
           photos_attributes: [:id, :file_name, :_destroy]
 
-  def new_step2(site_id:)
+  def new_step2
     #下書きがあれば下書きからデータを取ってくる処理を追加
     @site_id = site_id
     @inner_sash = InnerSash.new

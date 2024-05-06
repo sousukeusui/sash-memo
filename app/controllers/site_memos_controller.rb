@@ -24,8 +24,11 @@ class SiteMemosController < ApplicationController
   end
 
   def form_switcher(site_memo)
-    site_id = session[:site_id]
     kind = site_memo[:kind]
+    site_id = session[:site_id]
+
+    return redirect_to site_memos_new_step1_path(site_id), alert: "施工内容を選択してください" if kind.blank?
+
     exist_sm = SiteMemo.eager_load(:site).find_by(site_id: site_id, kind: kind)
 
     return redirect_to "/#{exist_sm.kind.to_s.pluralize}/new_#{exist_sm.status}" if exist_sm && exist_sm.status !='published'

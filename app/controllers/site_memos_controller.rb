@@ -23,20 +23,13 @@ class SiteMemosController < ApplicationController
     @site_memo = SiteMemo.new
   end
 
-  def find_or_create(site_memo)
-    # 既存を探す
+  def form_switcher(site_memo)
     site_id = session[:site_id]
     kind = site_memo[:kind]
-    session.delete(:site_id) #次のページ以降使うなら消す
-
     exist_sm = SiteMemo.eager_load(:site).find_by(site_id: site_id, kind: kind)
-    redirect_to "/#{exist_sm.kind.to_s.pluralize}/new_#{exist_sm.status}/#{site_id}" and return if exist_sm && exist_sm.status !='published'
-    redirect_to "/#{exist_sm.kind.to_s.pluralize}/new_step2/#{site_id}" and return if exist_sm
 
-    # 新規作成
-    s_memo = SiteMemo.new(site_memo.merge(site_id: site_id))
-    redirect_to "/#{s_memo.kind.to_s.pluralize}/new_step2/site_memo.site_id" and return if s_memo.save
-    redirect_to site_memos_new_step1_path(site_id), alert: s_memo.errors.full_messages
+    return redirect_to "/#{exist_sm.kind.to_s.pluralize}/new_#{exist_sm.status}" if exist_sm && exist_sm.status !='published'
+    return redirect_to "/#{exist_sm.kind.to_s.pluralize}/new_step2"
   end
 
   def show_switcher(kind:, id:)

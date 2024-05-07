@@ -52,7 +52,6 @@ class InnerSash < ApplicationRecord
 
   def previous
     InnerSash.eager_load(site_memo: :site).where(site: {id: self.site_memo.site_id}).where("inner_sashes.id<?", self.id).order(id: :desc).first
-    # InnerSash.where("id<?", self.id).order(id: :desc).first
   end
 
   def next

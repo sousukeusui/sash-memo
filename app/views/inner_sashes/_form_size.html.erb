@@ -1,32 +1,32 @@
 <div class="form-group">
   <%= inner_sash.label :width_up_size, '上：' %>
-  <%= inner_sash.number_field :width_up_size, required: true %>
+  <%= inner_sash.number_field :width_up_size, required: true, min: 1 %>
 </div>
 <div class="form-group">
   <%= inner_sash.label :width_middle_size, '中：' %>
-  <%= inner_sash.number_field :width_middle_size, required: true %>
+  <%= inner_sash.number_field :width_middle_size, required: true, min: 1 %>
 </div>
 <div class="form-group">
   <%= inner_sash.label :width_down_size, '下：' %>
-  <%= inner_sash.number_field :width_down_size, required: true %>
+  <%= inner_sash.number_field :width_down_size, required: true, min: 1 %>
 </div>
 <div class="form-group">
   <%= inner_sash.label :height_left_size, '左：' %>
-  <%= inner_sash.number_field :height_left_size, required: true %>
+  <%= inner_sash.number_field :height_left_size, required: true, min: 1 %>
 </div>
 <div class="form-group">
   <%= inner_sash.label :height_middle_size, '中：' %>
-  <%= inner_sash.number_field :height_middle_size, required: true %>
+  <%= inner_sash.number_field :height_middle_size, required: true, min: 1 %>
 </div>
 <div class="form-group">
   <%= inner_sash.label :height_right_size, '右：' %>
-  <%= inner_sash.number_field :height_right_size, required: true %>
+  <%= inner_sash.number_field :height_right_size, required: true, min: 1 %>
 </div>
 <div class="form-group">
   <%= inner_sash.label :height_frame_depth, '縦：' %>
-  <%= inner_sash.number_field :height_frame_depth, required: true %>
+  <%= inner_sash.number_field :height_frame_depth, required: true, min: 1 %>
 </div>
 <div class="form-group">
   <%= inner_sash.label :width_frame_depth, '横：' %>
-  <%= inner_sash.text_field :width_frame_depth, required: true %>
+  <%= inner_sash.number_field :width_frame_depth, required: true, min: 1 %>
 </div>

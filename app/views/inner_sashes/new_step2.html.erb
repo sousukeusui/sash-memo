@@ -7,7 +7,7 @@
   <%= form_with model: @inner_sash, url: inner_sashes_new_append_room_path, data: { turbo_stream: true } do |f|%>
     <div class="form-group">
       <%= f.label :room, '部屋' %>
-      <%= f.text_field :room %>
+      <%= f.text_field :room, required: true%>
     </div>
     <%= render partial: 'form_size', locals: { inner_sash: f } %>
     <%= f.submit '追加' %>

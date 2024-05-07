@@ -1,5 +1,3 @@
-<%= turbo_stream_alert %>
-
 <%= turbo_stream.update 'room-list' do %>
   <% @inner_sashes.each do |inner_sash| %>
     <%= inner_sash.site_memo.room %>
@@ -8,6 +6,7 @@
 
 <%= turbo_stream.update 'inner-sash-size-form' do %>
   <%= form_with model: @inner_sash, url: inner_sashes_new_append_room_path, data: { turbo_stream: true } do |f|%>
+    <%= render 'layouts/alert', obj: f.object %>
     <div class="form-group">
       <%= f.label :room, '部屋' %>
       <%= f.text_field :room %>

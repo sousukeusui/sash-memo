@@ -70,6 +70,7 @@ ja:
         glass_thickness: 'ガラス厚み'
         glass_kind: 'ガラス種類'
         is_low_e: 'Low-E'
+        site_memo: '部屋名'
       contractor:
         name: '名前'
       site_memo:

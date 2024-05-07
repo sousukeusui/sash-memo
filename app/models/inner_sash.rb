@@ -35,14 +35,15 @@ class InnerSash < ApplicationRecord
   validates :is_low_e, inclusion: {in: [true, false]}
 
   def self.create_with_site_memo(inner_sash:, site_id:)
-    #site_memoを作るためのデータをパラメーターに入れる
-    site_memo = SiteMemo.new(kind: 'inner_sash', room: inner_sash[:room], site_id: site_id)
-    return site_memo if !site_memo.save
+    room = inner_sash[:room]
+    inner_sash.delete('room')
+
+    new_inner = InnerSash.new(inner_sash)
+    site_memo = SiteMemo.new(room: room, site_id: site_id, kind: 'inner_sash')
     
-    inner_sash.delete("room")
-    new_sash = site_memo.build_inner_sash(inner_sash)
-    new_sash.save
-    return new_sash
+    new_inner.site_memo_id = site_memo.id if site_memo.save
+    new_inner.save
+    return new_inner
   end
 
   def previous

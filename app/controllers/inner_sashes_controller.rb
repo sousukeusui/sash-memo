@@ -14,11 +14,11 @@ class InnerSashesController < ApplicationController
 
   def new_append_room(inner_sash)
     site_id = session[:site_id]
-    new_sash = InnerSash.create_with_site_memo(inner_sash: inner_sash, site_id: site_id)
-    flash.now.alert = new_sash.errors.full_messages
+    new_inner = InnerSash.create_with_site_memo(inner_sash: inner_sash, site_id: site_id)
     
     @inner_sashes = get_join_with_parents(site_id: site_id)
-    @inner_sash = InnerSash.new
+    return @inner_sash = InnerSash.new if new_inner.errors.full_messages.blank?
+    @inner_sash = new_inner
   end
 
   def new_step3

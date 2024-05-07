@@ -9,14 +9,14 @@ class InnerSashesController < ApplicationController
     #下書きがあれば下書きからデータを取ってくる処理を追加
     site_id = session[:site_id]
     @inner_sash = InnerSash.new
-    @inner_sashes = get_join_with_parents(site_id: site_id)
+    @inner_sashes = InnerSash.get_with_parents(site_id: site_id)
   end
 
   def new_append_room(inner_sash)
     site_id = session[:site_id]
     new_inner = InnerSash.create_with_site_memo(inner_sash: inner_sash, site_id: site_id)
-    
-    @inner_sashes = get_join_with_parents(site_id: site_id)
+
+    @inner_sashes = InnerSash.get_with_parents(site_id: site_id)
     return @inner_sash = InnerSash.new if new_inner.errors.full_messages.blank?
     @inner_sash = new_inner
   end
@@ -129,9 +129,4 @@ class InnerSashesController < ApplicationController
     redirect_to inner_sashes_photo_and_others_path(@inner_sash.id), notice: '写真・その他を更新しました' if inner_sash[:action] == 'edit_photo_and_others'
   end
 
-  private
-
-  def get_join_with_parents(site_id:)
-    InnerSash.eager_load(site_memo: :site).where(site: {id: site_id})
-  end
 end

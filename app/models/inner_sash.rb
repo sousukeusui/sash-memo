@@ -40,10 +40,14 @@ class InnerSash < ApplicationRecord
 
     new_inner = InnerSash.new(inner_sash)
     site_memo = SiteMemo.new(room: room, site_id: site_id, kind: 'inner_sash')
-    
+
     new_inner.site_memo_id = site_memo.id if site_memo.save
     new_inner.save
     return new_inner
+  end
+
+  def self.get_with_parents(site_id:)
+    self.eager_load(site_memo: :site).where(site: {id: site_id})
   end
 
   def previous

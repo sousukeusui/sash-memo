@@ -3,7 +3,7 @@ module ApplicationHelper
     turbo_stream.update 'flash-msg', partial: 'layouts/flash'
   end
 
-  def turbo_stream_error_msg(model:)
-    turbo_stream.update 'flash-msg' , partial: 'layouts/error_messages', locals: {model: model }
+  def turbo_stream_alert
+    turbo_stream.update 'flash-msg' , partial: 'layouts/alert'
   end
 end

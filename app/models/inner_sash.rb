@@ -1,10 +1,10 @@
 class InnerSash < ApplicationRecord
   attr_accessor :action
+  attr_accessor :room
 
   belongs_to :site_memo, dependent: :destroy
   has_many :photos, dependent: :destroy
   accepts_nested_attributes_for :photos, allow_destroy: true
-  accepts_nested_attributes_for :site_memo
 
   enum color: { c_undecided: 0, white: 1}
   enum sash_type: { t_undecided: 0, sliding: 1, opening: 2}
@@ -34,11 +34,15 @@ class InnerSash < ApplicationRecord
   validates :glass_thickness, presence: true
   validates :is_low_e, inclusion: {in: [true, false]}
 
-  def self.create_with_site_memo(inner_sash:)
+  def self.create_with_site_memo(inner_sash:, site_id:)
     #site_memoを作るためのデータをパラメーターに入れる
-    inner_sash[:site_memo_attributes][:kind] = 'inner_sash'
-    inner_sash[:site_memo_attributes][:status] = 'step1'
-    self.create(inner_sash)
+    site_memo = SiteMemo.new(kind: 'inner_sash', room: inner_sash[:room], site_id: site_id)
+    return site_memo if !site_memo.save
+    
+    inner_sash.delete("room")
+    new_sash = site_memo.build_inner_sash(inner_sash)
+    new_sash.save
+    return new_sash
   end
 
   def previous

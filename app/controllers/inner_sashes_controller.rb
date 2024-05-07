@@ -2,18 +2,26 @@ class InnerSashesController < ApplicationController
   permits :id, :number_of_shoji, :width_up_size, :width_down_size, :width_middle_size, 
           :height_left_size, :height_middle_size, :height_right_size, :width_frame_depth, :height_frame_depth,
           :color, :is_flat_bar, :hanging_origin, :key_height, :sash_type, :middle_frame_height, :is_adjust,
-          :glass_color, :glass_thickness, :glass_kind, :is_low_e, :action, site_memo_attributes: [:id, :site_id, :room, :remark],
+          :glass_color, :glass_thickness, :glass_kind, :is_low_e, :action, :room,
           photos_attributes: [:id, :file_name, :_destroy]
 
   def new_step2
     #下書きがあれば下書きからデータを取ってくる処理を追加
-    @site_id = site_id
+    site_id = session[:site_id]
     @inner_sash = InnerSash.new
-    @site_memo = @inner_sash.build_site_memo
-    @inner_sashes = join_with_parents(site_id: site_id)
+    @inner_sashes = get_join_with_parents(site_id: site_id)
   end
 
-  def new_step3(site_id:)
+  def new_append_room(inner_sash)
+    site_id = session[:site_id]
+    new_sash = InnerSash.create_with_site_memo(inner_sash: inner_sash, site_id: site_id)
+    flash.now.alert = new_sash.errors.full_messages
+    
+    @inner_sashes = get_join_with_parents(site_id: site_id)
+    @inner_sash = InnerSash.new
+  end
+
+  def new_step3
     @site_memo = SiteMemo.find_by(site_id: site_id)
   end
 
@@ -31,14 +39,6 @@ class InnerSashesController < ApplicationController
 
   def new_comfirmation(site_memo_id:)
     @site_memo = SiteMemo.find(site_memo_id)
-  end
-
-  def new_append_room(inner_sash)
-    @model = InnerSash.create_with_site_memo(inner_sash: inner_sash)
-    @site_id = inner_sash[:site_memo_attributes][:site_id]
-    @inner_sashes = join_with_parents(site_id: @site_id)
-    @inner_sash = InnerSash.new
-    @site_memo = @inner_sash.build_site_memo
   end
 
   def basic_append
@@ -131,7 +131,7 @@ class InnerSashesController < ApplicationController
 
   private
 
-  def join_with_parents(site_id:)
+  def get_join_with_parents(site_id:)
     InnerSash.eager_load(site_memo: :site).where(site: {id: site_id})
   end
 end

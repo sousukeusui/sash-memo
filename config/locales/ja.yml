@@ -52,7 +52,31 @@ ja:
       inner_sash:
         color: '色'
         number_of_shoji: '障子枚数'
-
+        width_up_size: 'W上部寸法'
+        width_down_size: 'W下部寸法'
+        width_middle_size: 'W中央寸法'
+        height_right_size: 'H右寸法'
+        height_left_size: 'H左寸法'
+        height_middle_size: 'H中央寸法'
+        width_frame_depth: '窓枠W奥行き'
+        height_frame_depth: '窓枠H奥行き'
+        is_flat_bar: '平板'
+        key_height: 'クレセントH寸法'
+        sash_type: 'サッシ種類'
+        middle_frame_height: '中桟H寸法'
+        is_adjust: 'アジャスト上枠'
+        hanging_origin: '吊り元'
+        glass_color: 'ガラス色'
+        glass_thickness: 'ガラス厚み'
+        glass_kind: 'ガラス種類'
+        is_low_e: 'Low-E'
+      contractor:
+        name: '名前'
+      site_memo:
+        kind: '内容'
+        room: '部屋名'
+        order: '発注状況'
+        remark: '備考'
 
   date:
     abbr_day_names:

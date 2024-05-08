@@ -74,3 +74,4 @@ gem 'turbo-rails'
 gem "importmap-rails"
 gem "stimulus-rails"
 gem "mini_magick"
+gem "config"

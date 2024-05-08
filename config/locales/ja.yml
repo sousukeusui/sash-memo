@@ -43,8 +43,42 @@ ja:
           has_many: "%{record}が存在しているので削除できません"
     attributes:
       site:
+        name: '元請け'
+        address: '住所'
         research_date: '現調日'
+        research_start_time: '現調開始時間'
         construction_date: '工事日'
+        construction_start_time: '工事開始時間'
+      inner_sash:
+        color: '色'
+        number_of_shoji: '障子枚数'
+        width_up_size: '横：上部寸法'
+        width_down_size: '横：下部寸法'
+        width_middle_size: '横：中央寸法'
+        height_right_size: '縦：右寸法'
+        height_left_size: '縦：左寸法'
+        height_middle_size: '縦：中央寸法'
+        width_frame_depth: '横：窓枠奥行き寸法'
+        height_frame_depth: '縦：窓枠奥行き寸法'
+        is_flat_bar: '平板'
+        key_height: 'クレセントH寸法'
+        sash_type: 'サッシ種類'
+        middle_frame_height: '中桟H寸法'
+        is_adjust: 'アジャスト上枠'
+        hanging_origin: '吊り元'
+        glass_color: 'ガラス色'
+        glass_thickness: 'ガラス厚み'
+        glass_kind: 'ガラス種類'
+        is_low_e: 'Low-E'
+        site_memo: '部屋名'
+      contractor:
+        name: '名前'
+      site_memo:
+        kind: '内容'
+        room: '部屋名'
+        order: '発注状況'
+        remark: '備考'
+
   date:
     abbr_day_names:
     - 日

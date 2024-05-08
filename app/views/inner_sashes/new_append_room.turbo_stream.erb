@@ -1,16 +1,17 @@
-<div id="room-list">
+<%= turbo_stream.update 'room-list' do %>
   <% @inner_sashes.each do |inner_sash| %>
     <%= inner_sash.site_memo.room %>
   <% end %>
-</div>
-<%= turbo_frame_tag 'inner-sash-size-form' do %>
+<% end %>
+
+<%= turbo_stream.update 'inner-sash-size-form' do %>
   <%= form_with model: @inner_sash, url: inner_sashes_new_append_room_path, data: { turbo_stream: true } do |f|%>
+    <%= render 'layouts/alert', obj: f.object %>
     <div class="form-group">
       <%= f.label :room, '部屋' %>
-      <%= f.text_field :room, required: true%>
+      <%= f.text_field :room %>
     </div>
     <%= render partial: 'form_size', locals: { inner_sash: f } %>
     <%= f.submit '追加' %>
   <% end %>
 <% end %>
-<%= link_to '次へ', inner_sashes_new_step3_path %>

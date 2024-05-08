@@ -1,10 +1,10 @@
 class InnerSash < ApplicationRecord
   attr_accessor :action
+  attr_accessor :room
 
   belongs_to :site_memo, dependent: :destroy
   has_many :photos, dependent: :destroy
   accepts_nested_attributes_for :photos, allow_destroy: true
-  accepts_nested_attributes_for :site_memo
 
   enum color: { c_undecided: 0, white: 1}
   enum sash_type: { t_undecided: 0, sliding: 1, opening: 2}
@@ -13,16 +13,14 @@ class InnerSash < ApplicationRecord
   enum glass_thickness: { gt_undecided: 0, single: 1, double: 2}
   enum glass_kind: { gk_undecided: 0, transparent: 1, hazy: 2}
 
- 
-
-  validates :width_up_size, presence: true
-  validates :width_down_size, presence: true
-  validates :width_middle_size, presence: true
-  validates :height_left_size, presence: true
-  validates :height_middle_size, presence: true
-  validates :height_right_size, presence: true
-  validates :width_frame_depth, presence: true
-  validates :height_frame_depth, presence: true
+  validates :width_up_size, presence: true, size: true
+  validates :width_down_size, presence: true, size: true
+  validates :width_middle_size, presence: true, size: true
+  validates :height_left_size, presence: true, size: true
+  validates :height_middle_size, presence: true, size: true
+  validates :height_right_size, presence: true, size: true
+  validates :width_frame_depth, presence: true, size: true
+  validates :height_frame_depth, presence: true ,size: true
   validates :color, presence: true
   validates :is_flat_bar, inclusion: {in: [true, false]}
   validates :key_height, presence: true
@@ -36,16 +34,27 @@ class InnerSash < ApplicationRecord
   validates :glass_thickness, presence: true
   validates :is_low_e, inclusion: {in: [true, false]}
 
+  def self.create_with_site_memo(inner_sash:, site_id:)
+    room = inner_sash[:room]
+    inner_sash.delete('room')
+
+    new_inner = InnerSash.new(inner_sash)
+    site_memo = SiteMemo.new(room: room, site_id: site_id, kind: 'inner_sash')
+
+    new_inner.site_memo_id = site_memo.id if site_memo.save
+    new_inner.save
+    return new_inner
+  end
+
+  def self.get_with_parents(site_id:)
+    self.eager_load(site_memo: :site).where(site: {id: site_id})
+  end
+
   def previous
     InnerSash.eager_load(site_memo: :site).where(site: {id: self.site_memo.site_id}).where("inner_sashes.id<?", self.id).order(id: :desc).first
-    # InnerSash.where("id<?", self.id).order(id: :desc).first
   end
 
   def next
     InnerSash.eager_load(site_memo: :site).where(site: {id: self.site_memo.site_id}).where("inner_sashes.id>?", self.id).order(id: :asc).first
   end
-
-
-    #site_memo_idを排除するかコントローラーで入れるか
-    #colorなど他のバリデーションも追加
 end

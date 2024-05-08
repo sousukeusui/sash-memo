@@ -1,9 +1,8 @@
-<%= form_with url: site_memos_form_switcher_path, method: :get, local: true do |f| %>
+<%= form_with model: @site_memo, url: site_memos_form_switcher_path, local: true do |f| %>
   <div class="form-group">
     <%= f.label :kind, '施工内容' %>
-    <%= f.select :kind, SiteMemo.kinds.keys.map{ |k| [I18n.t("enums.site_memo.kind.#{k}"),k]}, {prompt: '選択してください'}, required: true %>
+    <%= f.select :kind, SiteMemo.kinds.keys.map{ |k| [I18n.t("enums.site_memo.kind.#{k}"),k]}, {prompt: '選択してください'} %>
   </div>
-  <%= f.hidden_field :site_id, value: @site_id %>
   <div class="form-group">
     <%= f.submit '次へ' %>
   </div>

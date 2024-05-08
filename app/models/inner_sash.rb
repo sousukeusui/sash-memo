@@ -13,14 +13,14 @@ class InnerSash < ApplicationRecord
   enum glass_thickness: { gt_undecided: 0, single: 1, double: 2}
   enum glass_kind: { gk_undecided: 0, transparent: 1, hazy: 2}
 
-  validates :width_up_size, presence: true
-  validates :width_down_size, presence: true
-  validates :width_middle_size, presence: true
-  validates :height_left_size, presence: true
-  validates :height_middle_size, presence: true
-  validates :height_right_size, presence: true
-  validates :width_frame_depth, presence: true
-  validates :height_frame_depth, presence: true
+  validates :width_up_size, presence: true, size: true
+  validates :width_down_size, presence: true, size: true
+  validates :width_middle_size, presence: true, size: true
+  validates :height_left_size, presence: true, size: true
+  validates :height_middle_size, presence: true, size: true
+  validates :height_right_size, presence: true, size: true
+  validates :width_frame_depth, presence: true, size: true
+  validates :height_frame_depth, presence: true ,size: true
   validates :color, presence: true
   validates :is_flat_bar, inclusion: {in: [true, false]}
   validates :key_height, presence: true

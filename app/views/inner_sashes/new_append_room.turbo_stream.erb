@@ -1,6 +1,6 @@
 <%= turbo_stream.update 'room-list' do %>
   <% @inner_sashes.each do |inner_sash| %>
-    <%= inner_sash.site_memo.room %>
+    <%= inner_sash.room %>
   <% end %>
 <% end %>
 

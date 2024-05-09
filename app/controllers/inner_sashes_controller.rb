@@ -1,22 +1,22 @@
 class InnerSashesController < ApplicationController
-  permits :id, :number_of_shoji, :width_up_size, :width_down_size, :width_middle_size, 
+  permits :id, :room, :number_of_shoji, :width_up_size, :width_down_size, :width_middle_size, 
           :height_left_size, :height_middle_size, :height_right_size, :width_frame_depth, :height_frame_depth,
           :color, :is_flat_bar, :hanging_origin, :key_height, :sash_type, :middle_frame_height, :is_adjust,
-          :glass_color, :glass_thickness, :glass_kind, :is_low_e, :action, :room,
+          :glass_color, :glass_thickness, :glass_kind, :is_low_e, :action,
           photos_attributes: [:id, :file_name, :_destroy]
 
   def new_step2
     #下書きがあれば下書きからデータを取ってくる処理を追加
-    site_id = session[:site_id]
     @inner_sash = InnerSash.new
-    @inner_sashes = InnerSash.get_with_parents(site_id: site_id)
+    site_id = session[:site_id]
+    load_inner_sashes(site_id: site_id)
   end
 
   def new_append_room(inner_sash)
     site_id = session[:site_id]
-    new_inner = InnerSash.create_with_site_memo(inner_sash: inner_sash, site_id: site_id)
+    new_inner = InnerSash.create_and_find_site_memo(inner_sash: inner_sash, site_id: site_id)
 
-    @inner_sashes = InnerSash.get_with_parents(site_id: site_id)
+    load_inner_sashes(site_id: site_id)
     return @inner_sash = InnerSash.new if new_inner.errors.full_messages.blank?
     @inner_sash = new_inner
   end
@@ -129,4 +129,7 @@ class InnerSashesController < ApplicationController
     redirect_to inner_sashes_photo_and_others_path(@inner_sash.id), notice: '写真・その他を更新しました' if inner_sash[:action] == 'edit_photo_and_others'
   end
 
+  def load_inner_sashes(site_id:)
+    @inner_sashes = InnerSash.eager_load(:site_memo).where(site_memo: {site_id: site_id})
+  end
 end

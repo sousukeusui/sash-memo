@@ -1,6 +1,6 @@
 <div id="room-list">
   <% @inner_sashes.each do |inner_sash| %>
-    <%= inner_sash.site_memo.room %>
+    <%= inner_sash.room %>
   <% end %>
 </div>
 <%= turbo_frame_tag 'inner-sash-size-form' do %>

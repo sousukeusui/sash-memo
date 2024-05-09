@@ -6,30 +6,32 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 # 現場まとめて生成する
-# 50.times do |n|
-#   name = Faker::Name.name
-#   address = Faker::Address.city
-#   user_id = 22
-#   contractor_id = rand(1..5)
-#   Site.create!(name: name,
-#                   address: address,
-#                   user_id: user_id,
-#                   contractor_id: contractor_id)
-# end
+50.times do |n|
+  name = Faker::Name.name
+  address = Faker::Address.city
+  user_id = 1
+  contractor_id = 1
+  Site.create!(name: name,
+                  address: address,
+                  user_id: user_id,
+                  contractor_id: contractor_id)
+end
 
-# 20.times do |n|
-#   size = rand(1..99)
-#   room = Faker::House.room
-#   site_id = 11
-#   kind = 'inner_sash'
-#   site_memo = SiteMemo.create!(site_id: 20, kind: kind, room: room)
-#   InnerSash.create!(width_up_size: size,
-#                     width_middle_size: size,
-#                     width_down_size: size,
-#                     height_left_size: size,
-#                     height_middle_size: size,
-#                     height_right_size: size,
-#                     width_frame_depth: size,
-#                     height_frame_depth: size,
-#                     site_memo_id: site_memo.id)
-# end
+
+size = rand(1..9999)
+p room = Faker::House.room
+site_id = 1
+kind = 'inner_sash'
+site_memo = SiteMemo.create!(site_id: 20, kind: kind)
+20.times do |n|
+  InnerSash.create!(width_up_size: size,
+                    width_middle_size: size,
+                    width_down_size: size,
+                    height_left_size: size,
+                    height_middle_size: size,
+                    height_right_size: size,
+                    width_frame_depth: size,
+                    height_frame_depth: size,
+                    room: room,
+                    site_memo_id: site_memo.id)
+end

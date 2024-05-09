@@ -2,10 +2,9 @@ class SiteMemosController < ApplicationController
   permits :kind
 
   def index(site_id:)
-    @site = Site.find(site_id)
     #site_memoの全ての子モデル結合して取得
     #site_memosに新しい子モデルができたらそれに応じて取得するものを動的に変える    
-    @site = Site.preload(site_memos: :inner_sash).find(site_id)
+    @site = Site.preload(site_memos: :inner_sashes).find(site_id)
     @site_memos = @site.site_memos.page(params[:page]).per(5)
     @order_key = get_opposite_order_key(site_memos: @site.site_memos)
   end

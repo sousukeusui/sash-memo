@@ -41,10 +41,6 @@ class InnerSash < ApplicationRecord
     return inner_sash
   end
 
-  def self.get_with_site_memo(site_id:)
-    self.eager_load(:site_memo).where(site_memo: {site_id: site_id})
-  end
-
   def previous
     InnerSash.eager_load(site_memo: :site).where(site: {id: self.site_memo.site_id}).where("inner_sashes.id<?", self.id).order(id: :desc).first
   end

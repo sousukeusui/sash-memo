@@ -4,7 +4,7 @@
   <% end %>
 </div>
 <%= turbo_frame_tag 'inner-sash-size-form' do %>
-  <%= form_with model: @site_memo_form, url: inner_sashes_new_append_room_path, data: { turbo_stream: true } do |f|%>
+  <%= form_with model: @inner_sash, url: inner_sashes_new_append_room_path, data: { turbo_stream: true } do |f|%>
     <div class="form-group">
       <%= f.label :room, '部屋' %>
       <%= f.text_field :room, required: true%>

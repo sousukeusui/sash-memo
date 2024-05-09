@@ -1,6 +1,5 @@
 class InnerSash < ApplicationRecord
   attr_accessor :action
-  attr_accessor :room
 
   belongs_to :site_memo, dependent: :destroy
   has_many :photos, dependent: :destroy
@@ -35,20 +34,15 @@ class InnerSash < ApplicationRecord
   validates :glass_thickness, presence: true
   validates :is_low_e, inclusion: {in: [true, false]}
 
-  def self.create_with_site_memo(inner_sash:, site_id:)
-    room = inner_sash[:room]
-    inner_sash.delete('room')
-
-    new_inner = InnerSash.new(inner_sash)
-    site_memo = SiteMemo.new(room: room, site_id: site_id, kind: 'inner_sash')
-
-    new_inner.site_memo_id = site_memo.id if site_memo.save
-    new_inner.save
-    return new_inner
+  def self.create_and_find_site_memo(inner_sash:, site_id:)
+    inner_sash
+    site_memo = SiteMemo.find_by(site_id: site_id, kind: 'inner_sash')
+    inner_sash = site_memo.inner_sashes.create(inner_sash)
+    return inner_sash
   end
 
-  def self.get_with_parents(site_id:)
-    self.eager_load(site_memo: :site).where(site: {id: site_id})
+  def self.get_with_site_memo(site_id:)
+    self.eager_load(:site_memo).where(site_memo: {site_id: site_id})
   end
 
   def previous

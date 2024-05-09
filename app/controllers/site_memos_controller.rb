@@ -25,11 +25,15 @@ class SiteMemosController < ApplicationController
   def form_switcher(site_memo)
     kind = site_memo[:kind]
     site_id = session[:site_id]
-    
-    return redirect_to site_memos_new_step1_path(site_id), alert: "施工内容を選択してください" if kind.blank?
 
+    @site_memo = SiteMemo.new(site_id: site_id, kind: kind)
     exist_sm = SiteMemo.eager_load(:site).find_by(site_id: site_id, kind: kind)
-    return redirect_to "/#{kind.pluralize}/new_step2" if exist_sm.blank?
+
+    if exist_sm.blank? && @site_memo.save
+      return redirect_to "/#{kind.pluralize}/new_step2"
+    elsif exist_sm.blank?
+      return render 'new_step1', status: :unprocessable_entity
+    end
     
     kind = exist_sm.kind.to_s.pluralize
     status = exist_sm.status

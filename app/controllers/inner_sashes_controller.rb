@@ -7,6 +7,7 @@ class InnerSashesController < ApplicationController
 
   def new_step2
     #下書きがあれば下書きからデータを取ってくる処理を追加
+    @site_memo_form = SiteMemoForm.new
     site_id = session[:site_id]
     @inner_sash = InnerSash.new
     @inner_sashes = InnerSash.get_with_parents(site_id: site_id)

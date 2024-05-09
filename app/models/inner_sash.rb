@@ -13,6 +13,7 @@ class InnerSash < ApplicationRecord
   enum glass_thickness: { gt_undecided: 0, single: 1, double: 2}
   enum glass_kind: { gk_undecided: 0, transparent: 1, hazy: 2}
 
+  validates :room, presence: true, length: { maximum:15 }
   validates :width_up_size, presence: true, size: true
   validates :width_down_size, presence: true, size: true
   validates :width_middle_size, presence: true, size: true

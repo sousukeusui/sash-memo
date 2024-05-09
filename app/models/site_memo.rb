@@ -4,11 +4,10 @@ class SiteMemo < ApplicationRecord
   enum order: { unordered: 0 , ordered: 1 }
 
   belongs_to :site
-  has_one :inner_sash, dependent: :destroy
+  has_many :inner_sashes, dependent: :destroy
 
   validates :kind, presence: true
   validates :status, presence: true
-  validates :room, presence: true, length: { maximum:15 }
   validates :remark, length: { maximum:100 }
 
 end

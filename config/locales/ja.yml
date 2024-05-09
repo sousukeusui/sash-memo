@@ -74,7 +74,7 @@ ja:
       contractor:
         name: '名前'
       site_memo:
-        kind: '内容'
+        kind: '施工内容'
         room: '部屋名'
         order: '発注状況'
         remark: '備考'

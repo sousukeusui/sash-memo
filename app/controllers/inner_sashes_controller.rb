@@ -130,6 +130,6 @@ class InnerSashesController < ApplicationController
   end
 
   def load_inner_sashes(site_id:)
-    @inner_sashes = InnerSash.self.eager_load(:site_memo).where(site_memo: {site_id: site_id})
+    @inner_sashes = InnerSash.eager_load(:site_memo).where(site_memo: {site_id: site_id})
   end
 end

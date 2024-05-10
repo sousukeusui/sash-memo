@@ -22,7 +22,20 @@ class InnerSashesController < ApplicationController
   end
 
   def new_step3
-    @site_memo = SiteMemo.find_by(site_id: site_id)
+    site_id = session[:site_id]
+    load_inner_sashes(site_id: site_id)
+    @form = InnerSashForm.new(inner_sashes: @inner_sashes)
+  end
+
+  def new_append_basic_info(inner_sash)
+    site_id = session[:site_id]
+    load_site_memo(site_id: site_id)
+    site_memo = SiteMemoForm.new(inner_sash)
+    if site_memo.save(site_id: site_id)
+      return redirect_to inner_sashes_new_step4_path(params[:site_memo][:id])
+    else
+      return redirect_to inner_sashes_new_step3_path(params[:site_memo][:id])
+    end
   end
 
   def new_step4(site_memo_id:)
@@ -39,13 +52,6 @@ class InnerSashesController < ApplicationController
 
   def new_comfirmation(site_memo_id:)
     @site_memo = SiteMemo.find(site_memo_id)
-  end
-
-  def basic_append
-    #内窓データ更新の処理を書く
-    site_memo = SiteMemo.find(params[:site_memo][:id])
-    return redirect_to inner_sashes_new_step4_path(params[:site_memo][:id]) if site_memo.update(basic_info_params)
-    return redirect_to inner_sashes_new_step3_path(params[:site_memo][:id]), notice: site_memo.errors.full_messages
   end
 
   def accessory_append
@@ -129,7 +135,14 @@ class InnerSashesController < ApplicationController
     redirect_to inner_sashes_photo_and_others_path(@inner_sash.id), notice: '写真・その他を更新しました' if inner_sash[:action] == 'edit_photo_and_others'
   end
 
+private
+
   def load_inner_sashes(site_id:)
     @inner_sashes = InnerSash.eager_load(:site_memo).where(site_memo: {site_id: site_id})
   end
+
+  def load_site_memo(site_id:)
+    @site_memo = SiteMemo.find_by(site_id: site_id)
+  end
+
 end

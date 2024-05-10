@@ -1,9 +1,12 @@
 <p>new_step3</p>
-<%= form_with model: @form, url: inner_sashes_new_append_basic_info_path, local: true do |f| %>
+<%= form_with model: @site_memo, url: inner_sashes_new_append_basic_info_path, local: true do |f| %>
   <%= render 'layouts/alert', obj: f.object %>
   <%= f.fields_for :inner_sashes do |inner_sash| %>
-    <%= inner_sash.object.attributes %>
+    <div class="form_group">
+      <%= inner_sash.label :room, '部屋名' %>
+      <%= inner_sash.text_field :room %>
+    </div>
     <%= render 'form_basic_info', inner_sash: inner_sash %>
   <% end %>
-<%= f.submit '次へ' %>
+  <%= f.submit '次へ' %>
 <% end %>

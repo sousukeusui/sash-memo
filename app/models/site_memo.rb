@@ -5,6 +5,7 @@ class SiteMemo < ApplicationRecord
 
   belongs_to :site
   has_many :inner_sashes, dependent: :destroy
+  accepts_nested_attributes_for :inner_sashes
 
   validates :kind, presence: true
   validates :status, presence: true

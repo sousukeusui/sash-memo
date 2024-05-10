@@ -1,9 +1,9 @@
 class InnerSashesController < ApplicationController
-  permits :id, :room, :number_of_shoji, :width_up_size, :width_down_size, :width_middle_size, 
+  permits inner_sashes_attributes: [:id, :room, :number_of_shoji, :width_up_size, :width_down_size, :width_middle_size, 
           :height_left_size, :height_middle_size, :height_right_size, :width_frame_depth, :height_frame_depth,
           :color, :is_flat_bar, :hanging_origin, :key_height, :sash_type, :middle_frame_height, :is_adjust,
-          :glass_color, :glass_thickness, :glass_kind, :is_low_e, :action,
-          photos_attributes: [:id, :file_name, :_destroy]
+          :glass_color, :glass_thickness, :glass_kind, :is_low_e, :action],
+          photos_attributes: [:id, :file_name, :_destroy], model_name: 'SiteMemo'
 
   def new_step2
     #下書きがあれば下書きからデータを取ってくる処理を追加
@@ -23,22 +23,18 @@ class InnerSashesController < ApplicationController
 
   def new_step3
     site_id = session[:site_id]
-    load_inner_sashes(site_id: site_id)
-    @form = InnerSashForm.new(inner_sashes: @inner_sashes)
+    load_site_memo(site_id: site_id)
+    @inner_sashes = @site_memo.inner_sashes
   end
 
-  def new_append_basic_info(inner_sash)
+  def new_append_basic_info(site_memo)
     site_id = session[:site_id]
     load_site_memo(site_id: site_id)
-    site_memo = SiteMemoForm.new(inner_sash)
-    if site_memo.save(site_id: site_id)
-      return redirect_to inner_sashes_new_step4_path(params[:site_memo][:id])
-    else
-      return redirect_to inner_sashes_new_step3_path(params[:site_memo][:id])
-    end
+    return redirect_to inner_sashes_new_step4_path if @site_memo.update(site_memo)
+    return render "new_step3", status: :unprocessable_entity
   end
 
-  def new_step4(site_memo_id:)
+  def new_step4
     @site_memo = SiteMemo.find(site_memo_id)
   end
 
@@ -144,5 +140,4 @@ private
   def load_site_memo(site_id:)
     @site_memo = SiteMemo.find_by(site_id: site_id)
   end
-
 end

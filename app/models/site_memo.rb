@@ -11,4 +11,10 @@ class SiteMemo < ApplicationRecord
   validates :status, presence: true
   validates :remark, length: { maximum:100 }
 
+  def self.create_and_find_site_memo(site_memo:, site_id:)
+    @site_memo = self.find_by(site_id: site_id, kind: 'inner_sash')
+    @site_memo.update(site_memo)
+    return @site_memo
+  end
+
 end

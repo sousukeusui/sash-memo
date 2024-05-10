@@ -1,24 +1,23 @@
 class InnerSashesController < ApplicationController
   permits inner_sashes_attributes: [:id, :room, :number_of_shoji, :width_up_size, :width_down_size, :width_middle_size, 
-          :height_left_size, :height_middle_size, :height_right_size, :width_frame_depth, :height_frame_depth,
-          :color, :is_flat_bar, :hanging_origin, :key_height, :sash_type, :middle_frame_height, :is_adjust,
-          :glass_color, :glass_thickness, :glass_kind, :is_low_e, :action],
-          photos_attributes: [:id, :file_name, :_destroy], model_name: 'SiteMemo'
+    :height_left_size, :height_middle_size, :height_right_size, :width_frame_depth, :height_frame_depth,
+    :color, :is_flat_bar, :hanging_origin, :key_height, :sash_type, :middle_frame_height, :is_adjust,
+    :glass_color, :glass_thickness, :glass_kind, :is_low_e, :action],
+    photos_attributes: [:id, :file_name, :_destroy], model_name: 'SiteMemo'
 
   def new_step2
-    #下書きがあれば下書きからデータを取ってくる処理を追加
-    @inner_sash = InnerSash.new
     site_id = session[:site_id]
-    load_inner_sashes(site_id: site_id)
+    @inner_sash_datas = load_inner_sashes(site_id: site_id)
+    @site_memo = SiteMemo.new
+    @inner_sashes = @site_memo.inner_sashes.build
   end
 
-  def new_append_room(inner_sash)
+  def new_append_room(site_memo)
     site_id = session[:site_id]
-    new_inner = InnerSash.create_and_find_site_memo(inner_sash: inner_sash, site_id: site_id)
-
-    load_inner_sashes(site_id: site_id)
-    return @inner_sash = InnerSash.new if new_inner.errors.full_messages.blank?
-    @inner_sash = new_inner
+    @site_memo = SiteMemo.create_and_find_site_memo(site_memo: site_memo, site_id: site_id)
+    @inner_sash_datas = load_inner_sashes(site_id: site_id)
+    @site_memo = SiteMemo.new if @site_memo.errors.full_messages.blank?
+    @inner_sashes = @site_memo.inner_sashes.build(site_memo)
   end
 
   def new_step3
@@ -133,8 +132,15 @@ class InnerSashesController < ApplicationController
 
 private
 
+  def inner_sash_params
+    permits.require(:inner_sash).permit(:room, :number_of_shoji, :width_up_size, :width_down_size, :width_middle_size, 
+      :height_left_size, :height_middle_size, :height_right_size, :width_frame_depth, :height_frame_depth)
+  end
+
+  def
+
   def load_inner_sashes(site_id:)
-    @inner_sashes = InnerSash.eager_load(:site_memo).where(site_memo: {site_id: site_id})
+    InnerSash.eager_load(:site_memo).where(site_memo: {site_id: site_id})
   end
 
   def load_site_memo(site_id:)

@@ -6,8 +6,10 @@ Rails.application.routes.draw do
   post 'site_memos/form_switcher'
   delete 'site_memos/destroy/:id', to: 'site_memos#destroy', as: :site_memos_destroy
   get 'inner_sashes/new_step2'
+  post 'inner_sashes/new_append_room'
   get 'inner_sashes/new_step3'
-  get 'inner_sashes/new_step4/:site_memo_id', to: 'inner_sashes#new_step4', as: :inner_sashes_new_step4
+  patch 'inner_sashes/new_append_basic_info'
+  get 'inner_sashes/new_step4'
   get 'inner_sashes/new_step5/:site_memo_id', to: 'inner_sashes#new_step5', as: :inner_sashes_new_step5
   get 'inner_sashes/new_step6/:site_memo_id', to: 'inner_sashes#new_step6', as: :inner_sashes_new_step6
   get 'inner_sashes/new_comfirmation/:site_memo_id', to: 'inner_sashes#new_comfirmation', as: :inner_sashes_new_comfirmation
@@ -22,8 +24,6 @@ Rails.application.routes.draw do
   get 'inner_sashes/edit_photo_and_others/:id', to: 'inner_sashes#edit_photo_and_others', as: :inner_sashes_edit_photo_and_others
   get 'inner_sashes/edit_shoji_and_glass/:id', to: 'inner_sashes#edit_shoji_and_glass', as: :inner_sashes_edit_shoji_and_glass
   patch 'inner_sashes/update'
-  post 'inner_sashes/new_append_room'
-  patch 'inner_sashes/basic_append'
   patch 'inner_sashes/accessory_append'
   patch 'inner_sashes/glass_append'
   patch 'inner_sashes/photo_append'

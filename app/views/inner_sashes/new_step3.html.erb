@@ -1,4 +1,6 @@
 <p>new_step3</p>
+<%= render @inner_sashes %>
+
 <%= form_with model: @site_memo, url: inner_sashes_new_append_basic_info_path, local: true do |f| %>
   <%= render 'layouts/alert', obj: f.object %>
   <%= f.fields_for :inner_sashes do |inner_sash| %>

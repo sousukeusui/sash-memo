@@ -1,7 +1,5 @@
 <div id="room-list">
-  <% @inner_sashes.each do |inner_sash| %>
-    <%= inner_sash.room %>
-  <% end %>
+  <%= render @inner_sashes %>
 </div>
 
 <%= turbo_frame_tag 'inner-sash-size-form' do %>

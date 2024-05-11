@@ -6,27 +6,23 @@ class InnerSashesController < ApplicationController
     photos_attributes: [:id, :file_name, :_destroy], model_name: 'SiteMemo'
 
   def new_step2
-    site_id = session[:site_id]
-    @inner_sashes = load_inner_sashes(site_id: site_id)
+    load_inner_sashes
     @inner_sash = InnerSash.new
   end
 
   def new_append_room
-    site_id = session[:site_id]
     @inner_sash = InnerSash.new(inner_sash_params)
     @inner_sash = InnerSash.new if @inner_sash.save
-    @inner_sashes = load_inner_sashes(site_id: site_id)
+    load_inner_sashes
   end
 
   def new_step3
-    site_id = session[:site_id]
-    load_site_memo(site_id: site_id)
-    @inner_sashes = @site_memo.inner_sashes
+    load_site_memo
+    load_inner_sashes
   end
 
   def new_append_basic_info(site_memo)
-    site_id = session[:site_id]
-    load_site_memo(site_id: site_id)
+    load_site_memo
     return redirect_to inner_sashes_new_step4_path if @site_memo.update(site_memo)
     return render "new_step3", status: :unprocessable_entity
   end
@@ -136,11 +132,11 @@ private
                                       :width_frame_depth, :height_frame_depth).merge(site_memo_id: load_site_memo.id)
   end
 
-  def load_inner_sashes(site_id:)
-    InnerSash.eager_load(:site_memo).where(site_memo: {site_id: site_id})
+  def load_inner_sashes
+    @inner_sashes = InnerSash.eager_load(:site_memo).where(site_memo: {site_id: session[:site_id]})
   end
 
   def load_site_memo
-    @site_memo = SiteMemo.find_by(site_id: session[:site_id], kind: 'inner_sash')
+    @site_memo = SiteMemo.find_by(kind: 'inner_sash', site_id: session[:site_id])
   end
 end

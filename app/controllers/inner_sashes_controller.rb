@@ -24,6 +24,7 @@ class InnerSashesController < ApplicationController
   def new_append_basic_info(site_memo)
     load_site_memo
     return redirect_to inner_sashes_new_step4_path if @site_memo.update(site_memo)
+    load_inner_sashes
     return render "new_step3", status: :unprocessable_entity
   end
 

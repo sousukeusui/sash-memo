@@ -29,7 +29,8 @@ class InnerSashesController < ApplicationController
   end
 
   def new_step4
-    @site_memo = SiteMemo.find(site_memo_id)
+    load_site_memo
+    load_inner_sashes
   end
 
   def new_step5(site_memo_id:)

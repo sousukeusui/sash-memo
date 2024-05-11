@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get 'inner_sashes/new_step3'
   patch 'inner_sashes/new_append_basic_info'
   get 'inner_sashes/new_step4'
-  get 'inner_sashes/new_step5/:site_memo_id', to: 'inner_sashes#new_step5', as: :inner_sashes_new_step5
+  get 'inner_sashes/new_step5'
   get 'inner_sashes/new_step6/:site_memo_id', to: 'inner_sashes#new_step6', as: :inner_sashes_new_step6
   get 'inner_sashes/new_comfirmation/:site_memo_id', to: 'inner_sashes#new_comfirmation', as: :inner_sashes_new_comfirmation
   get 'inner_sashes/show/:id', to: 'inner_sashes#show', as: :inner_sashes_show

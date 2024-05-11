@@ -7,17 +7,15 @@ class InnerSashesController < ApplicationController
 
   def new_step2
     site_id = session[:site_id]
-    @inner_sash_datas = load_inner_sashes(site_id: site_id)
-    @site_memo = SiteMemo.new
-    @inner_sashes = @site_memo.inner_sashes.build
+    @inner_sashes = load_inner_sashes(site_id: site_id)
+    @inner_sash = InnerSash.new
   end
 
-  def new_append_room(site_memo)
+  def new_append_room
     site_id = session[:site_id]
-    @site_memo = SiteMemo.create_and_find_site_memo(site_memo: site_memo, site_id: site_id)
-    @inner_sash_datas = load_inner_sashes(site_id: site_id)
-    @site_memo = SiteMemo.new if @site_memo.errors.full_messages.blank?
-    @inner_sashes = @site_memo.inner_sashes.build(site_memo)
+    @inner_sash = InnerSash.new(inner_sash_params)
+    @inner_sash = InnerSash.new if @inner_sash.save
+    @inner_sashes = load_inner_sashes(site_id: site_id)
   end
 
   def new_step3
@@ -133,17 +131,16 @@ class InnerSashesController < ApplicationController
 private
 
   def inner_sash_params
-    permits.require(:inner_sash).permit(:room, :number_of_shoji, :width_up_size, :width_down_size, :width_middle_size, 
-      :height_left_size, :height_middle_size, :height_right_size, :width_frame_depth, :height_frame_depth)
+    params.require(:inner_sash).permit(:room, :number_of_shoji, :width_up_size, :width_down_size, :width_middle_size, 
+                                      :height_left_size, :height_middle_size, :height_right_size, 
+                                      :width_frame_depth, :height_frame_depth).merge(site_memo_id: load_site_memo.id)
   end
-
-  def
 
   def load_inner_sashes(site_id:)
     InnerSash.eager_load(:site_memo).where(site_memo: {site_id: site_id})
   end
 
-  def load_site_memo(site_id:)
-    @site_memo = SiteMemo.find_by(site_id: site_id)
+  def load_site_memo
+    @site_memo = SiteMemo.find_by(site_id: session[:site_id], kind: 'inner_sash')
   end
 end

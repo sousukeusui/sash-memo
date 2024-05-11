@@ -29,10 +29,18 @@ class InnerSashesController < ApplicationController
   end
 
   def new_step4
-    @site_memo = SiteMemo.find(site_memo_id)
+    load_site_memo
+    load_inner_sashes
   end
 
-  def new_step5(site_memo_id:)
+  def new_append_shoji_and_glass(site_memo)
+    load_site_memo
+    return redirect_to inner_sashes_new_step5_path if @site_memo.update(site_memo)
+    load_inner_sashes
+    return render "new_step4", status: :unprocessable_entity
+  end
+
+  def new_step5
     @site_memo = SiteMemo.find(site_memo_id)
   end
 
@@ -42,12 +50,6 @@ class InnerSashesController < ApplicationController
 
   def new_comfirmation(site_memo_id:)
     @site_memo = SiteMemo.find(site_memo_id)
-  end
-
-  def accessory_append
-    site_memo = SiteMemo.find(params[:site_memo][:id])
-    return redirect_to inner_sashes_new_step5_path(params[:site_memo][:id]) if site_memo.update(accesory_info_params)
-    return redirect_to inner_sashes_new_step4_path(params[:site_memo][:id]), notice: site_memo.erros.full_messages
   end
 
   def glass_append

@@ -1,25 +1,14 @@
 <p>new_step4<p>
+<%= render @inner_sashes %>
 
-<%= form_with model: @site_memo, url: inner_sashes_accessory_append_path, local: true do |f| %>
-  <%= f.hidden_field :id, value:@site_memo.id %>
-  <table>
-    <tr>
-      <th>部屋</th>
-      <th>クレセント</th>
-      <th>中桟</th>
-      <th>平板</th>
-      <th>アジャスト上枠</th>
-    </tr>
-    <%= f.fields_for :inner_sashes, @site_memo.inner_sashes do |inner_sash| %>
-      <tr>
-        <td><%= inner_sash.object.room %></td>
-        <td><%= inner_sash.number_field :key_height, value: '', placeholder: '窓台〜芯', required: true %></td>
-        <td><%= inner_sash.number_field :middle_frame_height, value: '', placeholder: '窓台〜芯', required: true %></td>
-        <td><%= inner_sash.check_box :is_flat_bar %>有</td>
-        <td><%= inner_sash.check_box :is_adjust %>有</td>
-        <%= inner_sash.hidden_field :id, value: inner_sash.object.id %>
-      </tr>
+<%= form_with model: @site_memo, url: inner_sashes_new_append_shoji_and_glass_path, local: true do |f| %>
+    <%= render 'layouts/alert', obj: f.object %>
+    <%= f.fields_for :inner_sashes do |inner_sash| %>
+      <div class="form_group">
+        <%= inner_sash.label :room, '部屋名' %>
+        <%= inner_sash.text_field :room, required: true %>
+      </div>
+      <%= render 'form_shoji_and_glass', inner_sash: inner_sash %>
     <% end %>
-  </table>
   <%= f.submit '次へ' %>
 <% end %>

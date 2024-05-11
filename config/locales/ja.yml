@@ -49,7 +49,7 @@ ja:
         research_start_time: '現調開始時間'
         construction_date: '工事日'
         construction_start_time: '工事開始時間'
-      inner_sashes:
+      inner_sash:
         color: '色'
         number_of_shoji: '障子枚数'
         width_up_size: '横：上部寸法'

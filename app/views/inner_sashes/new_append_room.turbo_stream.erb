@@ -9,9 +9,9 @@
     <%= render 'layouts/alert', obj: f.object %>
     <div class="form-group">
       <%= f.label :room, '部屋' %>
-      <%= f.text_field :room %>
+      <%= f.text_field :room, required: true%>
     </div>
-    <%= render partial: 'form_size', locals: { inner_sash: f } %>
+    <%= render 'form_size', inner_sash: f %>
     <%= f.submit '追加' %>
   <% end %>
 <% end %>

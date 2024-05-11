@@ -34,13 +34,6 @@ class InnerSash < ApplicationRecord
   validates :glass_thickness, presence: true
   validates :is_low_e, inclusion: {in: [true, false]}
 
-  def self.create_and_find_site_memo(inner_sash:, site_id:)
-    inner_sash
-    site_memo = SiteMemo.find_by(site_id: site_id, kind: 'inner_sash')
-    inner_sash = site_memo.inner_sashes.create(inner_sash)
-    return inner_sash
-  end
-
   def previous
     InnerSash.eager_load(site_memo: :site).where(site: {id: self.site_memo.site_id}).where("inner_sashes.id<?", self.id).order(id: :desc).first
   end

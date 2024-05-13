@@ -1,0 +1,22 @@
+<div class="form_group">
+  <%= inner_sash.label :is_flat_bar, '平板' %>
+  <%= inner_sash.select :is_flat_bar ,[['有',1],['無',0]] %>
+</div>
+<div class="form_group">
+  <%= inner_sash.label :is_adjust, 'アジャスト上枠' %>
+  <%= inner_sash.select :is_adjust ,[['有',1],['無',0]] %>
+</div>
+<div class="form_group">
+  <p>写真</p>
+  <%= inner_sash.fields_for :photos, inner_sash.object.photos.build do |photo| %>
+    <% if photo.object.file_name.blank? %>
+      <%= render 'photos/form_new_photo', photo: photo %>
+    <% else %>
+      <%= turbo_frame_tag dom_id(photo.object) do %>
+        <%= image_tag photo.object.file_name_url(:thumb) %>
+        <%= photo.file_field :file_name %>
+        <%= link_to '削除', photos_destroy_existing_photo_form_path(inner_sash_id: inner_sash.id, id: photo.object.id), data:{ turbo_stream: true, turbo_method: :delete } %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

@@ -1,5 +1,6 @@
 <p>new_step5</p>
 <%= form_with model: @site_memo, url: inner_sashes_new_append_photo_and_others_path, local: true do |f| %>
+  <%= render 'layouts/alert', obj: f.object %>
   <%= f.fields_for :inner_sashes do |inner_sash| %>
     <%= render 'form_new_photo_others', inner_sash: inner_sash %>
   <% end %>

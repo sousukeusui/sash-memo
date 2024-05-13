@@ -1,5 +1,5 @@
 class InnerSashesController < ApplicationController
-  permits inner_sashes_attributes: [:id, :room, :number_of_shoji, :width_up_size, :width_down_size, :width_middle_size, 
+  permits :remark, inner_sashes_attributes: [:id, :room, :number_of_shoji, :width_up_size, :width_down_size, :width_middle_size, 
     :height_left_size, :height_middle_size, :height_right_size, :width_frame_depth, :height_frame_depth,
     :color, :is_flat_bar, :hanging_origin, :key_height, :sash_type, :middle_frame_height, :is_adjust,
     :glass_color, :glass_thickness, :glass_kind, :is_low_e, :action, photos_attributes: [:id, :file_name, :_destroy]],

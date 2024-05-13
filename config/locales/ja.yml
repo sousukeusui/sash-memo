@@ -99,6 +99,8 @@ ja:
         glass_kind: 'ガラス種類'
         is_low_e: 'Low-E'
         room: '部屋名'
+      inner_sashes/photos:
+        file_name: '写真'
 
   date:
     abbr_day_names:

@@ -46,4 +46,8 @@ class PhotoUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg"
   # end
+
+  def size_range
+    1..8.megabytes
+  end
 end

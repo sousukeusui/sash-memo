@@ -1,9 +1,9 @@
 class InnerSashesController < ApplicationController
-  permits inner_sashes_attributes: [:id, :room, :number_of_shoji, :width_up_size, :width_down_size, :width_middle_size, 
+  permits :remark, inner_sashes_attributes: [:id, :room, :number_of_shoji, :width_up_size, :width_down_size, :width_middle_size, 
     :height_left_size, :height_middle_size, :height_right_size, :width_frame_depth, :height_frame_depth,
     :color, :is_flat_bar, :hanging_origin, :key_height, :sash_type, :middle_frame_height, :is_adjust,
-    :glass_color, :glass_thickness, :glass_kind, :is_low_e, :action],
-    photos_attributes: [:id, :file_name, :_destroy], model_name: 'SiteMemo'
+    :glass_color, :glass_thickness, :glass_kind, :is_low_e, :action, photos_attributes: [:id, :file_name, :_destroy]],
+    model_name: 'SiteMemo'
 
   def new_step2
     load_inner_sashes
@@ -41,28 +41,18 @@ class InnerSashesController < ApplicationController
   end
 
   def new_step5
+    load_site_memo
+  end
+
+  def new_append_photo_and_others(site_memo)
+    load_site_memo
+    return redirect_to inner_sashes_new_comfirmation_path if @site_memo.update(site_memo)
+    load_inner_sashes
+    return render 'new_step5', status: :unprocessable_entity
+  end
+
+  def new_comfirmation
     @site_memo = SiteMemo.find(site_memo_id)
-  end
-
-  def new_step6(site_memo_id:)
-    @site_memo = SiteMemo.find(site_memo_id)
-  end
-
-  def new_comfirmation(site_memo_id:)
-    @site_memo = SiteMemo.find(site_memo_id)
-  end
-
-  def glass_append
-    site_memo  = SiteMemo.find(params[:site_memo][:id])
-    return redirect_to inner_sashes_new_step6_path(params[:site_memo][:id]) if site_memo.update!(glass_info_params)
-    return redirect_to inner_sashes_new_step5_path(params[:site_memo][:id]), notice: site_memo.errors.full_messages
-  end
-
-  #引数はsite_memo.idで良い気がする
-  def photo_append
-    site_memo = SiteMemo.find(params[:site_memo][:id])
-    return redirect_to inner_sashes_new_comfirmation_path(params[:site_memo][:id]) if site_memo.update!(photo_info_params)
-    return redirect_to inner_sashes_new_step6_path(params[:site_memo][:id]), notice: site_memo.errors.full_messages
   end
   
   def show(id:)
@@ -136,10 +126,14 @@ private
   end
 
   def load_inner_sashes
-    @inner_sashes = InnerSash.eager_load(:site_memo).where(site_memo: {site_id: session[:site_id]})
+    @inner_sashes = InnerSash.eager_load(:site_memo).where(site_memo: {kind: 'inner_sash', site_id: session[:site_id]})
   end
 
   def load_site_memo
     @site_memo = SiteMemo.find_by(kind: 'inner_sash', site_id: session[:site_id])
+  end
+
+  def load_inner_sashes_photos
+    @inner_sashes = inn.eager_load(inner_sash: :site_memo).where(site_memo: {kind: 'inner_sash', site_id: session[:site_id]})
   end
 end

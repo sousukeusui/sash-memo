@@ -12,8 +12,8 @@ Rails.application.routes.draw do
   get 'inner_sashes/new_step4'
   patch 'inner_sashes/new_append_shoji_and_glass'
   get 'inner_sashes/new_step5'
-  get 'inner_sashes/new_step6/:site_memo_id', to: 'inner_sashes#new_step6', as: :inner_sashes_new_step6
-  get 'inner_sashes/new_comfirmation/:site_memo_id', to: 'inner_sashes#new_comfirmation', as: :inner_sashes_new_comfirmation
+  patch 'inner_sashes/new_append_photo_and_others'
+  get 'inner_sashes/new_comfirmation'
   get 'inner_sashes/show/:id', to: 'inner_sashes#show', as: :inner_sashes_show
   delete 'inner_sashes/destroy/:id', to: 'inner_sashes#destroy', as: :inner_sashes_destroy
   post 'inner_sashes/navigate_page/:id', to:'inner_sashes#navigate_page', as: :inner_sashes_navigate_page
@@ -26,7 +26,6 @@ Rails.application.routes.draw do
   get 'inner_sashes/edit_shoji_and_glass/:id', to: 'inner_sashes#edit_shoji_and_glass', as: :inner_sashes_edit_shoji_and_glass
   patch 'inner_sashes/update'
   patch 'inner_sashes/glass_append'
-  patch 'inner_sashes/photo_append'
   delete 'photos/destroy_existing_photo_form/:inner_sash_id/:id', to: 'photos#destroy_existing_photo_form', as: :photos_destroy_existing_photo_form
   delete 'photos/destroy_new_photo_form/:index', to: 'photos#destroy_new_photo_form', as: :photos_destroy_new_photo_form
   get 'photos/append_photo_form/:id', to: 'photos#append_photo_form', as: :photos_append_photo_form

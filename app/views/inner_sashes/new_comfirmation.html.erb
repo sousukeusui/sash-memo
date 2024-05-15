@@ -1,28 +1,28 @@
 <p>comfirmation</p>
-<% @site_memo.inner_sashes.each do |i| %>
-  <p>部屋名：<%= i.room %></p>
-  <p>W寸法：<%= calc_order_size(i.width_up_size,
-                                i.width_middle_size,
-                                i.width_down_size) %></p>
-  <p>H寸法：<%= calc_order_size(i.height_left_size,
-                                i.height_middle_size,
-                                i.height_right_size) %></p>
-  <p>窓枠縦：<%= i.width_frame_depth %></p>
-  <p>窓枠横：<%= i.height_frame_depth %></p>
-  <p>タイプ：<%= i.sash_type %></p>
-  <p>障子枚数：<%= i.number_of_shoji %></p>
-  <p>色：<%= i.color %></p>
-  <p>吊り元：<%= i.hanging_origin %></p>
-  <p>厚み：<%= i.glass_thickness %></p>
-  <p>Low-E：<%= i.is_low_e %></p>
-  <p>種類：<%= i.glass_kind %></p>
-  <p>ガラス色：<%= i.glass_color %></p>
-  <p>クレセント（窓台〜芯）<%= i.key_height %></p>
-  <p>中桟（窓台〜芯）<%= i.middle_frame_height %></p>
-  <p>平板：<%= i.is_flat_bar %></p>
-  <p>アジャスト：<%= i.is_adjust %></p>
+<% @site_memo.inner_sashes.each do |inner| %>
+  <p>部屋名：<%= inner.room %></p>
+  <p>W寸法：<%= calc_order_size(inner.width_up_size,
+                                inner.width_middle_size,
+                                inner.width_down_size) %></p>
+  <p>H寸法：<%= calc_order_size(inner.height_left_size,
+                                inner.height_middle_size,
+                                inner.height_right_size) %></p>
+  <p>窓枠縦：<%= inner.width_frame_depth %></p>
+  <p>窓枠横：<%= inner.height_frame_depth %></p>
+  <p>タイプ：<%= inner.sash_type %></p>
+  <p>障子枚数：<%= inner.number_of_shoji %></p>
+  <p>色：<%= inner.color %></p>
+  <p>吊り元：<%= inner.hanging_origin %></p>
+  <p>厚み：<%= inner.glass_thickness %></p>
+  <p>Low-E：<%= inner.is_low_e %></p>
+  <p>種類：<%= inner.glass_kind %></p>
+  <p>ガラス色：<%= inner.glass_color %></p>
+  <p>クレセント（窓台〜芯）<%= inner.key_height %></p>
+  <p>中桟（窓台〜芯）<%= inner.middle_frame_height %></p>
+  <p>平板：<%= inner.is_flat_bar %></p>
+  <p>アジャスト：<%= inner.is_adjust %></p>
   <p>写真</p>
-  <% i.photos.each do |photo| %>
+  <% inner.photos.each do |photo| %>
     <%= image_tag photo.file_name_url(:thumb) %>
   <% end %>
 <% end %>

@@ -1,30 +1,54 @@
-<div class="form-group">
+<%# 共通 %>
+<div class="form_group">
+  <%= inner_sash.label :is_flat_bar, '平板' %>
   <%= inner_sash.select :is_flat_bar ,[['有',1],['無',0]] %>
 </div>
-<div class="form-group">
+<div class="form_group">
+  <%= inner_sash.label :is_adjust, 'アジャスト上枠' %>
   <%= inner_sash.select :is_adjust ,[['有',1],['無',0]] %>
 </div>
-<div class="form-group">
-  <% if inner_sash.object.photos.blank? %>
+
+<%= controller.action_name %>
+<% if controller.action_name == 'new_step5' %>
+  <%# 新規作成ページ用 %>
+  <div class="form_group">
+    <p>写真</p>
     <%= inner_sash.fields_for :photos, inner_sash.object.photos.build do |photo| %>
-      <%= render partial: 'photos/form_new_photo', locals:{ photo: photo } %>
-    <% end %>
-  <% else %>
-    <%= inner_sash.fields_for :photos, inner_sash.object.photos do |photo| %>
-      <%= turbo_frame_tag dom_id(photo.object) do %>
-        <%= image_tag photo.object.file_name_url(:thumb) %>
-        <%= photo.file_field :file_name %>
-        <%= link_to '削除', photos_destroy_existing_photo_form_path(inner_sash_id: @inner_sash.id, id: photo.object.id), data:{ turbo_stream: true, turbo_method: :delete } %>
-        <%= photo.hidden_field :id, value: photo.object.id %>
+      <% if photo.object.file_name.blank? %>
+        <%= render 'photos/form_new_photo', photo: photo %>
+      <% else %>
+        <%= turbo_frame_tag dom_id(photo.object) do %>
+          <%= image_tag photo.object.file_name_url(:thumb) %>
+          <%= photo.file_field :file_name %>
+          <%= link_to '削除', photos_destroy_existing_photo_form_path(inner_sash_id: inner_sash.id, id: photo.object.id), data:{ turbo_stream: true, turbo_method: :delete } %>
+        <% end %>
       <% end %>
     <% end %>
-  <% end %>
-  <%= turbo_frame_tag 'new_photos' %>
-  <%= link_to '追加', photos_append_photo_form_path(@inner_sash.id), data: { turbo_stream: true} %>
-</div>
-<div class="form-group">
-  <%= inner_sash.fields_for :site_memo_attributes, @inner_sash.site_memo do |site_memo| %>
-    <%= site_memo.text_area :remark %>
-    <%= site_memo.hidden_field :id, value: site_memo.object.id %>
-  <% end %>
-</div>
+  </div>
+<% else %>
+  <%# 編集ページ用 %>
+  <div class="form-group">
+    <% if inner_sash.object.photos.blank? %>
+      <%= inner_sash.fields_for :photos, inner_sash.object.photos.build do |photo| %>
+        <%= render partial: 'photos/form_new_photo', locals:{ photo: photo } %>
+      <% end %>
+    <% else %>
+      <%= inner_sash.fields_for :photos, inner_sash.object.photos do |photo| %>
+        <%= turbo_frame_tag dom_id(photo.object) do %>
+          <%= image_tag photo.object.file_name_url(:thumb) %>
+          <%= photo.file_field :file_name %>
+          <%= link_to '削除', photos_destroy_existing_photo_form_path(inner_sash_id: @inner_sash.id, id: photo.object.id), data:{ turbo_stream: true, turbo_method: :delete } %>
+          <%= photo.hidden_field :id, value: photo.object.id %>
+        <% end %>
+      <% end %>
+    <% end %>
+    <%= turbo_frame_tag 'new_photos' %>
+    <%= link_to '追加', photos_append_photo_form_path(@inner_sash.id), data: { turbo_stream: true} %>
+  </div>
+  <div class="form-group">
+    <%= inner_sash.fields_for :site_memo_attributes, @inner_sash.site_memo do |site_memo| %>
+      <%= site_memo.text_area :remark %>
+      <%= site_memo.hidden_field :id, value: site_memo.object.id %>
+    <% end %>
+  </div>
+<% end %>

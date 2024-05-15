@@ -1,63 +1,30 @@
 <p>comfirmation</p>
-<% @site_memo.inner_sashes.each do |inner_sash| %>
-  <table>
-    <tr>
-      <th>W寸法（最小値）</th>
-      <td><%= min_size(inner_sash.width_up_size, inner_sash.width_middle_size, inner_sash.width_down_size) %></td>
-      <th>H寸法（最小値）</th>
-      <td><%= min_size(inner_sash.height_left_size, inner_sash.height_middle_size, inner_sash.height_right_size) %></td>
-    </tr>
-    <tr>
-      <th>窓枠縦</th>
-      <td><%= inner_sash.width_frame_depth %></td>
-      <th>窓枠横</th>
-      <td><%= inner_sash.height_frame_depth %></td>
-    </tr>
-    <tr>
-      <th>タイプ</th>
-      <td><%= inner_sash.sash_type_i18n %></td>
-      <th>色</th>
-      <td><%= inner_sash.color_i18n %></td>
-    </tr>
-    <tr>
-      <th>障子枚数</th>
-      <td><%= inner_sash.number_of_shoji %>枚</td>
-      <th>吊り元</th>
-      <td><%= inner_sash.hanging_origin_i18n %></td>
-    </tr>
-    <tr>
-      <th>平板</th>
-      <td><%= inner_sash.is_flat_bar ? "有" : "無" %></td>
-      <th>クレセント</th>
-      <td><%= inner_sash.key_height %></td>
-    </tr>
-    <tr>
-      <th>中桟</th>
-      <td><%= inner_sash.middle_frame_height %></td>
-      <th>アジャスト</th>
-      <td><%= inner_sash.is_adjust ? "有" : "無" %></td>
-    </tr>
-    <tr>
-      <th>ガラス厚み</th>
-      <td><%= inner_sash.glass_thickness_i18n %></td>
-      <th>ガラス色</th>
-      <td><%= inner_sash.glass_color_i18n %></td>
-    </tr>
-    <tr>
-      <th>ガラス種類</th>
-      <td><%= inner_sash.glass_kind_i18n %></td>
-      <th>Low_E</th>
-      <td><%= inner_sash.is_low_e ? "有" : "無" %></td>
-    </tr>
-    <tr>
-      <th>写真</th>
-      <td><%= inner_sash.inner_sash_photos.size %>枚</td>
-      <th></th>
-    </tr>
-    <tr>
-      <th>備考</th>
-      <td><%= inner_sash.remark %></td>
-    </tr>
-  </table>
+<% @site_memo.inner_sashes.each do |inner| %>
+  <p>部屋名：<%= inner.room %></p>
+  <p>W寸法：<%= calc_order_size(inner.width_up_size,
+                                inner.width_middle_size,
+                                inner.width_down_size) %></p>
+  <p>H寸法：<%= calc_order_size(inner.height_left_size,
+                                inner.height_middle_size,
+                                inner.height_right_size) %></p>
+  <p>窓枠縦：<%= inner.width_frame_depth %></p>
+  <p>窓枠横：<%= inner.height_frame_depth %></p>
+  <p>タイプ：<%= inner.sash_type %></p>
+  <p>障子枚数：<%= inner.number_of_shoji %></p>
+  <p>色：<%= inner.color %></p>
+  <p>吊り元：<%= inner.hanging_origin %></p>
+  <p>厚み：<%= inner.glass_thickness %></p>
+  <p>Low-E：<%= inner.is_low_e %></p>
+  <p>種類：<%= inner.glass_kind %></p>
+  <p>ガラス色：<%= inner.glass_color %></p>
+  <p>クレセント（窓台〜芯）<%= inner.key_height %></p>
+  <p>中桟（窓台〜芯）<%= inner.middle_frame_height %></p>
+  <p>平板：<%= inner.is_flat_bar %></p>
+  <p>アジャスト：<%= inner.is_adjust %></p>
+  <p>写真</p>
+  <% inner.photos.each do |photo| %>
+    <%= image_tag photo.file_name_url(:thumb) %>
+  <% end %>
 <% end %>
-<%= link_to 'この内容で確定', site_memos_index_path(@site_memo.site_id) %>
+<p>備考：<%= @site_memo.remark %></p>
+<%= link_to 'メモ一覧で確認', site_memos_index_path(session[:site_id]) %>

@@ -1,21 +1,21 @@
-<%# 共通 %>
-<div class="form_group">
-  <%= inner_sash.label :is_flat_bar, '平板' %>
-  <%= inner_sash.select :is_flat_bar ,[['有',1],['無',0]] %>
-</div>
-<div class="form_group">
-  <%= inner_sash.label :is_adjust, 'アジャスト上枠' %>
-  <%= inner_sash.select :is_adjust ,[['有',1],['無',0]] %>
-</div>
-
 <%= controller.action_name %>
 <% if controller.action_name == 'new_step5' %>
   <%# 新規作成ページ用 %>
   <div class="form_group">
     <p>写真</p>
-    <%= inner_sash.fields_for :photos, inner_sash.object.photos.build, child_index: @form_index do |photo| %>
-      <%= render partial: 'photos/form_new_photo', locals: { photo: photo, form_index: @form_index } %>
-      <% @form_index += Settings.form_index[:increment] %>
+    <% if inner_sash.object.photos.blank? %>
+      <%= inner_sash.fields_for :photos, inner_sash.object.photos.build, child_index: @form_index do |photo| %>
+        <%= render partial: 'photos/form_new_photo', locals: { photo: photo, form_index: @form_index } %>
+        <% @form_index += Settings.form_index[:increment] %>
+      <% end %>
+    <% else %>
+      <%= inner_sash.fields_for :photos, inner_sash.object.photos do |photo| %>
+        <%= turbo_frame_tag dom_id(photo.object) do %>
+          <%= image_tag photo.object.file_name_url(:thumb) %>
+          <%= photo.file_field :file_name %>
+          <a href="#" id='destroy_photo'>削除</a>
+        <% end %>
+      <% end %>
     <% end %>
   </div>
 <% else %>

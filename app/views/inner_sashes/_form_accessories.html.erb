@@ -1,0 +1,13 @@
+<div class="form_group">
+  <%= inner_sash.label :room, '部屋名' %>
+  <%= inner_sash.text_field :room %>
+</div>
+<div class="form_group">
+  <%= inner_sash.label :is_flat_bar, '平板' %>
+  <%= inner_sash.select :is_flat_bar ,[['有',1],['無',0]], {selected: boolean_to_int(inner_sash.object.is_flat_bar)} %>
+  <%= inner_sash.object.is_flat_bar %>
+</div>
+<div class="form_group">
+  <%= inner_sash.label :is_adjust, 'アジャスト上枠' %>
+  <%= inner_sash.select :is_adjust ,[['有',1],['無',0]], {selected: boolean_to_int(inner_sash.object.is_adjust)} %>
+</div>

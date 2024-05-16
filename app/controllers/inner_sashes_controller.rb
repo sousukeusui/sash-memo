@@ -42,7 +42,6 @@ class InnerSashesController < ApplicationController
 
   def new_step5
     load_site_memo
-    @form_index = Settings.form_index[:default]
   end
 
   def new_append_photo_and_others(site_memo)

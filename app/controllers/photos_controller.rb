@@ -1,12 +1,14 @@
 class PhotosController < ApplicationController
+  skip_forgery_protection
+
   def append_photo_form(id:)
     @inner_sash = InnerSash.find(id)
     @form_index = Time.now.to_i
   end
 
   # すでにある写真データのフォーム削除
-  def destroy_existing_photo_form(inner_sash_id:, id:)
-    @inner_sash = InnerSash.find(inner_sash_id)
+  def destroy_existing_photo_form
+    @site_memo = SiteMemo.find(site_memo_id)
     @photo = Photo.find(id)
     @form_index = Time.now.to_i
   end

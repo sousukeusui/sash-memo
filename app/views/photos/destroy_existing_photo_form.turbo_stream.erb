@@ -1,12 +1,3 @@
-<%= form_with model: @site_memo, url: inner_sashes_update_path, id:"unnecessary" do |site_memo| %>
-  <%= site_memo.fields_for :inner_sashes, site_memo.object.inner_sashes.build, id: "unnecessary" do |inner_sash| %>
-    <%= turbo_stream.update dom_id(@photo) do %>
-      <%= inner_sash.fields_for :photos, inner_sash.object.photos.build, child_index: @form_index do |photo| %>
-        <%= photo.hidden_field :id, value: @photo.id %>
-        <%= photo.hidden_field :_destroy, value: 1 %>
-      <% end %>
-    <% end %>
-  <% end %>
+<%= turbo_stream.replace dom_id(@photo) do %>
+  <input type="hidden" name="site_memo[inner_sashes_attributes][]">
 <% end %>
-
-<%= turbo_stream.remove "unnecessary" %>

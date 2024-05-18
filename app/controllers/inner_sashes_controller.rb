@@ -48,6 +48,7 @@ class InnerSashesController < ApplicationController
     load_site_memo
     return redirect_to inner_sashes_new_comfirmation_path if @site_memo.update(site_memo)
     load_inner_sashes
+    @form_index = Settings.form_index[:default]
     return render 'new_step5', status: :unprocessable_entity
   end
 

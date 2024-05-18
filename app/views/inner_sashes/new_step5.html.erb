@@ -1,12 +1,18 @@
 <p>new_step5</p>
-<%= form_with model: @site_memo, url: inner_sashes_new_append_photo_and_others_path, local: true do |f| %>
-  <%= render 'layouts/alert', obj: f.object %>
-  <%= f.fields_for :inner_sashes do |inner_sash| %>
+<%= form_with model: @site_memo, url: inner_sashes_new_append_photo_and_others_path, local: true do |site_memo| %>
+  <%= render 'layouts/alert', obj: site_memo.object %>
+  <%= site_memo.fields_for :inner_sashes do |inner_sash| %>
     <%= render 'form_accessories', inner_sash: inner_sash %>
+    <%= inner_sash.fields_for :photos do |photo| %>
+      <%= render 'photo_fields', f: photo %>
+    <% end %>
+    <div class="links">
+      <%= link_to_add_association '追加', inner_sash, :photos %>
+    </div>
   <% end %>
   <div class="form-group">
-    <%= f.label :remark, '備考' %>
-    <%= f.text_area :remark %>
+    <%= site_memo.label :remark, '備考' %>
+    <%= site_memo.text_area :remark %>
   </div>
-  <%= f.submit '次へ' %>
+  <%= site_memo.submit '次へ' %>
 <% end %>

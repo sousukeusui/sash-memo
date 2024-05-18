@@ -3,15 +3,24 @@
 
 <%= form_with model: @site_memo, url: inner_sashes_new_append_photo_and_others_path, local: true do |site_memo| %>
   <%= render 'layouts/alert', obj: site_memo.object %>
+  
   <%= site_memo.fields_for :inner_sashes do |inner_sash| %>
+    <div class="form_group">
+      <%= inner_sash.label :room, '部屋名' %>
+      <%= inner_sash.text_field :room %>
+    </div>
     <%= render 'form_accessories', inner_sash: inner_sash %>
+    
     <%= inner_sash.fields_for :photos do |photo| %>
       <%= render 'photo_fields', f: photo %>
     <% end %>
+
     <div class="links">
       <%= link_to_add_association '追加', inner_sash, :photos %>
     </div>
+
   <% end %>
+
   <div class="form-group">
     <%= site_memo.label :remark, '備考' %>
     <%= site_memo.text_area :remark %>

@@ -1,7 +1,15 @@
 <div class="nested-fields">
-  <div class="form-group">
-    <%= f.label :file_name, "写真" %>
-    <%= f.file_field :file_name %>
-  </div>
+  <% if f.object.file_name.blank? %>
+    <div class="form-group">
+      <%= f.label :file_name, "写真" %>
+      <%= f.file_field :file_name %>
+    </div>
+  <% else %>
+    <div class="form_group">
+      <%= f.label :file_name, "写真" %>
+      <%= image_tag f.object.file_name_url(:thumb) %>
+      <%= f.file_field :file_name %>
+    </div>
+  <% end %>
   <%= link_to_remove_association "削除", f %>
 </div>

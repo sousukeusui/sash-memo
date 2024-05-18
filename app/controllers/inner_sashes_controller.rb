@@ -42,13 +42,13 @@ class InnerSashesController < ApplicationController
 
   def new_step5
     load_site_memo
+    load_inner_sashes
   end
 
   def new_append_photo_and_others(site_memo)
     load_site_memo
     return redirect_to inner_sashes_new_comfirmation_path if @site_memo.update(site_memo)
     load_inner_sashes
-    @form_index = Settings.form_index[:default]
     return render 'new_step5', status: :unprocessable_entity
   end
 

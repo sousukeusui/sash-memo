@@ -42,6 +42,7 @@ class InnerSashesController < ApplicationController
 
   def new_step5
     load_site_memo
+    load_inner_sashes
   end
 
   def new_append_photo_and_others(site_memo)

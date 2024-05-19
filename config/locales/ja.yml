@@ -102,6 +102,12 @@ ja:
       inner_sashes/photos:
         file_name: '写真'
 
+  inner_sashes:
+    update:
+      basic_info: "基本情報"
+      shoji_and_glass: "障子・ガラス"
+      photo_and_others: "写真・その他"
+
   date:
     abbr_day_names:
     - 日

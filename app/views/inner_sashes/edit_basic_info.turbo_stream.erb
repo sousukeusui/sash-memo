@@ -1,11 +1,10 @@
 <%= turbo_stream.replace 'basic-info' do %>
   <%= turbo_frame_tag 'basic-info' do %>
-    <%= form_with model: @inner_sash, url: inner_sashes_update_path do |f| %>
-      <%= render partial: 'form_basic_info', locals: { inner_sash: f } %>
-      <%= render partial: 'form_size', locals: { inner_sash: f } %>
-      <%= f.hidden_field :id, value: @inner_sash.id %>
-      <%= f.hidden_field :action, value: controller.action_name  %>
-      <%= f.submit '保存' %>
+    <%= form_with model: @inner_sash, url: inner_sashes_update_path do |inner_sash| %>
+      <%= render 'basic_info_fields', inner_sash: inner_sash %>
+      <%= render 'size_fields', inner_sash: inner_sash%>
+      <%= inner_sash.hidden_field :action, value: controller.action_name  %>
+      <%= inner_sash.submit '保存' %>
     <% end %>
   <% end %>
   <%= link_to 'キャンセル', inner_sashes_basic_info_path(@inner_sash.id), data: {turbo_stream: true} %>

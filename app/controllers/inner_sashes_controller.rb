@@ -125,8 +125,8 @@ private
 
   def inner_sash_params
     params.require(:inner_sash).permit(:room, :number_of_shoji, :width_up_size, :width_down_size, :width_middle_size, 
-                                      :height_left_size, :height_middle_size, :height_right_size, 
-                                      :width_frame_depth, :height_frame_depth, :is_flat_bar, :is_adjust, 
+                                      :height_left_size, :height_middle_size, :height_right_size, :width_frame_depth, :height_frame_depth,
+                                      :sash_type, :color, :number_of_shoji, :hanging_origin, :is_flat_bar, :is_adjust, 
                                       :glass_thickness, :glass_kind, :glass_color, :is_low_e, :key_height, :middle_frame_height,
                                       :action, photos_attributes: [:id, :file_name, :_destroy]).merge(site_memo_id: load_site_memo.id)
   end

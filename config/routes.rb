@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   get 'inner_sashes/edit_basic_info/:id', to: 'inner_sashes#edit_basic_info', as: :inner_sashes_edit_basic_info
   get 'inner_sashes/edit_photo_and_others/:id', to: 'inner_sashes#edit_photo_and_others', as: :inner_sashes_edit_photo_and_others
   get 'inner_sashes/edit_shoji_and_glass/:id', to: 'inner_sashes#edit_shoji_and_glass', as: :inner_sashes_edit_shoji_and_glass
-  patch 'inner_sashes/update'
+  patch 'inner_sashes/update/:id', to: 'inner_sashes#update', as: :inner_sashes_update
   patch 'inner_sashes/glass_append'
   delete 'photos/destroy_existing_photo_form/:id', to: 'photos#destroy_existing_photo_form', as: :photos_destroy_existing_photo_form
   delete 'photos/destroy_new_photo_form/:index', to: 'photos#destroy_new_photo_form', as: :photos_destroy_new_photo_form

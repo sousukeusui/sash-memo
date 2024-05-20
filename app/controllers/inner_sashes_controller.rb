@@ -2,7 +2,7 @@ class InnerSashesController < ApplicationController
   permits :remark, inner_sashes_attributes: [:id, :room, :number_of_shoji, :width_up_size, :width_down_size, :width_middle_size, 
     :height_left_size, :height_middle_size, :height_right_size, :width_frame_depth, :height_frame_depth,
     :color, :is_flat_bar, :hanging_origin, :key_height, :sash_type, :middle_frame_height, :is_adjust,
-    :glass_color, :glass_thickness, :glass_kind, :is_low_e, :action, photos_attributes: [:id, :file_name, :_destroy]],
+    :glass_color, :glass_thickness, :glass_kind, :is_low_e, photos_attributes: [:id, :file_name, :_destroy]],
     model_name: 'SiteMemo'
 
   def new_step2
@@ -110,12 +110,15 @@ class InnerSashesController < ApplicationController
     # @photo = @inner_sash.inner_sash_photos.build
   end
 
-  def update(inner_sash)
-    @inner_sash = InnerSash.find(inner_sash[:id])
-    @inner_sash.update!(inner_sash)
-    redirect_to inner_sashes_basic_info_path(@inner_sash.id), notice: '基本情報を更新しました' if inner_sash[:action] == 'edit_basic_info'
-    redirect_to inner_sashes_shoji_and_glass_path(@inner_sash.id), notice: '障子・ガラスを更新しました' if inner_sash[:action] == 'edit_shoji_and_glass'
-    redirect_to inner_sashes_photo_and_others_path(@inner_sash.id), notice: '写真・その他を更新しました' if inner_sash[:action] == 'edit_photo_and_others'
+  def update(id:)
+    inner_sash = InnerSash.find(id)
+    inner_sash.update!(inner_sash_params)
+
+    # previous_actionはbasic_info、shoji_and_glass、photo_and_othersのどれか
+    previous_action = inner_sash_params[:action].sub('edit_','')
+    notice = I18n.t("inner_sashes.update.#{previous_action}")
+
+    redirect_to "/inner_sashes/#{previous_action}/#{id}", notice: "#{notice}を更新しました"
   end
 
 private
@@ -123,7 +126,7 @@ private
   def inner_sash_params
     params.require(:inner_sash).permit(:room, :number_of_shoji, :width_up_size, :width_down_size, :width_middle_size, 
                                       :height_left_size, :height_middle_size, :height_right_size, 
-                                      :width_frame_depth, :height_frame_depth).merge(site_memo_id: load_site_memo.id)
+                                      :width_frame_depth, :height_frame_depth, :is_flat_bar, :is_adjust, :action, photos_attributes: [:id, :file_name, :_destroy]).merge(site_memo_id: load_site_memo.id)
   end
 
   def load_inner_sashes

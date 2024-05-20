@@ -129,10 +129,6 @@ private
                                       :width_frame_depth, :height_frame_depth, :is_flat_bar, :is_adjust, :action, photos_attributes: [:id, :file_name, :_destroy]).merge(site_memo_id: load_site_memo.id)
   end
 
-  def load_inner_sash
-    @inner_sash = InnerSash.find()
-  end
-
   def load_inner_sashes
     @inner_sashes = InnerSash.eager_load(:site_memo).where(site_memo: {kind: 'inner_sash', site_id: session[:site_id]})
   end

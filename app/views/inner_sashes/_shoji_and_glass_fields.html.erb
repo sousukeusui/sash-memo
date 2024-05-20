@@ -3,7 +3,7 @@
   <%= inner_sash.select :glass_thickness, InnerSash.glass_thicknesses.keys.map{ |k| [I18n.t("enums.inner_sash.glass_thickness.#{k}"),k] } %>
 </div>
 <div class="form-group">
-  <%= inner_sash.label :glass_thickness, '種類' %>
+  <%= inner_sash.label :glass_kind, '種類' %>
   <%= inner_sash.select :glass_kind, InnerSash.glass_kinds.keys.map{ |k| [I18n.t("enums.inner_sash.glass_kind.#{k}"),k] } %>
 </div>
 <div class="form-group">

@@ -1,8 +1,8 @@
 <%= turbo_stream.update 'shoji-and-glass' do %>
-  <%= form_with model: @inner_sash, url: inner_sashes_update_path(@inner_sash.id) do |f| %>
-    <%= render partial: 'shoji_and_glass_fields', locals: { inner_sash:  f } %>
-    <%= f.hidden_field :template, value: 'shoji_and_glass'  %>
-    <%= f.submit '保存' %>
+  <%= form_with model: @inner_sash, url: inner_sashes_update_path(@inner_sash.id) do |inner_sash| %>
+    <%= render partial: 'shoji_and_glass_fields', locals: { inner_sash:  inner_sash } %>
+    <%= inner_sash.hidden_field :template, value: 'shoji_and_glass'  %>
+    <%= inner_sash.submit '保存' %>
   <% end %>
   <%= link_to 'キャンセル', inner_sashes_switch_path(template: 'shoji_and_glass',id: @inner_sash.id), data: {turbo_stream: true} %>
 <% end %>

@@ -63,7 +63,7 @@ class InnerSashesController < ApplicationController
 
   def update_order(id:, order:)
     @inner_sash = InnerSash.find(id)
-    @inner_sash.site_memo.update!(order: order)
+    @inner_sash.update!(order: order)
     @order_key = get_opposite_order_key(inner_sash: @inner_sash)
     flash.now.notice = "#{SiteMemo.orders_i18n[order.to_sym]}にしました"
   end
@@ -82,6 +82,7 @@ class InnerSashesController < ApplicationController
 
   def switch(template:, id:)
     @inner_sash = InnerSash.find(id)
+     # templateはbasic_info、shoji_and_glass、photo_and_othersのどれか
     render "#{template}", content_type: 'text/vnd.turbo-stream.html'
   end
 
@@ -89,7 +90,7 @@ class InnerSashesController < ApplicationController
     @inner_sash = InnerSash.find(id)
     @inner_sash.update!(inner_sash_params)
 
-    # previous_actionはbasic_info、shoji_and_glass、photo_and_othersのどれか
+    # templateはbasic_info、shoji_and_glass、photo_and_othersのどれか
     template = inner_sash_params[:template]
     flash.now.notice = I18n.t("inner_sashes.update.#{template}") + "を更新しました"
     render "#{template}", content_type: 'text/vnd.turbo-stream.html'

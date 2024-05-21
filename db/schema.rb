@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_05_09_054846) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_21_064840) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -47,6 +47,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_09_054846) do
     t.integer "glass_kind", default: 0, null: false
     t.boolean "is_low_e", default: false, null: false
     t.string "room", limit: 15
+    t.integer "order", default: 0, null: false
     t.index ["site_memo_id"], name: "index_inner_sashes_on_site_memo_id"
   end
 

@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   get 'inner_sashes/show/:id', to: 'inner_sashes#show', as: :inner_sashes_show
   delete 'inner_sashes/destroy/:id', to: 'inner_sashes#destroy', as: :inner_sashes_destroy
   post 'inner_sashes/navigate_page/:id', to:'inner_sashes#navigate_page', as: :inner_sashes_navigate_page
-  post 'inner_sashes/update_order/:id', to: 'inner_sashes#update_order', as: :inner_sashes_update_order
+  post 'inner_sashes/update_order/:id/:order', to: 'inner_sashes#update_order', as: :inner_sashes_update_order
   get 'inner_sashes/switch/:template/:id', to: 'inner_sashes#switch', as: :inner_sashes_switch
   patch 'inner_sashes/update/:id', to: 'inner_sashes#update', as: :inner_sashes_update
   patch 'inner_sashes/glass_append'

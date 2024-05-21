@@ -11,10 +11,12 @@
   <%= link_to '削除', inner_sashes_destroy_path(id: @inner_sash.id), data: {turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }%>
 </div>
 <%= turbo_frame_tag 'inner-sash-data-wrap' do %>
-  <%= render 'drawing' %>
+  <%= turbo_frame_tag 'drawing' do %>
+    <%= render 'drawing', inner_sash: @inner_sash %>
+  <% end %>
   <div id="inner-sash-data">
     <%= render 'tabs' %>
-    <%= render 'basic_info' %>
+    <%= render 'basic_info', inner_sash: @inner_sash%>
   </div>
   <%= link_to '次', inner_sashes_navigate_page_path(id: @inner_sash.next), data: {turbo_method: :post} if @inner_sash.next.present? %>
   <%= link_to '前', inner_sashes_navigate_page_path(id: @inner_sash.previous), data: {turbo_method: :post} if @inner_sash.previous.present? %>

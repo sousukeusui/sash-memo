@@ -82,21 +82,6 @@ class InnerSashesController < ApplicationController
     @basic_active = 'is-active'
   end
 
-  def basic_info(id:)
-    @inner_sash = InnerSash.find(id)
-    @basic_active = 'is-active'
-  end
-
-  def shoji_and_glass(id:)
-    @inner_sash = InnerSash.find(id)
-    @shoji_active = 'is-active'
-  end
-
-  def photo_and_others(id:)
-    @inner_sash = InnerSash.find(id)
-    @photo_active = 'is-active'
-  end
-
   def edit_basic_info(id:)
     @inner_sash = InnerSash.find(id)
   end
@@ -111,14 +96,13 @@ class InnerSashesController < ApplicationController
   end
 
   def update(id:)
-    inner_sash = InnerSash.find(id)
-    inner_sash.update!(inner_sash_params)
+    @inner_sash = InnerSash.find(id)
+    @inner_sash.update!(inner_sash_params)
 
     # previous_actionはbasic_info、shoji_and_glass、photo_and_othersのどれか
     previous_action = inner_sash_params[:action].sub('edit_','')
-    notice = I18n.t("inner_sashes.update.#{previous_action}")
-
-    redirect_to "/inner_sashes/#{previous_action}/#{id}", notice: "#{notice}を更新しました"
+    flash.now.notice = I18n.t("inner_sashes.update.#{previous_action}") + "を更新しました"
+    render "#{previous_action}", content_type: 'text/vnd.turbo-stream.html'
   end
 
 private

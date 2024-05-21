@@ -105,6 +105,11 @@ class InnerSashesController < ApplicationController
     render "#{previous_action}", content_type: 'text/vnd.turbo-stream.html'
   end
 
+  def click_tab(template:, id:)
+    @inner_sash = InnerSash.find(id)
+    render "#{template}", content_type: 'text/vnd.turbo-stream.html'
+  end
+
 private
 
   def inner_sash_params

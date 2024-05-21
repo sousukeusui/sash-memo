@@ -6,7 +6,7 @@ class SiteMemosController < ApplicationController
     #site_memosに新しい子モデルができたらそれに応じて取得するものを動的に変える    
     @site = Site.preload(site_memos: :inner_sashes).find(site_id)
     @site_memos = @site.site_memos.page(params[:page]).per(5)
-    @order_key = get_opposite_order_key(site_memos: @site.site_memos)
+    @order_key = get_opposite_order_key(site_memos: @site_memos)
   end
 
   def update_bulk_order(site_id:,order:)

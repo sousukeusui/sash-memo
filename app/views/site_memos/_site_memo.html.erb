@@ -13,11 +13,11 @@
         <%= inner_sash.sash_type_i18n %>
       </div>
       <div>
-        <%= site_memo.order_i18n %>
+        <%= inner_sash.order_i18n %>
       </div>
       <!-- 以下のリンクはテーブルの行に広げる予定 -->
       <%= link_to '詳細', site_memos_show_switcher_path(kind: site_memo.kind, id: inner_sash.id), data: { turbo: false } %>
-      <%= link_to '削除', site_memos_destroy_path(id: site_memo.id), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' } %>
+      <%= link_to '削除', site_memos_destroy_path(id: inner_sash.id), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' } %>
     <% end %>
   </div>
 <% end %>

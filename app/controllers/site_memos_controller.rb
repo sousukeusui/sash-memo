@@ -5,7 +5,8 @@ class SiteMemosController < ApplicationController
     #site_memoの全ての子モデル結合して取得
     #site_memosに新しい子モデルができたらそれに応じて取得するものを動的に変える    
     @site = Site.preload(site_memos: :inner_sashes).find(site_id)
-    @site_memos = @site.site_memos.page(params[:page]).per(5)
+    #あとでページネーションを考える
+    @site_memos = @site.site_memos
     @order_key = get_opposite_order_key(site_memos: @site_memos)
   end
 
@@ -47,9 +48,11 @@ class SiteMemosController < ApplicationController
     #他のモデルが追加されたら分岐を追加
   end
 
-  def destroy(id:)
-    @site_memo = SiteMemo.find(id)
-    @site_memo.destroy
+  def destroy(kind:, child_id:)
+    if kind == 'inner_sash'
+      @inner_sash = InnerSash.find(child_id)
+      @inner_sash.destroy
+    end
     flash.now.notice = 'メモを削除しました'
   end
 end

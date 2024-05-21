@@ -90,9 +90,9 @@ class InnerSashesController < ApplicationController
     @inner_sash.update!(inner_sash_params)
 
     # previous_actionはbasic_info、shoji_and_glass、photo_and_othersのどれか
-    p previous_action = inner_sash_params[:action].sub('edit_','')
-    flash.now.notice = I18n.t("inner_sashes.update.#{previous_action}") + "を更新しました"
-    render "#{previous_action}", content_type: 'text/vnd.turbo-stream.html'
+    template = inner_sash_params[:template]
+    flash.now.notice = I18n.t("inner_sashes.update.#{template}") + "を更新しました"
+    render "#{template}", content_type: 'text/vnd.turbo-stream.html'
   end
 
 private
@@ -102,7 +102,7 @@ private
                                       :height_left_size, :height_middle_size, :height_right_size, :width_frame_depth, :height_frame_depth,
                                       :sash_type, :color, :number_of_shoji, :hanging_origin, :is_flat_bar, :is_adjust, 
                                       :glass_thickness, :glass_kind, :glass_color, :is_low_e, :key_height, :middle_frame_height,
-                                      :action, photos_attributes: [:id, :file_name, :_destroy]).merge(site_memo_id: load_site_memo.id)
+                                      :template, photos_attributes: [:id, :file_name, :_destroy]).merge(site_memo_id: load_site_memo.id)
   end
 
   def load_inner_sashes

@@ -1,5 +1,5 @@
 class InnerSash < ApplicationRecord
-  attr_accessor :action
+  attr_accessor :template
 
   belongs_to :site_memo, dependent: :destroy
   has_many :photos, dependent: :destroy

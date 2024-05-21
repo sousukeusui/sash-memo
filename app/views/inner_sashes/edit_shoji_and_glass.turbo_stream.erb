@@ -4,5 +4,5 @@
     <%= f.hidden_field :action, value: controller.action_name  %>
     <%= f.submit '保存' %>
   <% end %>
-  <%= link_to 'キャンセル', inner_sashes_edit_path(template: 'shoji_and_glass',id: @inner_sash.id), data: {turbo_stream: true} %>
+  <%= link_to 'キャンセル', inner_sashes_switch_path(template: 'shoji_and_glass',id: @inner_sash.id), data: {turbo_stream: true} %>
 <% end %>

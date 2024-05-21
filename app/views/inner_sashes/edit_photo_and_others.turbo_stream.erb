@@ -10,5 +10,5 @@
     <%= inner_sash.hidden_field :action, value: controller.action_name  %>
     <%= inner_sash.submit '保存' %>
   <% end %>
-  <%= link_to 'キャンセル', inner_sashes_edit_path(template: 'photo_and_others',id: @inner_sash.id), data: {turbo_stream: true} %>
+  <%= link_to 'キャンセル', inner_sashes_switch_path(template: 'photo_and_others',id: @inner_sash.id), data: {turbo_stream: true} %>
 <% end %>

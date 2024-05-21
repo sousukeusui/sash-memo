@@ -1,12 +1,12 @@
 <div id="basic-tab" class='data-tab is-active'>
-  <%= link_to '基本情報・枠', inner_sashes_click_tab_path(template: 'basic_info', id: @inner_sash.id),
+  <%= link_to '基本情報・枠', inner_sashes_switch_path(template: 'basic_info', id: @inner_sash.id),
       data: { turbo_stream: true } %>
 </div>
 <div id="shoji-tab" class='data-tab'>
-  <%= link_to '障子・ガラス', inner_sashes_click_tab_path(template: 'shoji_and_glass', id: @inner_sash.id),
+  <%= link_to '障子・ガラス', inner_sashes_switch_path(template: 'shoji_and_glass', id: @inner_sash.id),
       data: { turbo_stream: true } %>
 </div>
 <div id="photo-tab" class='data-tab'>
-  <%= link_to '写真・その他', inner_sashes_click_tab_path(template: 'photo_and_others', id: @inner_sash.id),
+  <%= link_to '写真・その他', inner_sashes_switch_path(template: 'photo_and_others', id: @inner_sash.id),
       data: { turbo_stream: true} %>
 </div>

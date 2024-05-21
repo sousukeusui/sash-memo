@@ -18,8 +18,7 @@ Rails.application.routes.draw do
   delete 'inner_sashes/destroy/:id', to: 'inner_sashes#destroy', as: :inner_sashes_destroy
   post 'inner_sashes/navigate_page/:id', to:'inner_sashes#navigate_page', as: :inner_sashes_navigate_page
   post 'inner_sashes/update_order/:id', to: 'inner_sashes#update_order', as: :inner_sashes_update_order
-  get 'inner_sashes/edit/:template/:id', to: 'inner_sashes#edit', as: :inner_sashes_edit
-  get 'inner_sashes/click_tab/:template/:id', to: 'inner_sashes#click_tab', as: :inner_sashes_click_tab
+  get 'inner_sashes/switch/:template/:id', to: 'inner_sashes#switch', as: :inner_sashes_switch
   patch 'inner_sashes/update/:id', to: 'inner_sashes#update', as: :inner_sashes_update
   patch 'inner_sashes/glass_append'
   delete 'photos/destroy_existing_photo_form/:id', to: 'photos#destroy_existing_photo_form', as: :photos_destroy_existing_photo_form

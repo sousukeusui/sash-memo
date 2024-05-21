@@ -80,7 +80,7 @@ class InnerSashesController < ApplicationController
     @order_key = get_opposite_order_key(inner_sash: @inner_sash)
   end
 
-  def edit(template:, id:)
+  def switch(template:, id:)
     @inner_sash = InnerSash.find(id)
     render "#{template}", content_type: 'text/vnd.turbo-stream.html'
   end
@@ -90,14 +90,9 @@ class InnerSashesController < ApplicationController
     @inner_sash.update!(inner_sash_params)
 
     # previous_actionはbasic_info、shoji_and_glass、photo_and_othersのどれか
-    previous_action = inner_sash_params[:action].sub('edit_','')
+    p previous_action = inner_sash_params[:action].sub('edit_','')
     flash.now.notice = I18n.t("inner_sashes.update.#{previous_action}") + "を更新しました"
     render "#{previous_action}", content_type: 'text/vnd.turbo-stream.html'
-  end
-
-  def click_tab(template:, id:)
-    @inner_sash = InnerSash.find(id)
-    render "#{template}", content_type: 'text/vnd.turbo-stream.html'
   end
 
 private

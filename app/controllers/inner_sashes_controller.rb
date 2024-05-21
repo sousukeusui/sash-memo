@@ -65,7 +65,7 @@ class InnerSashesController < ApplicationController
     @inner_sash = InnerSash.find(id)
     @inner_sash.update!(order: order)
     @order_key = get_opposite_order_key(inner_sash: @inner_sash)
-    flash.now.notice = "#{SiteMemo.orders_i18n[order.to_sym]}にしました"
+    flash.now.notice = "#{InnerSash.orders_i18n[order.to_sym]}にしました"
   end
 
   def destroy(id:)

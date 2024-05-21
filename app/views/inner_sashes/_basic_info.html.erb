@@ -15,5 +15,5 @@
                       inner_sash.height_middle_size,
                       inner_sash.height_right_size )%>
 
-  <%= link_to '編集', inner_sashes_edit_basic_info_path(id: inner_sash.id), data: {turbo_stream: true} %>
+  <%= link_to '編集', inner_sashes_edit_path(template: 'edit_basic_info', id: inner_sash.id), data: {turbo_stream: true} %>
 <% end %>

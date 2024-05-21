@@ -1,16 +1,14 @@
 <%= turbo_stream.replace 'photo-and-others' do %>
-  <%= turbo_frame_tag 'photo-and-others'  do %>
-    <%= form_with model: @inner_sash, url: inner_sashes_update_path(@inner_sash.id) do |inner_sash| %>
-      <%= render 'accessorie_fields', inner_sash: inner_sash  %>
-      <%= inner_sash.fields_for :photos do |photo| %>
-        <%= render 'photo_fields', f: photo %>
-      <% end %>
-      <div class="links">
-        <%= link_to_add_association "追加", inner_sash, :photos %>
-      </div>
-      <%= inner_sash.hidden_field :action, value: controller.action_name  %>
-      <%= inner_sash.submit '保存' %>
+  <%= form_with model: @inner_sash, url: inner_sashes_update_path(@inner_sash.id) do |inner_sash| %>
+    <%= render 'accessorie_fields', inner_sash: inner_sash  %>
+    <%= inner_sash.fields_for :photos do |photo| %>
+      <%= render 'photo_fields', f: photo %>
     <% end %>
+    <div class="links">
+      <%= link_to_add_association "追加", inner_sash, :photos %>
+    </div>
+    <%= inner_sash.hidden_field :action, value: controller.action_name  %>
+    <%= inner_sash.submit '保存' %>
   <% end %>
-  <%= link_to 'キャンセル', inner_sashes_photo_and_others_path(@inner_sash.id), data: {turbo_stream: true} %>
+  <%= link_to 'キャンセル', inner_sashes_edit_path(template: 'photo_and_others',id: @inner_sash.id), data: {turbo_stream: true} %>
 <% end %>

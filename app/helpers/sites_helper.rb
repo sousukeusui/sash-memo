@@ -5,6 +5,7 @@ module SitesHelper
   end
 
   def check_order(site_memos)
+    return if site_memos.blank?
     order = []
     site_memos.each do |site_memo|
       # site_memoの子テーブルが出来次第ここに処理追加

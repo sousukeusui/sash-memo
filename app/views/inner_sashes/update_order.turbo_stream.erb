@@ -1,4 +1,4 @@
+<%= turbo_stream_flash %>
 <%= turbo_stream.update "order-link" do %>
   <%= render partial: 'layouts/order_link', locals: {order_key: @order_key, inner_sash: @inner_sash} %>
 <% end %>
-<%= turbo_stream_flash %>

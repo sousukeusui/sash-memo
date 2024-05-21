@@ -59,14 +59,13 @@ class InnerSashesController < ApplicationController
   def show(id:)
     @inner_sash = InnerSash.preload(site_memo: :site).find(id)
     @order_key = get_opposite_order_key(inner_sash: @inner_sash)
-    @basic_active = 'is-active'
   end
 
   def update_order(id:, order:)
     @inner_sash = InnerSash.find(id)
-    @inner_sash.site_memo.update!(order: order)
+    @inner_sash.update!(order: order)
     @order_key = get_opposite_order_key(inner_sash: @inner_sash)
-    flash.now.notice = "#{SiteMemo.orders_i18n[order.to_sym]}にしました"
+    flash.now.notice = "#{InnerSash.orders_i18n[order.to_sym]}にしました"
   end
 
   def destroy(id:)
@@ -79,56 +78,32 @@ class InnerSashesController < ApplicationController
   def navigate_page(id:)
     @inner_sash = InnerSash.preload(site_memo: :site).find(id.to_i)
     @order_key = get_opposite_order_key(inner_sash: @inner_sash)
-    @basic_active = 'is-active'
   end
 
-  def basic_info(id:)
+  def switch(template:, id:)
     @inner_sash = InnerSash.find(id)
-    @basic_active = 'is-active'
-  end
-
-  def shoji_and_glass(id:)
-    @inner_sash = InnerSash.find(id)
-    @shoji_active = 'is-active'
-  end
-
-  def photo_and_others(id:)
-    @inner_sash = InnerSash.find(id)
-    @photo_active = 'is-active'
-  end
-
-  def edit_basic_info(id:)
-    @inner_sash = InnerSash.find(id)
-  end
-
-  def edit_shoji_and_glass(id:)
-    @inner_sash = InnerSash.find(id)
-  end
-
-  def edit_photo_and_others(id:)
-    @inner_sash = InnerSash.find(id)
-    # @photo = @inner_sash.inner_sash_photos.build
+     # templateはbasic_info、shoji_and_glass、photo_and_othersのどれか
+    render "#{template}", content_type: 'text/vnd.turbo-stream.html'
   end
 
   def update(id:)
-    inner_sash = InnerSash.find(id)
-    inner_sash.update!(inner_sash_params)
+    @inner_sash = InnerSash.find(id)
+    @inner_sash.update!(inner_sash_params)
 
-    # previous_actionはbasic_info、shoji_and_glass、photo_and_othersのどれか
-    previous_action = inner_sash_params[:action].sub('edit_','')
-    notice = I18n.t("inner_sashes.update.#{previous_action}")
-
-    redirect_to "/inner_sashes/#{previous_action}/#{id}", notice: "#{notice}を更新しました"
+    # templateはbasic_info、shoji_and_glass、photo_and_othersのどれか
+    template = inner_sash_params[:template]
+    flash.now.notice = I18n.t("inner_sashes.update.#{template}") + "を更新しました"
+    render "#{template}", content_type: 'text/vnd.turbo-stream.html'
   end
 
 private
 
   def inner_sash_params
     params.require(:inner_sash).permit(:room, :number_of_shoji, :width_up_size, :width_down_size, :width_middle_size, 
-                                      :height_left_size, :height_middle_size, :height_right_size, 
-                                      :width_frame_depth, :height_frame_depth, :is_flat_bar, :is_adjust, 
+                                      :height_left_size, :height_middle_size, :height_right_size, :width_frame_depth, :height_frame_depth,
+                                      :sash_type, :color, :number_of_shoji, :hanging_origin, :is_flat_bar, :is_adjust, 
                                       :glass_thickness, :glass_kind, :glass_color, :is_low_e, :key_height, :middle_frame_height,
-                                      :action, photos_attributes: [:id, :file_name, :_destroy]).merge(site_memo_id: load_site_memo.id)
+                                      :template, photos_attributes: [:id, :file_name, :_destroy]).merge(site_memo_id: load_site_memo.id)
   end
 
   def load_inner_sashes

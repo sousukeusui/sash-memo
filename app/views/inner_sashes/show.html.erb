@@ -3,7 +3,10 @@
 <p>元請</p><%= @inner_sash.site_memo.site.contractor.name %>
 <p>現場名</p><%= @inner_sash.site_memo.site.name %>
 <p>住所</p><%= @inner_sash.site_memo.site.address %><br/>
-<!--編集はturbo stream化する予定-->
+
+<%= @inner_sash.order_i18n %>
+<%= @inner_sash.room %>
+<p>内窓</p>
 <%= turbo_frame_tag 'order-link' do %>
   <%= render partial: 'layouts/order_link', locals: {order_key: @order_key, inner_sash: @inner_sash} %>
 <% end %>
@@ -11,10 +14,12 @@
   <%= link_to '削除', inner_sashes_destroy_path(id: @inner_sash.id), data: {turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }%>
 </div>
 <%= turbo_frame_tag 'inner-sash-data-wrap' do %>
-  <%= render 'drawing' %>
+  <%= turbo_frame_tag 'drawing' do %>
+    <%= render 'drawing', inner_sash: @inner_sash %>
+  <% end %>
   <div id="inner-sash-data">
     <%= render 'tabs' %>
-    <%= render 'basic_info' %>
+    <%= render 'basic_info', inner_sash: @inner_sash%>
   </div>
   <%= link_to '次', inner_sashes_navigate_page_path(id: @inner_sash.next), data: {turbo_method: :post} if @inner_sash.next.present? %>
   <%= link_to '前', inner_sashes_navigate_page_path(id: @inner_sash.previous), data: {turbo_method: :post} if @inner_sash.previous.present? %>

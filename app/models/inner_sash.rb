@@ -1,5 +1,5 @@
 class InnerSash < ApplicationRecord
-  attr_accessor :action
+  attr_accessor :template
 
   belongs_to :site_memo, dependent: :destroy
   has_many :photos, dependent: :destroy
@@ -11,6 +11,7 @@ class InnerSash < ApplicationRecord
   enum glass_color: { gc_undecided: 0, green: 1, clear: 2}
   enum glass_thickness: { gt_undecided: 0, single: 1, double: 2}
   enum glass_kind: { gk_undecided: 0, transparent: 1, hazy: 2}
+  enum order: { unordered: 0 , ordered: 1 }
 
   validates :room, presence: true, length: { maximum:15 }
   validates :width_up_size, presence: true, size: true

@@ -6,10 +6,10 @@ ja:
       status:
         draft: '下書き'
         published: '本作成'
+    inner_sash:
       order:
         unordered: "未発注"
         ordered: "発注済み"
-    inner_sash:
       color:
         c_undecided: '未定'
         white: 'ホワイト'

@@ -4,9 +4,9 @@
 <p>現場名</p><%= @inner_sash.site_memo.site.name %>
 <p>住所</p><%= @inner_sash.site_memo.site.address %><br/>
 
-<!-- inner_sashの発注状況入れる -->
+<%= @inner_sash.order_i18n %>
 <%= @inner_sash.room %>
-<%= @inner_sash.site_memo.kind %>
+<p>内窓</p>
 <%= turbo_frame_tag 'order-link' do %>
   <%= render partial: 'layouts/order_link', locals: {order_key: @order_key, inner_sash: @inner_sash} %>
 <% end %>

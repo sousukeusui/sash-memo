@@ -67,9 +67,9 @@ class InnerSashesController < ApplicationController
 
   def destroy(id:)
     inner_sash = InnerSash.find(id)
-    @site_id = inner_sash.site_memo.site.id
+    site_id = inner_sash.site_memo.site.id
     inner_sash.destroy
-    redirect_to site_memos_index_path(site_id: @site_id), notice: "メモを削除しました"
+    redirect_to site_memos_index_path(site_id: site_id), notice: "メモを削除しました"
   end
 
   def navigate_page(id:)
@@ -116,9 +116,5 @@ private
 
   def set_site_memo
     @site_memo = SiteMemo.find_by(kind: 'inner_sash', site_id: session[:site_id])
-  end
-
-  def load_inner_sashes_photos
-    @inner_sashes = inn.eager_load(inner_sash: :site_memo).where(site_memo: {kind: 'inner_sash', site_id: session[:site_id]})
   end
 end

@@ -9,7 +9,7 @@
       <%= inner_sash.label :room, '部屋名' %>
       <%= inner_sash.text_field :room %>
     </div>
-    <%= render 'form_accessories', inner_sash: inner_sash %>
+    <%= render 'accessorie_fields', inner_sash: inner_sash %>
     
     <%= inner_sash.fields_for :photos do |photo| %>
       <%= render 'photo_fields', f: photo %>

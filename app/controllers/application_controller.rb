@@ -3,10 +3,12 @@ class ApplicationController < ActionController::Base
     sites_index_path
   end
 
-  def get_opposite_order_key(site_memos: nil, inner_sash: nil)
-    orders = site_memos.pluck(:order) if site_memos
-    order = inner_sash.order if inner_sash
-    return "unordered" if orders&.all?{ |order| order == "ordered" } || order == 'ordered'
+  def get_opposite_order_key(site_memos: nil,inner_sash: nil)
+    #site_memosの子テーブルが増え次第、条件追加
+    orders = site_memos&.flat_map { |site_memo| site_memo.inner_sashes.pluck(:order) } # site_memosの子がinner_sashの時
+    judge_order = orders&.all?{ |order| order == 'ordered'}
+
+    return "unordered" if inner_sash&.order == 'ordered' || judge_order
     return "ordered"
   end
 end

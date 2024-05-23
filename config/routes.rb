@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   get 'site_memos/index/:site_id', to: 'site_memos#index', as: :site_memos_index
-  post 'site_memos/update_bulk_order/:site_id', to: 'site_memos#update_bulk_order', as: :site_memos_update_bulk_order
+  post 'site_memos/update_bulk_order/:site_id/:order', to: 'site_memos#update_bulk_order', as: :site_memos_update_bulk_order
   get 'site_memos/show_switcher/:kind/:id', to: 'site_memos#show_switcher', as: :site_memos_show_switcher
   get 'site_memos/new_step1/:site_id', to: 'site_memos#new_step1', as: :site_memos_new_step1
   post 'site_memos/form_switcher'
-  delete 'site_memos/destroy/:id', to: 'site_memos#destroy', as: :site_memos_destroy
+  delete 'site_memos/destroy/:kind/:child_id', to: 'site_memos#destroy', as: :site_memos_destroy
   get 'inner_sashes/new_step2'
   post 'inner_sashes/new_append_room'
   get 'inner_sashes/new_step3'

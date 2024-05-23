@@ -1,7 +1,7 @@
 class InnerSash < ApplicationRecord
   attr_accessor :template
 
-  belongs_to :site_memo, dependent: :destroy
+  belongs_to :site_memo
   has_many :photos, dependent: :destroy
   accepts_nested_attributes_for :photos, allow_destroy: true
 

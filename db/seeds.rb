@@ -6,23 +6,22 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 # 現場まとめて生成する
-50.times do |n|
-  name = Faker::Name.name
-  address = Faker::Address.city
-  user_id = 1
-  contractor_id = 1
-  Site.create!(name: name,
-                  address: address,
-                  user_id: user_id,
-                  contractor_id: contractor_id)
-end
+# 20.times do |n|
+#   name = Faker::Name.name
+#   address = Faker::Address.city
+#   user_id = 1
+#   contractor_id = 1
+#   Site.create!(name: name,
+#                   address: address,
+#                   user_id: user_id,
+#                   contractor_id: contractor_id)
+# end
 
 
 size = rand(1..9999)
-p room = Faker::House.room
-site_id = 1
+room = Faker::House.room
 kind = 'inner_sash'
-site_memo = SiteMemo.create!(site_id: 20, kind: kind)
+site_memo = SiteMemo.create!(site_id: 10 , kind: kind)
 20.times do |n|
   InnerSash.create!(width_up_size: size,
                     width_middle_size: size,

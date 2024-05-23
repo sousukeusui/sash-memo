@@ -13,10 +13,7 @@ class SiteMemosController < ApplicationController
   def update_bulk_order(site_id:, order:)
     @site = Site.preload(site_memos: :inner_sashes).find(site_id)
     @site_memos = @site.site_memos
-    @site_memos.each do |site_memo|
-      # site_memoに子テーブルが新しくできた時に条件追加。コメントアウトも外す
-      site_memo.inner_sashes.update_all(order: order) # if site_memo.kind == 'inner_sash'
-    end
+    update_childs_order(site_memos: @site_memos, order: order)
     # あとでページネーション考える
     @order_key = get_opposite_order_key(site_memos: @site_memos)
     flash.now.notice = "全て#{ InnerSash.orders_i18n[order.to_sym]}にしました"
@@ -58,5 +55,14 @@ class SiteMemosController < ApplicationController
       @inner_sash.destroy
     end
     flash.now.notice = 'メモを削除しました'
+  end
+
+  private
+
+  def update_childs_order(site_memos:, order:)
+    #site_memosモデルに子モデルができたら条件追加。コメントアウトも外す
+    site_memos.each do |site_memo|
+      site_memo.inner_sashes.update_all(order: order) if site_memo.kind == 'inner_sash'
+    end
   end
 end

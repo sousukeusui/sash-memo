@@ -1,6 +1,7 @@
 class InnerSashesController < ApplicationController
-  before_action :set_site_memo, only: [:new_step2, :new_step3, :new_append_basic_info, :new_step4, 
-                                       :new_append_shoji_and_glass, :new_step5, :new_append_photo_and_others]
+  before_action :set_site_memo, only: [:new_step2, :new_step3, :new_step4, :new_step5,
+                                       :new_append_shoji_and_glass, :new_append_photo_and_others,
+                                       :new_append_basic_info, :new_comfirmation]
 
   def new_step2
     load_inner_sashes
@@ -26,6 +27,7 @@ class InnerSashesController < ApplicationController
   end
 
   def new_step4
+    @site_memo.update_status(action: action_name)
     load_inner_sashes
   end
 
@@ -36,6 +38,7 @@ class InnerSashesController < ApplicationController
   end
 
   def new_step5
+    @site_memo.update_status(action: action_name)
     load_inner_sashes
   end
 
@@ -46,6 +49,7 @@ class InnerSashesController < ApplicationController
   end
 
   def new_comfirmation
+    @site_memo.update_status(action: action_name)
     @site_memo = SiteMemo.preload(inner_sashes: :photos).find_by(site_id: session[:site_id], kind: 'inner_sash')
   end
   

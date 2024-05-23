@@ -1,6 +1,6 @@
 class SiteMemo < ApplicationRecord
   enum kind: { inner_sash: 0 } 
-  enum status: { step2: 0, step3: 1, step4: 2, step5: 3, published: 4 }
+  enum status: { step2: 0, step3: 1, step4: 2, step5: 3, comfirmation: 4 }
 
   belongs_to :site
   has_many :inner_sashes, dependent: :destroy

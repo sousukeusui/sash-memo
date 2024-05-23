@@ -8,7 +8,7 @@
         <%= inner_sash.label :room, '部屋名' %>
         <%= inner_sash.text_field :room, required: true %>
       </div>
-      <%= render 'form_shoji_and_glass', inner_sash: inner_sash %>
+      <%= render 'shoji_and_glass_fields', inner_sash: inner_sash %>
     <% end %>
   <%= f.submit '次へ' %>
 <% end %>

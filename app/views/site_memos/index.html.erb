@@ -3,8 +3,11 @@
 <p>住所:<%= @site.address %></p>
 
 <%= link_to 'メモ追加', site_memos_new_step1_path(@site.id) %>
-<p><%= "メモはありません" if @site_memos.blank? %></p>
-<%= turbo_frame_tag "site-memos-list" do %>
-  <%= render 'bulk_order_link' %>
-  <%= render @site_memos %>
+<% if @site_memos.blank? %>
+  <p><%= "メモはありません" %></p>
+<% else %>
+  <%= turbo_frame_tag "site-memos-list" do %>
+    <%= render 'bulk_order_link' %>
+    <%= render @site_memos %>
+  <% end %>
 <% end %>

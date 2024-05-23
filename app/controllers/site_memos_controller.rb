@@ -10,12 +10,16 @@ class SiteMemosController < ApplicationController
     @order_key = get_opposite_order_key(site_memos: @site_memos)
   end
 
-  def update_bulk_order(site_id:,order:)
-    @site = Site.find(site_id)
-    @site.site_memos.update_all(order: order)
-    @site_memos = @site.site_memos.page(params[:page]).per(5)
+  def update_bulk_order(site_id:, order:)
+    @site = Site.preload(site_memos: :inner_sashes).find(site_id)
+    @site_memos = @site.site_memos
+    @site_memos.each do |site_memo|
+      # site_memoに子テーブルが新しくできた時に条件追加。コメントアウトも外す
+      site_memo.inner_sashes.update_all(order: order) # if site_memo.kind == 'inner_sash'
+    end
+    # あとでページネーション考える
     @order_key = get_opposite_order_key(site_memos: @site_memos)
-    flash.now.notice = "全て#{ SiteMemo.orders_i18n[order.to_sym]}にしました"
+    flash.now.notice = "全て#{ InnerSash.orders_i18n[order.to_sym]}にしました"
   end
 
   def new_step1(site_id:)

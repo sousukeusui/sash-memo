@@ -4,14 +4,11 @@ class ApplicationController < ActionController::Base
   end
 
   def get_opposite_order_key(site_memos: nil,inner_sash: nil)
-    orders = []
-    site_memos.each do |site_memo|
-      # site_memoの子テーブルが出来次第ここに処理追加
-      orders << site_memo.inner_sashes.pluck(:order) if site_memo.kind == 'inner_sash'
-    end
+    #site_memosの子テーブルが増え次第、条件追加
+    orders = site_memos&.flat_map { |site_memo| site_memo.inner_sashes.pluck(:order) } # site_memosの子がinner_sashの時
+    judge_order = orders&.all?{ |order| order == 'ordered'}
 
-    orders << inner_sash.order if inner_sash
-    return "unordered" if orders&.all?{ |order| order == "ordered" }
+    return "unordered" if inner_sash&.order == 'ordered' || judge_order
     return "ordered"
   end
 end

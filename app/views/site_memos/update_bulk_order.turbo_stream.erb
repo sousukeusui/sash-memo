@@ -1,9 +1,5 @@
-<%= turbo_stream.update "site-memos-list" do %>
-  <%= link_to "一括#{SiteMemo.orders_i18n[@order_key.to_sym]}",
-        site_memos_update_bulk_order_path(@site.id, params: { order: @order_key }),
-        data: {turbo_method: :post, turbo_confirm: "全て#{SiteMemo.orders_i18n[@order_key.to_sym]}にしますか？(表示されていないものも含みます)"} %>
-  <%= link_to 'メモ追加', site_memos_new_step1_path(@site.id) %>
-  <%= render @site_memos %>
-  <%= paginate @site_memos %>
-<% end %>
 <%= turbo_stream_flash %>
+<%= turbo_stream.update "site-memos-list" do %>
+  <%= render 'bulk_order_link' %>
+  <%= render @site_memos %>
+<% end %>

@@ -10,4 +10,8 @@ class SiteMemo < ApplicationRecord
   validates :status, presence: true
   validates :remark, length: { maximum:100 }
 
+  def update_status(action:)
+    status = action.sub('new_','')
+    self.update(status: status)
+  end
 end

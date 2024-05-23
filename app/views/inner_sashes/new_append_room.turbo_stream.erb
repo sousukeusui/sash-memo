@@ -3,13 +3,13 @@
 <% end %>
 
 <%= turbo_stream.update 'inner-sash-size-form' do %>
-  <%= form_with model: @inner_sash, url: inner_sashes_new_append_room_path, data: { turbo_stream: true } do |f|%>
-    <%= render 'layouts/alert', obj: f.object %>
+  <%= form_with model: @inner_sash, url: inner_sashes_new_append_room_path, data: { turbo_stream: true } do |inner_sash|%>
+    <%= render 'layouts/alert', obj: inner_sash.object %>
     <div class="form-group">
-      <%= f.label :room, '部屋' %>
-      <%= f.text_field :room, required: true%>
+      <%= inner_sash.label :room, '部屋' %>
+      <%= inner_sash.text_field :room, required: true%>
     </div>
-    <%= render 'form_size', inner_sash: f %>
-    <%= f.submit '追加' %>
+    <%= render 'size_fields', inner_sash: inner_sash %>
+    <%= inner_sash.submit '追加' %>
   <% end %>
 <% end %>

@@ -2,7 +2,6 @@ class SiteMemosController < ApplicationController
   permits :kind
 
   def index(site_id:)
-    #site_memoの全ての子モデル結合して取得
     #site_memosに新しい子モデルができたらそれに応じて取得するものを動的に変える    
     @site = Site.preload(site_memos: :inner_sashes).find(site_id)
     #あとでページネーションを考える
@@ -29,18 +28,18 @@ class SiteMemosController < ApplicationController
     site_id = session[:site_id]
 
     @site_memo = SiteMemo.new(site_id: site_id, kind: kind)
-    exist_sm = SiteMemo.eager_load(:site).find_by(site_id: site_id, kind: kind)
+    ex_sash_memo = SiteMemo.find_by(site_id: site_id, kind: kind)
 
-    if exist_sm.blank? && @site_memo.save
+    if ex_sash_memo.blank? && @site_memo.save
       return redirect_to "/#{kind.pluralize}/new_step2"
-    elsif exist_sm.blank?
+    elsif ex_sash_memo.blank?
       return render 'new_step1', status: :unprocessable_entity
     end
     
-    kind = exist_sm.kind.to_s.pluralize
-    status = exist_sm.status
+    kind = ex_sash_memo.kind.to_s.pluralize
+    status = ex_sash_memo.status
 
-    return redirect_to "/#{kind}/new_#{status}" if exist_sm && status !='published'
+    return redirect_to "/#{kind}/new_#{status}" if ex_sash_memo && status !='comfirmation'
     return redirect_to "/#{kind}/new_step2"
   end
 

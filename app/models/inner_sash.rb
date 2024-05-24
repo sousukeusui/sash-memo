@@ -42,4 +42,12 @@ class InnerSash < ApplicationRecord
   def next
     InnerSash.eager_load(site_memo: :site).where(site: {id: self.site_memo.site_id}).where("inner_sashes.id>?", self.id).order(id: :asc).first
   end
+
+  def destroy_with_site_memo
+    site_memo = self.site_memo
+    self.transaction do
+      site_memo.destroy if site_memo.inner_sashes.size == 1 
+      self.destroy
+    end
+  end
 end

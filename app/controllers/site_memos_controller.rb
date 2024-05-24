@@ -20,6 +20,7 @@ class SiteMemosController < ApplicationController
 
   def new_step1(site_id:)
     session[:site_id] = site_id
+    @site = Site.find(site_id)
     @site_memo = SiteMemo.new
   end
 
@@ -52,7 +53,7 @@ class SiteMemosController < ApplicationController
     #他のモデルが追加されたら分岐を追加
     if kind == 'inner_sash'
       @inner_sash = InnerSash.find(child_id)
-      @inner_sash.destroy
+      @inner_sash.destroy_last_with(site_memo: @inner_sash.site_memo)
     end
     flash.now.notice = 'メモを削除しました'
   end

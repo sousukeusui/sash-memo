@@ -49,6 +49,7 @@ class SiteMemosController < ApplicationController
   end
 
   def destroy(kind:, child_id:)
+    #他のモデルが追加されたら分岐を追加
     if kind == 'inner_sash'
       @inner_sash = InnerSash.find(child_id)
       @inner_sash.destroy

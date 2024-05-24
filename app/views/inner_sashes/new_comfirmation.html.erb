@@ -1,4 +1,5 @@
 <p>comfirmation</p>
+<%= render 'site_info' %>
 <% @site_memo.inner_sashes.each do |inner| %>
   <p>部屋名：<%= inner.room %></p>
   <p>W寸法：<%= calc_order_size(inner.width_up_size,

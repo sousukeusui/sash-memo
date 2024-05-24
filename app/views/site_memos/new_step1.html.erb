@@ -1,3 +1,5 @@
+現場名<%= @site.name %>
+元請け<%= @site.contractor.name %>
 <%= form_with model: @site_memo, url: site_memos_form_switcher_path, local: true do |f| %>
   <%= render 'layouts/alert', obj: f.object %>
   <div class="form-group">

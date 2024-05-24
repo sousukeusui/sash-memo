@@ -20,6 +20,7 @@ class SiteMemosController < ApplicationController
 
   def new_step1(site_id:)
     session[:site_id] = site_id
+    @site = Site.find(site_id)
     @site_memo = SiteMemo.new
   end
 

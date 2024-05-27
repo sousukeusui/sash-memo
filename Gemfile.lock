@@ -99,6 +99,8 @@ GEM
     config (5.4.0)
       deep_merge (~> 1.2, >= 1.2.1)
     crass (1.0.6)
+    cssbundling-rails (1.4.0)
+      railties (>= 6.0.0)
     date (3.3.4)
     deep_merge (1.2.2)
     devise (4.9.4)
@@ -383,6 +385,7 @@ DEPENDENCIES
   carrierwave
   cocoon
   config
+  cssbundling-rails (~> 1.4)
   devise
   devise-i18n
   dotenv-rails

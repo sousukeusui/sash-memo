@@ -7,8 +7,13 @@ $dark-sub: #34787a;
 $sign: #CF4C51;
 $side:#A1B3B2;
 
+body{
+  color: $character !important;
+}
+
 a{
   text-decoration: none;
+  color: $character;
 }
 
 
@@ -21,7 +26,23 @@ a{
   background-color: $main-back;
 }
 
-.link-custom{
-  color: $character;
+.navbar-toggler-custom{
+  border: none;
 }
 
+.cancel-shadow:focus{
+  box-shadow:none !important;
+}
+
+.dropdown-menu-custom{
+  margin-top: 10px !important;
+  text-align: center;
+}
+
+.dropdown-toggle::after {
+  display: none;
+}
+
+.link-bright{
+  color: $main-back;
+}

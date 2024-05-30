@@ -25,3 +25,19 @@ a{
   color: $character;
 }
 
+.navbar-toggler-custom{
+  border: none;
+
+  &:focus {
+    box-shadow:none !important;
+   }
+}
+
+.dropdown-menu-custom{
+  margin-top: 10px !important;
+  text-align: center;
+}
+
+.dropdown-toggle::after {
+  display:none;
+}

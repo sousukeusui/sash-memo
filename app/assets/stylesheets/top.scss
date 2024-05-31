@@ -9,18 +9,11 @@
 
 .logo{
   margin-top: 30vh;
-  width: 100%;
   object-fit: cover;
 }
 
 .buttons{
   margin-top: 18vh;
-}
-
-@media(min-width:768px){
-  .logo{
-    width: auto;
-  }
 }
 
 // * {

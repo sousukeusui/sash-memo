@@ -1,29 +1,10 @@
-//共通
-$main-back: #F4F5F7;
-$character: #333333;
-$main: #4ccfcb;
-$thn-sub: #B1DEDC;
-$dark-sub: #34787a;
-$sign: #CF4C51;
-$side:#A1B3B2;
-
-body{
-  color: $character !important;
-}
-
-a{
-  text-decoration: none;
-  color: $character;
-}
-
-
 // ナビゲーション
 .navbar-custom{
-  background-color: $main;
+  background-color: var(--main);
 }
 
 .dropdown-menu-custom{
-  background-color: $main-back;
+  background-color: var(--main-back);
 }
 
 .navbar-toggler-custom{
@@ -43,6 +24,16 @@ a{
   display: none;
 }
 
-.link-bright{
-  color: $main-back;
+.btn-primary{
+  background-color: var(--main);
+  border: none;
+  box-shadow: 0 3px 1px 1px var(--character);
+}
+
+.btn-primary:hover{
+  background-color: var(--dark-sub);
+}
+
+.btn-primary:active{
+  background-color: var(--side);
 }

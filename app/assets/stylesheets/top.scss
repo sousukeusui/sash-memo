@@ -19,6 +19,11 @@
 footer{
   height: 50px;
   background-color: var(--main);
+  color: var(--main-back);
+}
+
+i{
+  color: var(--side) !important;
 }
 
 // * {

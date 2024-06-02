@@ -1,0 +1,31 @@
+// トップページ
+.background-image{
+  height: 100vh;
+  background-image: url('background4.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.logo{
+  margin-top: 30vh;
+  object-fit: cover;
+}
+
+.buttons{
+  margin-top: 18vh;
+}
+
+footer{
+  height: 50px;
+  background-color: var(--main);
+  color: var(--main-back);
+}
+
+i{
+  color: var(--side) !important;
+}
+
+// * {
+//   outline: 2px solid blue;
+// }

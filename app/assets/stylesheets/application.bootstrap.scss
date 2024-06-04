@@ -10,7 +10,12 @@
   --thn-sub: #B1DEDC;
   --dark-sub: #34787a;
   --sign: #CF4C51;
-  --side:#A1B3B2;
+  --side: #A1B3B2;
+  --line: #06C755;
+  --line-hover: #06BE55;
+  --line-click: #06AA55;
+  --google-hover: #F4F4F4;
+  --google-click: #DCDCDC;
 }
 
 // トップページ
@@ -60,8 +65,9 @@ a{
 
 .line-btn{
   height: 38px;
-  background-color: #06C755;
+  background-color: var(--line);
   border-radius: 5px;
+  transition: all 0.3s ease 0s;
 }
 
 .line-btn::before{
@@ -71,6 +77,14 @@ a{
   background-image: url('line_44.png');
   background-repeat: none;
   background-size: 38px 38px;
+}
+
+.line-btn:hover{
+  background-color: var(--line-hover);
+}
+
+.line-btn:active{
+  background-color: var(--line-click);
 }
 
 .google-btn{

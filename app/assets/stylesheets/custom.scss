@@ -37,3 +37,8 @@
 .btn-primary:active{
   background-color: var(--side);
 }
+
+.btn-light-custom{
+  background-color: var(--main-back);
+  box-shadow: 0 3px 1px 1px var(--character);
+}

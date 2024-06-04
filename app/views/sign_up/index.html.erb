@@ -1,6 +1,30 @@
-<h2>新規登録</h2>
-<%= link_to 'メールアドレスで登録', sign_up_step1_path %>
-<%= link_to 'LINEで登録' , user_line_omniauth_authorize_path , method: :post %>
-<%= link_to 'googleで登録', user_google_oauth2_omniauth_authorize_path, method: :post %>
-<p>アカウントをお持ちの方</p>
-<%= link_to 'ログイン', sign_in_index_path %>
+<div class="container-fluid bg-image">
+  <div class="container mx-auto">
+    <div class="row justify-content-center">
+      <%= image_tag 'logo', class: 'logo col-md-8 col-lg-5' %>
+    </div>
+    <div class="buttons mt-5">
+      <div class="row justify-content-center p-3">
+        <%= link_to 'メールアドレスで登録', sign_up_step1_path, class: 'btn btn-light btn-light-custom col-10 col-md-5 col-lg-4' %>
+      </div>
+      <div class="row justify-content-center p-3">
+        <%= link_to(user_line_omniauth_authorize_path, class: 'row col-10 col-md-5 col-lg-4 text-center line-btn bright-color', method: :post) do %>
+          <span class="col align-self-center line-text">LINEでログイン</span>
+        <% end %>
+      </div>
+      <div class="row justify-content-center p-3">
+        <%= link_to(user_google_oauth2_omniauth_authorize_path, class: 'row col-10 col-md-5 col-lg-4 text-center google-btn', method: :post) do %>
+          <span class="col align-self-center google-text">Googleでログイン</span>
+        <% end %>
+      </div>
+    </div>
+    <div class="text row mt-3">
+      <div class="col border-bottom mb-3 bright-color"></div>
+      <p class='col-8 p-0 text-center mb-1 fw-bold bright-color'>アカウントをお持ちでない方</p>
+      <div class="col border-bottom mb-3 bright-color"></div>
+    </div>
+    <div class="row justify-content-center text-center p-3">
+      <%= link_to 'ログイン', sign_in_index_path, class: 'btn btn-primary col-10 col-md-5 col-lg-4' %>
+    </div>
+  </div>
+</div>

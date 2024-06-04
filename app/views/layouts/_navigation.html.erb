@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
   <div class="container-fluid">
-    <%= link_to "SashMemo", root_path, class: 'navbar-brand link-bright' %>
+    <%= link_to "SashMemo", root_path, class: 'navbar-brand bright-color' %>
     <% if user_signed_in? %>
       <button class="navbar-toggler navbar-toggler-custom cancel-shadow" type="button" data-bs-toggle="offcanvas" data-bs-target="#list-contents" 
               aria-controls="list-contents" aria-expanded="false" aria-label="Toggle navigation">
@@ -9,7 +9,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class='navbar-nav mb-0 ms-auto'>
           <li class="nav-item dropdown pe-5">
-            <%= link_to '現場メモ', 'javascript:void(0)', class: 'nav-link dropdown-toggle link-bright',
+            <%= link_to '現場メモ', 'javascript:void(0)', class: 'nav-link dropdown-toggle bright-color',
                 id: 'navbarDropdown', role: 'button', 'data-bs-toggle': :dropdown, 'aria-expanded': :false %>
             <div class="dropdown-menu dropdown-menu-custom">
               <%= link_to '現場一覧', sites_index_path, class: 'dropdown-item link-custom' %>
@@ -17,7 +17,7 @@
             </div>
           </li>
           <li class='nav-item dropdown pe-5'>
-            <%= link_to 'アカウント', 'javascript:void(0)', class: 'nav-link dropdown-toggle link-bright',
+            <%= link_to 'アカウント', 'javascript:void(0)', class: 'nav-link dropdown-toggle bright-color',
                 id: 'navbarDropdown', role: 'button', 'data-bs-toggle': :dropdown, 'aria-expanded': :false %>
             <div class="dropdown-menu dropdown-menu-custom">
               <%= link_to 'ログアウト', destroy_user_session_path, class: 'nav-link link-custom', data: { turbo_method: :delete }%>
@@ -49,10 +49,10 @@
     <% else %>
       <ul class="navbar-nav d-none d-lg-flex">
         <li class="nav-item pe-5 justify-content-center">
-          <%= link_to 'ログイン' , sign_in_index_path, class: 'nav-link link-bright'%>
+          <%= link_to 'ログイン' , sign_in_index_path, class: 'nav-link bright-color'%>
         </li>
         <li class="nav-item pe-5 justify-content-center">
-          <%= link_to '新規登録' , sign_up_index_path, class: 'nav-link link-bright' %>
+          <%= link_to '新規登録' , sign_up_index_path, class: 'nav-link bright-color' %>
         </li>
       </ul>
     <% end %>

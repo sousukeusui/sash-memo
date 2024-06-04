@@ -13,6 +13,34 @@
   --side:#A1B3B2;
 }
 
+// トップページ
+.bg-top-image, .bg-image{
+  height: 110vh;
+  background-image: url('background4.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  z-index: 0;
+}
+
+.bg-image::before{
+  content: "";
+  position: absolute;
+  width: 100%;
+  top : 0;
+  left: 0;
+  height: 100%;
+  background: inherit;
+  filter: brightness(75%);
+  z-index: -1;
+}
+
+.logo{
+  margin-top: 35vh;
+  object-fit: cover;
+}
+
 body{
   color: var(--character) !important;
 }
@@ -22,6 +50,40 @@ a{
   color: var(--character);
 }
 
-.link-bright{
+.bright-color{
   color: var(--main-back);
+}
+
+.line-image{
+  height: 38px;
+}
+
+.line-btn{
+  height: 38px;
+  background-color: #06C755;
+  border-radius: 5px;
+}
+
+.line-btn::before{
+  width: 42px;
+  height: 38px;
+  content: "";
+  background-image: url('line_44.png');
+  background-repeat: none;
+  background-size: 38px 38px;
+}
+
+.google-btn{
+  height: 38px;
+  background-color: #ffffff;
+  border-radius: 5px;
+}
+
+.google-btn::before{
+  width: 38px;
+  height: 38px;
+  content: "";
+  background-image: url('google-icon.png');
+  background-repeat: none;
+  background-size: 38px 38px;
 }

@@ -1,22 +1,27 @@
-<%= form_with url: sign_up_step2_path, method: :get ,local: true do |f| %>
-  <div class="form-group">
-    <%= f.label :name, '名前' %><br />
-    <%= f.text_field :name, autocomplete: 'name', maxlength:'15', required: true %>
-  </div>
-  <div class="form-group">
-    <%= f.label :email, 'メールアドレス' %><br />
-    <%= f.email_field :email, autocomplete: 'email', required: true %>
-  </div>
-  <!--jsでパスワードが一致していないとき、警告-->
-  <div class="form-group">
-    <%= f.label :password, 'パスワード' %><br />
-    <%= f.password_field :password, autocomplete: 'new-password', required: true %>
-  </div>
-  <div class="form-group">
-    <%= f.label :password_confirmation, 'パスワード(確認用)' %><br />
-    <%= f.password_field :password_confirmation, autocomplete: 'new-password', required: true %>
-  </div>
-  <div class="form-group">
-    <%= f.submit '次へ' %>
-  </div>
-<% end %>
+<div class="bar mt-5">
+  ここに進捗バーが表示
+</div>
+<div class="container mt-5">
+  <%= form_with url: sign_up_step2_path, method: :get ,local: true, class: 'row justify-content-center' do |f| %>
+    <div class="col-11 mb-3">
+      <%= f.label :name, '名前', class: 'form-label' %><span class="badge bg-danger ms-2">必須</span><br />
+      <%= f.text_field :name, class: 'form-control', autocomplete: 'name', maxlength:'15', required: true %>
+    </div>
+    <div class="col-11 mb-3">
+      <%= f.label :email, 'メールアドレス', class: 'form-label' %><span class="badge bg-danger ms-2">必須</span><br />
+      <%= f.email_field :email, class: 'form-control', autocomplete: 'email', required: true %>
+    </div>
+    <!--jsでパスワードが一致していないとき、警告-->
+    <div class="col-11 mb-3">
+      <%= f.label :password, 'パスワード', class: 'form-label' %><span class="badge bg-danger ms-2">必須</span><br />
+      <%= f.password_field :password, class: 'form-control', autocomplete: 'new-password', required: true %>
+    </div>
+    <div class="col-11 mb-3">
+      <%= f.label :password_confirmation, 'パスワード(確認用)', class: 'form-label' %><span class="badge bg-danger ms-2">必須</span><br />
+      <%= f.password_field :password_confirmation, class: 'form-control', autocomplete: 'new-password', required: true %>
+    </div>
+    <div class="row justify-content-center p-3 mt-5">
+      <%= f.submit '次へ', class: 'btn btn-primary col-9 col-md-5 col-lg-3' %>
+    </div>
+  <% end %>
+</div>

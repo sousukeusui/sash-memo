@@ -1,4 +1,48 @@
 <%= turbo_frame_tag site do %>
+  <div class='card card-custom mb-4'>
+    <div class="card-body">
+      <div class="row mb-1">
+        <h5 class="col-5 card-title text-truncate"><%= site.contractor.name %></h5>
+        <div class="col-3">
+          <span class='badge bg-primary ps-3 pe-3'><%= site.site_memos.present? ? "メモ" : ""  %></span>
+        </div>
+        <% order = check_order(site_memos: site.site_memos) %>
+        <div class="col-3">
+          <% if order == '未発注' %>
+            <span class="badge bg-danger ps-3 pe-3"><%= order %></span>
+          <% else %>
+            <span class="badge bg-primary ps-3 pe-3"><%= order %></span>
+          <% end %>
+        </div>
+        <a class="text-center p-0 col-1 dorpdown-toggle dropdown-toggle-custom" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="mx-auto bi bi-three-dots-vertical h5"></i>
+        </a>
+        <ul class='dropdown-menu'>
+          <li><%= link_to '削除', sites_destroy_path(site),class: 'dropdown-item' ,data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } %></li>
+        </ul>
+      </div>
+      <div class='row justify-content-center position-relative mt-3'>
+        <div class='col-11 row border-index p-1 mb-3'>
+          <span class='col-4'>現場名</span>
+          <span class='col-7'><%= site.name %></span>
+        </div>
+        <div class='col-11 row border-index p-1 mb-3'>
+          <span class='col-4'>現調日</span>
+          <span class='col-7'><%= check_schedule(date: site.research_date)%></span>
+        </div>
+        <div class='col-11 row border-index p-1'>
+          <span class='col-4'>工事日</span>  
+          <span class='col-7'><%= check_schedule(date: site.construction_date)%></span>  
+        </div>
+        <%# リンク広がっている %>
+        <%= link_to '', site_memos_index_path(site), data: { turbo: false }, class: 'to-memo-link' %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<!--
+<%= turbo_frame_tag site do %>
   <div>
     <%= site.contractor.name %>
     <%= site.name %>
@@ -10,4 +54,5 @@
     <%# テーブルの各行にリンク広げる予定 %>
     <%= link_to 'メモへ', site_memos_index_path(site), data: { turbo: false } %>
   </div>
-<% end %>
+<% end %> 
+-->

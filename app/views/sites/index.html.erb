@@ -1,13 +1,33 @@
-<%= link_to '現場追加', sites_new_path %>
-<div>
-  <div class="headding">
-    <p>元請</p>
-    <p>現場名</p>
-    <p>現調日</p>
-    <p>工事日</p>
+<section class='d-lg-none' id="mobile">
+  <div class="container" style="margin-top: 5vh;">
+    <div class="row justify-content-center">
+      <div class="row justify-content-end p-3 mb-lg-5 z-3">
+        <%= link_to sites_new_path, class: 'btn-circle submit-btn col-3 col-md-4 col-lg-2 p-0 text-center' do %>
+          <i class="bi bi-plus plus"></i>
+        <% end %>
+      </div>
+      <div class='index'>
+        <%= turbo_frame_tag 'sites-list' do %>
+          <%= render @sites %>
+          <%= paginate @sites %>
+        <% end %>
+      </div>
+    </div>
   </div>
-  <%= turbo_frame_tag 'sites-list' do %>
-    <%= render @sites %>
-    <%= paginate @sites %>
-  <% end %>
+</section>
+
+<!--
+<div class="headding">
+  <p>元請</p>
+  <p>現場名</p>
+  <p>現調日</p>
+  <p>工事日</p>
 </div>
+
+<%= link_to '現場追加', sites_new_path, class: 'btn btn-primary col-9 col-md-4 col-lg-2' %>
+<%= turbo_frame_tag 'sites-list' do %>
+  <%= render @sites %>
+  <%= paginate @sites %>
+<% end %> 
+-->
+<%= stylesheet_link_tag "sites/index", "data-turbo-track": "reload" %>

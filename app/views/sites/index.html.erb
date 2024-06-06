@@ -7,7 +7,7 @@
         <% end %>
       </div>
       <div class='index'>
-        <%= turbo_frame_tag 'sites-list' do %>
+        <%= turbo_frame_tag 'sites-list', class: 'row justify-content-center' do %>
           <%= render @sites %>
           <%= paginate @sites %>
         <% end %>

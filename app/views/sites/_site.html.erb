@@ -1,4 +1,6 @@
-<%= turbo_frame_tag site, class:'col-12 col-md-6' do %>
+<% order = check_order(site_memos: site.site_memos) %>
+
+<%= turbo_frame_tag site, class:'d-lg-none col-12 col-md-6' do %>
   <div class='card card-custom mb-4'>
     <div class="card-body">
       <div class="row mb-1">
@@ -6,7 +8,6 @@
         <div class="col-3">
           <span class='badge bg-primary ps-3 pe-3'><%= site.site_memos.present? ? "メモ" : ""  %></span>
         </div>
-        <% order = check_order(site_memos: site.site_memos) %>
         <div class="col-3">
           <% if order == '未発注' %>
             <span class="badge bg-danger ps-3 pe-3"><%= order %></span>
@@ -41,18 +42,26 @@
   </div>
 <% end %>
 
-<!--
-<%= turbo_frame_tag site do %>
-  <div>
-    <%= site.contractor.name %>
-    <%= site.name %>
-    <%= check_schedule(date: site.research_date)%>
-    <%= check_schedule(date: site.construction_date)%>
-    <%= site.site_memos.present? ? "メモ" : ""  %>
-    <%= check_order(site_memos: site.site_memos) %>
-    <%= link_to '削除', sites_destroy_path(site), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } %>
-    <%# テーブルの各行にリンク広げる予定 %>
-    <%= link_to 'メモへ', site_memos_index_path(site), data: { turbo: false } %>
-  </div>
+
+<%= turbo_frame_tag site, class:'d-none d-lg-table  ' do %>
+  <tr class='position-relative'>
+    <td class='align-middle'><%= site.contractor.name %></td>
+    <td class='align-middle'><%= site.name %></td>
+    <td class='align-middle'><%= check_schedule(date: site.research_date)%></td>
+    <td class='align-middle'><%= check_schedule(date: site.construction_date)%></td>
+    <td>
+      <span class='badge bg-primary my-3 w-50'><%= site.site_memos.present? ? "メモ" : ""  %></span>
+      <% if order == '未発注' %>
+        <span class="badge bg-danger mb-3 w-50"><%= order %></span>
+      <% else %>
+        <span class="badge bg-primary mb-3 w-50"><%= order %></span>
+      <% end %>
+    </td>
+    <td class='align-middle'>
+      <!-- 編集は後で編集 turbo-stream使う -->
+      <span class='btn btn-secondary'><%= link_to '編集', 'javascript:void(0)' %></span>
+      <span class="btn btn-danger"><%= link_to '削除', sites_destroy_path(site),class: 'bright-color', data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } %></span>
+    </td>
+    <td><%= link_to '', site_memos_index_path(site),class:'to-memo-table-link', data: { turbo: false } %></td>
+  </tr>
 <% end %> 
--->

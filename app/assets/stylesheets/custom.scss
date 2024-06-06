@@ -30,6 +30,10 @@
   box-shadow: 0 3px 1px 1px var(--character);
 }
 
+.btn-danger{
+  background-color: var(--sign);
+}
+
 .btn-primary:hover{
   background-color: var(--thin-sub);
 }

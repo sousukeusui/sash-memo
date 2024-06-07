@@ -41,23 +41,23 @@
   <% order = inner_sash.order_i18n %>
   <%= turbo_frame_tag dom_id(inner_sash), class:'d-none d-lg-block' do %>
     <div class="row border-bottom position-relative p-3 text-center sites-table">
-      <div class='col text-truncate d-flex justify-content-center'>
+      <div class='col-2 text-truncate d-flex justify-content-center'>
         <p class='align-self-center m-0'><%= site_memo.kind_i18n %></p> 
       </div>
-      <div class='col text-truncate d-flex justify-content-center'>
+      <div class='col-2 text-truncate d-flex justify-content-center'>
         <p class='align-self-center m-0'><%= inner_sash.sash_type_i18n %></p> 
       </div>
-      <div class='col text-truncate d-flex justify-content-center'>
+      <div class='col-2 text-truncate d-flex justify-content-center'>
         <p class='align-self-center m-0'><%= inner_sash.room %></p> 
       </div>
-      <div class='col'>
+      <div class='col-2 d-flex justify-content-center'>
         <% if order == '未発注' %>
-          <span class="badge bg-danger mb-3 w-50"><%= order %></span>
+          <p class="badge bg-danger w-50 align-self-center m-0"><%= order %></p>
         <% else %>
-          <span class="badge bg-primary mb-3 w-50"><%= order %></span>
+          <p class="badge bg-primary w-50 align-self-center m-0"><%= order %></p>
         <% end %>
       </div>
-      <div class='col mb-3'>
+      <div class='col'>
         <!-- 編集は後で編集 turbo-stream使う -->
         <span class='btn btn-secondary'><%= link_to '編集', 'javascript:void(0)' %></span>
         <span class="btn btn-danger"><%= link_to '削除', site_memos_destroy_path(kind: site_memo.kind, child_id: inner_sash.id),class: 'bright-color', data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } %></span>

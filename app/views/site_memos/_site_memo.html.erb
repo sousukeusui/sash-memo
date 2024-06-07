@@ -1,25 +1,3 @@
-<!--
-<% site_memo.inner_sashes.each do |inner_sash| %>
-  <%= turbo_frame_tag dom_id(inner_sash) do %>
-    <div>
-      <%= inner_sash.room %>
-      <%= site_memo.kind_i18n %>
-      -->
-      <!-- sashと書かれているところは内容の項目によって動的に変える予定。door, screenなど-->
-      <!--
-      <%= inner_sash.sash_type_i18n %>
-    </div>
-    <div>
-      <%= inner_sash.order_i18n %>
-    </div>
-    -->
-    <!-- 以下のリンクはテーブルの行に広げる予定 -->
-<!--
-    <%= link_to '詳細', site_memos_show_switcher_path(kind: site_memo.kind, id: inner_sash.id), data: { turbo: false } %>
-    <%= link_to '削除', site_memos_destroy_path(kind: site_memo.kind, child_id: inner_sash.id), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' } %>
-  <% end %>
-<% end %>
--->
 
 <% site_memo.inner_sashes.each do |inner_sash| %>
   <% order = inner_sash.order_i18n %>

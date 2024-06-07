@@ -43,6 +43,9 @@
             <span class='col align-self-center'>メモ追加</span>
           <% end %>
         </div>
+        <div class='col row justify-content-center'>
+          <%= render 'bulk_order_link' %>
+        </div>
       </div>
       <div>
         <% if @site_memos.blank? %>
@@ -51,7 +54,6 @@
         </div>
         <% else %>
           <%= turbo_frame_tag 'site-memos-list' do %>
-            <%= render 'bulk_order_link' %>
             <%= render @site_memos %>
           <% end %>
         <% end %>

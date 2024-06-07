@@ -53,3 +53,7 @@
   display: flex;
   justify-content: center;
 }
+
+.sites-table:hover{
+  background-color: var(--card-hover);
+}

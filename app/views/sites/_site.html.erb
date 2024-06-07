@@ -44,11 +44,19 @@
 
 
 <%= turbo_frame_tag site, class:'d-none d-lg-block' do %>
-  <div class="row border-bottom position-relative mb-3 text-center">
-    <div class='col text-truncate'><%= site.contractor.name %></div>
-    <div class='col text-truncate'><%= site.name %></div>
-    <div class='col'><%= check_schedule(date: site.research_date)%></div>
-    <div class='col'><%= check_schedule(date: site.construction_date)%></div>
+  <div class="row border-bottom position-relative p-3 text-center sites-table">
+    <div class='col text-truncate d-flex justify-content-center'>
+      <p class='align-self-center m-0'><%= site.contractor.name %></p> 
+    </div>
+    <div class='col text-truncate d-flex justify-content-center'>
+      <p class='align-self-center m-0'><%= site.name %></p> 
+    </div>
+    <div class='col text-truncate d-flex justify-content-center'>
+      <p class='align-self-center m-0'><%= check_schedule(date: site.research_date)%></p> 
+    </div>
+    <div class='col text-truncate d-flex justify-content-center'>
+      <p class='align-self-center m-0'><%= check_schedule(date: site.construction_date)%></p> 
+    </div>
     <div class='col'>
       <span class='badge bg-primary my-3 w-50'><%= site.site_memos.present? ? "メモ" : ""  %></span>
       <% if order == '未発注' %>

@@ -110,3 +110,7 @@ a{
   position: fixed;
   bottom: 30px;
 }
+
+.border-custom{
+  border-bottom: 2px solid var(--main) !important; 
+}

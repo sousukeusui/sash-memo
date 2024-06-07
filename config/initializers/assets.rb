@@ -18,5 +18,5 @@ Rails.application.config.assets.precompile += %w(
   popper.js 
 
   top.css
-  sites/index.css
+  index.css
 )

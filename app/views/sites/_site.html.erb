@@ -43,25 +43,27 @@
 <% end %>
 
 
-<%= turbo_frame_tag site, class:'d-none d-lg-table  ' do %>
-  <tr class='position-relative'>
-    <td class='align-middle'><%= site.contractor.name %></td>
-    <td class='align-middle'><%= site.name %></td>
-    <td class='align-middle'><%= check_schedule(date: site.research_date)%></td>
-    <td class='align-middle'><%= check_schedule(date: site.construction_date)%></td>
-    <td>
+<%= turbo_frame_tag site, class:'d-none d-lg-block' do %>
+  <div class="row border-bottom position-relative mb-3 text-center">
+    <div class='col text-truncate'><%= site.contractor.name %></div>
+    <div class='col text-truncate'><%= site.name %></div>
+    <div class='col'><%= check_schedule(date: site.research_date)%></div>
+    <div class='col'><%= check_schedule(date: site.construction_date)%></div>
+    <div class='col'>
       <span class='badge bg-primary my-3 w-50'><%= site.site_memos.present? ? "メモ" : ""  %></span>
       <% if order == '未発注' %>
         <span class="badge bg-danger mb-3 w-50"><%= order %></span>
       <% else %>
         <span class="badge bg-primary mb-3 w-50"><%= order %></span>
       <% end %>
-    </td>
-    <td class='align-middle'>
+    </div>
+    <div class='col mb-3'>
       <!-- 編集は後で編集 turbo-stream使う -->
       <span class='btn btn-secondary'><%= link_to '編集', 'javascript:void(0)' %></span>
       <span class="btn btn-danger"><%= link_to '削除', sites_destroy_path(site),class: 'bright-color', data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } %></span>
-    </td>
-    <td><%= link_to '', site_memos_index_path(site),class:'to-memo-table-link', data: { turbo: false } %></td>
-  </tr>
+    </div>
+    <div>
+      <%= link_to '', site_memos_index_path(site),class:'to-memo-table-link', data: { turbo: false } %>
+    </div>
+  </div>
 <% end %> 

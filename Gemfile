@@ -77,3 +77,4 @@ gem "mini_magick"
 gem "config"
 gem "cocoon"
 gem "cssbundling-rails", "~> 1.4"
+gem 'bootstrap5-kaminari-views', '~> 0.0.1'

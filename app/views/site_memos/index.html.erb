@@ -3,15 +3,6 @@
 <p>住所:<%= @site.address %></p> -->
 
 
-<% if @site_memos.blank? %>
-  <p>メモはありません</p>
-<% else %>
-  <%= turbo_frame_tag "site-memos-list" do %>
-    <%= render 'bulk_order_link' %>
-    <%= render @site_memos %>
-  <% end %>
-<% end %>
-
 <!-- モバイル用 -->
 <section class='d-lg-none' id="mobile">
   <div class="container" style="margin-top: 5vh;">
@@ -23,7 +14,9 @@
       </div>
       <div class='index'>
         <% if @site_memos.blank? %>
-          <p>メモはありません</p>
+          <div class="text-center mt-5">
+            <p>メモはありません</p>
+          </div>
         <% else %>
           <%= turbo_frame_tag 'sites-memos-list', class: 'row justify-content-center' do %>
             <%= render 'bulk_order_link' %>
@@ -35,22 +28,36 @@
   </div>
 </section>
 
+<!-- pc用 -->
+<section id="pc" class='d-none d-lg-block'>
+  <div class="container" style="margin-top: 15vh;">
+    <div class='row'>
+      <div class="row border-bottom border-custom p-3 text-center">
+        <h5 class="col fw-bold">内容</h5>
+        <h5 class="col fw-bold">タイプ</h5>
+        <h5 class="col fw-bold">設置場所</h5>
+        <h5 class="col fw-bold">状態</h5>
+        <div class='col row justify-content-center'>
+          <%= link_to site_memos_new_step1_path(@site.id), class: 'btn btn-primary px-2 d-flex col-10 col-xl-8 h-75' do %>
+            <i class="bi bi-plus h3 align-self-center m-0"></i>
+            <span class='col align-self-center'>メモ追加</span>
+          <% end %>
+        </div>
+      </div>
+      <div>
+        <% if @site_memos.blank? %>
+        <div class="text-center mt-5">
+          <p>メモはありません</p>
+        </div>
+        <% else %>
+          <%= turbo_frame_tag 'site-memos-list' do %>
+            <%= render 'bulk_order_link' %>
+            <%= render @site_memos %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>
+
 <%= stylesheet_link_tag "index", "data-turbo-track": "reload" %>
-
-<!--
-<div class='heading'>
-  <p>設置場所</p>
-  <p>内容</p>
-  <p>タイプ</p>
-</div>
-
-<%= link_to 'メモ追加', site_memos_new_step1_path(@site.id) %>
-<% if @site_memos.blank? %>
-  <p>メモはありません</p>
-<% else %>
-  <%= turbo_frame_tag "site-memos-list" do %>
-    <%= render 'bulk_order_link' %>
-    <%= render @site_memos %>
-  <% end %>
-<% end %>
--->

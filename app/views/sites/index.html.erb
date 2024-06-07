@@ -27,16 +27,17 @@
         <h5 class="col fw-bold">現調日</h5>
         <h5 class="col fw-bold">工事日</h5>
         <h5 class="col fw-bold">状態</h5>
-        <div class='col'>
-          <%= link_to '現場追加', sites_new_path, class: 'btn btn-primary px-4 col' %>
+        <div class='col row justify-content-center'>
+          <%= link_to sites_new_path, class: 'btn btn-primary px-2 d-flex col-10 col-xl-8 h-75' do %>
+            <i class="bi bi-plus h3 align-self-center m-0"></i>
+            <span class='col align-self-center'>現場追加</span>
+          <% end %>
         </div>
       </div>
       <div>
         <%= turbo_frame_tag 'sites-list' do %>
           <%= render @sites %>
-          <div class="page">
-            <%= paginate @sites, theme: 'bootstrap-5' %>
-          </div>
+          <%= paginate @sites, theme: 'bootstrap-5' %>
         <% end %>
       </div>
     </div>

@@ -14,6 +14,7 @@ class SiteMemosController < ApplicationController
     @site_memos = @site.site_memos
     update_childs_order(site_memos: @site_memos, order: order)
     # あとでページネーション考える
+    @order_key = get_opposite_order_key(site_memos: @site_memos)
     flash.now.notice = "全て#{ InnerSash.orders_i18n[order.to_sym]}にしました"
   end
 

@@ -1,5 +1,5 @@
 <%= link_to site_memos_update_bulk_order_path(site_id: @site.id, order: @order_key ),
   class: 'btn btn-primary px-2 d-flex col-9 col-md-4 col-lg-10 col-xl-8 h-75',
   data: {turbo: true, turbo_method: :post, turbo_confirm: "全て#{InnerSash.orders_i18n[@order_key.to_sym]}にしますか？(表示されていないものも含みます)"} do %>
-  <span class='col align-self-center'><%= "一括#{InnerSash.orders_i18n[@order_key.to_sym]}" %></span>  
+  <span class='col align-self-center'><%= "一括#{InnerSash.orders_i18n[@order_key.to_sym]}" %></span>
 <% end %> 

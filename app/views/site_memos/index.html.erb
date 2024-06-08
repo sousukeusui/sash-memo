@@ -20,7 +20,7 @@
         <% else %>
           <%= turbo_frame_tag 'site-memos-list', class: 'row justify-content-center' do %>
             <div class="submit-btn d-flex justify-content-start justify-content-md-center">
-              <%= render 'bulk_order_link' %>
+              <%= render 'bulk_order_link', devise: 'mobile' %>
             </div>
             <%= render @site_memos %>
           <% end %>
@@ -45,17 +45,19 @@
             <span class='col-7 align-self-center'>メモ追加</span>
           <% end %>
         </div>
-        <div class='col row justify-content-center'>
-          <%= render 'bulk_order_link' %>
-        </div>
+        <%= turbo_frame_tag 'bulk-order-link', class: 'col' do %>
+          <div class='row justify-content-center'>
+            <%= render 'bulk_order_link', devise: 'pc' %>
+          </div>
+        <% end %>
       </div>
-      <div>
+      <div class='index'>
         <% if @site_memos.blank? %>
-        <div class="text-center mt-5">
-          <p>メモはありません</p>
-        </div>
+          <div class="text-center mt-5">
+            <p>メモはありません</p>
+          </div>
         <% else %>
-          <%= turbo_frame_tag 'site-memos-list' do %>
+          <%= turbo_frame_tag 'site-memos-list-pc' do %>
             <%= render @site_memos %>
           <% end %>
         <% end %>

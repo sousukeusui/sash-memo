@@ -1,7 +1,8 @@
+<!-- モバイル用 -->
 <%= turbo_stream_flash %>
 <%= turbo_stream.update "site-memos-list" do %>
   <div class="submit-btn d-flex justify-content-start justify-content-md-center">
-    <%= render 'bulk_order_link' %>
+    <%= render 'bulk_order_link', devise: 'mobile' %>
   </div>
   <%= render @site_memos %>
 <% end %>

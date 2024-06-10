@@ -78,7 +78,8 @@ class InnerSashesController < ApplicationController
 
   def switch(template:, id:)
     @inner_sash = InnerSash.find(id)
-     # templateはbasic_info、shoji_and_glass、photo_and_othersのどれか
+     # templateはbasic_info、shoji_and_glass、photo_and_others
+     # opening_drawing h_cross_drawing w_cross_drawing　のどれか
     render "#{template}", content_type: 'text/vnd.turbo-stream.html'
   end
 

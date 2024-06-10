@@ -46,10 +46,6 @@
         <%= render 'tabs' %>
         <%= render 'basic_info', inner_sash: @inner_sash%>
       </div>
-      <div class="navigation mb-3">
-        <%= link_to '次', inner_sashes_navigate_page_path(id: @inner_sash.next), data: {turbo_method: :post} if @inner_sash.next.present? %>
-        <%= link_to '前', inner_sashes_navigate_page_path(id: @inner_sash.previous), data: {turbo_method: :post} if @inner_sash.previous.present? %>
-      </div>
     <% end %>
   </div>
 </section>
@@ -71,8 +67,19 @@
       <%= render 'tabs' %>
       <%= render 'basic_info', inner_sash: @inner_sash %>
     </div>
-    <%= link_to '次', inner_sashes_navigate_page_path(id: @inner_sash.next), data: {turbo_method: :post} if @inner_sash.next.present? %>
-    <%= link_to '前', inner_sashes_navigate_page_path(id: @inner_sash.previous), data: {turbo_method: :post} if @inner_sash.previous.present? %>
+    <div class="position-relative">
+      <div class="row justify-content-center mt-4 mb-5 ">
+        <%= link_to '編集', inner_sashes_switch_path(template: 'edit_basic_info', id: @inner_sash.id), data: {turbo_stream: true}, class: 'btn btn-primary col-6' %>
+      </div>
+      <div class="navigation">
+        <%= link_to inner_sashes_navigate_page_path(id: @inner_sash.previous), data: {turbo_method: :post} if @inner_sash.previous.present? do %>
+
+        <% end %>
+        <%= link_to inner_sashes_navigate_page_path(id: @inner_sash.next), data: {turbo_method: :post} if @inner_sash.next.present? do %>
+
+        <% end %>
+      </div>
+    </div>
   <% end %>
 </section>
 

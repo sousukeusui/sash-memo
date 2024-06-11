@@ -1,12 +1,23 @@
-<div id="basic-tab" class='data-tab is-active'>
-  <%= link_to '基本情報・枠', inner_sashes_switch_path(template: 'basic_info', id: @inner_sash.id),
-      data: { turbo_stream: true } %>
-</div>
-<div id="shoji-tab" class='data-tab'>
-  <%= link_to '障子・ガラス', inner_sashes_switch_path(template: 'shoji_and_glass', id: @inner_sash.id),
-      data: { turbo_stream: true } %>
-</div>
-<div id="photo-tab" class='data-tab'>
-  <%= link_to '写真・その他', inner_sashes_switch_path(template: 'photo_and_others', id: @inner_sash.id),
-      data: { turbo_stream: true} %>
-</div>
+<ul class="nav nav-tabs nav-fill">
+  <li class='nav-item'>
+    <%= link_to inner_sashes_switch_path(template: 'basic_info', id: @inner_sash.id), class: 'nav-link active',
+        data: { turbo_stream: true } do %>
+      <p class="d-md-none">寸法</p>
+      <p class="d-none d-md-block">基本情報</p>
+    <% end %>
+  </li>
+  <li class='nav-item'>
+    <%= link_to inner_sashes_switch_path(template: 'shoji_and_glass', id: @inner_sash.id), class: 'nav-link',
+        data: { turbo_stream: true } do %>
+      <p class="d-md-none">障子</p>
+      <p class="d-none d-md-block">障子・ガラス</p>
+    <% end %>
+  </li>
+  <li class='nav-item'>
+    <%= link_to inner_sashes_switch_path(template: 'photo_and_others', id: @inner_sash.id), class: 'nav-link',
+        data: { turbo_stream: true} do %>
+      <p class="d-md-none">写真</p>
+      <p class="d-none d-md-block">写真・その他</p>
+    <% end %>    
+  </li>
+</ul>

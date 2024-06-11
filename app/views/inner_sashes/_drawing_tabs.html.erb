@@ -1,0 +1,14 @@
+<ul class="nav nav-tabs nav-fill">
+  <li class="nav-item">
+    <%= link_to '開口図', inner_sashes_switch_path(template: 'opening_drawing', id: inner_sash.id), class: 'nav-link active',
+        data: { turbo_stream: true } %>
+  </li>
+  <li class="nav-item">
+    <%= link_to '縦断面', inner_sashes_switch_path(template: 'h_cross_drawing', id: inner_sash.id), class: 'nav-link',
+        data: { turbo_stream: true } %>
+  </li>
+  <li class="nav-item">
+    <%= link_to '横断面', inner_sashes_switch_path(template: 'w_cross_drawing', id: inner_sash.id), class: 'nav-link', 
+        data: { turbo_stream: true } %>
+  </li>
+</ul>

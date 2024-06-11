@@ -1,31 +1,69 @@
-<p>内窓詳細</p>
-
-<p>元請</p><%= @inner_sash.site_memo.site.contractor.name %>
-<p>現場名</p><%= @inner_sash.site_memo.site.name %>
-<p>住所</p><%= @inner_sash.site_memo.site.address %><br/>
-
-<%= turbo_frame_tag 'order' do %>
-  <%= @inner_sash.order_i18n %>
-<% end %>
-<%= @inner_sash.room %>
-<p>内窓</p>
-<%= turbo_frame_tag 'order-link' do %>
-  <%= render partial: 'order_link', locals: {order_key: @order_key, inner_sash: @inner_sash} %>
-<% end %>
-<div id="inner-sash-delete">
-  <%= link_to '削除', inner_sashes_destroy_path(id: @inner_sash.id), data: {turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }%>
-</div>
-<%= turbo_frame_tag 'inner-sash-data-wrap' do %>
-  <%= turbo_frame_tag 'drawing' do %>
-    <%= render 'drawing', inner_sash: @inner_sash %>
-  <% end %>
-  <div id="inner-sash-data">
-    <%= render 'tabs' %>
-    <%= render 'basic_info', inner_sash: @inner_sash%>
+<section id="mobile">
+  <%= render 'site_label' %>
+  <div class="container" style='margin-top:88px;'>
+    <div class="row d-sm-none">
+      <div class="col <%= @inner_sash.order %>-label p-1 mb-2">
+        <%= turbo_frame_tag 'order' do %>
+          <p class='bright-color m-0'><%= @inner_sash.order_i18n %></p>
+        <% end %>
+      </div>
+    </div>
+    <div class="row align-items-center text-center mb-3" style='height:60px;'>
+      <div class="col">
+        <p class='m-0'><%= @inner_sash.room %></p>
+      </div>
+      <div class="col">
+        <p class='m-0'>内窓</p>
+      </div>
+      <div class="col-2 d-none d-sm-block">
+        <%= turbo_frame_tag 'order', class: "badge #{@inner_sash.order}-label py-1 px-3" do %>
+          <p class='bright-color m-0'><%= @inner_sash.order_i18n %></p>
+        <% end %>
+      </div>
+      <div class="col">
+        <%= link_to '編集', 'javascript:void(0)', class: 'btn btn-primary px-4 py-0' %>
+      </div>
+      <div class="col-1 p-0 dropdown d-lg-none">
+        <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="bi bi-three-dots-vertical h1"></i>
+        </a>
+        <ul class="dropdown-menu mt-2">
+          <li>
+            <%= turbo_frame_tag 'order-link', class: 'dropdown-item'  do %>
+              <%= render partial: 'order_link', locals: {order_key: @order_key, inner_sash: @inner_sash} %>
+            <% end %>
+          </li>
+          <li>
+            <p id="inner-sash-delete" class='dropdown-item m-0'>
+              <%= link_to '削除', inner_sashes_destroy_path(id: @inner_sash.id), data: {turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }%>
+            </p>
+          </li>
+        </ul>
+      </div>
+      <div class="col d-none d-lg-block">
+        <%= turbo_frame_tag 'order-link'  do %>
+          <%= render partial: 'order_link', locals: {order_key: @order_key, inner_sash: @inner_sash} %>
+        <% end %>
+      </div>
+      <div id="inner-sash-delete" class="col d-none d-lg-block">
+         <%= link_to '削除', inner_sashes_destroy_path(id: @inner_sash.id), data: {turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: 'btn btn-danger px-4 py-0'%>
+      </div>
+    </div>
+    <%= turbo_frame_tag 'inner-sash-data-wrap' do %>
+      <%= turbo_frame_tag 'drawing' do %>
+        <%= render 'drawing_tabs', inner_sash: @inner_sash %>
+        <%= render 'drawing', inner_sash: @inner_sash %>
+      <% end %>
+      <div id="inner-sash-data" class='mb-3'>
+        <%= render 'tabs' %>
+        <%= render 'basic_info', inner_sash: @inner_sash%>
+      </div>
+    <% end %>
   </div>
-  <%= link_to '次', inner_sashes_navigate_page_path(id: @inner_sash.next), data: {turbo_method: :post} if @inner_sash.next.present? %>
-  <%= link_to '前', inner_sashes_navigate_page_path(id: @inner_sash.previous), data: {turbo_method: :post} if @inner_sash.previous.present? %>
-<% end %>
+</section>
+
 <% content_for :js do %>
   <%= javascript_import_module_tag "draw_opening" %>
 <% end %>
+
+<%= stylesheet_link_tag "show", "data-turbo-track": "reload" %>

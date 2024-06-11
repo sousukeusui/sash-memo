@@ -68,7 +68,7 @@ class InnerSashesController < ApplicationController
   def destroy(id:)
     inner_sash = InnerSash.find(id)
     inner_sash.destroy_last_with(site_memo: inner_sash.site_memo)
-    redirect_to site_memos_index_path(site_id: site_memo.site_id), notice: "メモを削除しました"
+    redirect_to site_memos_index_path(site_id: inner_sash.site_memo.site_id), notice: "メモを削除しました"
   end
 
   def navigate_page(id:)
@@ -78,7 +78,8 @@ class InnerSashesController < ApplicationController
 
   def switch(template:, id:)
     @inner_sash = InnerSash.find(id)
-     # templateはbasic_info、shoji_and_glass、photo_and_othersのどれか
+     # templateはbasic_info、shoji_and_glass、photo_and_others
+     # opening_drawing h_cross_drawing w_cross_drawing　のどれか
     render "#{template}", content_type: 'text/vnd.turbo-stream.html'
   end
 

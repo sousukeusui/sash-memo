@@ -114,3 +114,9 @@ a{
 .border-custom{
   border-bottom: 2px solid var(--main) !important; 
 }
+
+.site-label{
+  position: fixed;
+  top:56px;
+  background-color: var(--side)
+}

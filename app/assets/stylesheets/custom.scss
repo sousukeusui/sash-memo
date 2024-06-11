@@ -30,6 +30,12 @@
   box-shadow: 0 2px 1px 1px var(--character);
 }
 
+.btn-secondary{
+  background-color: var(--side);
+  border: none;
+  box-shadow: 0 2px 1px 1px var(--character);
+}
+
 .btn-danger{
   background-color: var(--sign);
   border: none;

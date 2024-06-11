@@ -5,8 +5,11 @@
   <%= link_to '削除', inner_sashes_destroy_path(id: @inner_sash.id), data: {turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }%>
 <% end %>
 <%= turbo_stream.update 'inner-sash-data-wrap' do %>
-  <%= render 'drawing', inner_sash: @inner_sash %>
-  <div id="inner-sash-data">
+  <%= turbo_frame_tag 'drawing' do %>
+    <%= render 'drawing_tabs', inner_sash: @inner_sash %>
+    <%= render 'drawing', inner_sash: @inner_sash %>
+  <% end %>
+  <div id="inner-sash-data" class='mb-3'>
     <%= render 'tabs' %>
     <%= render 'basic_info', inner_sash: @inner_sash %>
   </div>

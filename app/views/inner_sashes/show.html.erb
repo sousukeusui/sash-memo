@@ -30,7 +30,7 @@
         <ul class="dropdown-menu mt-2">
           <li>
             <%= turbo_frame_tag 'order-link', class: 'dropdown-item'  do %>
-              <%= render partial: 'order_link', locals: {order_key: @order_key, inner_sash: @inner_sash, order_class: 'nil'} %>
+              <%= render partial: 'order_link', locals: {order_key: @order_key, inner_sash: @inner_sash} %>
             <% end %>
           </li>
           <li>
@@ -42,10 +42,10 @@
       </div>
       <div class="col d-none d-lg-block">
         <%= turbo_frame_tag 'order-link'  do %>
-          <%= render partial: 'order_link', locals: {order_key: @order_key, inner_sash: @inner_sash, order_class: 'btn btn-primary py-0 px-3'} %>
+          <%= render partial: 'order_link', locals: {order_key: @order_key, inner_sash: @inner_sash} %>
         <% end %>
       </div>
-      <div class="col d-none d-lg-block">
+      <div id="inner-sash-delete" class="col d-none d-lg-block">
          <%= link_to '削除', inner_sashes_destroy_path(id: @inner_sash.id), data: {turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: 'btn btn-danger px-4 py-0'%>
       </div>
     </div>

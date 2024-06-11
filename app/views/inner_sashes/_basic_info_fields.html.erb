@@ -1,6 +1,6 @@
 <div class="form-group">
-  <p>タイプ</p>
-  <%= inner_sash.select :sash_type, InnerSash.sash_types.keys.map{ |k| [I18n.t("enums.inner_sash.sash_type.#{k}"),k] }, {prompt: '選択してください'}, required: true %>
+  <%= inner_sash.label :sash_type, 'タイプ', class: 'form-label' %>
+  <%= inner_sash.select :sash_type, InnerSash.sash_types.keys.map{ |k| [I18n.t("enums.inner_sash.sash_type.#{k}"),k] }, {prompt: '選択してください'}, required: true, class: 'form-select' %>
 </div>
 <div class="form-group">
   <p>色</p>

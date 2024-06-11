@@ -6,7 +6,7 @@
       <%= f.label :kind, '施工内容', class: 'form-label' %><span class="badge bg-danger ms-2">必須</span><br />
       <%= f.select :kind, SiteMemo.kinds.keys.map{ |k| [I18n.t("enums.site_memo.kind.#{k}"),k]}, {prompt: '選択してください'}, class: 'form-select' %>
     </div>
-    <div class="form-group row justify-content-center p-3 submit-btn mb-lg-5">
+    <div class="row justify-content-center p-3 submit-btn mb-lg-5">
       <%= f.submit '次へ', class: 'btn btn-primary col-9 col-md-4 col-lg-2' %>
     </div>
   <% end %>

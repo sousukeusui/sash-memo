@@ -66,7 +66,6 @@ class InnerSashesController < ApplicationController
   end
 
   def destroy(id:)
-    p id
     inner_sash = InnerSash.find(id)
     inner_sash.destroy_last_with(site_memo: inner_sash.site_memo)
     redirect_to site_memos_index_path(site_id: inner_sash.site_memo.site_id), notice: "メモを削除しました"

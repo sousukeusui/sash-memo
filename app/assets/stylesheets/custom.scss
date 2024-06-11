@@ -27,11 +27,13 @@
 .btn-primary{
   background-color: var(--main);
   border: none;
-  box-shadow: 0 3px 1px 1px var(--character);
+  box-shadow: 0 2px 1px 1px var(--character);
 }
 
 .btn-danger{
   background-color: var(--sign);
+  border: none;
+  box-shadow: 0 2px 1px 1px var(--character);
 }
 
 .btn-primary:hover{

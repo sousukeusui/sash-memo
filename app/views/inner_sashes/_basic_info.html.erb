@@ -43,7 +43,7 @@
           <% end %>
         </div>
         <div class="col-6 mb-3">
-          <%= link_to '編集', inner_sashes_switch_path(template: 'edit_basic_info', id: @inner_sash.id), data: {turbo_stream: true}, class: 'btn btn-primary bright-color w-100' %>
+          <%= link_to '編集', inner_sashes_switch_path(template: 'edit_basic_info', id: @inner_sash.id), data: {turbo_stream: true}, class: 'btn btn-primary bright-color col-11 col-lg-6' %>
         </div>
         <div class="col-3 mb-3">
           <% if @inner_sash.next.present? %>

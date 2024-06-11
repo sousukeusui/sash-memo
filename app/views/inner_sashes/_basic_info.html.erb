@@ -34,7 +34,7 @@
                               inner_sash.height_right_size )%>  
         </span>
       </div>
-      <div class="row g-0 mt-4 align-items-center">
+      <div class="row g-0 mt-4 mt-md-5 align-items-center">
         <div class="col-3 mb-3">
           <% if @inner_sash.previous.present? %>
             <%= link_to inner_sashes_navigate_page_path(id: @inner_sash.previous), data: {turbo_method: :post} do %>

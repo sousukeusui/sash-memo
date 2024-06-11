@@ -1,6 +1,11 @@
 .site-label{
-  margin-top:56px;
+  position: fixed;
+  top:56px;
   background-color: var(--side)
+}
+
+.show-contents{
+  margin-top: 88px;
 }
 
 .ordered-label{

@@ -1,11 +1,50 @@
 <%= turbo_frame_tag 'shoji-and-glass' do %>
-  中桟<%= inner_sash.middle_frame_height %>
-  クレセント<%= inner_sash.key_height %>
-
-  <p>ガラス</p>
-  種類<%= inner_sash.glass_kind_i18n %>
-  色<%= inner_sash.glass_color_i18n %>
-  単板・複層<%= inner_sash.glass_thickness_i18n %>
-  Low-E<%= inner_sash.is_low_e ? "有" : "無" %>
-  <%= link_to '編集', inner_sashes_switch_path(template: 'edit_shoji_and_glass', id: inner_sash.id), data: {turbo_stream: true} %>
+  <div class='row text-center'>
+    <div class="col-12 row g-0 data-list align-items-center border-bottom">
+      <span class="col-6 fw-bold">中桟</span>
+      <span class="col-6"><%= inner_sash.middle_frame_height %></span>
+    </div>
+    <div class="col-12 row border-bottom g-0 data-list align-items-center">
+      <span class="col-6 fw-bold">クレセント</span>
+      <span class="col-6"><%= inner_sash.key_height %></span>
+    </div>
+    <p class='fw-bold mt-2 mb-2'>ガラス</p>
+    <div class="col-12 row g-0 data-list-2">
+      <div class="border-bottom row g-0 data-list d-flex align-items-center">
+        <span class='col-6 fw-bold'>種類</span>
+        <span class="col-6"><%= inner_sash.glass_kind_i18n %></span>
+      </div>
+      <div class="border-bottom row g-0 data-list d-flex align-items-center">
+        <span class="col-6 fw-bold">色</span>
+        <span class="col-6"><%= inner_sash.glass_color_i18n %></span>
+      </div>
+      <div class="border-bottom row g-0 data-list d-flex align-items-center">
+        <span class="col-6 fw-bold">単板・複層</span>
+        <span class="col-6"><%= inner_sash.glass_thickness_i18n %></span>
+      </div>
+      <div class="border-bottom row g-0 data-list d-flex align-items-center">
+        <span class="col-6 fw-bold">Low-E</span>
+        <span class="col-6"><%= inner_sash.is_low_e ? "有" : "無" %></span>
+      </div>
+      <div class="row g-0 mt-4 mt-md-5 align-items-center">
+        <div class="col-3 mb-3">
+          <% if @inner_sash.previous.present? %>
+            <%= link_to inner_sashes_navigate_page_path(id: @inner_sash.previous), data: {turbo_method: :post} do %>
+              <i class="bi bi-arrow-left-circle-fill h1"></i>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="col-6 mb-3">
+          <%= link_to '編集', inner_sashes_switch_path(template: 'edit_shoji_and_glass', id: inner_sash.id), data: {turbo_stream: true}, class: 'btn btn-primary bright-color col-11 col-lg-6' %>
+        </div>
+        <div class="col-3 mb-3">
+          <% if @inner_sash.next.present? %>
+            <%= link_to inner_sashes_navigate_page_path(id: @inner_sash.next), data: {turbo_method: :post}, class: 'd-block h-100' do %>
+              <i class="bi bi-arrow-right-circle-fill h1"></i>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 <% end %>

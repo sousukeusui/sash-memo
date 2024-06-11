@@ -1,16 +1,33 @@
-<%= render 'site_info' %>
-<div id="room-list">
-  <%= render @inner_sashes %>
+<%= render 'inner_sashes/site_label', parent: @site_memo.site %>
+<div class="container" style='margin-top:15vh;'>
+  <div class="text-center mb-3">
+    <div class='added-link-wrap pb-2 mb-3'>
+      <a class='added-link' data-bs-toggle="collapse" href="#room-list-collapse" role="button" aria-expanded="true" aria-controls="room-list-collapse">
+        <span><i class="bi bi-caret-down me-1 h3 align-middle"></i>追加済一覧</span>
+      </a>
+    </div>
+    <div class="collapse" id='room-list-collapse'>
+      <div id="room-lists" class='row justify-content-center'>
+        <%= render @inner_sashes %>
+      </div>
+    </div>
+  </div>
+
+  <%= turbo_frame_tag 'inner-sash-size-form' do %>
+    <%= form_with model: @inner_sash, url: inner_sashes_new_append_room_path, data: { turbo_stream: true }, class: 'row justify-content-center' do |inner_sash|%>
+      <div class="col-11 col-md-8 col-lg-5 mb-3 mb-md-4">
+        <%= inner_sash.label :room, '部屋名', class: 'form-label' %>
+        <%= inner_sash.text_field :room, tabindex: "1", class: 'size-form form-control', required: true%>
+      </div>
+      <%= render 'size_fields', inner_sash: inner_sash %>
+      <div class="row justify-content-center p-3 mb-lg-3">
+        <%= inner_sash.submit '追加', class: 'btn btn-primary col-9 col-md-4 col-lg-2' %>
+      </div>
+    <% end %>
+  <% end %>
+  <div class="row justify-content-center p-3 mb-lg-5 mb-3">
+    <%= link_to '次へ', inner_sashes_new_step3_path, class: 'btn btn-secondary col-9 col-md-4 col-lg-2' %>
+  </div>
 </div>
 
-<%= turbo_frame_tag 'inner-sash-size-form' do %>
-  <%= form_with model: @inner_sash, url: inner_sashes_new_append_room_path, data: { turbo_stream: true } do |inner_sash|%>
-    <div class="form-group">
-      <%= inner_sash.label :room, '部屋' %>
-      <%= inner_sash.text_field :room, required: true%>
-    </div>
-    <%= render 'size_fields', inner_sash: inner_sash %>
-    <%= inner_sash.submit '追加' %>
-  <% end %>
-<% end %>
-<%= link_to '次へ', inner_sashes_new_step3_path %>
+<%= stylesheet_link_tag "new", "data-turbo-track": "reload" %>

@@ -1,4 +1,4 @@
-<%= render 'inner_sashes/site_label', site: @site %>
+<%= render 'inner_sashes/site_label', parent: @site %>
 <div class="container" style="margin-top: 15vh;">
   <%= form_with model: @site_memo, url: site_memos_form_switcher_path, local: true, class: 'row justify-content-center' do |f| %>
     <%= render 'layouts/alert', obj: f.object %>

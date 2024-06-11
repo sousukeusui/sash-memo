@@ -20,4 +20,5 @@ Rails.application.config.assets.precompile += %w(
   top.css
   index.css
   show.css
+  new.css
 )

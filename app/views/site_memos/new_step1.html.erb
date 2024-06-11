@@ -1,12 +1,13 @@
-現場名<%= @site.name %>
-元請け<%= @site.contractor.name %>
-<%= form_with model: @site_memo, url: site_memos_form_switcher_path, local: true do |f| %>
-  <%= render 'layouts/alert', obj: f.object %>
-  <div class="form-group">
-    <%= f.label :kind, '施工内容' %>
-    <%= f.select :kind, SiteMemo.kinds.keys.map{ |k| [I18n.t("enums.site_memo.kind.#{k}"),k]}, {prompt: '選択してください'} %>
-  </div>
-  <div class="form-group">
-    <%= f.submit '次へ' %>
-  </div>
-<% end %>
+<%= render 'inner_sashes/site_label', site: @site %>
+<div class="container" style="margin-top: 15vh;">
+  <%= form_with model: @site_memo, url: site_memos_form_switcher_path, local: true, class: 'row justify-content-center' do |f| %>
+    <%= render 'layouts/alert', obj: f.object %>
+    <div class="col-11 col-md-8 col-lg-5 mb-3 mb-md-4">
+      <%= f.label :kind, '施工内容', class: 'form-label' %><span class="badge bg-danger ms-2">必須</span><br />
+      <%= f.select :kind, SiteMemo.kinds.keys.map{ |k| [I18n.t("enums.site_memo.kind.#{k}"),k]}, {prompt: '選択してください'}, class: 'form-select' %>
+    </div>
+    <div class="row justify-content-center p-3 submit-btn mb-lg-5">
+      <%= f.submit '次へ', class: 'btn btn-primary col-9 col-md-4 col-lg-2' %>
+    </div>
+  <% end %>
+</div>

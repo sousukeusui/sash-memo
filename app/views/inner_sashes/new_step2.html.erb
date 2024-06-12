@@ -1,18 +1,6 @@
-<%= render 'inner_sashes/site_label', parent: @site_memo.site %>
-<div class="container" style='margin-top:15vh;'>
-  <div class="text-center mb-3">
-    <div class='added-link-wrap pb-2 mb-3'>
-      <a class='added-link' data-bs-toggle="collapse" href="#room-list-collapse" role="button" aria-expanded="true" aria-controls="room-list-collapse">
-        <span><i class="bi bi-caret-down me-1 h3 align-middle"></i>追加済一覧</span>
-      </a>
-    </div>
-    <div class="collapse" id='room-list-collapse'>
-      <div id="room-lists" class='row justify-content-center'>
-        <%= render @inner_sashes %>
-      </div>
-    </div>
-  </div>
-
+<%= render 'site_label', parent: @site_memo.site %>
+<%= render 'new_added_index' %>
+<div class="container mt-5">
   <%= turbo_frame_tag 'inner-sash-size-form' do %>
     <%= form_with model: @inner_sash, url: inner_sashes_new_append_room_path, data: { turbo_stream: true }, class: 'row justify-content-center' do |inner_sash|%>
       <div class="col-11 col-md-8 col-lg-5 mb-3 mb-md-4">

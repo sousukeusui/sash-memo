@@ -40,21 +40,26 @@
       <% end %>
     </div>
   </section>
-</div>
 
-<% if false %>
-  <%= form_with model: @site_memo, url: inner_sashes_new_append_basic_info_path, local: true do |f| %>
-    <%= render 'layouts/alert', obj: f.object %>
-    <%= f.fields_for :inner_sashes do |inner_sash| %>
-      <div class="form_group">
-        <%= inner_sash.label :room, '部屋名' %>
-        <%= inner_sash.text_field :room, required: true %>
+  <section class='d-none d-lg-block' id="pc">
+    <div class="row g-0 border-bottom border-custom p-3 text-center">
+      <h5 class="col fw-bold">部屋</h5>
+      <h5 class="col fw-bold">タイプ</h5>
+      <h5 class="col fw-bold">色</h5>
+      <h5 class="col fw-bold">障子枚数</h5>
+      <h5 class="col fw-bold">吊り元</h5>
+    </div>
+    <%= form_with model: @site_memo, url: inner_sashes_new_append_basic_info_path, local: true, class: "row justify-content-center" do |f| %>
+      <%= render 'layouts/alert', obj: f.object %>
+      <%= f.fields_for :inner_sashes do |inner_sash| %>
+        <%= render 'basic_info_fields', inner_sash: inner_sash %>
+      <% end %>
+      <div class="row justify-content-center p-3 mb-3 mb-lg-5 mt-3">
+        <%= f.submit '次へ', class: 'btn btn-primary col-9 col-md-4 col-lg-2' %>
       </div>
-      <%= render 'basic_info_fields', inner_sash: inner_sash %>
     <% end %>
-    <%= f.submit '次へ' %>
-  <% end %>
-<% end %>
+  </section>
+</div>
 
 <%= stylesheet_link_tag "new", "data-turbo-track": "reload" %>
 <%= stylesheet_link_tag "index", "data-turbo-track": "reload" %>

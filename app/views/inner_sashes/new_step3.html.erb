@@ -1,20 +1,12 @@
-<%= render 'inner_sashes/site_label', parent: @site_memo.site %>
-<div class="container" style="margin-top:15vh";>
-  <div class="d-none d-lg-block text-center mb-3">
-    <div class='added-link-wrap pb-2 mb-3'>
-      <a class='added-link' data-bs-toggle="collapse" href="#room-list-collapse" role="button" aria-expanded="true" aria-controls="room-list-collapse">
-        <span><i class="bi bi-caret-down me-1 h3 align-middle"></i>追加済一覧</span>
-      </a>
-    </div>
-    <div class="collapse" id='room-list-collapse'>
-      <div id="room-lists" class='row justify-content-center'>
-        <%= render @inner_sashes %>
-      </div>
-    </div>
-  </div>
+<%= render 'site_label', parent: @site_memo.site %>
+<div class="d-none d-lg-block">
+  <%= render 'new_added_index' %>
+</div>
 
-    <!-- モバイル用 -->
-  <section class='d-lg-none' id="mobile">
+
+<!-- モバイル用 -->
+<section id="mobile" class='d-lg-none'>
+  <div class="container" style="margin-top:15vh";>  
     <div style="margin-top: 5vh;">
       <%= form_with model: @site_memo, url: inner_sashes_new_append_basic_info_path, local: true, class: "row justify-content-center" do |f| %>
         <%= render 'layouts/alert', obj: f.object %>
@@ -39,9 +31,11 @@
         </div>
       <% end %>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class='d-none d-lg-block' id="pc">
+<section id="pc" class='d-none d-lg-block'>
+  <div class="container mt-5">  
     <div class="row g-0 border-bottom border-custom p-3 text-center">
       <h5 class="col fw-bold">部屋</h5>
       <h5 class="col fw-bold">タイプ</h5>
@@ -58,8 +52,8 @@
         <%= f.submit '次へ', class: 'btn btn-primary col-9 col-md-4 col-lg-2' %>
       </div>
     <% end %>
-  </section>
-</div>
+  </div>
+</section>
 
 <%= stylesheet_link_tag "new", "data-turbo-track": "reload" %>
 <%= stylesheet_link_tag "index", "data-turbo-track": "reload" %>

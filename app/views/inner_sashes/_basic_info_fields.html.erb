@@ -1,16 +1,45 @@
-<div class="form-group">
-  <%= inner_sash.label :sash_type, 'タイプ', class: 'form-label' %>
-  <%= inner_sash.select :sash_type, InnerSash.sash_types.keys.map{ |k| [I18n.t("enums.inner_sash.sash_type.#{k}"),k] }, {prompt: '選択してください'}, required: true, class: 'form-select' %>
+<div class='row justify-content-center position-relative mt-3'>
+  <div class='col-11 row border-index p-1 mb-3' style='height:40px;'>
+    <span class='col-4'>
+      <%= inner_sash.label :sash_type, 'タイプ', class: 'form-label' %>
+    </span>
+    <span class='col-7'>
+      <%= inner_sash.select :sash_type, InnerSash.sash_types.keys.map{ |k| [I18n.t("enums.inner_sash.sash_type.#{k}"),k] }, {prompt: '選択してください'}, required: true, class: 'form-select basic-form' %>
+    </span>
+  </div>
+  <div class='col-11 row border-index p-1 mb-3' style='height:40px;'>
+    <span class='col-4'>
+      <%= inner_sash.label :color, '色', class: 'form-label' %>
+    </span>
+    <span class='col-7'>
+      <%= inner_sash.select :color, InnerSash.colors.keys.map{ |k| [I18n.t("enums.inner_sash.color.#{k}"),k] }, {prompt: '選択してください'}, required: true, class: 'form-select basic-form' %>
+    </span>
+  </div>
+  <div class='col-11 row border-index p-1 mb-3' style='height:40px;'>
+    <span class='col-4'>
+      <%= inner_sash.label :number_of_shoji, '障子数', class: 'form-label' %>
+    </span>
+    <span class='col-7'>
+      <%= inner_sash.select :number_of_shoji, (1..2).each { |i| ["#{i}",i]}, {prompt: '選択してください'}, required: true, class: 'form-select basic-form' %>
+    </span>
+  </div>
+  <div class='col-11 row border-index p-1 mb-3' style='height:40px;'>
+    <span class='col-4'>
+      <%= inner_sash.label :hanging_origin, '吊り元', class: 'form-label' %>
+    </span>
+    <span class='col-7'>
+      <%= inner_sash.select :hanging_origin, InnerSash.hanging_origins.keys.map{ |k| [I18n.t("enums.inner_sash.hanging_origin.#{k}"),k] }, {prompt: '選択してください'}, required: true, class: 'form-select basic-form' %>
+    </span>
+  </div>
 </div>
+
+<% if false %>
 <div class="form-group">
-  <p>色</p>
-  <%= inner_sash.select :color, InnerSash.colors.keys.map{ |k| [I18n.t("enums.inner_sash.color.#{k}"),k] }, {prompt: '選択してください'}, required: true %>
-</div>
-<div class="form-group">
-  <p>障子枚数</p>
-  <%= inner_sash.select :number_of_shoji, (1..2).each { |i| ["#{i}",i]} %>
-</div>
-<div class="form-group">
-  <p>吊り元</p>
-  <%= inner_sash.select :hanging_origin, InnerSash.hanging_origins.keys.map{ |k| [I18n.t("enums.inner_sash.hanging_origin.#{k}"),k] }, {prompt: '選択してください'}, required: true %>
-</div>
+    <p>障子枚数</p>
+    <%= inner_sash.select :number_of_shoji, (1..2).each { |i| ["#{i}",i]} %>
+  </div>
+  <div class="form-group">
+    <p>吊り元</p>
+    <%= inner_sash.select :hanging_origin, InnerSash.hanging_origins.keys.map{ |k| [I18n.t("enums.inner_sash.hanging_origin.#{k}"),k] }, {prompt: '選択してください'}, required: true %>
+  </div>
+<% end %>

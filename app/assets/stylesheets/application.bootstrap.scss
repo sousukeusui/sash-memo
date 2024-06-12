@@ -118,5 +118,11 @@ a{
 .site-label{
   position: fixed;
   top:56px;
-  background-color: var(--side)
+  background-color: var(--side);
+  z-index: 2;
+}
+
+.basic-form{
+  padding: 0 !important;
+  padding-left: 10px !important;
 }

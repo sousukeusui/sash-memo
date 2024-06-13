@@ -33,6 +33,27 @@
   </div>
 </section>
 
+<!-- pc用 -->
+<section id="pc" class='d-none d-lg-block'>
+  <div class="container mt-5">  
+    <div class="row g-0 border-bottom border-custom p-3 text-center">
+      <h5 class="col fw-bold">部屋</h5>
+      <h5 class="col fw-bold">平板</h5>
+      <h5 class="col fw-bold">アジャスト上枠</h5>
+    </div>
+    <%= form_with model: @site_memo, url: inner_sashes_new_append_photo_and_others_path, local: true, class: "row justify-content-center" do |f| %>
+      <%= render 'layouts/alert', obj: f.object %>
+      <%= f.fields_for :inner_sashes do |inner_sash| %>
+        <%= render 'accessorie_fields', inner_sash: inner_sash %>
+      <% end %>
+      <div class="row justify-content-center p-3 mb-3 mb-lg-5 mt-3">
+        <%= f.submit '次へ', class: 'btn btn-primary col-9 col-md-4 col-lg-2' %>
+      </div>
+    <% end %>
+  </div>
+</section>
+
+
 
 <% if false %>
 <%= form_with model: @site_memo, url: inner_sashes_new_append_photo_and_others_path, local: true do |site_memo| %>

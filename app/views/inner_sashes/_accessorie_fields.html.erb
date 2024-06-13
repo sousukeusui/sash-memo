@@ -1,3 +1,27 @@
+<section id="mobile" class='d-lg-none'>
+  <div class='row justify-content-center position-relative mt-3'>
+    <div class='col-11 row border-index p-1 mb-3' style='height:40px;'>
+      <span class='col-5'>
+        <%= inner_sash.label :is_flat_bar, '平板', class: 'form-label' %>
+      </span>
+      <span class='col-7'>
+        <%= inner_sash.select :is_flat_bar ,[['有',1],['無',0]], {selected: boolean_to_int(inner_sash.object.is_flat_bar)}, class: 'form-select basic-form' %>
+      </span>
+    </div>
+    <div class='col-11 row border-index p-1 mb-3' style='height:60px;'>
+      <span class='col-5'>
+        <%= inner_sash.label :is_adjust, class: 'form-label' do %>
+          アジャスト<br>上枠
+        <% end %>
+      </span>
+      <span class='col-7'>
+        <%= inner_sash.select :is_adjust ,[['有',1],['無',0]], {selected: boolean_to_int(inner_sash.object.is_adjust)}, class: 'form-select basic-form' %>
+      </span>
+    </div>
+</section>
+
+
+<% if false %>
 <div class="form_group">
   <%= inner_sash.label :is_flat_bar, '平板' %>
   <%= inner_sash.select :is_flat_bar ,[['有',1],['無',0]], {selected: boolean_to_int(inner_sash.object.is_flat_bar)} %>
@@ -6,3 +30,4 @@
   <%= inner_sash.label :is_adjust, 'アジャスト上枠' %>
   <%= inner_sash.select :is_adjust ,[['有',1],['無',0]], {selected: boolean_to_int(inner_sash.object.is_adjust)} %>
 </div>
+<% end %>

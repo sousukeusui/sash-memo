@@ -1,7 +1,40 @@
-<p>new_step5</p>
-<%= render 'site_info' %>
-<%= render @inner_sashes %>
+<%= render 'site_label', parent: @site_memo.site %>
+<div class="d-none d-lg-block">
+  <%= render 'new_added_index' %>
+</div>
 
+<!-- モバイル用 -->
+<section id="mobile" class='d-lg-none'>
+  <div class="container" style="margin-top:15vh";>  
+    <div style="margin-top: 5vh;">
+      <%= form_with model: @site_memo, url: inner_sashes_new_append_photo_and_others_path, local: true, class: "row justify-content-center" do |f| %>
+        <%= render 'layouts/alert', obj: f.object %>
+        <%= f.fields_for :inner_sashes do |inner_sash| %>
+          <div class="mb-4 d-lg-none col-12 col-md-6">
+            <div class="card card-custom">
+              <div class="card-body">
+                <div class="row mb-1">
+                  <div class="form_group">
+                    <h5 class="col-7 card-title text-truncate">
+                      <%= inner_sash.text_field :room, required: true, class: 'border-0' %>
+                    </h5>
+                  </div>
+                  <%= render 'accessorie_fields', inner_sash: inner_sash %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+        <div class="row justify-content-center p-3 mb-3 mb-lg-5">
+          <%= f.submit '次へ', class: 'btn btn-primary col-9 col-md-4 col-lg-2' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+
+<% if false %>
 <%= form_with model: @site_memo, url: inner_sashes_new_append_photo_and_others_path, local: true do |site_memo| %>
   <%= render 'layouts/alert', obj: site_memo.object %>
   
@@ -28,3 +61,9 @@
   </div>
   <%= site_memo.submit '次へ' %>
 <% end %>
+
+<% end %>
+
+
+<%= stylesheet_link_tag "new", "data-turbo-track": "reload" %>
+<%= stylesheet_link_tag "index", "data-turbo-track": "reload" %>

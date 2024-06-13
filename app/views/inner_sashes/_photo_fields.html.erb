@@ -6,7 +6,7 @@
   <% else %>
     <div class="form_group">
       <%= image_tag f.object.file_name_url(:thumb) %>
-      <%= f.file_field :file_name %>
+      <%= f.file_field :file_name, class: 'form-control' %>
     </div>
   <% end %>
   <div class="row justify-content-end mt-1">

@@ -1,15 +1,61 @@
-<p>new_step4<p>
-<%= render 'site_info' %>
-<%= render @inner_sashes %>
+<%= render 'site_label', parent: @site_memo.site %>
+<div class="d-none d-lg-block">
+  <%= render 'new_added_index' %>
+</div>
 
-<%= form_with model: @site_memo, url: inner_sashes_new_append_shoji_and_glass_path, local: true do |f| %>
-    <%= render 'layouts/alert', obj: f.object %>
-    <%= f.fields_for :inner_sashes do |inner_sash| %>
-      <div class="form_group">
-        <%= inner_sash.label :room, '部屋名' %>
-        <%= inner_sash.text_field :room, required: true %>
+<!-- モバイル用 -->
+<section id="mobile" class='d-lg-none'>
+  <div class="container" style="margin-top:15vh";>  
+    <div style="margin-top: 5vh;">
+      <%= form_with model: @site_memo, url: inner_sashes_new_append_shoji_and_glass_path, local: true, class: "row justify-content-center" do |f| %>
+        <%= render 'layouts/alert', obj: f.object %>
+        <%= f.fields_for :inner_sashes do |inner_sash| %>
+          <div class="mb-4 d-lg-none col-12 col-md-6">
+            <div class="card card-custom">
+              <div class="card-body">
+                <div class="row mb-1">
+                  <div class="form_group">
+                    <h5 class="col-7 card-title text-truncate">
+                      <%= inner_sash.text_field :room, required: true, class: 'border-0' %>
+                    </h5>
+                  </div>
+                  <%= render 'shoji_and_glass_fields', inner_sash: inner_sash %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+        <div class="row justify-content-center p-3 mb-3 mb-lg-5">
+          <%= f.submit '次へ', class: 'btn btn-primary col-9 col-md-4 col-lg-2' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<!-- pc用 -->
+<section id="pc" class='d-none d-lg-block'>
+  <div class="container mt-5">  
+    <div class="row g-0 border-bottom border-custom p-3 text-center">
+      <h5 class="col fw-bold">部屋名</h5>
+      <h5 class="col fw-bold">厚み</h5>
+      <h5 class="col fw-bold">種類</h5>
+      <h5 class="col fw-bold">ガラス色</h5>
+      <h5 class="col fw-bold">Low-E</h5>
+      <h5 class="col fw-bold">鍵高さ</h5>
+      <h5 class="col fw-bold">中桟高さ</h5>
+    </div>
+    <%= form_with model: @site_memo, url: inner_sashes_new_append_shoji_and_glass_path, local: true, class: "row justify-content-center" do |f| %>
+      <%= render 'layouts/alert', obj: f.object %>
+      <%= f.fields_for :inner_sashes do |inner_sash| %>
+        <%= render 'shoji_and_glass_fields', inner_sash: inner_sash %>
+      <% end %>
+      <div class="row justify-content-center p-3 mb-3 mb-lg-5 mt-3">
+        <%= f.submit '次へ', class: 'btn btn-primary col-9 col-md-4 col-lg-2' %>
       </div>
-      <%= render 'shoji_and_glass_fields', inner_sash: inner_sash %>
     <% end %>
-  <%= f.submit '次へ' %>
-<% end %>
+  </div>
+</section>
+
+<%= stylesheet_link_tag "new", "data-turbo-track": "reload" %>
+<%= stylesheet_link_tag "index", "data-turbo-track": "reload" %>

@@ -18,6 +18,18 @@
         <%= inner_sash.select :is_adjust ,[['有',1],['無',0]], {selected: boolean_to_int(inner_sash.object.is_adjust)}, class: 'form-select basic-form' %>
       </span>
     </div>
+    <div class="col-11 row justify-content-center">
+      <div class="col-10 btn btn-primary p-0">
+        <%= link_to_add_association inner_sash, :photos, class: 'add-photo',
+          data: { association_insertion_node: "#add-point-#{inner_sash.object.id}",association_insertion_method: 'after'} do %>
+          <p class='bright-color m-0'><i class="bi bi-plus h4 align-middle"></i><span class='d-inline-block align-middle'>写真追加</span></p>
+        <% end %>
+      </div>
+      <%= inner_sash.fields_for :photos do |photo| %>
+        <%= render 'photo_fields', f: photo %>
+      <% end %>
+      <div id="add-point-<%= inner_sash.object.id %>"></div>
+    </div>
 </section>
 
 <section id='pc' class='d-none d-lg-block'>

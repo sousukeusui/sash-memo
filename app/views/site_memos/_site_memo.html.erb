@@ -1,7 +1,7 @@
 
 <% site_memo.inner_sashes.each do |inner_sash| %>
   <% order = inner_sash.order_i18n %>
-  <%= turbo_frame_tag dom_id(inner_sash), class:'d-lg-none col-12 col-md-6' do %>
+  <%= turbo_frame_tag dom_id(inner_sash), class:'col-12 col-md-6 col-lg-4' do %>
     <div class='card card-custom mb-4'>
       <div class="card-body">
         <div class="row mb-1">
@@ -22,48 +22,16 @@
         </div>
         <div class='row justify-content-center position-relative mt-3'>
           <div class='col-11 row border-index p-1 mb-3'>
-            <span class='col-4'>タイプ</span>
-            <span class='col-7'><%= inner_sash.sash_type_i18n %></span>
-          </div>
-          <div class='col-11 row border-index p-1 mb-3'>
             <span class='col-4'>設置場所</span>
             <span class='col-7'><%= inner_sash.room %></span>
+          </div>
+          <div class='col-11 row border-index p-1 mb-3'>
+            <span class='col-4'>タイプ</span>
+            <span class='col-7'><%= inner_sash.sash_type_i18n %></span>
           </div>
           <%# リンク広がっている %>
           <%= link_to '', site_memos_show_switcher_path(kind: site_memo.kind, id: inner_sash.id), data: { turbo: false }, class: 'to-memo-link' %>
         </div>
-      </div>
-    </div>
-  <% end %>
-<% end %>
-
-<% site_memo.inner_sashes.each do |inner_sash| %>
-  <% order = inner_sash.order_i18n %>
-  <%= turbo_frame_tag dom_id(inner_sash), class:'d-none d-lg-block' do %>
-    <div class="row border-bottom position-relative p-3 text-center sites-table">
-      <div class='col-2 text-truncate d-flex justify-content-center'>
-        <p class='align-self-center m-0'><%= site_memo.kind_i18n %></p> 
-      </div>
-      <div class='col-2 text-truncate d-flex justify-content-center'>
-        <p class='align-self-center m-0'><%= inner_sash.sash_type_i18n %></p> 
-      </div>
-      <div class='col-2 text-truncate d-flex justify-content-center'>
-        <p class='align-self-center m-0'><%= inner_sash.room %></p> 
-      </div>
-      <div class='col-2 d-flex justify-content-center'>
-        <% if order == '未発注' %>
-          <p class="badge bg-danger w-50 align-self-center m-0"><%= order %></p>
-        <% else %>
-          <p class="badge bg-primary w-50 align-self-center m-0"><%= order %></p>
-        <% end %>
-      </div>
-      <div class='col'>
-        <!-- 編集は後で編集 turbo-stream使う -->
-        <span class='btn btn-secondary'><%= link_to '編集', 'javascript:void(0)' %></span>
-        <span class="btn btn-danger"><%= link_to '削除', site_memos_destroy_path(kind: site_memo.kind, child_id: inner_sash.id),class: 'bright-color', data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } %></span>
-      </div>
-      <div>
-        <%= link_to '', site_memos_show_switcher_path(kind: site_memo.kind, id: inner_sash.id),class:'to-memo-table-link', data: { turbo: false } %>
       </div>
     </div>
   <% end %>

@@ -1,69 +1,27 @@
-<!-- <p>元請:<%= @site.contractor.name %></p>
-<p>現場名:<%= @site.name %></p>
-<p>住所:<%= @site.address %></p> -->
+<%= render 'inner_sashes/site_label', parent: @site  %>
 
-
-<!-- モバイル用 -->
-<section class='d-lg-none' id="mobile">
-  <div class="container" style="margin-top: 5vh;">
-    <div class="row justify-content-center">
-      <div class="row justify-content-end p-3 mb-lg-5 z-3">
-        <%= link_to site_memos_new_step1_path(@site.id), class: 'btn-circle submit-btn col-3 col-md-4 col-lg-2 p-0 text-center' do %>
-          <i class="bi bi-plus plus"></i>
-        <% end %>
-      </div>
-      <div class='index'>
-        <% if @site_memos.blank? %>
-          <div class="text-center mt-5">
-            <p>メモはありません</p>
-          </div>
-        <% else %>
-          <%= turbo_frame_tag 'site-memos-list', class: 'row justify-content-center' do %>
-            <div class="submit-btn d-flex justify-content-start justify-content-md-center">
-              <%= render 'bulk_order_link', devise: 'mobile' %>
-            </div>
-            <%= render @site_memos %>
-          <% end %>
-        <% end %>
-      </div>
+<div class="container index-wrap">
+  <div class="row justify-content-center">
+    <div class="row justify-content-end p-3 mb-lg-5 z-3">
+      <%= link_to site_memos_new_step1_path(@site.id), class: 'btn-circle submit-btn col-3 col-md-4 col-lg-2 p-0 text-center' do %>
+        <i class="bi bi-plus plus"></i>
+      <% end %>
     </div>
-  </div>
-</section>
-
-<!-- pc用 -->
-<section id="pc" class='d-none d-lg-block'>
-  <div class="container" style="margin-top: 15vh;">
-    <div class='row'>
-      <div class="row g-0 border-bottom border-custom p-3 text-center">
-        <h5 class="col-2 fw-bold">内容</h5>
-        <h5 class="col-2 fw-bold">タイプ</h5>
-        <h5 class="col-2 fw-bold">設置場所</h5>
-        <h5 class="col-2 fw-bold">状態</h5>
-        <div class='col row justify-content-center'>
-          <%= link_to site_memos_new_step1_path(@site.id), class: 'btn btn-primary px-2 d-flex col-10 h-75 justify-content-center' do %>
-            <i class="bi bi-plus h3 align-self-center m-0"></i>
-            <span class='col-7 align-self-center'>メモ追加</span>
-          <% end %>
+    <div class='index'>
+      <% if @site_memos.blank? %>
+        <div class="text-center mt-5">
+          <p>メモはありません</p>
         </div>
-        <%= turbo_frame_tag 'bulk-order-link', class: 'col' do %>
-          <div class='row justify-content-center'>
-            <%= render 'bulk_order_link', devise: 'pc' %>
+      <% else %>
+        <%= turbo_frame_tag 'site-memos-list', class: 'row justify-content-center' do %>
+          <div class="d-flex justify-content-center position-fixed bulk-btn">
+            <%= render 'bulk_order_link' %>
           </div>
+          <%= render @site_memos %>
         <% end %>
-      </div>
-      <div class='index'>
-        <% if @site_memos.blank? %>
-          <div class="text-center mt-5">
-            <p>メモはありません</p>
-          </div>
-        <% else %>
-          <%= turbo_frame_tag 'site-memos-list-pc' do %>
-            <%= render @site_memos %>
-          <% end %>
-        <% end %>
-      </div>
+      <% end %>
     </div>
   </div>
-</section>
+</div>
 
 <%= stylesheet_link_tag "index", "data-turbo-track": "reload" %>

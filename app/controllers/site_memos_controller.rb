@@ -9,16 +9,13 @@ class SiteMemosController < ApplicationController
     @order_key = get_opposite_order_key(site_memos: @site_memos)
   end
 
-  def update_bulk_order(site_id:, order:, devise:)
+  def update_bulk_order(site_id:, order:)
     @site = Site.preload(site_memos: :inner_sashes).find(site_id)
     @site_memos = @site.site_memos
     update_childs_order(site_memos: @site_memos, order: order)
     # あとでページネーション考える
     @order_key = get_opposite_order_key(site_memos: @site_memos)
     flash.now.notice = "全て#{ InnerSash.orders_i18n[order.to_sym]}にしました"
-    respond_to do |format|
-      format.turbo_stream { render "update_bulk_#{devise}_order" }
-    end
   end
 
   def new_step1(site_id:)

@@ -1,3 +1,7 @@
+.index-wrap{
+  margin-top: 120px;
+}
+
 .border-index{
   border-bottom: 2px solid var(--thin-sub);
   border-left: 2px solid var(--thin-sub);
@@ -63,4 +67,9 @@
 
 .sites-table:hover{
   background-color: var(--card-hover);
+}
+
+.bulk-btn{
+  top: 100px;
+  z-index: 2;
 }

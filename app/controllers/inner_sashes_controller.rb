@@ -50,7 +50,8 @@ class InnerSashesController < ApplicationController
 
   def new_comfirmation
     @site_memo.update_status(action: action_name)
-    @site_memo = SiteMemo.preload(inner_sashes: :photos).find_by(site_id: session[:site_id], kind: 'inner_sash')
+    # @site_memo = SiteMemo.preload(inner_sashes: :photos).find_by(site_id: session[:site_id], kind: 'inner_sash')
+    @inner_sashes = @site_memo.inner_sashes
   end
   
   def show(id:)

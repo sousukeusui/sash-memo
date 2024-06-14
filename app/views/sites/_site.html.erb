@@ -1,6 +1,6 @@
 <% order = check_order(site_memos: site.site_memos) %>
 
-<%= turbo_frame_tag site, class:'d-lg-none col-12 col-md-6' do %>
+<%= turbo_frame_tag site, class:'col-12 col-md-6 col-lg-4' do %>
   <div class='card card-custom mb-4'>
     <div class="card-body">
       <div class="row mb-1">
@@ -41,37 +41,3 @@
     </div>
   </div>
 <% end %>
-
-
-<%= turbo_frame_tag site, class:'d-none d-lg-block' do %>
-  <div class="row border-bottom position-relative p-3 text-center sites-table">
-    <div class='col text-truncate d-flex justify-content-center'>
-      <p class='align-self-center m-0'><%= site.contractor.name %></p> 
-    </div>
-    <div class='col text-truncate d-flex justify-content-center'>
-      <p class='align-self-center m-0'><%= site.name %></p> 
-    </div>
-    <div class='col text-truncate d-flex justify-content-center'>
-      <p class='align-self-center m-0'><%= check_schedule(date: site.research_date)%></p> 
-    </div>
-    <div class='col text-truncate d-flex justify-content-center'>
-      <p class='align-self-center m-0'><%= check_schedule(date: site.construction_date)%></p> 
-    </div>
-    <div class='col'>
-      <span class='badge bg-primary my-3 w-50'><%= site.site_memos.present? ? "メモ" : ""  %></span>
-      <% if order == '未発注' %>
-        <span class="badge bg-danger mb-3 w-50"><%= order %></span>
-      <% else %>
-        <span class="badge bg-primary mb-3 w-50"><%= order %></span>
-      <% end %>
-    </div>
-    <div class='col mb-3'>
-      <!-- 編集は後で編集 turbo-stream使う -->
-      <span class='btn btn-secondary'><%= link_to '編集', 'javascript:void(0)' %></span>
-      <span class="btn btn-danger"><%= link_to '削除', sites_destroy_path(site),class: 'bright-color', data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } %></span>
-    </div>
-    <div>
-      <%= link_to '', site_memos_index_path(site),class:'to-memo-table-link', data: { turbo: false } %>
-    </div>
-  </div>
-<% end %> 

@@ -3,7 +3,7 @@ class SitesController < ApplicationController
           :construction_start_time, contractor_attributes: [:name]
 
   def index
-    @sites = current_user.sites.preload(:contractor, :site_memos).page(params[:page]).per(5)
+    @sites = current_user.sites.preload(:contractor, site_memos: :inner_sashes).page(params[:page]).per(5)
   end
 
   def new

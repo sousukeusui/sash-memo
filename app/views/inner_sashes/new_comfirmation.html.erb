@@ -1,31 +1,13 @@
-<p>comfirmation</p>
-<%= render 'site_info' %>
-<% @site_memo.inner_sashes.each do |inner| %>
-  <p>部屋名：<%= inner.room %></p>
-  <p>W寸法：<%= calc_order_size(inner.width_up_size,
-                                inner.width_middle_size,
-                                inner.width_down_size) %></p>
-  <p>H寸法：<%= calc_order_size(inner.height_left_size,
-                                inner.height_middle_size,
-                                inner.height_right_size) %></p>
-  <p>窓枠縦：<%= inner.width_frame_depth %></p>
-  <p>窓枠横：<%= inner.height_frame_depth %></p>
-  <p>タイプ：<%= inner.sash_type %></p>
-  <p>障子枚数：<%= inner.number_of_shoji %></p>
-  <p>色：<%= inner.color %></p>
-  <p>吊り元：<%= inner.hanging_origin %></p>
-  <p>厚み：<%= inner.glass_thickness %></p>
-  <p>Low-E：<%= inner.is_low_e %></p>
-  <p>種類：<%= inner.glass_kind %></p>
-  <p>ガラス色：<%= inner.glass_color %></p>
-  <p>クレセント（窓台〜芯）<%= inner.key_height %></p>
-  <p>中桟（窓台〜芯）<%= inner.middle_frame_height %></p>
-  <p>平板：<%= inner.is_flat_bar %></p>
-  <p>アジャスト：<%= inner.is_adjust %></p>
-  <p>写真</p>
-  <% inner.photos.each do |photo| %>
-    <%= image_tag photo.file_name_url(:thumb) %>
-  <% end %>
-<% end %>
-<p>備考：<%= @site_memo.remark %></p>
-<%= link_to 'メモ一覧で確認', site_memos_index_path(session[:site_id]) %>
+<%= render 'new_added_index' %>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div id="add-data"></div>
+    <div class="row justify-content-center p-3 mb-3 mb-lg-5 mt-3">
+      <%= link_to 'メモ一覧で確認', site_memos_index_path(session[:site_id]), class: 'btn btn-primary col-9 col-md-4 col-lg-2' %>
+    </div>
+  </div>
+</div>
+
+<%= stylesheet_link_tag "new", "data-turbo-track": "reload" %>
+<%= stylesheet_link_tag "index", "data-turbo-track": "reload" %>

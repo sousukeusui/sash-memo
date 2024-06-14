@@ -1,9 +1,7 @@
 <%= render 'site_label', parent: @site_memo.site %>
-<div class="d-none d-lg-block">
-  <%= render 'new_added_index' %>
-</div>
+<%= render 'new_added_index' %>
 
-<div class="container" style="margin-top:15vh";>  
+<div class="container" style="margin-top:10vh";>  
   <div style="margin-top: 5vh;">
     <%= form_with model: @site_memo, url: inner_sashes_new_append_basic_info_path, local: true, class: "row justify-content-center" do |f| %>
       <%= render 'layouts/alert', obj: f.object %>

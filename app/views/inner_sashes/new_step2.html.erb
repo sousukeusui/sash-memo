@@ -1,5 +1,6 @@
 <%= render 'site_label', parent: @site_memo.site %>
 <%= render 'new_added_index' %>
+
 <div class="container mt-5">
   <%= turbo_frame_tag 'inner-sash-size-form' do %>
     <%= form_with model: @inner_sash, url: inner_sashes_new_append_room_path, data: { turbo_stream: true }, class: 'row justify-content-center' do |inner_sash|%>

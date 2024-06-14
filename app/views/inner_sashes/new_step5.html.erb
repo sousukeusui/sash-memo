@@ -1,6 +1,7 @@
 <%= render 'site_label', parent: @site_memo.site %>
+<%= render 'new_added_index' %>
 
-<div class="container" style='margin-top:15vh;'>
+<div class="container" style='margin-top:10vh;'>
   <%= form_with model: @site_memo, url: inner_sashes_new_append_photo_and_others_path, local: true, class: "row justify-content-center" do |f| %>
     <%= render 'layouts/alert', obj: f.object %>
     <%= f.fields_for :inner_sashes do |inner_sash| %>

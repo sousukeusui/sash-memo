@@ -5,7 +5,7 @@
     <div class='card card-custom mb-4'>
       <div class="card-body">
         <div class="row mb-1">
-          <h5 class="col-7 card-title text-truncate"><%= site_memo.kind_i18n %></h5>
+          <h5 class="col-7 card-title text-truncate"><%= inner_sash.room %></h5>
           <div class="col-4">
             <% if order == '未発注' %>
               <span class="badge bg-danger ps-3 pe-3"><%= order %></span>
@@ -22,8 +22,8 @@
         </div>
         <div class='row justify-content-center position-relative mt-3'>
           <div class='col-11 row border-index p-1 mb-3'>
-            <span class='col-4'>設置場所</span>
-            <span class='col-7'><%= inner_sash.room %></span>
+            <span class='col-4'>施工内容</span>
+            <span class='col-7'><%= site_memo.kind_i18n %></span>
           </div>
           <div class='col-11 row border-index p-1 mb-3'>
             <span class='col-4'>タイプ</span>

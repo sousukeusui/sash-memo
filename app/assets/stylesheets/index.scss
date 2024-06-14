@@ -13,11 +13,10 @@
 }
 
 .btn-circle{
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   background-color: var(--main);
-  box-shadow: 0 3px 1px 1px var(--character);
 }
 
 .btn-circle:hover{
@@ -48,7 +47,7 @@
 }
 
 //kaminariのページネーション
-#pc nav{
+#sites-list nav{
   margin-top: 5%;
   display: flex;
   justify-content: center;

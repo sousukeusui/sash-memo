@@ -1,5 +1,5 @@
 <%= turbo_stream_flash %>
 <%= turbo_stream.update 'inner-sash-data' do %>
-  <%= render 'tabs' %>  
+  <%= render 'tabs', shoji: 'active' %>  
   <%= render 'shoji_and_glass', inner_sash: @inner_sash %>
 <% end %>

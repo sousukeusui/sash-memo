@@ -1,5 +1,5 @@
 <%= turbo_stream.update 'drawing' do %>
-  <%= render 'drawing_tabs', inner_sash: @inner_sash %>
+  <%= render 'drawing_tabs', inner_sash: @inner_sash, h_cross: 'active' %>
   <div class="position-relative">
     <%= image_tag 'h_cross_section', class: 'img-fluid' %>
     <p class="width-frame-depth"><%= @inner_sash.width_frame_depth %></p>

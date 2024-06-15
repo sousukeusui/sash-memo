@@ -6,15 +6,15 @@
   background-color: var(--sign);
 }
 
-.height-frame-depth{
+.height-size{
   position: absolute;
   top: 45%;
-  left: 36%;
+  left: 43%;
 }
 
-.width-frame-depth{
+.width-size{
   position: absolute;
-  top: 47%;
+  top: 40%;
   left: 50%;
 }
 
@@ -27,6 +27,13 @@
   height: 40px;
 }
 
-.data-list-2{
-  height: 80px;
+.active{
+  background-color: var(--thin-sub) !important;
+}
+
+.cross-image{
+  display: block;
+  margin: auto;
+  max-width: 60%;
+  max-height: 60%;
 }

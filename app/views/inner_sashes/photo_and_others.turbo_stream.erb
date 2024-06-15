@@ -1,5 +1,5 @@
 <%= turbo_stream_flash %>
 <%= turbo_stream.update 'inner-sash-data' do %>
-  <%= render 'tabs' %>
+  <%= render 'tabs', photo: 'active' %>
   <%= render 'photo_and_others', inner_sash: @inner_sash %>
 <% end %>

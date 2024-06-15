@@ -1,51 +1,51 @@
 <%= turbo_frame_tag 'basic-info' do %>
   <div class='row text-center'>
-    <div class="col-12 row g-0 data-list align-items-center border-bottom">
-      <span class="col-6 fw-bold">タイプ</span>
-      <span class="col-6"><%= inner_sash.sash_type_i18n %></span>
+    <div class="col-12 row g-0 data-list align-items-center justify-content-center border-bottom">
+      <span class="col-6 col-md-5 col-lg-4 fw-bold">タイプ</span>
+      <span class="col-6 col-md-5 col-lg-4"><%= inner_sash.sash_type_i18n %></span>
     </div>
-    <div class="col-12 row border-bottom g-0 data-list align-items-center">
-      <span class="col-6 fw-bold">色</span>
-      <span class="col-6"><%= inner_sash.color_i18n %></span>
+    <div class="col-12 row border-bottom g-0 data-list align-items-center justify-content-center">
+      <span class="col-6 col-md-5 col-lg-4 fw-bold">色</span>
+      <span class="col-6 col-md-5 col-lg-4"><%= inner_sash.color_i18n %></span>
     </div>
-    <div class="col-12 row border-bottom g-0 data-list align-items-center">
-      <span class="col-6 fw-bold">障子枚数</span>
-      <span class="col-6"><%= inner_sash.number_of_shoji %></span>
+    <div class="col-12 row border-bottom g-0 data-list align-items-center justify-content-center">
+      <span class="col-6 col-md-5 col-lg-4 fw-bold">障子枚数</span>
+      <span class="col-6 col-md-5 col-lg-4"><%= inner_sash.number_of_shoji %></span>
     </div>
-    <div class="col-12 row border-bottom g-0 data-list align-items-center">
-      <span class="col-6 fw-bold">吊り元</span>
-      <span class="col-6"><%= inner_sash.hanging_origin_i18n %></span>
+    <div class="col-12 row border-bottom g-0 data-list align-items-center justify-content-center">
+      <span class="col-6 col-md-5 col-lg-4 fw-bold">吊り元</span>
+      <span class="col-6 col-md-5 col-lg-4"><%= inner_sash.hanging_origin_i18n %></span>
     </div>
     <p class='fw-bold mt-2 mb-2'>発注寸法</p>
     <div class="col-12 row g-0 data-list-2">
-      <div class="border-bottom row g-0 data-list d-flex align-items-center">
-        <span class='col-6 fw-bold'>W寸法</span>
-        <span class="col-6">
+      <div class="border-bottom row g-0 data-list d-flex align-items-center justify-content-center">
+        <span class='col-6 col-md-5 col-lg-4 fw-bold'>W寸法</span>
+        <span class="col-6 col-md-5 col-lg-4">
           <%= calc_order_size( inner_sash.width_up_size, 
                                inner_sash.width_middle_size,
                                inner_sash.width_down_size )%>
         </span>
       </div>
-      <div class="border-bottom row g-0 data-list d-flex align-items-center">
-        <span class="col-6 fw-bold">H寸法</span>
-        <span class="col-6">
+      <div class="border-bottom row g-0 data-list d-flex align-items-center justify-content-center">
+        <span class="col-6 col-md-5 col-lg-4 fw-bold">H寸法</span>
+        <span class="col-6 col-md-5 col-lg-4">
           <%= calc_order_size( inner_sash.height_left_size,
                               inner_sash.height_middle_size,
                               inner_sash.height_right_size )%>  
         </span>
       </div>
       <div class="row g-0 mt-4 mt-md-5 align-items-center">
-        <div class="col-3 mb-3">
+        <div class="col-3 mb-5">
           <% if @inner_sash.previous.present? %>
             <%= link_to inner_sashes_navigate_page_path(id: @inner_sash.previous), data: {turbo_method: :post} do %>
               <i class="bi bi-arrow-left-circle-fill h1"></i>
             <% end %>
           <% end %>
         </div>
-        <div class="col-6 mb-3">
+        <div class="col-6 mb-5">
           <%= link_to '編集', inner_sashes_switch_path(template: 'edit_basic_info', id: @inner_sash.id), data: {turbo_stream: true}, class: 'btn btn-primary bright-color col-11 col-lg-6' %>
         </div>
-        <div class="col-3 mb-3">
+        <div class="col-3 mb-5">
           <% if @inner_sash.next.present? %>
             <%= link_to inner_sashes_navigate_page_path(id: @inner_sash.next), data: {turbo_method: :post}, class: 'd-block h-100' do %>
               <i class="bi bi-arrow-right-circle-fill h1"></i>

@@ -1,38 +1,38 @@
 <%= turbo_frame_tag 'photo-and-others' do %>
   <div class='row text-center'>
-    <div class="col-12 row g-0 data-list align-items-center border-bottom">
-      <span class="col-6 fw-bold">平板</span>
-      <span class="col-6"><%= inner_sash.is_flat_bar ? "有" : "無" %></span>
+    <div class="col-12 row g-0 data-list align-items-center justify-content-center border-bottom">
+      <span class="col-6 col-md-5 col-lg-4 fw-bold">平板</span>
+      <span class="col-6 col-md-5 col-lg-4"><%= inner_sash.is_flat_bar ? "有" : "無" %></span>
     </div>
-    <div class="col-12 row border-bottom g-0 data-list align-items-center">
-      <span class="col-6 fw-bold">アジャスト上枠</span>
-      <span class="col-6"><%= inner_sash.is_adjust ? "有" : "無" %></span>
+    <div class="col-12 row border-bottom g-0 data-list justify-content-center align-items-center">
+      <span class="col-6 col-md-5 col-lg-4 fw-bold">アジャスト上枠</span>
+      <span class="col-6 col-md-5 col-lg-4"><%= inner_sash.is_adjust ? "有" : "無" %></span>
     </div>
-    <div class="col-12 row border-bottom g-0 data-list align-items-center">
-      <span class="col-6 fw-bold">備考</span>
-      <span class="col-6"><%= inner_sash.site_memo.remark %></span>
+    <div class="col-12 row border-bottom g-0 data-list justify-content-center align-items-center">
+      <span class="col-6 col-md-5 col-lg-4 fw-bold">備考</span>
+      <span class="col-6 col-md-5 col-lg-4"><%= inner_sash.site_memo.remark %></span>
     </div>
     <p class='fw-bold mt-2 mb-2'>写真</p>
-    <div class="col-12 row g-0 data-list-2">
-      <div class="border-bottom row g-0 data-list d-flex align-items-center">
+    <div class="col-12 row g-0">
+      <div class="border-bottom row g-0 data-list d-flex align-items-center h-100">
         <% inner_sash.photos.each do |photo| %>
           <div class="col-3">
             <%= image_tag photo.file_name_url(:thumb) %>
           </div>
         <% end %>
       </div>
-      <div class="row g-0 mt-4 mt-md-5 align-items-center">
-        <div class="col-3 mb-3">
+      <div class="row g-0 mt-4 align-items-center">
+        <div class="col-3 mb-5">
           <% if @inner_sash.previous.present? %>
             <%= link_to inner_sashes_navigate_page_path(id: @inner_sash.previous), data: {turbo_method: :post} do %>
               <i class="bi bi-arrow-left-circle-fill h1"></i>
             <% end %>
           <% end %>
         </div>
-        <div class="col-6 mb-3">
+        <div class="col-6 mb-5">
           <%= link_to '編集', inner_sashes_switch_path(template: 'edit_photo_and_others', id: inner_sash.id), data: {turbo_stream: true}, class: 'btn btn-primary bright-color col-11 col-lg-6'%>
         </div>
-        <div class="col-3 mb-3">
+        <div class="col-3 mb-5">
           <% if @inner_sash.next.present? %>
             <%= link_to inner_sashes_navigate_page_path(id: @inner_sash.next), data: {turbo_method: :post}, class: 'd-block h-100' do %>
               <i class="bi bi-arrow-right-circle-fill h1"></i>

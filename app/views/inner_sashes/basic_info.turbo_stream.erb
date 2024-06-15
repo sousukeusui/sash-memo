@@ -1,8 +1,4 @@
 <%= turbo_stream_flash %>
-<%= turbo_stream.update 'drawing' do %>
-  <%= render 'drawing_tabs', inner_sash: @inner_sash %>
-  <%= render 'drawing', inner_sash: @inner_sash %>
-<% end %>
 <%= turbo_stream.update 'inner-sash-data' do %>
   <%= render 'tabs', basic: 'active' %>
   <%= render 'basic_info', inner_sash: @inner_sash %>

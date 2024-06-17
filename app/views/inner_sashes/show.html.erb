@@ -15,8 +15,10 @@
       <p class='m-0'>内窓</p>
     </div>
     <div class="col-2 d-none d-sm-block">
-      <%= turbo_frame_tag 'order-pc', class: "badge #{@inner_sash.order}-label py-1 px-3" do %>
-        <p class='bright-color m-0'><%= @inner_sash.order_i18n %></p>
+      <%= turbo_frame_tag 'order-pc' do %>
+        <div class="badge <%= @inner_sash.order %>-label py-1 px-3">
+          <p class='bright-color m-0'><%= @inner_sash.order_i18n %></p>
+        </div>
       <% end %>
     </div>
     <div class="col">

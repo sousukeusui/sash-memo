@@ -83,8 +83,8 @@ function drawOpening(){
   openingCtx.font = `${fontSize}px serif`;
   openingCtx.fillText(widthUp.textContent, horizontalOneThiird, startY - fontSize * 0.8) // 横上寸法表示
   openingCtx.fillText(widthDown.textContent, horizontalOneThiird, startY + sizeY + fontSize * 1.5) //横下寸法表示
-  openingCtx.fillText(heightLeft.textContent, startZero, varticalCenter) // 左縦寸法表示
+  openingCtx.fillText(heightLeft.textContent, startZero - fontSize, varticalCenter) // 左縦寸法表示
   openingCtx.fillText(heightRight.textContent, startX + sizeX - fontSize, varticalCenter) // 縦右寸法表示
-  openingCtx.fillText(widthMiddle.textContent, widthBoxX - fontSize, widthBoxY + fontSize) // 横中央寸法表示
-  openingCtx.fillText(heightMiddle.textContent,heightBoxX - fontSize, heightBoxY + fontSize) //縦中央駿府表示
+  openingCtx.fillText(widthMiddle.textContent, widthBoxX - fontSize*1.5, widthBoxY + fontSize) // 横中央寸法表示
+  openingCtx.fillText(heightMiddle.textContent,heightBoxX - fontSize*1.5, heightBoxY + fontSize) //縦中央駿府表示
 }

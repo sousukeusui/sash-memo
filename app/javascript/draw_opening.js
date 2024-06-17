@@ -1,6 +1,20 @@
-document.addEventListener("turbo:load", function() {
+document.addEventListener("turbo:load", function(){
+  drawOpening()
+});
+
+//　turbo-streamの実行時に描画を更新する
+$(document).on('turbo:before-stream-render',function(){
+  setInterval(function(){
+    drawOpening()
+  },100)
+})
+
+
+function drawOpening(){
   let openingCanvas = document.getElementById('opening');
+  if (!openingCanvas) return;
   let openingCtx = openingCanvas.getContext("2d")
+  openingCtx.clearRect(0, 0, 500, 500);  //turbo-stream用に残っている描画を削除
 
   //横寸法
   let widthUp = document.getElementById('width-up')
@@ -34,47 +48,43 @@ document.addEventListener("turbo:load", function() {
   const heightBoxX = horizontalOneThiird + boxMargin
   const heightBoxY = varticalCenter + boxMargin * 5
 
-  drawOpening()
+  //開口図のベースとなる四角形
+  openingCtx.strokeRect(startX, startY, sizeX, sizeY)
 
-  function drawOpening(){
-    //開口図のベースとなる四角形
-    openingCtx.strokeRect(startX, startY, sizeX, sizeY)
+  //横戦と矢印
+  openingCtx.moveTo(startX, varticalCenter) //左辺の真ん中の点に移動
+  openingCtx.lineTo(startX+arrowSize, varticalCenter+arrowSize) //左辺矢印の下側
+  openingCtx.moveTo(startX, varticalCenter) //左辺の真ん中の点に移動
+  openingCtx.lineTo(startX+arrowSize, varticalCenter-arrowSize) //左辺矢印の上側
+  openingCtx.moveTo(startX, varticalCenter) //左辺の真ん中の点に移動
+  openingCtx.lineTo(goalX,varticalCenter)  //右辺の真ん中まで線を引く
+  openingCtx.lineTo(goalX-arrowSize,varticalCenter+arrowSize) //右辺矢印下側
+  openingCtx.moveTo(goalX, varticalCenter) //左辺の真ん中の点に移動
+  openingCtx.lineTo(goalX-arrowSize, varticalCenter-arrowSize) //右辺矢印上側
 
-    //横戦と矢印
-    openingCtx.moveTo(startX, varticalCenter) //左辺の真ん中の点に移動
-    openingCtx.lineTo(startX+arrowSize, varticalCenter+arrowSize) //左辺矢印の下側
-    openingCtx.moveTo(startX, varticalCenter) //左辺の真ん中の点に移動
-    openingCtx.lineTo(startX+arrowSize, varticalCenter-arrowSize) //左辺矢印の上側
-    openingCtx.moveTo(startX, varticalCenter) //左辺の真ん中の点に移動
-    openingCtx.lineTo(goalX,varticalCenter)  //右辺の真ん中まで線を引く
-    openingCtx.lineTo(goalX-arrowSize,varticalCenter+arrowSize) //右辺矢印下側
-    openingCtx.moveTo(goalX, varticalCenter) //左辺の真ん中の点に移動
-    openingCtx.lineTo(goalX-arrowSize, varticalCenter-arrowSize) //右辺矢印上側
+  //縦線と矢印
+  openingCtx.moveTo(horizontalOneThiird, startY) //上辺3分の１の位置に移動
+  openingCtx.lineTo(horizontalOneThiird+arrowSize, startY+arrowSize) // 右側の矢印
+  openingCtx.moveTo(horizontalOneThiird, startY) //上辺3分の１の位置に移動
+  openingCtx.lineTo(horizontalOneThiird-arrowSize, startY+arrowSize) // 左側の矢印
+  openingCtx.moveTo(horizontalOneThiird, startY) //上辺3分の１の位置に移動
+  openingCtx.lineTo(horizontalOneThiird, goalY) // 下辺３分の1まで線を引く
+  openingCtx.lineTo(horizontalOneThiird+arrowSize, goalY-arrowSize) // 右側の矢印
+  openingCtx.moveTo(horizontalOneThiird, goalY) //上辺3分の１の位置に移動
+  openingCtx.lineTo(horizontalOneThiird-arrowSize, goalY-arrowSize) //左側の矢印
 
-    //縦線と矢印
-    openingCtx.moveTo(horizontalOneThiird, startY) //上辺3分の１の位置に移動
-    openingCtx.lineTo(horizontalOneThiird+arrowSize, startY+arrowSize) // 右側の矢印
-    openingCtx.moveTo(horizontalOneThiird, startY) //上辺3分の１の位置に移動
-    openingCtx.lineTo(horizontalOneThiird-arrowSize, startY+arrowSize) // 左側の矢印
-    openingCtx.moveTo(horizontalOneThiird, startY) //上辺3分の１の位置に移動
-    openingCtx.lineTo(horizontalOneThiird, goalY) // 下辺３分の1まで線を引く
-    openingCtx.lineTo(horizontalOneThiird+arrowSize, goalY-arrowSize) // 右側の矢印
-    openingCtx.moveTo(horizontalOneThiird, goalY) //上辺3分の１の位置に移動
-    openingCtx.lineTo(horizontalOneThiird-arrowSize, goalY-arrowSize) //左側の矢印
+  //中央サイズの枠
+  openingCtx.strokeRect(widthBoxX, widthBoxY - boxMargin, sizeBoxLong, sizeBoxShort) //横中央のサイズ入れる枠
+  openingCtx.strokeRect(heightBoxX, heightBoxY, sizeBoxLong, sizeBoxShort) //縦中央のサイズ入れる枠
 
-    //中央サイズの枠
-    openingCtx.strokeRect(widthBoxX, widthBoxY - boxMargin, sizeBoxLong, sizeBoxShort) //横中央のサイズ入れる枠
-    openingCtx.strokeRect(heightBoxX, heightBoxY, sizeBoxLong, sizeBoxShort) //縦中央のサイズ入れる枠
+  openingCtx.stroke()
 
-    openingCtx.stroke()
-
-    //図に寸法記入
-    openingCtx.font = `${fontSize}px serif`;
-    openingCtx.fillText(widthUp.textContent, horizontalOneThiird, startY - fontSize * 0.8) // 横上寸法表示
-    openingCtx.fillText(widthDown.textContent, horizontalOneThiird, startY + sizeY + fontSize * 1.5) //横下寸法表示
-    openingCtx.fillText(heightLeft.textContent, startZero, varticalCenter) // 左縦寸法表示
-    openingCtx.fillText(heightRight.textContent, startX + sizeX - fontSize, varticalCenter) // 縦右寸法表示
-    openingCtx.fillText(widthMiddle.textContent, widthBoxX - fontSize, widthBoxY + fontSize) // 横中央寸法表示
-    openingCtx.fillText(heightMiddle.textContent,heightBoxX - fontSize, heightBoxY + fontSize) //縦中央駿府表示
-  }
-});
+  //図に寸法記入
+  openingCtx.font = `${fontSize}px serif`;
+  openingCtx.fillText(widthUp.textContent, horizontalOneThiird, startY - fontSize * 0.8) // 横上寸法表示
+  openingCtx.fillText(widthDown.textContent, horizontalOneThiird, startY + sizeY + fontSize * 1.5) //横下寸法表示
+  openingCtx.fillText(heightLeft.textContent, startZero, varticalCenter) // 左縦寸法表示
+  openingCtx.fillText(heightRight.textContent, startX + sizeX - fontSize, varticalCenter) // 縦右寸法表示
+  openingCtx.fillText(widthMiddle.textContent, widthBoxX - fontSize, widthBoxY + fontSize) // 横中央寸法表示
+  openingCtx.fillText(heightMiddle.textContent,heightBoxX - fontSize, heightBoxY + fontSize) //縦中央駿府表示
+}

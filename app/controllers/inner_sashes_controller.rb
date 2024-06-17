@@ -1,7 +1,7 @@
 class InnerSashesController < ApplicationController
   before_action :set_site_memo, only: [:new_step2, :new_step3, :new_step4, :new_step5,
-                                       :new_append_shoji_and_glass, :new_append_photo_and_others,
-                                       :new_append_basic_info, :new_comfirmation]
+                                       :new_append_room, :new_append_shoji_and_glass, 
+                                       :new_append_photo_and_others, :new_append_basic_info, :new_comfirmation]
 
   def new_step2
     load_inner_sashes
@@ -10,7 +10,7 @@ class InnerSashesController < ApplicationController
   end
 
   def new_append_room
-    @inner_sash = InnerSash.new(inner_sash_params)
+    @inner_sash = InnerSash.new(inner_sash_params.merge(site_memo_id: @site_memo.id))
     @inner_sash = InnerSash.new if @inner_sash.save
     load_inner_sashes
   end
@@ -80,8 +80,9 @@ class InnerSashesController < ApplicationController
   def switch(template:, id:)
     @inner_sash = InnerSash.find(id)
      # templateはbasic_info、shoji_and_glass、photo_and_others
-     # opening_drawing h_cross_drawing w_cross_drawing　のどれか
-    render "#{template}", content_type: 'text/vnd.turbo-stream.html'
+     # h_cross_drawing w_cross_drawing　のどれか
+    # render "#{template}", content_type: 'text/vnd.turbo-stream.html'
+    render "#{template}"
   end
 
   def update(id:)
@@ -101,7 +102,7 @@ private
                                       :height_left_size, :height_middle_size, :height_right_size, :width_frame_depth, :height_frame_depth,
                                       :sash_type, :color, :number_of_shoji, :hanging_origin, :is_flat_bar, :is_adjust, 
                                       :glass_thickness, :glass_kind, :glass_color, :is_low_e, :key_height, :middle_frame_height,
-                                      :template, photos_attributes: [:id, :file_name, :_destroy]).merge(site_memo_id: set_site_memo.id)
+                                      :template, photos_attributes: [:id, :file_name, :_destroy])
   end
 
   def site_memo_params

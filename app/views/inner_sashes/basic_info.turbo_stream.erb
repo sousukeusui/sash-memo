@@ -1,4 +1,10 @@
 <%= turbo_stream_flash %>
+<%= turbo_stream.update 'drawing' do %>
+  <%= render 'drawing_tabs', inner_sash: @inner_sash %>
+  <div class="row justify-content-center" style='height:350px;'>
+    <%= render 'drawing', inner_sash: @inner_sash %>
+  </div>
+<% end %>
 <%= turbo_stream.update 'inner-sash-data' do %>
   <%= render 'tabs', basic: 'active' %>
   <%= render 'basic_info', inner_sash: @inner_sash %>

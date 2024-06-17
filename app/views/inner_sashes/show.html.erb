@@ -56,10 +56,10 @@
           <%= render 'drawing', inner_sash: @inner_sash %>
         </div>
       <% end %>
-      <div id="inner-sash-data">
+      <%= turbo_frame_tag 'inner-sash-data' do %>
         <%= render 'tabs', basic: 'active' %>
         <%= render 'basic_info', inner_sash: @inner_sash%>
-      </div>
+      <% end %>
     <% end %>
   </div>
 </section>
@@ -67,5 +67,5 @@
 <%= stylesheet_link_tag "show", "data-turbo-track": "reload" %>
 
 <% content_for :js do %>
-  <%= javascript_import_module_tag "draw_opening" %>
-<% end %>
+    <%= javascript_import_module_tag "draw_opening" %>
+  <% end %>

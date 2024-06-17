@@ -1,4 +1,10 @@
 <%= turbo_stream_flash %>
+<%= turbo_stream.update 'order-pc' do %>
+  <%= @inner_sash.order_i18n %>
+<% end %>
+<%= turbo_stream.update "order-link-pc" do %>
+  <%= render partial: 'order_link', locals: {order_key: @order_key, inner_sash: @inner_sash} %>
+<% end %>
 <%= turbo_stream.update 'order' do %>
   <%= @inner_sash.order_i18n %>
 <% end %>

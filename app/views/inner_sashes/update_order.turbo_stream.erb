@@ -1,6 +1,14 @@
 <%= turbo_stream_flash %>
+<%= turbo_stream.update 'order-pc' do %>
+  <div class="badge <%= @inner_sash.order %>-label py-1 px-3">
+    <p class='bright-color m-0'><%= @inner_sash.order_i18n %></p>
+  </div>
+<% end %>
+<%= turbo_stream.update "order-link-pc" do %>
+  <%= render partial: 'order_link', locals: {order_key: @order_key, inner_sash: @inner_sash} %>
+<% end %>
 <%= turbo_stream.update 'order' do %>
-  <%= @inner_sash.order_i18n %>
+  <p class='bright-color m-0'><%= @inner_sash.order_i18n %></p>
 <% end %>
 <%= turbo_stream.update "order-link" do %>
   <%= render partial: 'order_link', locals: {order_key: @order_key, inner_sash: @inner_sash} %>

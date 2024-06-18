@@ -20,29 +20,45 @@
       <%= f.label :address, '住所', class: 'form-label' %><span class="badge bg-danger ms-2">必須</span><br />
       <%= f.text_field :address, required: true, class: 'form-control', required: true %>
     </div>
+    <div class="d-none d-lg-block col-lg-12"></div>
 
     <!-- 現調 -->
-    <div class="d-none d-lg-block col-lg-12"></div>
-    <div class="col-11 col-md-8 col-lg-5 mb-3 mb-md-4">
-      <%= f.label :research_date, '現調日', class: 'form-label' %>
-      <%= f.date_field :research_date, class: 'form-control', required: true %>
+    <div class="col-11 col-md-8 col-lg-5 mb-4">
+      <a class='border border-2 p-2' data-bs-toggle="collapse" href="#resarch-data-forms" role="button" aria-expanded="false" aria-controls="resarch-data-forms">
+      現調日時設定
+      </a>
     </div>
     <div class="d-none d-lg-block col-lg-12"></div>
-    <div class="col-11 col-md-8 col-lg-5 mb-3 mb-md-4">
-      <%= f.label :research_start_time, '現調開始時間', class: 'form-label' %>
-      <%= f.time_field :research_start_time, class: 'form-control', required: true %>
+    <div class="collapse col-11 col-md-8 col-lg-5" id="resarch-data-forms">
+      <div class="mb-3 mb-md-4">
+        <%= f.label :research_date, '現調日', class: 'form-label' %>
+        <%= f.date_field :research_date, class: 'form-control', required: true %>
+      </div>
+      <div class="d-none d-lg-block col-lg-12"></div>
+      <div class="mb-3 mb-md-4">
+        <%= f.label :research_start_time, '現調開始時間', class: 'form-label' %>
+        <%= f.time_field :research_start_time, class: 'form-control', required: true %>
+      </div>
     </div>
 
     <!-- 工事 -->
     <div class="d-none d-lg-block col-lg-12"></div>
-    <div class="col-11 col-md-8 col-lg-5 mb-3 mb-md-4">
-      <%= f.label :construction_date, '工事日', class: 'form-label' %>
-      <%= f.date_field :construction_date , class: 'form-control', required: true%>
+    <div class="col-11 col-md-8 col-lg-5 mb-4">
+      <a class='border border-2 p-2' data-bs-toggle="collapse" href="#construction-data-forms" role="button" aria-expanded="false" aria-controls="construction-data-forms">
+        工事日時設定
+      </a>
     </div>
     <div class="d-none d-lg-block col-lg-12"></div>
-    <div class="col-11 col-md-8 col-lg-5 mb-3 mb-md-4">
-      <%= f.label :construction_start_time, '工事開始時間', class: 'form-label' %>
-      <%= f.time_field :construction_start_time, class: 'form-control', required: true %>
+    <div class="collapse col-11 col-md-8 col-lg-5" id="construction-data-forms">
+      <div class="mb-3 mb-md-4">
+        <%= f.label :construction_date, '工事日', class: 'form-label' %>
+        <%= f.date_field :construction_date , class: 'form-control', required: true%>
+      </div>
+      <div class="d-none d-lg-block col-lg-12"></div>
+      <div class="mb-3 mb-md-4">
+        <%= f.label :construction_start_time, '工事開始時間', class: 'form-label' %>
+        <%= f.time_field :construction_start_time, class: 'form-control', required: true %>
+      </div>
     </div>
 
     <div class="row justify-content-center p-3 mb-lg-5">

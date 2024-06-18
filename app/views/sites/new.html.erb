@@ -1,53 +1,71 @@
-<p>現場情報記入</p>
-<!--開発都合で設置したリンク-->
-<%= link_to 'ホームに戻る', sites_index_path %>
+<div class="container" style="margin-top: 10vh;">
+  <h5 class='text-center py-4'>現場情報記入</h5>
+  <%= form_with model: @site, url: sites_create_path, method: :post ,local: true, class: 'row justify-content-center' do |f| %>
+    <%= f.fields_for :contractor do |contractor| %>
+      <div class="col-11 col-md-8 col-lg-5">
+        <%= contractor.label :name, '元請', class: 'form-label' %><span class="badge bg-danger ms-2">必須</span><br />
+        <%= contractor.text_field :name, id: 'contractor_name', class: 'form-control', required: true%><br />
+      </div>
+    <% end %>
+    <ul id="search-result">
+    </ul>
 
-<%= form_with model: @site,  url: sites_create_path, method: :post, local: true do |f| %>
-  <%= f.fields_for :contractor do |contractor| %>
-    <div class="form-group">
-      <%= contractor.label :name, '元請'%>
-      <%= contractor.text_field :name, id: 'contractor_name', required: true%><br />
+    <!-- 現場名 住所 -->
+    <div class="col-11 col-md-8 col-lg-5 mb-3 mb-md-4">
+      <%= f.label :name, '現場名', class: 'form-label' %><span class="badge bg-danger ms-2">必須</span><br />
+      <%= f.text_field :name, required: true, class: 'form-control', autocomplete: 'name', maxlength:'15', required: true %>
+    </div>
+    <div class="d-none d-lg-block col-lg-12"></div>
+    <div class="col-11 col-md-8 col-lg-5 mb-3 mb-md-4">
+      <%= f.label :address, '住所', class: 'form-label' %><span class="badge bg-danger ms-2">必須</span><br />
+      <%= f.text_field :address, required: true, class: 'form-control', required: true %>
+    </div>
+    <div class="d-none d-lg-block col-lg-12"></div>
+
+    <!-- 現調 -->
+    <div class="col-11 col-md-8 col-lg-5 mb-4">
+      <a class='border border-2 p-2' data-bs-toggle="collapse" href="#resarch-data-forms" role="button" aria-expanded="false" aria-controls="resarch-data-forms">
+      現調日時設定
+      </a>
+    </div>
+    <div class="d-none d-lg-block col-lg-12"></div>
+    <div class="collapse col-11 col-md-8 col-lg-5" id="resarch-data-forms">
+      <div class="mb-3 mb-md-4">
+        <%= f.label :research_date, '現調日', class: 'form-label' %>
+        <%= f.date_field :research_date, class: 'form-control', required: true %>
+      </div>
+      <div class="d-none d-lg-block col-lg-12"></div>
+      <div class="mb-3 mb-md-4">
+        <%= f.label :research_start_time, '現調開始時間', class: 'form-label' %>
+        <%= f.time_field :research_start_time, class: 'form-control', required: true %>
+      </div>
+    </div>
+
+    <!-- 工事 -->
+    <div class="d-none d-lg-block col-lg-12"></div>
+    <div class="col-11 col-md-8 col-lg-5 mb-4">
+      <a class='border border-2 p-2' data-bs-toggle="collapse" href="#construction-data-forms" role="button" aria-expanded="false" aria-controls="construction-data-forms">
+        工事日時設定
+      </a>
+    </div>
+    <div class="d-none d-lg-block col-lg-12"></div>
+    <div class="collapse col-11 col-md-8 col-lg-5" id="construction-data-forms">
+      <div class="mb-3 mb-md-4">
+        <%= f.label :construction_date, '工事日', class: 'form-label' %>
+        <%= f.date_field :construction_date , class: 'form-control', required: true%>
+      </div>
+      <div class="d-none d-lg-block col-lg-12"></div>
+      <div class="mb-3 mb-md-4">
+        <%= f.label :construction_start_time, '工事開始時間', class: 'form-label' %>
+        <%= f.time_field :construction_start_time, class: 'form-control', required: true %>
+      </div>
+    </div>
+
+    <div class="row justify-content-center p-3 mb-lg-5">
+      <%= f.submit '現場作成', class: 'btn btn-primary col-9 col-md-5 col-lg-3' %>
     </div>
   <% end %>
-  <ul id="search-result">
-  </ul>
-  <div class="form-group">
-    <%= f.label :name, '現場名' %>
-    <%= f.text_field :name, required: true %>
-  </div>
-  <div class="form-group">
-    <!--郵便番号から住所検索できるAPI追加する予定-->
-    <%= f.label :address, '住所' %>
-    <%= f.text_field :address, required: true%>
-  </div>
-  <div class="form-group">
-    <p>チェックボックスにして、チェックついたらフォーム出す</p>
-    <p>現場日時を設定する</p>
-  </div>
-  <div class="form-group">
-    <%= f.label :research_date, '現調日' %>
-    <%= f.date_field :research_date %>
-  </div>
-  <div class="form-group">
-    <%= f.label :research_start_time, '現調開始時間' %>
-    <%= f.time_field :research_start_time %>
-  </div>
-  <div class="form-group">
-    <p>チェックボックスにして、チェックついたらフォーム出す</p>
-    <p>工事日時を設定する</p>
-  </div>
-  <div class="form-group">
-    <%= f.label :construction_date, '工事日' %>
-    <%= f.date_field :construction_date %>
-  </div>
-  <div class="form-group">
-    <%= f.label :construction_start_time, '工事開始時間' %>
-    <%= f.time_field :construction_start_time %>
-  </div>
-  <div class="form-group">
-    <%= f.submit '現場作成' %>
-  </div>
-<% end %>
+</div>
 
 <% content_for :js do %>
   <%= javascript_import_module_tag "suggest_contractor" %>

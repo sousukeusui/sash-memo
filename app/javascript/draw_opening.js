@@ -31,8 +31,6 @@ function drawOpening(){
   const startY = 150
   const sizeX = 300
   const sizeY = 350
-  const sizeBoxLong = 80
-  const sizeBoxShort = 50
   const varticalCenter = sizeY/2 + startY
   const horizontalCenter = sizeX/2 +startX
   const horizontalOneThiird = sizeX/3 + startX; //3分の1の位置
@@ -47,6 +45,8 @@ function drawOpening(){
   const widthBoxY = varticalCenter - boxMargin * 5
   const heightBoxX = horizontalOneThiird + boxMargin
   const heightBoxY = varticalCenter + boxMargin * 5
+  const sizeBoxLong = 90
+  const sizeBoxShort = 50
 
   //開口図のベースとなる四角形
   openingCtx.strokeRect(startX, startY, sizeX, sizeY)
@@ -85,6 +85,6 @@ function drawOpening(){
   openingCtx.fillText(widthDown.textContent, horizontalOneThiird, startY + sizeY + fontSize * 1.5) //横下寸法表示
   openingCtx.fillText(heightLeft.textContent, startZero - fontSize, varticalCenter) // 左縦寸法表示
   openingCtx.fillText(heightRight.textContent, startX + sizeX - fontSize, varticalCenter) // 縦右寸法表示
-  openingCtx.fillText(widthMiddle.textContent, widthBoxX - fontSize*1.5, widthBoxY + fontSize) // 横中央寸法表示
-  openingCtx.fillText(heightMiddle.textContent,heightBoxX - fontSize*1.5, heightBoxY + fontSize) //縦中央駿府表示
+  openingCtx.fillText(widthMiddle.textContent, widthBoxX - fontSize, widthBoxY + fontSize) // 横中央寸法表示
+  openingCtx.fillText(heightMiddle.textContent,heightBoxX - fontSize, heightBoxY + fontSize) //縦中央駿府表示
 }

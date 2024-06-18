@@ -1,4 +1,5 @@
 class SitesController < ApplicationController
+  before_action :authenticate_user!
   permits :id, :name, :address, :research_date, :research_start_time, :construction_date,
           :construction_start_time, contractor_attributes: [:name]
 

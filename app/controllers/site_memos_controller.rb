@@ -1,4 +1,5 @@
 class SiteMemosController < ApplicationController
+  before_action :authenticate_user!
   permits :kind
 
   def index(site_id:)

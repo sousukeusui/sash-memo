@@ -1,4 +1,5 @@
 class InnerSashesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_site_memo, only: [:new_step2, :new_step3, :new_step4, :new_step5,
                                        :new_append_room, :new_append_shoji_and_glass, 
                                        :new_append_photo_and_others, :new_append_basic_info, :new_comfirmation]

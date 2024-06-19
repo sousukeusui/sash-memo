@@ -13,12 +13,12 @@
     <!-- 現場名 住所 -->
     <div class="col-11 col-md-8 col-lg-5 mb-3 mb-md-4">
       <%= f.label :name, '現場名', class: 'form-label' %><span class="badge bg-danger ms-2">必須</span><br />
-      <%= f.text_field :name, required: true, class: 'form-control', maxlength:'30', required: true %>
+      <%= f.text_field :name, class: 'form-control', maxlength:'30', required: true %>
     </div>
     <div class="d-none d-lg-block col-lg-12"></div>
     <div class="col-11 col-md-8 col-lg-5 mb-3 mb-md-4">
       <%= f.label :address, '住所', class: 'form-label' %><span class="badge bg-danger ms-2">必須</span><br />
-      <%= f.text_field :address, required: true, class: 'form-control', maxlength: '50', required: true %>
+      <%= f.text_field :address, class: 'form-control', maxlength: '50', required: true %>
     </div>
     <div class="d-none d-lg-block col-lg-12"></div>
 

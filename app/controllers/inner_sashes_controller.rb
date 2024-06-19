@@ -1,5 +1,6 @@
 class InnerSashesController < ApplicationController
   before_action :authenticate_user!
+  before_action :correct_inner_sash, only: [:show, :switch, :navigate_page, :update_order, :update]
   before_action :set_site_memo, only: [:new_step2, :new_step3, :new_step4, :new_step5,
                                        :new_append_room, :new_append_shoji_and_glass, 
                                        :new_append_photo_and_others, :new_append_basic_info, :new_comfirmation]
@@ -61,7 +62,6 @@ class InnerSashesController < ApplicationController
   end
 
   def update_order(id:, order:)
-    @inner_sash = InnerSash.find(id)
     @inner_sash.update!(order: order)
     @order_key = get_opposite_order_key(inner_sash: @inner_sash)
     flash.now.notice = "#{InnerSash.orders_i18n[order.to_sym]}にしました"
@@ -79,7 +79,6 @@ class InnerSashesController < ApplicationController
   end
 
   def switch(template:, id:)
-    @inner_sash = InnerSash.find(id)
      # templateはbasic_info、shoji_and_glass、photo_and_others
      # h_cross_drawing w_cross_drawing　のどれか
     # render "#{template}", content_type: 'text/vnd.turbo-stream.html'
@@ -87,7 +86,6 @@ class InnerSashesController < ApplicationController
   end
 
   def update(id:)
-    @inner_sash = InnerSash.find(id)
     @inner_sash.update!(inner_sash_params)
 
     # templateはbasic_info、shoji_and_glass、photo_and_othersのどれか
@@ -119,5 +117,10 @@ private
 
   def set_site_memo
     @site_memo = SiteMemo.find_by(kind: 'inner_sash', site_id: session[:site_id])
+  end
+
+  def correct_inner_sash(id:)
+    @inner_sash = InnerSash.find(id)
+    redirect_to root_path if @inner_sash.site_memo.site.user_id != current_user.id
   end
 end

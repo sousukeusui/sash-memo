@@ -1,7 +1,7 @@
 class SiteMemosController < ApplicationController
   before_action :authenticate_user!
   before_action :correct_site, only: [:new_step1]
-  before_action :correct_site_memo, only: [:show_switcher]
+  before_action :correct_child, only: [:show_switcher]
 
 
   permits :kind
@@ -51,8 +51,8 @@ class SiteMemosController < ApplicationController
     return redirect_to "/#{kind}/new_step2"
   end
 
-  def show_switcher(kind:, id:)
-    redirect_to inner_sashes_show_path(id) if kind == 'inner_sash' 
+  def show_switcher(kind:, child_id:)
+    redirect_to inner_sashes_show_path(id: child_id) if kind == 'inner_sash' 
     #他のモデルが追加されたら分岐を追加
   end
 
@@ -73,9 +73,10 @@ class SiteMemosController < ApplicationController
     end
   end
 
-  def correct_site_memo
-    site_memo = SiteMemo.find(params[:id])
-    redirect_to root_path if site_memo.site.user_id != current_user.id
+  def correct_child(kind:, child_id:)
+    #子モデルが追加され次第分岐する
+    inner_sash = InnerSash.find(child_id) # if kind == 'inner_sash'
+    redirect_to root_path if inner_sash.site_memo.site.user_id != current_user.id
   end
 
   def correct_site(site_id:)

@@ -1,7 +1,7 @@
 class SiteMemosController < ApplicationController
   before_action :authenticate_user!
   before_action :correct_site, only: [:new_step1]
-  before_action :correct_child, only: [:show_switcher]
+  before_action :correct_child, only: [:show_switcher, :destroy]
 
 
   permits :kind
@@ -59,7 +59,6 @@ class SiteMemosController < ApplicationController
   def destroy(kind:, child_id:)
     #site_memo/indexに表示されているinner_sashを削除。その後turbo_stream
     #他のモデルが追加されたら分岐を追加
-    @inner_sash = InnerSash.find(child_id) if kind == 'inner_sash'
     @inner_sash&.destroy_last_with(site_memo: @inner_sash.site_memo)
     flash.now.notice = 'メモを削除しました'
   end

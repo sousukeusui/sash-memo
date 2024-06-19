@@ -4,9 +4,11 @@ class InnerSashesController < ApplicationController
   before_action :set_site_memo, only: [:new_step2, :new_step3, :new_step4, :new_step5,
                                        :new_append_room, :new_append_shoji_and_glass, 
                                        :new_append_photo_and_others, :new_append_basic_info, :new_comfirmation]
+  before_action :load_inner_sashes, only: [:new_step2, :new_append_room, :new_step3, :new_append_basic_info, :new_step4,
+                                          :new_append_shoji_and_glass, :new_step5, :new_append_photo_and_others,
+                                          :new_comfirmation]
 
   def new_step2
-    load_inner_sashes
     @inner_sash = InnerSash.new
     @site_memo.update_status(action: action_name)
   end
@@ -14,46 +16,37 @@ class InnerSashesController < ApplicationController
   def new_append_room
     @inner_sash = InnerSash.new(inner_sash_params.merge(site_memo_id: @site_memo.id))
     @inner_sash = InnerSash.new if @inner_sash.save
-    load_inner_sashes
   end
 
   def new_step3
     @site_memo.update_status(action: action_name)
-    load_inner_sashes
   end
 
   def new_append_basic_info
     return redirect_to inner_sashes_new_step4_path if @site_memo.update(site_memo_params)
-    load_inner_sashes
     return render "new_step3", status: :unprocessable_entity
   end
 
   def new_step4
     @site_memo.update_status(action: action_name)
-    load_inner_sashes
   end
 
   def new_append_shoji_and_glass
     return redirect_to inner_sashes_new_step5_path if @site_memo.update(site_memo_params)
-    load_inner_sashes
     return render "new_step4", status: :unprocessable_entity
   end
 
   def new_step5
     @site_memo.update_status(action: action_name)
-    load_inner_sashes
   end
 
   def new_append_photo_and_others
     return redirect_to inner_sashes_new_comfirmation_path if @site_memo.update(site_memo_params)
-    load_inner_sashes
     return render 'new_step5', status: :unprocessable_entity
   end
 
   def new_comfirmation
     @site_memo.update_status(action: action_name)
-    # @site_memo = SiteMemo.preload(inner_sashes: :photos).find_by(site_id: session[:site_id], kind: 'inner_sash')
-    load_inner_sashes
   end
   
   def show(id:)

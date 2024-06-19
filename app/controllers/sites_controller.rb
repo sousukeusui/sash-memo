@@ -15,7 +15,7 @@ class SitesController < ApplicationController
   def destroy(id:)
     @site = Stie.find(id)
     @site.destroy
-    # flash.now.notice = '現場を削除しました'
+    flash.now.notice = '現場を削除しました'
   end
 
   def search_contractor(contractor:)

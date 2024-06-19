@@ -1,26 +1,24 @@
 <%= render 'inner_sashes/site_label', parent: @site  %>
 
 <div class="container index-wrap">
-  <div class="row justify-content-center">
-    <div class="row justify-content-end p-3 mb-lg-5 z-3">
-      <%= link_to site_memos_new_step1_path(@site.id), class: 'btn-circle submit-btn col-3 col-md-4 col-lg-2 p-0 text-center' do %>
-        <i class="bi bi-plus plus"></i>
-      <% end %>
-    </div>
-    <div class='index'>
-      <% if @site_memos.blank? %>
-        <div class="text-center mt-5">
-          <p>メモはありません</p>
+  <div class='index'>
+    <% if @site_memos.blank? %>
+      <div class="text-center mt-5">
+        <p>メモはありません</p>
+      </div>
+    <% else %>
+      <%= turbo_frame_tag 'site-memos-list', class: 'row justify-content-center' do %>
+        <div class="d-flex justify-content-center bulk-btn mb-3">
+          <%= render 'bulk_order_link' %>
         </div>
-      <% else %>
-        <%= turbo_frame_tag 'site-memos-list', class: 'row justify-content-center' do %>
-          <div class="d-flex justify-content-center position-fixed bulk-btn">
-            <%= render 'bulk_order_link' %>
-          </div>
-          <%= render @site_memos %>
-        <% end %>
+        <%= render @site_memos %>
       <% end %>
-    </div>
+    <% end %>
+  </div>
+  <div class="row justify-content-end p-3 mb-lg-5 z-3">
+    <%= link_to site_memos_new_step1_path(@site.id), class: 'btn-circle submit-btn col-3 col-md-4 col-lg-2 p-0 text-center' do %>
+      <i class="bi bi-plus plus"></i>
+    <% end %>
   </div>
 </div>
 

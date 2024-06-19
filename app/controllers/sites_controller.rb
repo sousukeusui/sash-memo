@@ -1,4 +1,5 @@
 class SitesController < ApplicationController
+  before_action :authenticate_user!
   permits :id, :name, :address, :research_date, :research_start_time, :construction_date,
           :construction_start_time, contractor_attributes: [:name]
 
@@ -12,7 +13,7 @@ class SitesController < ApplicationController
   end
 
   def destroy(id:)
-    @site = Site.find(id)
+    @site = Stie.find(id)
     @site.destroy
     # flash.now.notice = '現場を削除しました'
   end

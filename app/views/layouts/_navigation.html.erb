@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
   <div class="container-fluid">
-    <%= link_to "SashMemo", root_path, class: 'navbar-brand bright-color' %>
     <% if user_signed_in? %>
+      <%= link_to "SashMemo", sites_index_path, class: 'navbar-brand bright-color' %>
       <button class="navbar-toggler navbar-toggler-custom cancel-shadow" type="button" data-bs-toggle="offcanvas" data-bs-target="#list-contents" 
               aria-controls="list-contents" aria-expanded="false" aria-label="Toggle navigation">
         <i class="bi bi-list"></i>
@@ -47,6 +47,7 @@
         </div>
       </div>
     <% else %>
+      <%= link_to "SashMemo", root_path, class: 'navbar-brand bright-color' %>
       <ul class="navbar-nav d-none d-lg-flex">
         <li class="nav-item pe-5 justify-content-center">
           <%= link_to 'ログイン' , sign_in_index_path, class: 'nav-link bright-color'%>

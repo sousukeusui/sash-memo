@@ -63,6 +63,10 @@
   background-color: var(--main) !important;
 }
 
+.alert-custom{
+  background-color: var(--thin-sub) !important;
+}
+
 .card:hover{
   background: var(--card-hover);
 }

@@ -129,6 +129,7 @@ GEM
     faraday-net_http (3.1.0)
       net-http
     ffi (1.17.0-x86_64-darwin)
+    ffi (1.17.0-x86_64-linux-gnu)
     fog-aws (3.23.0)
       fog-core (~> 2.1)
       fog-json (~> 1.1)
@@ -216,6 +217,8 @@ GEM
       net-protocol
     nio4r (2.7.3)
     nokogiri (1.16.6-x86_64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.16.6-x86_64-linux)
       racc (~> 1.4)
     oauth2 (2.0.9)
       faraday (>= 0.17.3, < 3.0)
@@ -381,6 +384,7 @@ GEM
 
 PLATFORMS
   x86_64-darwin-21
+  x86_64-linux
 
 DEPENDENCIES
   action_args

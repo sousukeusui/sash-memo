@@ -22,7 +22,7 @@
 .bg-top-image, .bg-image{
   height: 110vh;
   // 後で直す。一旦これで画像指定
-  background-image: url('background4-92b379562e8d7b1da45073d85432ddbfd8530c13096a33373d430a6ad45a6e20.jpg');
+  background-image: url(background4.jpg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -80,7 +80,7 @@ a{
   height: 38px;
   content: "";
   // 後で直す。一旦これで画像指定
-  background-image: url('ine_44-ce5b9332a7ad4db07455bbd2c8b159f85ea5a0c9b281a506594c47df11a47438.png');
+  background-image: url(line_44.png);
   background-repeat: none;
   background-size: 38px 38px;
 }
@@ -104,7 +104,7 @@ a{
   height: 38px;
   content: "";
   // 後で直す。一旦これで画像指定
-  background-image: url('google-icon-4357bba1dda53bec5c027c1592348fdf5ca54c9dde0e35cd19c8db82e56bb189.png');
+  background-image: url(google-icon.png);
   background-repeat: none;
   background-size: 38px 38px;
 }

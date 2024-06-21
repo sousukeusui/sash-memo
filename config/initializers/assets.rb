@@ -31,4 +31,5 @@ Rails.application.config.assets.precompile += %w(
   reading.png
   setup.png
   progress.png
+  logo.png
 )

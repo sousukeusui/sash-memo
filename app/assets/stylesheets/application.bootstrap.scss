@@ -21,7 +21,8 @@
 // トップページ
 .bg-top-image, .bg-image{
   height: 110vh;
-  background-image: url('background4.jpg');
+  // 後で直す。一旦これで画像指定
+  background-image: url(background4.jpg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -78,7 +79,8 @@ a{
   width: 42px;
   height: 38px;
   content: "";
-  background-image: url('line_44.png');
+  // 後で直す。一旦これで画像指定
+  background-image: url(line_44.png);
   background-repeat: none;
   background-size: 38px 38px;
 }
@@ -101,7 +103,8 @@ a{
   width: 38px;
   height: 38px;
   content: "";
-  background-image: url('google-icon.png');
+  // 後で直す。一旦これで画像指定
+  background-image: url(google-icon.png);
   background-repeat: none;
   background-size: 38px 38px;
 }

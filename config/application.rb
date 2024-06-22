@@ -12,6 +12,7 @@ module SashMemo
     config.load_defaults 6.1
     config.i18n.default_locale = :ja  #デフォルト言語を日本語に設定
     config.i18n.fallbacks =[:en]
+    config.public_file_server.enabled = true if Rails.env.production?
 
     # Configuration for the application, engines, and railties goes here.
     #

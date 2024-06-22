@@ -16,9 +16,20 @@ Rails.application.config.assets.paths << Rails.root.join("node_modules/bootstrap
 Rails.application.config.assets.precompile += %w( 
   bootstrap.min.js 
   popper.js 
-
   top.css
   index.css
   show.css
   new.css
+  google-icon.png
+  line_44.png
+  background4.jpg
+  h_cross_section.png
+  w_cross_section.png
+  choice.png
+  management.png
+  add.png
+  reading.png
+  setup.png
+  progress.png
+  logo.png
 )

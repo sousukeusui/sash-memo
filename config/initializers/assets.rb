@@ -16,6 +16,7 @@ Rails.application.config.assets.paths << Rails.root.join("node_modules/bootstrap
 Rails.application.config.assets.precompile += %w( 
   bootstrap.min.js 
   popper.js 
+  cocoon.js
   top.css
   index.css
   show.css

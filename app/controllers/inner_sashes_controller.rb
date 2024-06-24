@@ -15,10 +15,11 @@ class InnerSashesController < ApplicationController
   end
 
   def new_append_room
-    inner_sash = @site_memo.inner_sashes.build(inner_sash_params_emergency)
-    # @inner_sash = InnerSash.new(inner_sash_params.merge(site_memo_id: @site_memo.id))
-    @inner_sash = InnerSash.new if inner_sash.save
+    @inner_sash = InnerSash.new(inner_sash_params.merge(site_memo_id: @site_memo.id))
+    @inner_sash = InnerSash.new if @inner_sash.save
     # 保存失敗したら、パラメーターを元に作ったインスタンス返す
+  rescue => e
+    logger.error(e.message)
   end
 
   def new_step3
@@ -98,12 +99,6 @@ private
                                       :sash_type, :color, :number_of_shoji, :hanging_origin, :is_flat_bar, :is_adjust, 
                                       :glass_thickness, :glass_kind, :glass_color, :is_low_e, :key_height, :middle_frame_height,
                                       :template, photos_attributes: [:id, :file_name, :_destroy])
-  end
-
-  def inner_sash_params_emergency
-    params.require(:inner_sash).permit(:room, :width_up_size, :width_down_size, :width_middle_size, 
-                                       :height_left_size, :height_middle_size, :height_right_size,
-                                       :width_frame_depth, :height_frame_depth)
   end
 
   def site_memo_params

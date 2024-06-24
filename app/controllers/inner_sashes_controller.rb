@@ -15,9 +15,9 @@ class InnerSashesController < ApplicationController
   end
 
   def new_append_room
-    @inner_sash = @site_memo.inner_sashes.build(inner_sash_params)
-    p @inner_sash
-    @inner_sash = InnerSash.new if @inner_sash.save
+    inner_sash = @site_memo.inner_sashes.build(inner_sash_params)
+    @inner_sash = InnerSash.new if inner_sash.save
+    @inner_sash = inner_sash
     # 保存失敗したら、パラメーターを元に作ったインスタンス返す
   end
 
@@ -96,8 +96,8 @@ private
     params.require(:inner_sash).permit(:room, :number_of_shoji, :width_up_size, :width_down_size, :width_middle_size, 
                                       :height_left_size, :height_middle_size, :height_right_size, :width_frame_depth, :height_frame_depth,
                                       :sash_type, :color, :number_of_shoji, :hanging_origin, :is_flat_bar, :is_adjust, 
-                                      :glass_thickness, :glass_kind, :glass_color, :is_low_e, :key_height, :middle_frame_height)
-                                      # :template,photos_attributes: [:id, :file_name, :_destroy]
+                                      :glass_thickness, :glass_kind, :glass_color, :is_low_e, :key_height, :middle_frame_height,
+                                      :template, photos_attributes: [:id, :file_name, :_destroy])
   end
 
   def site_memo_params

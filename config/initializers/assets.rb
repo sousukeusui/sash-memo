@@ -15,7 +15,6 @@ Rails.application.config.assets.paths << Rails.root.join("node_modules/bootstrap
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
 Rails.application.config.assets.precompile += %w( 
   bootstrap.bundle.min.js
-  cocoon.js
   top.css
   index.css
   show.css

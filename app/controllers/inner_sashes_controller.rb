@@ -15,8 +15,8 @@ class InnerSashesController < ApplicationController
   end
 
   def new_append_room
-    p @site_memo.id
-    @inner_sash = InnerSash.new(inner_sash_params.merge(site_memo_id: @site_memo.id))
+    @inner_sash = @site_memo.inner_sashes.build(inner_sash_params)
+    p @inner_sash
     @inner_sash = InnerSash.new if @inner_sash.save
     # 保存失敗したら、パラメーターを元に作ったインスタンス返す
   end
@@ -113,7 +113,6 @@ private
 
   def set_site_memo
     @site_memo = SiteMemo.find_by(kind: 'inner_sash', site_id: session[:site_id])
-    p @site_memo
   end
 
   def correct_inner_sash(id:)

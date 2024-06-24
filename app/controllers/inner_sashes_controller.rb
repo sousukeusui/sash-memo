@@ -101,6 +101,7 @@ private
                                       :template, photos_attributes: [:id, :file_name, :_destroy])
   end
 
+<<<<<<< HEAD
   #緊急用後でリファクタリング
   def inner_sash_params_emergency
     params.require(:inner_sash).permit(:room, :width_up_size, :width_down_size, :width_middle_size, 
@@ -108,6 +109,8 @@ private
                                        :width_frame_depth, :height_frame_depth)
   end
 
+=======
+>>>>>>> e1ef9c2 (ログの出力設定)
   def site_memo_params
     params.require(:site_memo).permit(:remark, inner_sashes_attributes: [:id, :room, :number_of_shoji, :width_up_size, :width_down_size, :width_middle_size, 
                                       :height_left_size, :height_middle_size, :height_right_size, :width_frame_depth, :height_frame_depth,

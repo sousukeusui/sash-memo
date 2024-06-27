@@ -80,6 +80,10 @@ class InnerSashesController < ApplicationController
     render "#{template}"
   end
 
+  def edit(id:)
+
+  end
+
   def update(id:)
     @inner_sash.update!(inner_sash_params)
 

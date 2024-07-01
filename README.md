@@ -50,24 +50,33 @@ SashMemoはフォーマット化されているので現調時のメモ忘れ防
 ##  機能の説明
 | トップページ | 新規登録・ログイン機能 |
 |:----:|:----:|
-|　![readme_top](https://github.com/sousukeusui/sash-memo/assets/75169104/9461c0ec-2b06-40b6-b5f4-87b42bc19a83)<br>トップページ画面です。<br>サッシのイメージ画像を大きく表示しています。|　![新規登録・ログイン](https://github.com/sousukeusui/sash-memo/assets/75169104/9d6ca542-d589-4f4b-8bd0-96ccc21ed661)<br>新規登録・ログインは<br>メールアドレス以外に「LINE」「Google」が使えます。|
+|　![readme_top](https://github.com/sousukeusui/sash-memo/assets/75169104/9461c0ec-2b06-40b6-b5f4-87b42bc19a83)<br>トップページ画面です。<br>サッシのイメージ画像を大きく表示しています。|　![新規登録・ログイン](https://github.com/sousukeusui/sash-memo/assets/75169104/9d6ca542-d589-4f4b-8bd0-96ccc21ed661)<br>新規登録・ログイン機能です。<br>メールアドレス以外にLINE、Googleが使えます。|
 
 ####  現場情報
 | 作成機能 | 一覧機能 |
 |:----:|:----:|
-|　![現場作成](https://github.com/sousukeusui/sash-memo/assets/75169104/96b5c392-bf87-4b38-820b-f1ee825ee50b)|　![現場一覧](https://github.com/sousukeusui/sash-memo/assets/75169104/06b85b4a-afec-4e70-8dd9-37bc816c726f)|
+|　![現場作成](https://github.com/sousukeusui/sash-memo/assets/75169104/96b5c392-bf87-4b38-820b-f1ee825ee50b)<br>現場情報の保存ができます。<br>工事・現調日時も保存可能です。|　![現場一覧](https://github.com/sousukeusui/sash-memo/assets/75169104/06b85b4a-afec-4e70-8dd9-37bc816c726f)<br>現場情報の一覧が見れます。<br>1件ごとにカード形式で表示しています。|
 
-####  現場メモ
+####  現調メモ
 | 作成機能 | 一覧機能 |
 |:----:|:----:|
-|![step1](https://github.com/sousukeusui/sash-memo/assets/75169104/c3f68686-9546-4a8b-b5fe-0dc2cedc54a8)|![現場メモ一覧](https://github.com/sousukeusui/sash-memo/assets/75169104/af27e66a-59fe-4a54-9ded-4045342fd7cc)|
+|　![現調メモ作成](https://github.com/sousukeusui/sash-memo/assets/75169104/57dfdf13-8d2a-4e30-8d0b-51da5f425196)<br>現調メモの保存が可能です。<br>ウィザードフォームで構成されており、現在は内窓のみ対応。|　![現場メモ一覧](https://github.com/sousukeusui/sash-memo/assets/75169104/af27e66a-59fe-4a54-9ded-4045342fd7cc)<br>現調メモの一覧を確認できます。<br>現場一覧と同様にカードで表示しております。|
 
-| 詳細機能 | 発注・未発注切り替え |
+| 詳細機能 | 発注切り替え機能 |
 |:----:|:----:|
-![メモ詳細](https://github.com/sousukeusui/sash-memo/assets/75169104/1678436e-3570-4315-af93-e3317bd0d30a)||
+|　![メモ詳細](https://github.com/sousukeusui/sash-memo/assets/75169104/1678436e-3570-4315-af93-e3317bd0d30a)<br>メモの詳細画面です。<br>図面、寸法情報などを確認できます。|　![発注切り替え](https://github.com/sousukeusui/sash-memo/assets/75169104/4ed41c3b-d640-4105-b81b-b5910720e505)<br>発注の切り替え機能です。<br>turbo streamを採用しているのでスムーズに行えます。|
+
+####  その他
+- 一括発注切り替え機能
+- メモ切り替え機能
 
 ##  使用技術
-
+| カテゴリー | 技術　|
+|:---:|:---:|
+|　フロントエンド　|　HTML,CSS,Bootstrap,JavaScript　|
+|　バックエンド　| Ruby, Rails |
+| データベース | postgreSQL |
+|　インフラ　| heroku, AWS(S3) |
 
 ##  ER図
 ![ER図２](https://github.com/sousukeusui/sash-memo/assets/75169104/6ca50f76-fb29-4e0f-a5cc-430f94cf1178)
@@ -77,3 +86,12 @@ SashMemoはフォーマット化されているので現調時のメモ忘れ防
 https://www.figma.com/design/o1HBirabLqXaRB4qK1M1sY/SashMemo%2B?m=dev&node-id=0-1&t=O8fru7i7Lm1gxhDq-1<br>
 
 ## 今後の展望
+今後はアップデートを重ね「より使いやすく」を目指します。<br>
+fhase1: 現在起きているバグや使えない機能の修正。<br>
+fhase2: 新機能の追加（現調メモ作成時の一括フォーム変更機能、削除機能）<br>
+fhase3: UIの修正（pc表示の変更）<br>
+fhase4: 保存できる施工内容の項目の追加（新しいモデルの追加。玄関ドア、網戸を予定）<br>
+
+その後もさまざまな機能の追加を予定しております。<br>
+
+ここまでご覧いただきありがとうございました！

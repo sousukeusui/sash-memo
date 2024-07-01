@@ -41,16 +41,37 @@ SashMemoはフォーマット化されているので現調時のメモ忘れ防
 その結果1が起こり、本末転倒の事態に陥ることが想像できます。<br>
 
 この事態を解決するには紙でのフォーマット化ではなくアプリケーション化するのが良いと思いました。<br>
-
+<br>
 ##### 感じたこと
 以上大きな２つの問題を解決するべく「SashMemo」というアプリケーションを作成いたしました。<br>
 想像と実際の現場が求めていることはかなり違うと気づくことができ、要件定義のためのヒアリングがとても重要になってくることにも気づくことができました。
 ポートフォリオを作るのではなく実際に使ってくれるサービスを作ろうという意識になりました。<br>
 
 ##  機能の説明
+| トップページ | 新規登録・ログイン機能 |
+|:----:|:----:|
+|　![readme_top](https://github.com/sousukeusui/sash-memo/assets/75169104/9461c0ec-2b06-40b6-b5f4-87b42bc19a83)<br>トップページ画面です。<br>サッシのイメージ画像を大きく表示しています。|　![新規登録・ログイン](https://github.com/sousukeusui/sash-memo/assets/75169104/9d6ca542-d589-4f4b-8bd0-96ccc21ed661)<br>新規登録・ログインは<br>メールアドレス以外に「LINE」「Google」が使えます。|
+
+####  現場情報
+| 作成機能 | 一覧機能 |
+|:----:|:----:|
+|　![現場作成](https://github.com/sousukeusui/sash-memo/assets/75169104/96b5c392-bf87-4b38-820b-f1ee825ee50b)|　![現場一覧](https://github.com/sousukeusui/sash-memo/assets/75169104/06b85b4a-afec-4e70-8dd9-37bc816c726f)|
+
+####  現場メモ
+| 作成機能 | 一覧機能 |
+|:----:|:----:|
+|![step1](https://github.com/sousukeusui/sash-memo/assets/75169104/c3f68686-9546-4a8b-b5fe-0dc2cedc54a8)|![現場メモ一覧](https://github.com/sousukeusui/sash-memo/assets/75169104/af27e66a-59fe-4a54-9ded-4045342fd7cc)|
+
+| 詳細機能 | 発注・未発注切り替え |
+|:----:|:----:|
+![メモ詳細](https://github.com/sousukeusui/sash-memo/assets/75169104/1678436e-3570-4315-af93-e3317bd0d30a)||
 
 ##  使用技術
+
+
 ##  ER図
+![ER図２](https://github.com/sousukeusui/sash-memo/assets/75169104/6ca50f76-fb29-4e0f-a5cc-430f94cf1178)
+
 ##  画面設計
 画面設計はfigmaを使って行いました。下記のURLをご参照ください.<br>
 https://www.figma.com/design/o1HBirabLqXaRB4qK1M1sY/SashMemo%2B?m=dev&node-id=0-1&t=O8fru7i7Lm1gxhDq-1<br>

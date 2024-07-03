@@ -42,3 +42,17 @@
   max-width: 60%;
   max-height: 60%;
 }
+
+.btn-ordered{
+  color: var(--main-back);
+  background-color: var(--main);
+  border: none;
+  box-shadow: 0 2px 1px 1px var(--character);
+}
+
+.btn-unordered{
+  color: var(--main-back);
+  background-color: var(--sign);
+  border: none;
+  box-shadow: 0 2px 1px 1px var(--character);
+}

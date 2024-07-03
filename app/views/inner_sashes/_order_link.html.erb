@@ -3,5 +3,5 @@
     data: {turbo_method: :post, turbo_confirm: "#{InnerSash.orders_i18n[order_key.to_sym]}にしますか？"} %>
 
 <%= link_to "#{InnerSash.orders_i18n[order_key.to_sym]}にする",
-    inner_sashes_update_order_path(id: inner_sash.id, order: order_key), class: "d-none d-lg-inline btn btn-primary py-1 px-3",
+    inner_sashes_update_order_path(id: inner_sash.id, order: order_key), class: "d-none d-lg-inline btn btn-#{order_key} py-1 px-3",
     data: {turbo_method: :post, turbo_confirm: "#{InnerSash.orders_i18n[order_key.to_sym]}にしますか？"} %>

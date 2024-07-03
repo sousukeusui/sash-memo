@@ -8,9 +8,9 @@
     </div>
   </div>
   <div class="row align-items-center text-center mb-3" style='height:60px;'>
-    <div class="col">
+    <%= turbo_frame_tag 'room', class: 'col' do %>
       <p class='m-0'><%= @inner_sash.room %></p>
-    </div>
+    <% end %>
     <div class="col">
       <p class='m-0'>内窓</p>
     </div>
@@ -21,9 +21,11 @@
         </div>
       <% end %>
     </div>
-    <div class="col">
-      <%= link_to '編集', inner_sashes_edit_path(@inner_sash.id), class: 'btn btn-primary px-4 py-0' %>
-    </div>
+    <%= turbo_frame_tag 'edit-btn', class: 'col' do %>
+      <div>
+        <%= link_to '編集', inner_sashes_edit_path(@inner_sash.id), class: 'btn btn-primary px-4 py-0', data:{ turbo_stream: true} %>
+      </div>
+    <% end %>
     <div class="col-1 p-0 dropdown d-lg-none">
       <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
         <i class="bi bi-three-dots-vertical h1"></i>

@@ -1,0 +1,15 @@
+<%= turbo_stream.update 'room', class: 'col' do %>
+  <%= form_with model: @inner_sash, url: inner_sashes_update_path(@inner_sash.id), class: 'row' do |f| %>
+    <div class="col-8">
+      <%= f.text_field :room, class: 'w-100'  %>
+    </div>
+    <div class="col-4">
+      <%= f.submit "更新", class: 'btn btn-primary px-4 py-0' %>
+    </div>
+  <% end %>
+<% end %>
+<%= turbo_stream.update 'edit-btn' do %>
+  <div>
+    <%= link_to 'キャンセル', inner_sashes_switch_path(template: 'edit_cancel', id: @inner_sash.id), class: 'btn btn-secondary px-4 py-0' %>
+  </div>
+<% end %>

@@ -16,7 +16,7 @@
     </div>
     <%= turbo_frame_tag 'edit-btn', class: 'col' do %>
       <div>
-        <%= link_to '編集', inner_sashes_edit_path(@inner_sash.id), class: 'btn btn-primary px-4 py-0', data:{ turbo_stream: true} %>
+        <%= link_to '編集', inner_sashes_edit_room_path(@inner_sash.id), class: 'btn btn-primary px-4 py-0', data:{ turbo_stream: true} %>
       </div>
     <% end %>
     <div class="col-2 d-none d-sm-block">

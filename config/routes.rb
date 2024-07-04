@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   get 'inner_sashes/new_comfirmation'
   get 'inner_sashes/show/:id', to: 'inner_sashes#show', as: :inner_sashes_show
   delete 'inner_sashes/destroy/:id', to: 'inner_sashes#destroy', as: :inner_sashes_destroy
-  post 'inner_sashes/navigate_page/:id', to:'inner_sashes#navigate_page', as: :inner_sashes_navigate_page
+  post 'inner_sashes/navigate_page/:id/:template', to:'inner_sashes#navigate_page', as: :inner_sashes_navigate_page
   get 'inner_sashes/edit_room/:id', to: 'inner_sashes#edit_room', as: :inner_sashes_edit_room
   post 'inner_sashes/update_order/:id/:order', to: 'inner_sashes#update_order', as: :inner_sashes_update_order
   get 'inner_sashes/switch/:template/:id', to: 'inner_sashes#switch', as: :inner_sashes_switch

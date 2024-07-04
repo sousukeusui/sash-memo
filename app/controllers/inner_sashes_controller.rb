@@ -54,6 +54,7 @@ class InnerSashesController < ApplicationController
   def show(id:)
     @inner_sash = InnerSash.preload(site_memo: :site).find(id)
     @order_key = get_opposite_order_key(inner_sash: @inner_sash)
+    @template = 'basic_info'
   end
 
   def update_order(id:, order:)
@@ -68,15 +69,17 @@ class InnerSashesController < ApplicationController
     redirect_to site_memos_index_path(site_id: inner_sash.site_memo.site_id), notice: "メモを削除しました"
   end
 
-  def navigate_page(id:)
+  def navigate_page(id:, template:)
     @inner_sash = InnerSash.preload(site_memo: :site).find(id.to_i)
     @order_key = get_opposite_order_key(inner_sash: @inner_sash)
+    @template = template
   end
 
   def switch(template:, id:)
      # templateはbasic_info、shoji_and_glass、photo_and_others
      # h_cross_drawing w_cross_drawing　edit_roomのどれか
     # render "#{template}", content_type: 'text/vnd.turbo-stream.html'
+    @template = template
     render "#{template}"
   end
 

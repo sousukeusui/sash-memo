@@ -8,7 +8,7 @@ module InnerSashesHelper
     return 0
   end
 
-  def is_active(tab_name)
-    return 'active' if tab_name.present?
+  def is_active(template, compare)
+    return 'active' if template == compare 
   end
 end

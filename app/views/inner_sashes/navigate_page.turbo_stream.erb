@@ -2,12 +2,14 @@
   <%= render partial: 'order_link', locals: {order_key: @order_key, inner_sash: @inner_sash} %>
 <% end %>
 <%= turbo_stream.update 'inner-sash-delete' do %>
-  <%= link_to '削除', inner_sashes_destroy_path(id: @inner_sash.id), data: {turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }%>
+  <%= link_to '削除', inner_sashes_destroy_path(id: @inner_sash.id), data: {turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: 'btn btn-danger px-4 py-0'%>
 <% end %>
 <%= turbo_stream.update 'inner-sash-data-wrap' do %>
   <%= turbo_frame_tag 'drawing' do %>
     <%= render 'drawing_tabs', inner_sash: @inner_sash %>
-    <%= render 'drawing', inner_sash: @inner_sash %>
+    <div class="row justify-content-center" style='height:350px;'>
+      <%= render 'drawing', inner_sash: @inner_sash %>
+    </div>
   <% end %>
   <div id="inner-sash-data" class='mb-3'>
     <%= render 'tabs' %>

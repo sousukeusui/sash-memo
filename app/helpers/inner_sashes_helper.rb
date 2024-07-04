@@ -8,7 +8,7 @@ module InnerSashesHelper
     return 0
   end
 
-  def is_active(template, compare)
-    return 'active' if template == compare 
+  def is_active(template, compare_temp)
+    return 'active' if template == compare_temp 
   end
 end

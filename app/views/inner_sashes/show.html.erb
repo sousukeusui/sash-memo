@@ -60,8 +60,8 @@
       </div>
     <% end %>
     <%= turbo_frame_tag 'inner-sash-data' do %>
-      <%= render 'tabs', basic: 'active' %>
-      <%= render 'basic_info', inner_sash: @inner_sash%>
+      <%= render 'tabs' %>
+      <%= render 'basic_info', inner_sash: @inner_sash %>
     <% end %>
   <% end %>
 </div>

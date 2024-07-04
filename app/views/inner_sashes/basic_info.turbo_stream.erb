@@ -6,6 +6,6 @@
   </div>
 <% end %>
 <%= turbo_stream.update 'inner-sash-data' do %>
-  <%= render 'tabs', basic: 'active' %>
+  <%= render 'tabs' %>
   <%= render 'basic_info', inner_sash: @inner_sash %>
 <% end %>

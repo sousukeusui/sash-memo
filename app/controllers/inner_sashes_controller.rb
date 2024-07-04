@@ -55,6 +55,7 @@ class InnerSashesController < ApplicationController
     @inner_sash = InnerSash.preload(site_memo: :site).find(id)
     @order_key = get_opposite_order_key(inner_sash: @inner_sash)
     @template = 'basic_info'
+    @draw_temp = 'opening_drawing'
   end
 
   def update_order(id:, order:)
@@ -73,12 +74,14 @@ class InnerSashesController < ApplicationController
     @inner_sash = InnerSash.preload(site_memo: :site).find(id.to_i)
     @order_key = get_opposite_order_key(inner_sash: @inner_sash)
     @template = template
+    @draw_temp = 'opening_drawing'
   end
 
   def switch(template:, id:)
      # templateはbasic_info、shoji_and_glass、photo_and_others
-     # h_cross_drawing w_cross_drawing　edit_roomのどれか
+     # h_cross_drawing w_cross_drawing edit_roomのどれか
     # render "#{template}", content_type: 'text/vnd.turbo-stream.html'
+    @draw_temp = template
     @template = template
     render "#{template}"
   end

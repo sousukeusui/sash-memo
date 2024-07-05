@@ -94,9 +94,9 @@ class InnerSashesController < ApplicationController
     @inner_sash.update!(inner_sash_params)
 
     # templateはbasic_info、shoji_and_glass、photo_and_othersのどれか
-    template = inner_sash_params[:template]
-    flash.now.notice = I18n.t("inner_sashes.update.#{template}") + "を更新しました"
-    render "#{template}", content_type: 'text/vnd.turbo-stream.html'
+    @template = inner_sash_params[:template]
+    flash.now.notice = I18n.t("inner_sashes.update.#{@template}") + "を更新しました"
+    render "#{@template}", content_type: 'text/vnd.turbo-stream.html'
   end
 
 private

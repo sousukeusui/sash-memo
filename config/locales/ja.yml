@@ -107,6 +107,7 @@ ja:
       basic_info: "基本情報"
       shoji_and_glass: "障子・ガラス"
       photo_and_others: "写真・その他"
+      room: "部屋名"
 
   date:
     abbr_day_names:

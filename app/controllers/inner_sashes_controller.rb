@@ -1,6 +1,6 @@
 class InnerSashesController < ApplicationController
   before_action :authenticate_user!
-  before_action :correct_inner_sash, only: [:show, :switch, :navigate_page, :update_order, :update]
+  before_action :correct_inner_sash, only: [:show, :switch, :navigate_page, :update_order, :edit_room, :update]
   before_action :set_site_memo, only: [:new_step2, :new_step3, :new_step4, :new_step5,
                                        :new_append_room, :new_append_shoji_and_glass, 
                                        :new_append_photo_and_others, :new_append_basic_info, :new_comfirmation]
@@ -18,8 +18,6 @@ class InnerSashesController < ApplicationController
     @inner_sash = InnerSash.new(inner_sash_params.merge(site_memo_id: @site_memo.id))
     @inner_sash = InnerSash.new if @inner_sash.save
     # 保存失敗したら、パラメーターを元に作ったインスタンス返す
-  rescue => e
-    logger.error(e.message)
   end
 
   def new_step3
@@ -56,6 +54,8 @@ class InnerSashesController < ApplicationController
   def show(id:)
     @inner_sash = InnerSash.preload(site_memo: :site).find(id)
     @order_key = get_opposite_order_key(inner_sash: @inner_sash)
+    @template = 'basic_info'
+    @draw_temp = 'opening_drawing'
   end
 
   def update_order(id:, order:)
@@ -70,25 +70,33 @@ class InnerSashesController < ApplicationController
     redirect_to site_memos_index_path(site_id: inner_sash.site_memo.site_id), notice: "メモを削除しました"
   end
 
-  def navigate_page(id:)
+  def navigate_page(id:, template:)
     @inner_sash = InnerSash.preload(site_memo: :site).find(id.to_i)
     @order_key = get_opposite_order_key(inner_sash: @inner_sash)
+    @template = template
+    @draw_temp = 'opening_drawing'
   end
 
   def switch(template:, id:)
      # templateはbasic_info、shoji_and_glass、photo_and_others
-     # h_cross_drawing w_cross_drawing　のどれか
+     # h_cross_drawing w_cross_drawing edit_roomのどれか
     # render "#{template}", content_type: 'text/vnd.turbo-stream.html'
+    @draw_temp = template
+    @template = template
     render "#{template}"
+  end
+
+  def edit_room(id:)
+
   end
 
   def update(id:)
     @inner_sash.update!(inner_sash_params)
 
     # templateはbasic_info、shoji_and_glass、photo_and_othersのどれか
-    template = inner_sash_params[:template]
-    flash.now.notice = I18n.t("inner_sashes.update.#{template}") + "を更新しました"
-    render "#{template}", content_type: 'text/vnd.turbo-stream.html'
+    @template = inner_sash_params[:template]
+    flash.now.notice = I18n.t("inner_sashes.update.#{@template}") + "を更新しました"
+    render "#{@template}", content_type: 'text/vnd.turbo-stream.html'
   end
 
 private
